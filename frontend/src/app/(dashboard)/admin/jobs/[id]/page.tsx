@@ -17,12 +17,6 @@ export default function ViewJobPage() {
   const [job, setJob] = useState<Job | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Redirect if not admin
-  if (!user || user.role !== 'admin') {
-    router.push(ROUTES.login);
-    return null;
-  }
-
   useEffect(() => {
     if (jobId) {
       const jobData = jobsService.getJobById(jobId);
@@ -30,6 +24,12 @@ export default function ViewJobPage() {
       setIsLoading(false);
     }
   }, [jobId]);
+
+  // Redirect if not admin
+  if (!user || user.role !== 'admin') {
+    router.push(ROUTES.login);
+    return null;
+  }
 
   const handleBack = () => {
     router.push(ROUTES.admin.jobs);

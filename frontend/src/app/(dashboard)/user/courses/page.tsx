@@ -167,7 +167,7 @@ export default function UserCoursesPage() {
                 </div>
 
                 <div className="mb-6">
-                  <h4 className="font-semibold text-sm mb-3">What You'll Learn:</h4>
+                  <h4 className="font-semibold text-sm mb-3">What You&apos;ll Learn:</h4>
                   <ul className="space-y-2">
                     {course.syllabus.slice(0, 3).map((topic, index) => (
                       <li key={index} className="flex items-start space-x-2 text-sm">

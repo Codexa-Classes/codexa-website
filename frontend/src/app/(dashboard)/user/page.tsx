@@ -107,7 +107,7 @@ export default function UserDashboardPage() {
                 Welcome back, {user.name}! 👋
               </h1>
               <p className="text-lg text-gray-600">
-                Ready to find your next opportunity? Here's what's happening with your job search.
+                Ready to find your next opportunity? Here&apos;s what&apos;s happening with your job search.
               </p>
             </div>
             <div className="flex items-center gap-3">

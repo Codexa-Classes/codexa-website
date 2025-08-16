@@ -88,7 +88,7 @@ export default function JobDetailPage() {
         <div className="text-center">
           <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
           <h2 className="text-xl font-semibold mb-2">Job Not Found</h2>
-          <p className="text-gray-600 mb-4">The job you're looking for doesn't exist or has been removed.</p>
+          <p className="text-gray-600 mb-4">The job you&apos;re looking for doesn&apos;t exist or has been removed.</p>
           <Button onClick={() => router.push(ROUTES.user.jobs)}>
             Back to Jobs
           </Button>

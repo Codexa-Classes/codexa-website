@@ -211,7 +211,7 @@ export function CourseProfile({ courseId }: CourseProfileProps) {
             <CardHeader>
               <CardTitle>Course Syllabus</CardTitle>
               <CardDescription>
-                What you'll learn in this course
+                What you&apos;ll learn in this course
               </CardDescription>
             </CardHeader>
             <CardContent>
