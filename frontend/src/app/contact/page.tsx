@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import PageLayout from '@/components/layout/PageLayout';
 import Link from 'next/link';
+import Super10Section from '@/components/Super10Section';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -171,53 +172,8 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Special Programs Highlight */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-4">Ready to Enroll?</h3>
-              <p className="text-white/90 mb-6 font-medium">
-                Start your IT career today with our comprehensive courses. 
-                All courses include hands-on projects and job placement support.
-              </p>
-              <div className="text-3xl font-bold text-yellow-300 mb-2">₹10,000</div>
-              <div className="text-sm text-white/80 font-medium">Per course (Complete training + Certificate)</div>
-            </div>
-
-            <div className="bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-4">
-                <img src="/Discord.gif" alt="Discord" className="mr-2 h-5 w-5 inline" />
-                Super10 Program
-              </h3>
-              <p className="text-white/90 mb-6 font-medium">
-                Eligible for free education? Apply for our Super10 program and 
-                get complete IT training at no cost.
-              </p>
-              <div className="text-3xl font-bold mb-2">100% FREE</div>
-              <div className="text-sm text-white/80 font-medium">For 10 underprivileged students per batch</div>
-            </div>
-          </div>
-
-          {/* Call to Action */}
-          <div className="text-center bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white rounded-2xl p-12">
-            <h3 className="text-3xl font-bold mb-4">Ready to Start Learning?</h3>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
-              Don't wait to transform your career. Contact us today to learn more about 
-              our courses and start your IT journey.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" variant="secondary" className="bg-white text-blue-900 hover:bg-white/90 font-medium">
-                <Link href="/courses">
-                  View Courses <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-blue-900 font-medium">
-                <Link href="/super10">
-                  <img src="/Discord.gif" alt="Discord" className="mr-2 h-4 w-4 inline" />
-                  Apply for Super10
-                </Link>
-              </Button>
-            </div>
-          </div>
+          {/* Super10 Section */}
+          <Super10Section />
         </div>
       </div>
     </PageLayout>

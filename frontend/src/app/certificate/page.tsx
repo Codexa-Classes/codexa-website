@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import PageLayout from '@/components/layout/PageLayout';
 import Link from 'next/link';
+import Super10Section from '@/components/Super10Section';
 
 export default function Certificate() {
   const [studentId, setStudentId] = useState("");
@@ -341,6 +342,9 @@ export default function Certificate() {
               </Button>
             </div>
           </div>
+
+          {/* Super10 Section */}
+          <Super10Section />
         </div>
       </div>
     </PageLayout>

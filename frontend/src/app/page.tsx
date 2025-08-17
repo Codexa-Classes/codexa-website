@@ -20,6 +20,7 @@ import {
   Zap
 } from 'lucide-react';
 import PageLayout from '@/components/layout/PageLayout';
+import Super10Section from '@/components/Super10Section';
 
 export default function Home() {
   const popularCourses = [
@@ -168,26 +169,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Super10 Program Section */}
-      <section className="py-20 bg-gradient-to-br from-orange-400 to-orange-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <Badge variant="secondary" className="mb-4 bg-white/20 text-white border-white/30">
-            💫 Special Initiative
-          </Badge>
-          <h2 className="text-3xl font-bold mb-6">
-            <img src="/Discord.gif" alt="Discord" className="mr-2 h-5 w-5 inline" />
-            Super10 Program
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-            We believe in equal opportunities for all. Our Super10 program provides completely free IT education to 10 underprivileged students in every batch.
-          </p>
-          <Button asChild size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-orange-600">
-            <Link href="/super10">
-              Learn More About Super10 <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
-        </div>
-      </section>
+      <Super10Section />
 
       {/* Call to Action Section */}
       <section className="py-20 bg-blue-600 text-white">

@@ -15,6 +15,7 @@ import {
   Trophy
 } from "lucide-react";
 import PageLayout from '@/components/layout/PageLayout';
+import Super10Section from '@/components/Super10Section';
 
 export default function About() {
   const instructor = {
@@ -202,6 +203,9 @@ export default function About() {
               </Button>
             </div>
           </div>
+
+          {/* Super10 Section */}
+          <Super10Section />
         </div>
       </div>
     </PageLayout>
