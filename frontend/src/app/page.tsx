@@ -90,7 +90,7 @@ export default function Home() {
                 View All Courses <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full border-white text-white hover:bg-white hover:text-blue-900 font-medium">
+            <Button asChild size="lg" variant="outline" className="rounded-full border-white text-black hover:bg-white hover:text-blue-900 font-medium">
               <Link href="/super10">
                 Learn About Super10
               </Link>
@@ -177,7 +177,7 @@ export default function Home() {
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
             We believe in equal opportunities for all. Our Super10 program provides completely free IT education to 10 underprivileged students in every batch.
           </p>
-          <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600">
+          <Button asChild size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-orange-600">
             <Link href="/super10">
               Learn More About Super10 <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
@@ -198,7 +198,7 @@ export default function Home() {
                 Browse Courses <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+            <Button asChild size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-blue-600">
               <Link href="/contact">
                 Contact Us
               </Link>

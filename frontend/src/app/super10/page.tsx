@@ -173,7 +173,7 @@ export default function Super10() {
                 ))}
               </div>
               <div className="mt-8">
-                <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600 text-white font-medium">
+                <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600 text-black font-medium">
                   <Link href="/contact">
                     Apply for Super10 <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
@@ -261,7 +261,7 @@ export default function Super10() {
                   Apply Now <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600 font-medium">
+              <Button asChild size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-orange-600 font-medium">
                 <Link href="/courses">
                   View All Courses
                 </Link>

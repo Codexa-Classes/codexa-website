@@ -389,7 +389,7 @@ export default function Contact() {
                   View Courses <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900 font-medium">
+              <Button asChild size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-blue-900 font-medium">
                 <Link href="/super10">
                   Apply for Super10
                 </Link>

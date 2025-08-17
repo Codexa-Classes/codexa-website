@@ -347,7 +347,7 @@ export default function Certificate() {
                   Contact Support
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900 font-medium">
+              <Button asChild size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-blue-900 font-medium">
                 <a href="tel:+919876543210">
                   Call Us
                 </a>
