@@ -119,84 +119,107 @@ export default function Certificate() {
     <PageLayout>
       <div className="py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4 bg-blue-400 text-white border-blue-400 font-medium">
-              🎓 Certificate Portal
-            </Badge>
-            <h1 className="text-4xl font-bold mb-6 text-gray-900">Download Your Certificate</h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 font-medium">
-              Access your official course completion certificate. Our certificates are digitally 
-              verified and recognized by industry professionals worldwide.
-            </p>
-            
-            <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white rounded-2xl p-6 max-w-md mx-auto">
-              <p className="text-sm text-white/90 mb-2 font-medium">Certificate Included</p>
-              <p className="text-3xl font-bold text-yellow-300 mb-2">Free with Every Course</p>
-              <p className="text-sm text-white/90 font-medium">No additional fees</p>
-            </div>
-          </div>
-
-          {/* Certificate Download Form */}
-          <div className="max-w-2xl mx-auto mb-16">
-            <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-lg">
-              <CardHeader className="text-center">
-                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Download className="h-8 w-8 text-blue-600" />
-                </div>
-                <CardTitle className="text-2xl text-gray-900 font-bold">Certificate Download</CardTitle>
-                <CardDescription className="text-gray-700 font-medium">
-                  Enter your Student ID to download your course completion certificate
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <form onSubmit={handleDownloadCertificate} className="space-y-4">
-                  <div>
-                    <Label htmlFor="studentId" className="text-gray-900 font-medium">Student ID</Label>
-                    <Input
-                      id="studentId"
-                      type="text"
-                      value={studentId}
-                      onChange={(e) => setStudentId(e.target.value)}
-                      placeholder="Enter your Student ID (e.g., TECH2024001)"
-                      className="mt-1 border-gray-300 focus:border-blue-500"
-                    />
-                    <p className="text-sm text-gray-600 mt-1 font-medium">
-                      Your Student ID was provided via email upon course enrollment
-                    </p>
-                  </div>
-                  
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium" 
-                    size="lg"
-                    disabled={isLoading}
-                  >
-                    {isLoading ? (
-                      <>
-                        <Search className="mr-2 h-4 w-4 animate-spin" />
-                        Searching...
-                      </>
-                    ) : (
-                      <>
-                        <Download className="mr-2 h-4 w-4" />
-                        Download Certificate
-                      </>
-                    )}
-                  </Button>
-                </form>
-
-                <div className="bg-gray-100 rounded-lg p-4 border border-gray-200">
+          {/* Download Section - 2 Column Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            {/* Left Column - Download Info */}
+            <div className="space-y-6">
+              <div className="text-left">
+                <Badge variant="secondary" className="mb-4 bg-blue-400 text-white border-blue-400 font-medium">
+                  🎓 Certificate Portal
+                </Badge>
+                <h1 className="text-4xl font-bold mb-6 text-gray-900">Download Your Certificate</h1>
+                <p className="text-xl text-gray-700 mb-8 font-medium">
+                  Access your official course completion certificate. Our certificates are digitally 
+                  verified and recognized by industry professionals worldwide.
+                </p>
+              </div>
+              
+              <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white rounded-2xl p-8">
+                <p className="text-sm text-white/90 mb-2 font-medium">Certificate Included</p>
+                <p className="text-4xl font-bold text-yellow-300 mb-2">Free with Every Course</p>
+                <p className="text-sm text-white/90 font-medium">No additional fees</p>
+              </div>
+              
+              <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                <h3 className="text-xl font-bold mb-4 text-gray-900">How to Download</h3>
+                <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <AlertCircle className="h-5 w-5 text-gray-600 mt-0.5 flex-shrink-0" />
-                    <div className="text-sm text-gray-700">
-                      <p className="font-medium mb-1">Need help finding your Student ID?</p>
-                      <p>Check your enrollment confirmation email or contact us at hiVirajKadam@gmail.com</p>
+                    <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">1</div>
+                    <p className="text-gray-700 text-sm font-medium">Enter your Student ID in the form</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
+                    <p className="text-gray-700 text-sm font-medium">Click Download Certificate button</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
+                    <p className="text-gray-700 text-sm font-medium">Your certificate will be downloaded</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Download Form */}
+            <div>
+              <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-lg">
+                <CardHeader className="text-center">
+                  <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Download className="h-8 w-8 text-blue-600" />
+                  </div>
+                  <CardTitle className="text-2xl text-gray-900 font-bold">Certificate Download</CardTitle>
+                  <CardDescription className="text-gray-700 font-medium">
+                    Enter your Student ID to download your course completion certificate
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <form onSubmit={handleDownloadCertificate} className="space-y-4">
+                    <div>
+                      <Label htmlFor="studentId" className="text-gray-900 font-medium">Student ID</Label>
+                      <Input
+                        id="studentId"
+                        type="text"
+                        value={studentId}
+                        onChange={(e) => setStudentId(e.target.value)}
+                        placeholder="Enter your Student ID (e.g., TECH2024001)"
+                        className="mt-1 border-gray-300 focus:border-blue-500"
+                      />
+                      <p className="text-sm text-gray-600 mt-1 font-medium">
+                        Your Student ID was provided via email upon course enrollment
+                      </p>
+                    </div>
+                    
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium" 
+                      size="lg"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <>
+                          <Search className="mr-2 h-4 w-4 animate-spin" />
+                          Searching...
+                        </>
+                      ) : (
+                        <>
+                          <Download className="mr-2 h-4 w-4" />
+                          Download Certificate
+                        </>
+                      )}
+                    </Button>
+                  </form>
+
+                  <div className="bg-gray-100 rounded-lg p-4 border border-gray-200">
+                    <div className="flex items-start space-x-3">
+                      <AlertCircle className="h-5 w-5 text-gray-600 mt-0.5 flex-shrink-0" />
+                      <div className="text-sm text-gray-700">
+                        <p className="font-medium mb-1">Need help finding your Student ID?</p>
+                        <p>Check your enrollment confirmation email or contact us at hiVirajKadam@gmail.com</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
           {/* Certificate Features */}
