@@ -10,6 +10,8 @@ import { validateUser } from '@/lib/auth/fakeUsers';
 import { useAuth } from '@/contexts/AuthContext';
 import { ROUTES } from '@/lib/constants';
 import { ModeToggle } from '@/components/mode-toggle';
+import { Twitter, Instagram, Linkedin, Mail, MapPin } from 'lucide-react';
+
 
 export default function LoginPage() {
   const [mobile, setMobile] = useState('');
@@ -177,6 +179,50 @@ export default function LoginPage() {
             </a>
           </div>
         </nav>
+      </div>
+
+      {/* Social Media Icons */}
+      <div className="mt-6 text-center">
+        <div className="flex flex-row justify-center space-x-6">
+          <a 
+            href="https://twitter.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-600 dark:text-gray-400 hover:text-blue-400 dark:hover:text-blue-300 transition-colors duration-200"
+          >
+            <Twitter size={24} />
+          </a>
+          <a 
+            href="https://instagram.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-600 dark:text-gray-400 hover:text-pink-500 dark:hover:text-pink-400 transition-colors duration-200"
+          >
+            <Instagram size={24} />
+          </a>
+          <a 
+            href="https://linkedin.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+          >
+            <Linkedin size={24} />
+          </a>
+          <a 
+            href="mailto:info@codexaclasses.com" 
+            className="text-gray-600 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200"
+          >
+            <Mail size={24} />
+          </a>
+          <a 
+            href="https://maps.google.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors duration-200"
+          >
+            <MapPin size={24} />
+          </a>
+        </div>
       </div>
     </div>
   );
