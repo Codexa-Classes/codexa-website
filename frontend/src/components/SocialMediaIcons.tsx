@@ -13,17 +13,22 @@ interface SocialMediaIconsProps {
   className?: string;
   iconSize?: number;
   containerClassName?: string;
+  gap?: number;
 }
 
 export const SocialMediaIcons: React.FC<SocialMediaIconsProps> = ({
   links,
   className = "mt-15 text-center",
   iconSize = 24,
-  containerClassName = "flex flex-row justify-center space-x-15"
+  containerClassName = "flex flex-row justify-center",
+  gap = 15
 }) => {
   return (
     <div className={className}>
-      <div className={containerClassName}>
+      <div 
+        className={containerClassName}
+        style={{ gap: `${gap}px` }}
+      >
         {links.map((link, index) => (
           <a
             key={index}

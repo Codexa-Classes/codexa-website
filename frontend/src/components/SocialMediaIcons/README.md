@@ -46,7 +46,8 @@ const customLinks: SocialMediaLink[] = [
   links={customLinks}
   iconSize={32}
   className="mt-8 text-center"
-  containerClassName="flex justify-center space-x-6"
+  containerClassName="flex justify-center"
+  gap={24}
 />
 ```
 
@@ -57,7 +58,8 @@ const customLinks: SocialMediaLink[] = [
 | `links` | `SocialMediaLink[]` | Required | Array of social media link objects |
 | `className` | `string` | `"mt-15 text-center"` | CSS classes for the outer container |
 | `iconSize` | `number` | `24` | Size of the icons in pixels |
-| `containerClassName` | `string` | `"flex flex-row justify-center space-x-15"` | CSS classes for the icons container |
+| `containerClassName` | `string` | `"flex flex-row justify-center"` | CSS classes for the icons container |
+| `gap` | `number` | `15` | Gap between icons in pixels |
 
 ## SocialMediaLink Interface
 
@@ -91,8 +93,9 @@ The component comes with pre-configured social media links for:
 ```tsx
 <SocialMediaIcons 
   links={defaultSocialMediaLinks}
-  containerClassName="grid grid-cols-3 gap-4"
+  containerClassName="grid grid-cols-3"
   className="mt-10"
+  gap={16}
 />
 ```
 
@@ -101,7 +104,8 @@ The component comes with pre-configured social media links for:
 <SocialMediaIcons 
   links={defaultSocialMediaLinks}
   className=""
-  containerClassName="flex space-x-4"
+  containerClassName="flex"
+  gap={16}
 />
 ```
 

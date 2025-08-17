@@ -53,7 +53,8 @@ export default function AppFooter() {
                 links={defaultSocialMediaLinks}
                 iconSize={20}
                 className=""
-                containerClassName="flex space-x-3"
+                containerClassName="flex"
+                gap={40}
               />
             </div>
           </div>
