@@ -249,27 +249,6 @@ export default function Super10() {
             </div>
           </div>
 
-          {/* Call to Action */}
-          <div className="text-center bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-2xl p-12">
-            <h3 className="text-3xl font-bold mb-4">Ready to Transform Your Future?</h3>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
-              Don't let financial constraints hold you back. Apply for Super10 and take the first step 
-              towards a successful career in technology.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" variant="secondary" className="bg-white text-orange-600 hover:bg-white/90 font-medium">
-                <Link href="/contact">
-                  Apply Now <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-orange-600 font-medium">
-                <Link href="/courses">
-                  View All Courses
-                </Link>
-              </Button>
-            </div>
-          </div>
-
           {/* Super10 Section */}
           <Super10Section />
         </div>

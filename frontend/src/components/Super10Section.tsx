@@ -7,7 +7,7 @@ export default function Super10Section() {
   return (
     <>
       {/* Main Super10 Section */}
-      <section className="py-20 bg-gradient-to-br from-orange-400 to-orange-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-2xl">
         <div className="container mx-auto px-4 text-center">
           <Badge variant="secondary" className="mb-4 bg-white/20 text-white border-white/30">
             💫 Special Initiative
@@ -28,8 +28,8 @@ export default function Super10Section() {
       </section>
 
       {/* Special Programs Highlight */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-10 bg-white">
+        <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-4">Ready to Enroll?</h3>
