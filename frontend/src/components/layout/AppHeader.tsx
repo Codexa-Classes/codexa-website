@@ -54,13 +54,16 @@ export default function AppHeader() {
     <header className="bg-white border-b border-border/40 sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <GraduationCap className="h-5 w-5 text-primary-foreground" />
+          <Link href="/" className="flex items-center space-x-4">
+            <div className="w-10 h-10 flex items-center justify-center">
+              <img 
+                src="/Codex Classes.png" 
+                alt="Codexa Classes Logo" 
+              />
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl font-bold">Codexa Classes</span>
-              <span className="text-md text-black">by Viraj Kadam</span>
+              <img src="/Codexa LOGO 1.png" alt="Codexa Classes Logo" className="h-8 object-contain mb-1" />
+              <span className="text-sm text-black">by Viraj Kadam</span>
             </div>
           </Link>
           
