@@ -21,8 +21,6 @@ import {
   CheckCircle,
   ArrowRight
 } from "lucide-react";
-import AppHeader from '@/components/layout/AppHeader';
-import AppFooter from '@/components/layout/AppFooter';
 import PageLayout from '@/components/layout/PageLayout';
 import Link from 'next/link';
 
@@ -53,7 +51,7 @@ export default function Contact() {
     
     // Simulate form submission
     setTimeout(() => {
-      toast.success("Message Sent! Thank you for contacting us. We&apos;ll get back to you within 24 hours.");
+      toast.success("Message Sent! Thank you for contacting us. We'll get back to you within 24 hours.");
       setFormData({
         firstName: "",
         lastName: "",
@@ -109,7 +107,7 @@ export default function Contact() {
   const faqs = [
     {
       question: "How do I enroll in a course?",
-              answer: "You can enroll by filling out the contact form below or emailing us directly. We&apos;ll guide you through the entire process."
+      answer: "You can enroll by filling out the contact form below or emailing us directly. We'll guide you through the entire process."
     },
     {
       question: "What is the duration of each course?",
@@ -117,7 +115,7 @@ export default function Contact() {
     },
     {
       question: "How do I apply for Super10?",
-              answer: "Submit your application through this contact form with &apos;Super10 Application&apos; as inquiry type, along with required documents."
+      answer: "Submit your application through this contact form with 'Super10 Application' as inquiry type, along with required documents."
     },
     {
       question: "Are there any prerequisites?",
@@ -131,85 +129,92 @@ export default function Contact() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4">📞 Get in Touch</Badge>
-            <h1 className="text-4xl font-bold mb-6">Contact Codexa Classes</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Have questions about our courses or want to enroll? We&apos;re here to help you 
-              start your IT journey. Reach out to us through any of the channels below.
+            <Badge variant="secondary" className="mb-4 bg-blue-400 text-white border-blue-400 font-medium">
+              📞 Contact Us
+            </Badge>
+            <h1 className="text-4xl font-bold mb-6 text-gray-900">Get in Touch</h1>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 font-medium">
+              Ready to start your IT journey? Have questions about our courses? 
+              We're here to help you take the next step in your career.
             </p>
           </div>
 
           {/* Contact Information */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {contactInfo.map((info, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-primary">
-                  {info.icon}
-                </div>
-                <h3 className="font-semibold text-sm mb-2">{info.title}</h3>
-                <p className="text-muted-foreground text-xs">{info.description}</p>
-              </div>
+              <Card key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-md hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-blue-600">
+                    {info.icon}
+                  </div>
+                  <h3 className="font-semibold text-sm mb-2 text-gray-900">{info.title}</h3>
+                  <p className="text-gray-700 text-xs font-medium">{info.description}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
 
           {/* Contact Form and Info */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             {/* Contact Form */}
-            <Card className="bg-gradient-card border-0">
+            <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-2xl">Send us a Message</CardTitle>
-                <CardDescription>
-                  Fill out the form below and we&apos;ll get back to you within 24 hours.
+                <CardTitle className="text-2xl text-gray-900 font-bold">Send us a Message</CardTitle>
+                <CardDescription className="text-gray-700 font-medium">
+                  Fill out the form below and we'll get back to you within 24 hours.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="firstName">First Name</Label>
+                      <Label htmlFor="firstName" className="text-gray-900 font-medium">First Name</Label>
                       <Input
                         id="firstName"
                         value={formData.firstName}
                         onChange={(e) => setFormData({...formData, firstName: e.target.value})}
                         required
+                        className="border-gray-300 focus:border-blue-500"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="lastName">Last Name</Label>
+                      <Label htmlFor="lastName" className="text-gray-900 font-medium">Last Name</Label>
                       <Input
                         id="lastName"
                         value={formData.lastName}
                         onChange={(e) => setFormData({...formData, lastName: e.target.value})}
                         required
+                        className="border-gray-300 focus:border-blue-500"
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email" className="text-gray-900 font-medium">Email</Label>
                     <Input
                       id="email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                       required
+                      className="border-gray-300 focus:border-blue-500"
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="phone">Phone Number</Label>
+                    <Label htmlFor="phone" className="text-gray-900 font-medium">Phone Number</Label>
                     <Input
                       id="phone"
                       value={formData.phone}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                      required
+                      className="border-gray-300 focus:border-blue-500"
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="subject">Subject</Label>
+                    <Label htmlFor="subject" className="text-gray-900 font-medium">Subject</Label>
                     <Select value={formData.subject} onValueChange={(value) => setFormData({...formData, subject: value})}>
-                      <SelectTrigger>
+                      <SelectTrigger className="border-gray-300 focus:border-blue-500">
                         <SelectValue placeholder="Select a subject" />
                       </SelectTrigger>
                       <SelectContent>
@@ -223,17 +228,18 @@ export default function Contact() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="message">Message</Label>
+                    <Label htmlFor="message" className="text-gray-900 font-medium">Message</Label>
                     <Textarea
                       id="message"
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
                       required
+                      className="border-gray-300 focus:border-blue-500"
                     />
                   </div>
                   
-                  <Button type="submit" className="w-full" disabled={isLoading}>
+                  <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium" disabled={isLoading}>
                     {isLoading ? (
                       <>
                         <MessageSquare className="mr-2 h-4 w-4 animate-spin" />
@@ -253,15 +259,15 @@ export default function Contact() {
             {/* Contact Details */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
+                <h3 className="text-2xl font-bold mb-6 text-gray-900">Get in Touch</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <Mail className="h-5 w-5 text-primary mt-1" />
+                    <Mail className="h-5 w-5 text-blue-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold">Email</h4>
+                      <h4 className="font-semibold text-gray-900">Email</h4>
                       <a 
                         href="mailto:hiVirajKadam@gmail.com"
-                        className="text-primary hover:underline"
+                        className="text-blue-600 hover:underline font-medium"
                       >
                         hiVirajKadam@gmail.com
                       </a>
@@ -269,12 +275,12 @@ export default function Contact() {
                   </div>
                   
                   <div className="flex items-start space-x-3">
-                    <Phone className="h-5 w-5 text-primary mt-1" />
+                    <Phone className="h-5 w-5 text-blue-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold">Phone</h4>
+                      <h4 className="font-semibold text-gray-900">Phone</h4>
                       <a 
                         href="tel:+919876543210"
-                        className="text-primary hover:underline"
+                        className="text-blue-600 hover:underline font-medium"
                       >
                         +91 98765 43210
                       </a>
@@ -282,11 +288,11 @@ export default function Contact() {
                   </div>
                   
                   <div className="flex items-start space-x-3">
-                    <MapPin className="h-5 w-5 text-primary mt-1" />
+                    <MapPin className="h-5 w-5 text-blue-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold">Address</h4>
-                      <p className="text-muted-foreground">
-                        Codexa Classes<br />
+                      <h4 className="font-semibold text-gray-900">Address</h4>
+                      <p className="text-gray-700 font-medium">
+                        Shraddha Classes<br />
                         IT Training Center<br />
                         Mumbai, Maharashtra, India
                       </p>
@@ -294,10 +300,10 @@ export default function Contact() {
                   </div>
                   
                   <div className="flex items-start space-x-3">
-                    <Clock className="h-5 w-5 text-primary mt-1" />
+                    <Clock className="h-5 w-5 text-blue-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold">Business Hours</h4>
-                      <p className="text-muted-foreground">
+                      <h4 className="font-semibold text-gray-900">Business Hours</h4>
+                      <p className="text-gray-700 font-medium">
                         Monday - Friday: 9:00 AM - 8:00 PM<br />
                         Saturday: 9:00 AM - 6:00 PM<br />
                         Sunday: Closed
@@ -307,23 +313,23 @@ export default function Contact() {
                 </div>
               </div>
               
-              <div className="bg-muted/30 rounded-lg p-6">
-                <h4 className="font-semibold mb-4">Quick Response</h4>
-                <p className="text-sm text-muted-foreground mb-4">
+              <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                <h4 className="font-semibold mb-4 text-gray-900">Quick Response</h4>
+                <p className="text-sm text-gray-700 mb-4 font-medium">
                   We typically respond to all inquiries within 24 hours during business days.
                 </p>
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>Course information and pricing</span>
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span className="text-gray-700 font-medium">Course information and pricing</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>Enrollment assistance</span>
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span className="text-gray-700 font-medium">Enrollment assistance</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>Super10 program applications</span>
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span className="text-gray-700 font-medium">Super10 program applications</span>
                   </div>
                 </div>
               </div>
@@ -331,36 +337,59 @@ export default function Contact() {
           </div>
 
           {/* FAQ Section */}
-          <div className="bg-muted/30 rounded-2xl p-8 mb-16">
-            <h3 className="text-2xl font-semibold text-center mb-8">Frequently Asked Questions</h3>
+          <div className="bg-gray-50 rounded-2xl p-8 mb-16 border border-gray-200">
+            <h3 className="text-2xl font-bold text-center mb-8 text-gray-900">Frequently Asked Questions</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {faqs.map((faq, index) => (
-                <Card key={index} className="bg-gradient-card border-0">
+                <Card key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-md hover:shadow-lg transition-all duration-300">
                   <CardHeader>
-                    <CardTitle className="text-lg">{faq.question}</CardTitle>
+                    <CardTitle className="text-lg text-gray-900 font-bold">{faq.question}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription>{faq.answer}</CardDescription>
+                    <CardDescription className="text-gray-700 font-medium">{faq.answer}</CardDescription>
                   </CardContent>
                 </Card>
               ))}
             </div>
           </div>
 
+          {/* Special Programs Highlight */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white rounded-2xl p-8">
+              <h3 className="text-2xl font-bold mb-4">Ready to Enroll?</h3>
+              <p className="text-white/90 mb-6 font-medium">
+                Start your IT career today with our comprehensive courses. 
+                All courses include hands-on projects and job placement support.
+              </p>
+              <div className="text-3xl font-bold text-yellow-300 mb-2">₹10,000</div>
+              <div className="text-sm text-white/80 font-medium">Per course (Complete training + Certificate)</div>
+            </div>
+
+            <div className="bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-2xl p-8">
+              <h3 className="text-2xl font-bold mb-4">Super10 Program</h3>
+              <p className="text-white/90 mb-6 font-medium">
+                Eligible for free education? Apply for our Super10 program and 
+                get complete IT training at no cost.
+              </p>
+              <div className="text-3xl font-bold mb-2">100% FREE</div>
+              <div className="text-sm text-white/80 font-medium">For 10 underprivileged students per batch</div>
+            </div>
+          </div>
+
           {/* Call to Action */}
-          <div className="text-center bg-gradient-hero text-white rounded-2xl p-12">
+          <div className="text-center bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white rounded-2xl p-12">
             <h3 className="text-3xl font-bold mb-4">Ready to Start Learning?</h3>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Don&apos;t wait to transform your career. Contact us today to learn more about 
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
+              Don't wait to transform your career. Contact us today to learn more about 
               our courses and start your IT journey.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" variant="secondary">
+              <Button asChild size="lg" variant="secondary" className="bg-white text-blue-900 hover:bg-white/90 font-medium">
                 <Link href="/courses">
                   View Courses <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900 font-medium">
                 <Link href="/super10">
                   Apply for Super10
                 </Link>
@@ -371,4 +400,4 @@ export default function Contact() {
       </div>
     </PageLayout>
   );
-};
+}
