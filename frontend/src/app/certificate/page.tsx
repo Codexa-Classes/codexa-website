@@ -300,40 +300,6 @@ export default function Certificate() {
             </div>
           </div>
 
-          {/* Certificate Search */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 mb-16 border border-blue-200">
-            <h3 className="text-2xl font-bold text-center mb-6 text-gray-900">Verify Your Certificate</h3>
-            <div className="max-w-md mx-auto">
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="certificateId" className="text-gray-900 font-medium">Certificate ID</Label>
-                  <Input
-                    id="certificateId"
-                    placeholder="Enter your certificate ID"
-                    value={certificateId}
-                    onChange={(e) => setCertificateId(e.target.value)}
-                    className="border-gray-300 focus:border-blue-500"
-                  />
-                </div>
-                <Button 
-                  onClick={handleVerification} 
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium"
-                  disabled={!certificateId.trim()}
-                >
-                  <Search className="mr-2 h-4 w-4" />
-                  Verify Certificate
-                </Button>
-              </div>
-              
-              {verificationResult && (
-                <div className="mt-6 p-4 rounded-lg bg-gray-100 border border-gray-200">
-                  <h4 className="font-semibold mb-2 text-gray-900">Verification Result:</h4>
-                  <p className="text-sm text-gray-700 font-medium">{verificationResult}</p>
-                </div>
-              )}
-            </div>
-          </div>
-
           {/* Help Section */}
           <div className="text-center bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white rounded-2xl p-12">
             <h3 className="text-3xl font-bold mb-4">Need Help?</h3>
