@@ -23,7 +23,7 @@ export default function Courses() {
     {
       id: "php",
       name: "PHP Development",
-      icon: "🐘",
+      icon: "devicon-php-plain",
       category: "backend",
       description: "Learn server-side programming with PHP and Laravel framework",
       duration: "8 weeks",
@@ -42,7 +42,7 @@ export default function Courses() {
     {
       id: "python",
       name: "Python Programming",
-      icon: "🐍", 
+      icon: "devicon-python-plain", 
       category: "backend",
       description: "Master Python programming and Django web development",
       duration: "10 weeks",
@@ -61,7 +61,7 @@ export default function Courses() {
     {
       id: "react",
       name: "React Development",
-      icon: "⚛️",
+      icon: "devicon-react-original",
       category: "frontend", 
       description: "Build modern user interfaces with React and TypeScript",
       duration: "6 weeks",
@@ -80,7 +80,7 @@ export default function Courses() {
     {
       id: "aspnet",
       name: "ASP.NET Development",
-      icon: "🔷",
+      icon: "devicon-dot-net-plain",
       category: "framework", 
       description: "Enterprise web development with ASP.NET Core and C#",
       duration: "8 weeks",
@@ -99,7 +99,7 @@ export default function Courses() {
     {
       id: "mysql",
       name: "MySQL Database",
-      icon: "🗄️",
+      icon: "devicon-mysql-plain",
       category: "database",
       description: "Master database design, queries, and administration",
       duration: "4 weeks",
@@ -118,7 +118,7 @@ export default function Courses() {
     {
       id: "linux",
       name: "Linux Administration",
-      icon: "🐧",
+      icon: "devicon-linux-plain",
       category: "framework",
       description: "System administration and server management with Linux",
       duration: "6 weeks",
@@ -216,7 +216,9 @@ export default function Courses() {
               <Card key={course.id} className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white border-gray-200 hover:border-blue-300 hover:bg-blue-50">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="text-4xl">{course.icon}</div>
+                    <div className="text-4xl">
+                      <i className={`${course.icon} text-4xl`}></i>
+                    </div>
                     <Badge className={`text-xs font-semibold ${getCategoryBadgeVariant(course.category)}`}>
                       {course.category}
                     </Badge>

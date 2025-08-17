@@ -24,12 +24,12 @@ import Super10Section from '@/components/Super10Section';
 
 export default function Home() {
   const popularCourses = [
-    { icon: "🐘", name: "PHP", category: "backend" },
-    { icon: "🐍", name: "Python", category: "backend" },
-    { icon: "⚛️", name: "React", category: "frontend" },
-    { icon: "🔷", name: "ASP.NET", category: "framework" },
-    { icon: "🗄️", name: "MySQL", category: "database" },
-    { icon: "🐧", name: "Linux", category: "framework" }
+    { icon: "devicon-php-plain", name: "PHP", category: "backend" },
+    { icon: "devicon-python-plain", name: "Python", category: "backend" },
+    { icon: "devicon-react-original", name: "React", category: "frontend" },
+    { icon: "devicon-dot-net-plain", name: "ASP.NET", category: "framework" },
+    { icon: "devicon-mysql-plain", name: "MySQL", category: "database" },
+    { icon: "devicon-linux-plain", name: "Linux", category: "framework" }
   ];
 
   const whyChooseUs = [
@@ -121,7 +121,9 @@ export default function Home() {
             {popularCourses.map((course, index) => (
               <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-gray-200 hover:border-blue-300 bg-white hover:bg-blue-50">
                 <CardHeader className="pb-2">
-                  <div className="text-4xl mb-2">{course.icon}</div>
+                  <div className="text-4xl mb-2">
+                    <i className={`${course.icon} text-4xl`}></i>
+                  </div>
                   <CardTitle className="text-lg text-gray-900 font-bold">{course.name}</CardTitle>
                   <Badge className={`text-xs font-semibold ${getCategoryBadgeVariant(course.category)}`}>
                     {course.category}
