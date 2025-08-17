@@ -31,8 +31,8 @@ export default function AppFooter() {
               <li><Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors">Courses</Link></li>
               <li>
                 <Link href="/super10" className="text-muted-foreground hover:text-primary transition-colors">
-                  <img src="/Discord.gif" alt="Discord" className="mr-2 h-4 w-4 inline" />
                   Super10 Program
+                  <img src="/super10.gif" alt="super10" className="mr-2 h-7 w-7 inline ml-2" />
                 </Link>
               </li>
               <li><Link href="/certificate" className="text-muted-foreground hover:text-primary transition-colors">Certificate</Link></li>

@@ -119,7 +119,7 @@ export default function Super10() {
             <Badge variant="secondary" className="mb-4 bg-orange-400 text-white border-orange-400 font-medium">
               💫 Special Initiative
             </Badge>
-            <h1 className="text-4xl font-bold mb-6 text-gray-900">Super10 Program</h1>
+            <h1 className="text-4xl font-bold mb-6 text-gray-900"><img src="/super10.gif" alt="super10" className="mr-2 h-14 w-14 inline ml-2" />Super10 Program</h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 font-medium">
               Empowering underprivileged students with free, world-class IT education. 
               Every batch, we select 10 deserving candidates to receive complete training at no cost.

@@ -93,7 +93,7 @@ export default function Home() {
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-full border-white text-black hover:bg-white hover:text-blue-900 font-medium">
               <Link href="/super10">
-              <img src="/Discord.gif" alt="Discord" className="ml-2 h-5 w-5" />
+              <img src="/super10.gif" alt="super10" className="ml-2 h-7 w-7" />
                 Learn About Super10
               </Link>
             </Button>

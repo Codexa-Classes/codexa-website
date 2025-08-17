@@ -9,10 +9,10 @@ import {
   Briefcase,
   User,
   Home,
-  Building2,
   FileText,
   BookOpen,
 } from 'lucide-react';
+import { Logo } from './Logo';
 import {
   Sidebar,
   SidebarContent,
@@ -88,11 +88,8 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b border-sidebar-border p-4">
-        <div className="flex items-center gap-2">
-          <Building2 className="h-6 w-6" />
-          <span className="font-semibold group-data-[collapsible=icon]:hidden">
-          Codexa Classes
-          </span>
+        <div className="flex items-center justify-center">
+          <Logo size="md" showLink={false} />
         </div>
       </SidebarHeader>
       

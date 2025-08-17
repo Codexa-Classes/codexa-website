@@ -22,7 +22,7 @@ export default function Super10Section() {
 
             <div className="bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-4">
-                <img src="/Discord.gif" alt="Discord" className="mr-2 h-5 w-5 inline" />
+                <img src="/super10.gif" alt="super10" className="mr-2 h-7 w-7 inline" />
                 Super10 Program
               </h3>
               <p className="text-white/90 mb-6 font-medium">
@@ -49,7 +49,7 @@ export default function Super10Section() {
               </Button>
               <Button asChild size="lg" variant="outline" className="border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white font-medium">
                 <Link href="/super10">
-                  <img src="/Discord.gif" alt="Discord" className="mr-2 h-4 w-4 inline" />
+                  <img src="/super10.gif" alt="super10" className="mr-2 h-7 w-7 inline" />
                   Apply for Super10
                 </Link>
               </Button>
