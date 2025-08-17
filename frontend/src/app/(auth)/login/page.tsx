@@ -75,7 +75,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       {/* Theme Toggle in Top Right */}
       <div className="absolute top-4 right-4">
         <ModeToggle />
@@ -103,7 +103,7 @@ export default function LoginPage() {
               />
             </div>
             
-            <div className="space-y-2">
+            <div className="flex flex-col space-y-2">
               <Label htmlFor="password" className="dark:text-gray-200">Password</Label>
               <Input
                 id="password"
@@ -140,6 +140,44 @@ export default function LoginPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Navigation Links */}
+      <div className="mt-6 text-center">
+        <nav className="space-y-3">
+          <div className="flex flex-row justify-center space-x-6">
+            <a 
+              href="/about" 
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-200 text-sm"
+            >
+              About
+            </a>
+            <a 
+              href="/courses" 
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-200 text-sm"
+            >
+              Courses
+            </a>
+            <a 
+              href="/super10" 
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-200 text-sm"
+            >
+              Super10
+            </a>
+            <a 
+              href="/certificate" 
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-200 text-sm"
+            >
+              Certificate
+            </a>
+            <a 
+              href="/contact" 
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-200 text-sm"
+            >
+              Contact
+            </a>
+          </div>
+        </nav>
+      </div>
     </div>
   );
 }
