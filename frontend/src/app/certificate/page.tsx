@@ -181,7 +181,7 @@ export default function Certificate() {
                         value={studentId}
                         onChange={(e) => setStudentId(e.target.value)}
                         placeholder="Enter your Student ID (e.g., TECH2024001)"
-                        className="mt-1 border-gray-300 focus:border-blue-500"
+                        className="mt-1 border-gray-300 focus:border-blue-500 bg-white"
                       />
                       <p className="text-sm text-gray-600 mt-1 font-medium">
                         Your Student ID was provided via email upon course enrollment

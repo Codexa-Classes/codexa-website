@@ -156,7 +156,7 @@ export default function LoginPage() {
       {/* Navigation Links */}
       <div className="mt-6 text-center">
         <nav className="space-y-3">
-          <div className="flex flex-row justify-center space-x-6">
+          <div className="flex flex-row justify-center space-x-10">
             <a 
               href="/about" 
               className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-200 text-sm"
@@ -192,8 +192,8 @@ export default function LoginPage() {
       </div>
 
       {/* Social Media Icons */}
-      <div className="mt-6 text-center">
-        <div className="flex flex-row justify-center space-x-6">
+      <div className="mt-15 text-center">
+        <div className="flex flex-row justify-center space-x-15">
           <a 
             href="https://x.com/adysunventures" 
             target="_blank" 
