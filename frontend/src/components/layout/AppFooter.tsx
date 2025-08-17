@@ -24,7 +24,12 @@ export default function AppFooter() {
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li><Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors">Courses</Link></li>
-              <li><Link href="/super10" className="text-muted-foreground hover:text-primary transition-colors">Super10 Program</Link></li>
+              <li>
+                <Link href="/super10" className="text-muted-foreground hover:text-primary transition-colors">
+                  <img src="/Discord.gif" alt="Discord" className="mr-2 h-4 w-4 inline" />
+                  Super10 Program
+                </Link>
+              </li>
               <li><Link href="/certificate" className="text-muted-foreground hover:text-primary transition-colors">Certificates</Link></li>
             </ul>
           </div>

@@ -174,7 +174,10 @@ export default function Home() {
           <Badge variant="secondary" className="mb-4 bg-white/20 text-white border-white/30">
             💫 Special Initiative
           </Badge>
-          <h2 className="text-3xl font-bold mb-6">Super10 Program</h2>
+          <h2 className="text-3xl font-bold mb-6">
+            <img src="/Discord.gif" alt="Discord" className="mr-2 h-5 w-5 inline" />
+            Super10 Program
+          </h2>
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
             We believe in equal opportunities for all. Our Super10 program provides completely free IT education to 10 underprivileged students in every batch.
           </p>

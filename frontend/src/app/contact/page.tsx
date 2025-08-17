@@ -366,7 +366,10 @@ export default function Contact() {
             </div>
 
             <div className="bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-4">Super10 Program</h3>
+              <h3 className="text-2xl font-bold mb-4">
+                <img src="/Discord.gif" alt="Discord" className="mr-2 h-5 w-5 inline" />
+                Super10 Program
+              </h3>
               <p className="text-white/90 mb-6 font-medium">
                 Eligible for free education? Apply for our Super10 program and 
                 get complete IT training at no cost.
@@ -391,6 +394,7 @@ export default function Contact() {
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-blue-900 font-medium">
                 <Link href="/super10">
+                  <img src="/Discord.gif" alt="Discord" className="mr-2 h-4 w-4 inline" />
                   Apply for Super10
                 </Link>
               </Button>
