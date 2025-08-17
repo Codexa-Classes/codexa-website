@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Job Portal",
-  description: "A modern job portal application",
+  title: "Codexa Classes",
+  description: "A modern classes portal application",
 };
 
 export default function RootLayout({

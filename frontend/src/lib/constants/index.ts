@@ -1,5 +1,5 @@
 export const APP_CONFIG = {
-    name: 'Job Portal',
+    name: 'Codexa Classes',
     version: '1.0.0',
   } as const;
 

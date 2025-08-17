@@ -13,7 +13,7 @@ export default function AppFooter() {
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <GraduationCap className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold">Shraddha Classes</span>
+              <span className="text-xl font-bold">Codexa Classes</span>
             </div>
             <p className="text-muted-foreground">
               Empowering futures through quality IT education. Learn programming, web development, and database management with industry experts.
@@ -39,7 +39,7 @@ export default function AppFooter() {
         </div>
         
         <div className="text-center text-muted-foreground border-t border-border/40 pt-8">
-          © 2024 Shraddha Classes. All rights reserved.
+          © 2024 Codexa Classes. All rights reserved.
         </div>
       </div>
     </footer>

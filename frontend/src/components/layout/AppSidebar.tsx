@@ -97,7 +97,7 @@ export const AppSidebar = () => {
       <SidebarHeader>
         <div className="flex items-center space-x-2 px-4 py-2">
           <Building2 className="h-6 w-6 text-blue-600" />
-          <span className="font-semibold text-lg">Job Portal</span>
+          <span className="font-semibold text-lg">Codexa Classes</span>
         </div>
       </SidebarHeader>
       

@@ -58,7 +58,7 @@ export default function AppHeader() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <GraduationCap className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold">Shraddha Classes</span>
+            <span className="text-xl font-bold">Codexa Classes</span>
           </Link>
           
           <nav ref={navRef} className="hidden md:flex items-center space-x-8 relative">

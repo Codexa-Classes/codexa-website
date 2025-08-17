@@ -83,7 +83,7 @@ export default function LoginPage() {
       
       <Card className="w-full max-w-md dark:bg-gray-800 dark:border-gray-700">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center dark:text-white">Job Portal</CardTitle>
+          <CardTitle className="text-2xl text-center dark:text-white">Codexa Classes</CardTitle>
           <CardDescription className="text-center dark:text-gray-400">
             Sign in to your account
           </CardDescription>

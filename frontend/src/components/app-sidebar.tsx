@@ -91,7 +91,7 @@ export function AppSidebar() {
         <div className="flex items-center gap-2">
           <Building2 className="h-6 w-6" />
           <span className="font-semibold group-data-[collapsible=icon]:hidden">
-            Job Portal
+          Codexa Classes
           </span>
         </div>
       </SidebarHeader>

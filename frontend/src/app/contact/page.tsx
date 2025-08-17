@@ -132,7 +132,7 @@ export default function Contact() {
           {/* Header */}
           <div className="text-center mb-16">
             <Badge variant="secondary" className="mb-4">📞 Get in Touch</Badge>
-            <h1 className="text-4xl font-bold mb-6">Contact Shraddha Classes</h1>
+            <h1 className="text-4xl font-bold mb-6">Contact Codexa Classes</h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
               Have questions about our courses or want to enroll? We&apos;re here to help you 
               start your IT journey. Reach out to us through any of the channels below.
@@ -286,7 +286,7 @@ export default function Contact() {
                     <div>
                       <h4 className="font-semibold">Address</h4>
                       <p className="text-muted-foreground">
-                        Shraddha Classes<br />
+                        Codexa Classes<br />
                         IT Training Center<br />
                         Mumbai, Maharashtra, India
                       </p>

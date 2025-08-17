@@ -124,7 +124,7 @@ export default function Home() {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Why Choose Shraddha Classes?</h2>
+            <h2 className="text-3xl font-bold mb-4">Why Choose Codexa Classes?</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               We provide comprehensive IT education with a focus on practical skills and real-world applications
             </p>
