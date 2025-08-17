@@ -80,6 +80,9 @@ export default function AppHeader() {
                       : "text-muted-foreground hover:text-primary"
                   }`}
                 >
+                  {item.href === "/super10" && (
+                    <img src="/super10.gif" alt="super10" className="mr-2 h-6 w-6 inline" />
+                  )}
                   {item.label}
                 </Link>
               );
