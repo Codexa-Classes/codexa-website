@@ -8,7 +8,7 @@ export default function Super10Section() {
     <>
       {/* Special Programs Highlight */}
       <section className="py-10 bg-white">
-        <div className="container mx-auto">
+        <div className="container mx-auto lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             <div className="bg-gradient-to-br from-green-50 via-emerald-100 to-green-200 text-gray-800 rounded-2xl p-8 border border-green-200/50">
               <h3 className="text-2xl font-bold mb-4">Ready to Enroll?</h3>
