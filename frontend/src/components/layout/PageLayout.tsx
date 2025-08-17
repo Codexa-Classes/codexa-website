@@ -17,7 +17,7 @@ export default function PageLayout({
     <div className="min-h-screen">
       <AppHeader />
       
-      <main className="pt-16">
+      <main className="">
         {children}
       </main>
       
