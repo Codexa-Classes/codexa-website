@@ -18,8 +18,6 @@ import {
   AlertCircle,
   ArrowRight
 } from "lucide-react";
-import AppHeader from '@/components/layout/AppHeader';
-import AppFooter from '@/components/layout/AppFooter';
 import PageLayout from '@/components/layout/PageLayout';
 import Link from 'next/link';
 
@@ -70,7 +68,7 @@ export default function Certificate() {
     }, 1500);
   };
 
-  const features = [
+  const certificateFeatures = [
     {
       icon: <Shield className="h-6 w-6" />,
       title: "Blockchain Verified",
@@ -93,24 +91,27 @@ export default function Certificate() {
     }
   ];
 
-  const certificateTypes = [
+  const sampleCertificates = [
     {
-      name: "Professional Certificates",
-      description: "Earn certificates in high-demand skills like Web Development, Data Science, and Cyber Security.",
-      icon: <Award className="h-6 w-6 text-primary" />,
-      features: ["Industry-recognized", "Globally accepted", "Professional development"]
+      course: "PHP Development",
+      student: "John Doe",
+      completionDate: "March 2024",
+      grade: "A+",
+      skills: ["PHP Fundamentals", "Laravel Framework", "Database Integration", "API Development"]
     },
     {
-      name: "Skill Enhancement Certificates",
-      description: "Improve your existing skills or learn new ones with our specialized courses.",
-      icon: <FileText className="h-6 w-6 text-primary" />,
-      features: ["Skill enhancement", "Continuous learning", "Personal growth"]
+      course: "Python Programming", 
+      student: "Jane Smith",
+      completionDate: "February 2024",
+      grade: "A",
+      skills: ["Python Syntax", "Django Framework", "Machine Learning", "Web Scraping"]
     },
     {
-      name: "Diploma Programs",
-      description: "Earn a recognized diploma in your desired field of study.",
-      icon: <Download className="h-6 w-6 text-primary" />,
-      features: ["Recognized by employers", "Professional qualification", "Career advancement"]
+      course: "React Development",
+      student: "Mike Johnson", 
+      completionDate: "January 2024",
+      grade: "A+",
+      skills: ["React Components", "State Management", "TypeScript", "Testing"]
     }
   ];
 
@@ -120,131 +121,180 @@ export default function Certificate() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4">🎓 Get Certified</Badge>
-            <h1 className="text-4xl font-bold mb-6">Industry-Recognized Certificates</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Earn professional certificates upon course completion. Our certificates are recognized by 
-              industry leaders and help boost your career prospects.
+            <Badge variant="secondary" className="mb-4 bg-blue-400 text-white border-blue-400 font-medium">
+              🎓 Certificate Portal
+            </Badge>
+            <h1 className="text-4xl font-bold mb-6 text-gray-900">Download Your Certificate</h1>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 font-medium">
+              Access your official course completion certificate. Our certificates are digitally 
+              verified and recognized by industry professionals worldwide.
             </p>
             
-            <div className="bg-gradient-hero text-white rounded-2xl p-6 max-w-md mx-auto">
-              <p className="text-sm text-white/80 mb-2">Certificate Included</p>
+            <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white rounded-2xl p-6 max-w-md mx-auto">
+              <p className="text-sm text-white/90 mb-2 font-medium">Certificate Included</p>
               <p className="text-3xl font-bold text-yellow-300 mb-2">Free with Every Course</p>
-              <p className="text-sm text-white/80">No additional fees</p>
+              <p className="text-sm text-white/90 font-medium">No additional fees</p>
             </div>
           </div>
 
+          {/* Certificate Download Form */}
+          <div className="max-w-2xl mx-auto mb-16">
+            <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-lg">
+              <CardHeader className="text-center">
+                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Download className="h-8 w-8 text-blue-600" />
+                </div>
+                <CardTitle className="text-2xl text-gray-900 font-bold">Certificate Download</CardTitle>
+                <CardDescription className="text-gray-700 font-medium">
+                  Enter your Student ID to download your course completion certificate
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <form onSubmit={handleDownloadCertificate} className="space-y-4">
+                  <div>
+                    <Label htmlFor="studentId" className="text-gray-900 font-medium">Student ID</Label>
+                    <Input
+                      id="studentId"
+                      type="text"
+                      value={studentId}
+                      onChange={(e) => setStudentId(e.target.value)}
+                      placeholder="Enter your Student ID (e.g., TECH2024001)"
+                      className="mt-1 border-gray-300 focus:border-blue-500"
+                    />
+                    <p className="text-sm text-gray-600 mt-1 font-medium">
+                      Your Student ID was provided via email upon course enrollment
+                    </p>
+                  </div>
+                  
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium" 
+                    size="lg"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <Search className="mr-2 h-4 w-4 animate-spin" />
+                        Searching...
+                      </>
+                    ) : (
+                      <>
+                        <Download className="mr-2 h-4 w-4" />
+                        Download Certificate
+                      </>
+                    )}
+                  </Button>
+                </form>
+
+                <div className="bg-gray-100 rounded-lg p-4 border border-gray-200">
+                  <div className="flex items-start space-x-3">
+                    <AlertCircle className="h-5 w-5 text-gray-600 mt-0.5 flex-shrink-0" />
+                    <div className="text-sm text-gray-700">
+                      <p className="font-medium mb-1">Need help finding your Student ID?</p>
+                      <p>Check your enrollment confirmation email or contact us at hiVirajKadam@gmail.com</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
           {/* Certificate Features */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {features.map((feature, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-primary">
-                  {feature.icon}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Certificate Features</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {certificateFeatures.map((feature, index) => (
+                <div key={index} className="text-center">
+                  <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                    {feature.icon}
+                  </div>
+                  <h3 className="font-bold text-lg mb-2 text-gray-900">{feature.title}</h3>
+                  <p className="text-gray-700 text-sm font-medium">{feature.description}</p>
                 </div>
-                <h3 className="font-semibold text-sm mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground text-xs">{feature.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
-          {/* Certificate Types */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {certificateTypes.map((type, index) => (
-              <Card key={index} className="bg-gradient-card border-0">
-                <CardHeader>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      {type.icon}
+          {/* Sample Certificates */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Recent Graduates</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {sampleCertificates.map((cert, index) => (
+                <Card key={index} className="bg-gradient-to-r from-green-50 to-blue-50 border-green-200 shadow-md hover:shadow-lg transition-all duration-300">
+                  <CardHeader>
+                    <div className="flex items-center justify-between mb-2">
+                      <Award className="h-6 w-6 text-green-600" />
+                      <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-300 font-medium">
+                        Grade: {cert.grade}
+                      </Badge>
                     </div>
-                    <div>
-                      <CardTitle className="text-lg">{type.name}</CardTitle>
-                      <CardDescription>{type.description}</CardDescription>
+                    <CardTitle className="text-lg text-gray-900 font-bold">{cert.course}</CardTitle>
+                    <CardDescription className="text-gray-700 font-medium">
+                      Completed by {cert.student} in {cert.completionDate}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div>
+                        <h4 className="font-semibold text-sm mb-2 text-gray-900">Skills Certified:</h4>
+                        <div className="flex flex-wrap gap-1">
+                          {cert.skills.map((skill, skillIndex) => (
+                            <Badge key={skillIndex} variant="outline" className="text-xs border-gray-300 text-gray-700 font-medium">
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {type.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center space-x-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-accent" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
 
-          {/* Verification System */}
-          <div className="bg-muted/30 rounded-2xl p-8 mb-16">
-            <h3 className="text-2xl font-semibold text-center mb-8">Certificate Verification</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h4 className="font-semibold text-lg mb-4">Online Verification</h4>
-                <p className="text-muted-foreground mb-4">
-                  Employers and institutions can verify the authenticity of your certificate 
-                  using our online verification system.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2 text-sm">
-                    <Shield className="h-4 w-4 text-primary" />
-                    <span>Unique certificate ID</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-sm">
-                    <Globe className="h-4 w-4 text-primary" />
-                    <span>24/7 online verification</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-sm">
-                    <FileText className="h-4 w-4 text-primary" />
-                    <span>Digital and physical copies</span>
-                  </div>
+          {/* Verification Info */}
+          <div className="bg-gray-50 rounded-2xl p-8 mb-16 border border-gray-200">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold mb-4 text-gray-900">Certificate Verification</h2>
+              <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto font-medium">
+                All our certificates can be independently verified using the unique certificate ID. 
+                Employers can verify the authenticity of any certificate issued by Shraddha Classes.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-600 mb-2">24/7</div>
+                  <div className="text-sm text-gray-700 font-medium">Online Verification</div>
                 </div>
-              </div>
-              
-              <div>
-                <h4 className="font-semibold text-lg mb-4">Verification Process</h4>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
-                      1
-                    </div>
-                    <span className="text-sm">Enter certificate ID on our website</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
-                      2
-                    </div>
-                    <span className="text-sm">View certificate details and authenticity</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
-                      3
-                    </div>
-                    <span className="text-sm">Download verification report</span>
-                  </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-600 mb-2">100%</div>
+                  <div className="text-sm text-gray-700 font-medium">Authentic Certificates</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-600 mb-2">500+</div>
+                  <div className="text-sm text-gray-700 font-medium">Certificates Issued</div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Certificate Search */}
-          <div className="bg-gradient-card rounded-2xl p-8 mb-16">
-            <h3 className="text-2xl font-semibold text-center mb-6">Verify Your Certificate</h3>
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 mb-16 border border-blue-200">
+            <h3 className="text-2xl font-bold text-center mb-6 text-gray-900">Verify Your Certificate</h3>
             <div className="max-w-md mx-auto">
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="certificateId">Certificate ID</Label>
+                  <Label htmlFor="certificateId" className="text-gray-900 font-medium">Certificate ID</Label>
                   <Input
                     id="certificateId"
                     placeholder="Enter your certificate ID"
                     value={certificateId}
                     onChange={(e) => setCertificateId(e.target.value)}
+                    className="border-gray-300 focus:border-blue-500"
                   />
                 </div>
                 <Button 
                   onClick={handleVerification} 
-                  className="w-full"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium"
                   disabled={!certificateId.trim()}
                 >
                   <Search className="mr-2 h-4 w-4" />
@@ -253,28 +303,49 @@ export default function Certificate() {
               </div>
               
               {verificationResult && (
-                <div className="mt-6 p-4 rounded-lg bg-muted/50">
-                  <h4 className="font-semibold mb-2">Verification Result:</h4>
-                  <p className="text-sm text-muted-foreground">{verificationResult}</p>
+                <div className="mt-6 p-4 rounded-lg bg-gray-100 border border-gray-200">
+                  <h4 className="font-semibold mb-2 text-gray-900">Verification Result:</h4>
+                  <p className="text-sm text-gray-700 font-medium">{verificationResult}</p>
                 </div>
               )}
             </div>
           </div>
 
+          {/* Help Section */}
+          <div className="text-center bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white rounded-2xl p-12">
+            <h3 className="text-3xl font-bold mb-4">Need Help?</h3>
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
+              Can't find your certificate or having issues with download? 
+              Our support team is here to help you.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" variant="secondary" className="bg-white text-blue-900 hover:bg-white/90 font-medium">
+                <a href="mailto:hiVirajKadam@gmail.com">
+                  Contact Support
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900 font-medium">
+                <a href="tel:+919876543210">
+                  Call Us
+                </a>
+              </Button>
+            </div>
+          </div>
+
           {/* Call to Action */}
-          <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4">Ready to Get Certified?</h3>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <div className="text-center mt-16">
+            <h3 className="text-2xl font-bold mb-4 text-gray-900">Ready to Get Certified?</h3>
+            <p className="text-gray-700 mb-8 max-w-2xl mx-auto font-medium">
               Start your learning journey today and earn industry-recognized certificates 
               that will boost your career prospects.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white font-medium">
                 <Link href="/courses">
                   View Courses <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline">
+              <Button asChild size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-medium">
                 <Link href="/contact">
                   Contact Us
                 </Link>
@@ -285,4 +356,4 @@ export default function Certificate() {
       </div>
     </PageLayout>
   );
-};
+}
