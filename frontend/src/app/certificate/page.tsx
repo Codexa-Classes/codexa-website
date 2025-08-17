@@ -301,48 +301,6 @@ export default function Certificate() {
             </div>
           </div>
 
-          {/* Help Section */}
-          <div className="text-center bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white rounded-2xl p-12">
-            <h3 className="text-3xl font-bold mb-4">Need Help?</h3>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
-              Can't find your certificate or having issues with download? 
-              Our support team is here to help you.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" variant="secondary" className="bg-white text-blue-900 hover:bg-white/90 font-medium">
-                <a href="mailto:hiVirajKadam@gmail.com">
-                  Contact Support
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-blue-900 font-medium">
-                <a href="tel:+919876543210">
-                  Call Us
-                </a>
-              </Button>
-            </div>
-          </div>
-
-          {/* Call to Action */}
-          <div className="text-center mt-16">
-            <h3 className="text-2xl font-bold mb-4 text-gray-900">Ready to Get Certified?</h3>
-            <p className="text-gray-700 mb-8 max-w-2xl mx-auto font-medium">
-              Start your learning journey today and earn industry-recognized certificates 
-              that will boost your career prospects.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white font-medium">
-                <Link href="/courses">
-                  View Courses <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-medium">
-                <Link href="/contact">
-                  Contact Us
-                </Link>
-              </Button>
-            </div>
-          </div>
-
           {/* Super10 Section */}
           <Super10Section />
         </div>

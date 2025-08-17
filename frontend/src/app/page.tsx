@@ -169,29 +169,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Super10Section />
-
-      {/* Call to Action Section */}
-      <section className="py-20 bg-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Start Your IT Journey?</h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join thousands of students who have transformed their careers with our courses
-          </p>
-          <div className="flex gap-4 items-center justify-center flex-col sm:flex-row">
-            <Button asChild size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-white/90">
-              <Link href="/courses">
-                Browse Courses <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-blue-600">
-              <Link href="/contact">
-                Contact Us
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <Super10Section />S
     </PageLayout>
   );
 }
