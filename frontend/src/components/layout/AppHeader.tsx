@@ -59,8 +59,8 @@ export default function AppHeader() {
               <GraduationCap className="h-5 w-5 text-primary-foreground" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold">Codexa Classes</span>
-              <span className="text-xs text-muted-foreground">by Viraj Kadam</span>
+              <span className="text-2xl font-bold">Codexa Classes</span>
+              <span className="text-md text-black">by Viraj Kadam</span>
             </div>
           </Link>
           
