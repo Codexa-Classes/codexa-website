@@ -27,6 +27,8 @@ export default function AppFooter() {
           <div>
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
+              <li><Link href="/" className="text-muted-foreground hover:text-primary transition-colors">Home</Link></li>
+              <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">About</Link></li>
               <li><Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors">Courses</Link></li>
               <li>
                 <Link href="/super10" className="text-muted-foreground hover:text-primary transition-colors">
@@ -34,7 +36,8 @@ export default function AppFooter() {
                   Super10 Program
                 </Link>
               </li>
-              <li><Link href="/certificate" className="text-muted-foreground hover:text-primary transition-colors">Certificates</Link></li>
+              <li><Link href="/certificate" className="text-muted-foreground hover:text-primary transition-colors">Certificate</Link></li>
+              <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
             </ul>
           </div>
           
@@ -48,7 +51,7 @@ export default function AppFooter() {
         </div>
         
         <div className="text-center text-muted-foreground border-t border-border/40 pt-8">
-          © 2024 Codexa Classes. All rights reserved.
+          © 2025 Codexa Classes. All rights reserved.
         </div>
       </div>
     </footer>
