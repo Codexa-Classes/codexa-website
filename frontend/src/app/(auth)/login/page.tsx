@@ -158,6 +158,12 @@ export default function LoginPage() {
         <nav className="space-y-3">
           <div className="flex flex-row justify-center space-x-10">
             <a 
+              href="/" 
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-200 text-sm"
+            >
+              Home
+            </a>
+            <a 
               href="/about" 
               className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-200 text-sm"
             >
@@ -174,12 +180,6 @@ export default function LoginPage() {
               className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-200 text-sm"
             >
               Super10
-            </a>
-            <a 
-              href="/certificate" 
-              className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-200 text-sm"
-            >
-              Certificate
             </a>
             <a 
               href="/contact" 
