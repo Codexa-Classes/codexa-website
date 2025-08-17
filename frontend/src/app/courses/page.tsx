@@ -348,10 +348,6 @@ export default function Courses() {
               </Card>
             </div>
           </div>
-
-
-          {/* Super10 Section */}
-          <Super10Section />
         </div>
       </div>
     </PageLayout>

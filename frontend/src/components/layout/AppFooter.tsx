@@ -2,9 +2,13 @@
 
 import Link from 'next/link';
 import { GraduationCap } from 'lucide-react';
+import Super10Section from '../Super10Section';
 
 export default function AppFooter() {
   return (
+
+    <>
+    <Super10Section />
     <footer className="bg-muted/50 border-t border-border/40 py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
@@ -48,5 +52,6 @@ export default function AppFooter() {
         </div>
       </div>
     </footer>
+    </>
   );
 }

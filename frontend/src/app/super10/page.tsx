@@ -248,9 +248,6 @@ export default function Super10() {
               </div>
             </div>
           </div>
-
-          {/* Super10 Section */}
-          <Super10Section />
         </div>
       </div>
     </PageLayout>

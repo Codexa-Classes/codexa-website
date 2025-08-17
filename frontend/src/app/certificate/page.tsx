@@ -300,9 +300,6 @@ export default function Certificate() {
               </div>
             </div>
           </div>
-
-          {/* Super10 Section */}
-          <Super10Section />
         </div>
       </div>
     </PageLayout>

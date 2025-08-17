@@ -168,8 +168,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <Super10Section />S
     </PageLayout>
   );
 }
