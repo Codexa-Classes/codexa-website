@@ -3,13 +3,14 @@
 import Link from 'next/link';
 import { GraduationCap } from 'lucide-react';
 import Super10Section from '../Super10Section';
+import { SocialMediaIcons, defaultSocialMediaLinks } from '../SocialMediaIcons';
 
 export default function AppFooter() {
   return (
 
     <>
     <Super10Section />
-    <footer className="bg-muted/50 border-t border-border/40 py-12">
+    <footer className="bg-muted/50 border-t border-border/40 py-12 pb-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
@@ -47,6 +48,14 @@ export default function AppFooter() {
               <li>Email: hiVirajKadam@gmail.com</li>
               <li>All courses: ₹10,000</li>
             </ul>
+            <div className="mt-4">
+              <SocialMediaIcons 
+                links={defaultSocialMediaLinks}
+                iconSize={20}
+                className=""
+                containerClassName="flex space-x-3"
+              />
+            </div>
           </div>
         </div>
         
