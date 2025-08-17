@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { GraduationCap } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useRef, useEffect, useState } from 'react';
+import { Logo } from '../Logo';
 
 export default function AppHeader() {
   const pathname = usePathname();
@@ -54,18 +55,7 @@ export default function AppHeader() {
     <header className="bg-white border-b border-border/40 sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center space-x-4">
-            <div className="w-10 h-10 flex items-center justify-center">
-              <img 
-                src="/Codex Classes.png" 
-                alt="Codexa Classes Logo" 
-              />
-            </div>
-            <div className="flex flex-col">
-              <img src="/Codexa LOGO 1.png" alt="Codexa Classes Logo" className="h-8 object-contain mb-1" />
-              <span className="text-sm text-black">by Viraj Kadam</span>
-            </div>
-          </Link>
+          <Logo />
           
           <nav ref={navRef} className="hidden md:flex items-center space-x-8 relative">
             {/* Animated Sliding Underline */}

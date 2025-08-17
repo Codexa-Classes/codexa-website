@@ -12,6 +12,7 @@ import { ROUTES } from '@/lib/constants';
 import { ModeToggle } from '@/components/mode-toggle';
 import { Eye, EyeOff } from 'lucide-react';
 import { SocialMediaIcons, defaultSocialMediaLinks } from '@/components/SocialMediaIcons';
+import { Logo } from '@/components/Logo';
 
 
 export default function LoginPage() {
@@ -87,7 +88,9 @@ export default function LoginPage() {
       
       <Card className="w-full max-w-md dark:bg-gray-800 dark:border-gray-700">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center dark:text-white">Codexa Classes</CardTitle>
+          <div className="flex justify-center mb-2">
+            <Logo size="md" showLink={false} />
+          </div>
           <CardDescription className="text-center dark:text-gray-400">
             Sign in to your account
           </CardDescription>

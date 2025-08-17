@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { GraduationCap } from 'lucide-react';
 import Super10Section from '../Super10Section';
 import { SocialMediaIcons, defaultSocialMediaLinks } from '../SocialMediaIcons';
+import { Logo } from '../Logo';
 
 export default function AppFooter() {
   return (
@@ -13,14 +14,11 @@ export default function AppFooter() {
     <footer className="bg-muted/50 border-t border-border/40 py-12 pb-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <GraduationCap className="h-5 w-5 text-primary-foreground" />
+                      <div>
+              <div className="mb-4">
+                <Logo />
               </div>
-              <span className="text-xl font-bold">Codexa Classes</span>
-            </div>
-            <p className="text-muted-foreground">
+              <p className="text-muted-foreground">
               Empowering futures through quality IT education. Learn programming, web development, and database management with industry experts.
             </p>
           </div>
