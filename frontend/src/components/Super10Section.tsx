@@ -10,13 +10,13 @@ export default function Super10Section() {
       <section className="py-10 bg-white">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            <div className="bg-gradient-to-br from-blue-50 via-indigo-100 to-blue-200 text-gray-800 rounded-2xl p-8">
+            <div className="bg-gradient-to-br from-green-50 via-emerald-100 to-green-200 text-gray-800 rounded-2xl p-8 border border-green-200/50">
               <h3 className="text-2xl font-bold mb-4">Ready to Enroll?</h3>
               <p className="text-gray-700 mb-6 font-medium">
                 Start your IT career today with our comprehensive courses. 
                 All courses include hands-on projects and job placement support.
               </p>
-              <div className="text-3xl font-bold text-blue-600 mb-2">₹10,000</div>
+              <div className="text-3xl font-bold text-green-600 mb-2">₹10,000</div>
               <div className="text-sm text-gray-600 font-medium">Per course (Complete training + Certificate)</div>
             </div>
 
