@@ -193,7 +193,7 @@ export default function LoginPage() {
       </div>
 
       {/* Social Media Icons */}
-      <SocialMediaIcons links={defaultSocialMediaLinks} />
+      <SocialMediaIcons links={defaultSocialMediaLinks} gap={65} />
     </div>
   );
 }
