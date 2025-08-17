@@ -15,8 +15,6 @@ import {
   Award,
   BookOpen
 } from "lucide-react";
-import AppHeader from '@/components/layout/AppHeader';
-import AppFooter from '@/components/layout/AppFooter';
 import PageLayout from '@/components/layout/PageLayout';
 
 export default function Super10() {
@@ -117,187 +115,153 @@ export default function Super10() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Hero Section */}
           <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4">💫 Special Initiative</Badge>
-            <h1 className="text-4xl font-bold mb-6">Super10 Program</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Our commitment to social impact through education. We provide completely free IT education 
-              to 10 underprivileged students in every batch, creating equal opportunities for all.
+            <Badge variant="secondary" className="mb-4 bg-orange-400 text-white border-orange-400 font-medium">
+              💫 Special Initiative
+            </Badge>
+            <h1 className="text-4xl font-bold mb-6 text-gray-900">Super10 Program</h1>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 font-medium">
+              Empowering underprivileged students with free, world-class IT education. 
+              Every batch, we select 10 deserving candidates to receive complete training at no cost.
             </p>
             
-            <div className="bg-gradient-super10 text-super10-foreground rounded-2xl p-8 max-w-2xl mx-auto">
-              <h2 className="text-2xl font-bold mb-4">100% Free Education</h2>
-              <p className="text-super10-foreground/90">
-                No fees, no hidden costs. Complete course with certification, study materials, and job support.
-              </p>
+            <div className="bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-2xl p-8 max-w-2xl mx-auto">
+              <div className="text-6xl font-bold mb-2">10</div>
+              <div className="text-lg mb-2 font-medium">Free Seats Every Batch</div>
+              <div className="text-sm text-white/90 font-medium">
+                Complete IT training worth ₹10,000 - Absolutely Free
+              </div>
             </div>
           </div>
 
-          {/* Program Details */}
+          {/* Mission Statement */}
+          <div className="bg-gray-50 rounded-2xl p-8 mb-16 text-center border border-gray-200">
+            <h2 className="text-3xl font-bold mb-4 text-gray-900">Our Mission</h2>
+            <p className="text-lg text-gray-700 max-w-4xl mx-auto font-medium">
+              We believe that financial constraints should never limit someone's potential to learn and grow in technology. 
+              Super10 is our commitment to creating equal opportunities and building a more inclusive tech community.
+            </p>
+          </div>
+
+          {/* Benefits */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">What Super10 Students Get</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {benefits.map((benefit, index) => (
+                <Card key={index} className="bg-gradient-to-r from-orange-50 to-red-50 border-orange-200 shadow-md hover:shadow-lg transition-all duration-300">
+                  <CardContent className="p-6 text-center">
+                    <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-orange-600">
+                      {benefit.icon}
+                    </div>
+                    <h3 className="font-bold text-lg mb-2 text-gray-900">{benefit.title}</h3>
+                    <p className="text-gray-700 text-sm font-medium">{benefit.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Eligibility Criteria */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             <div>
-              <h3 className="text-2xl font-semibold mb-6">What is Super10?</h3>
+              <h2 className="text-3xl font-bold mb-8 text-gray-900">Eligibility Criteria</h2>
               <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <Heart className="h-6 w-6 text-primary mt-1" />
-                  <div>
-                    <h4 className="font-semibold">Social Impact Initiative</h4>
-                    <p className="text-muted-foreground text-sm">
-                      We believe education should be accessible to everyone, regardless of financial background.
-                    </p>
+                {eligibilityCriteria.map((criteria, index) => (
+                  <div key={index} className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700 font-medium">{criteria}</span>
                   </div>
-                </div>
-                
-                <div className="flex items-start space-x-3">
-                  <Users className="h-6 w-6 text-primary mt-1" />
-                  <div>
-                    <h4 className="font-semibold">10 Students Per Batch</h4>
-                    <p className="text-muted-foreground text-sm">
-                      Each batch includes 10 students who receive completely free education and support.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-3">
-                  <GraduationCap className="h-6 w-6 text-primary mt-1" />
-                  <div>
-                    <h4 className="font-semibold">Same Quality Education</h4>
-                    <p className="text-muted-foreground text-sm">
-                      Super10 students receive the exact same curriculum, materials, and instructor attention.
-                    </p>
-                  </div>
-                </div>
+                ))}
+              </div>
+              <div className="mt-8">
+                <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600 text-white font-medium">
+                  <Link href="/contact">
+                    Apply for Super10 <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
               </div>
             </div>
 
             <div>
-              <h3 className="text-2xl font-semibold mb-6">Selection Criteria</h3>
-              <div className="space-y-4">
-                <Card className="bg-primary/5 border-primary/20">
-                  <CardContent className="p-4">
-                    <h4 className="font-semibold mb-2">Financial Need</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Priority given to students from economically disadvantaged backgrounds.
-                    </p>
-                  </CardContent>
-                </Card>
-                
-                <Card className="bg-accent/5 border-accent/20">
-                  <CardContent className="p-4">
-                    <h4 className="font-semibold mb-2">Academic Potential</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Demonstrated interest and aptitude in technology and programming.
-                    </p>
-                  </CardContent>
-                </Card>
-                
-                <Card className="bg-super10/5 border-super10/20">
-                  <CardContent className="p-4">
-                    <h4 className="font-semibold mb-2">Commitment to Learning</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Willingness to dedicate time and effort to complete the course successfully.
-                    </p>
-                  </CardContent>
-                </Card>
+              <h2 className="text-3xl font-bold mb-8 text-gray-900">Application Process</h2>
+              <div className="space-y-6">
+                {applicationProcess.map((process, index) => (
+                  <div key={index} className="flex items-start space-x-4">
+                    <div className="bg-orange-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">
+                      {process.step}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1 text-gray-900">{process.title}</h3>
+                      <p className="text-gray-700 text-sm font-medium">{process.description}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
           {/* Success Stories */}
-          <div className="bg-muted/30 rounded-2xl p-8 mb-16">
-            <h3 className="text-2xl font-semibold text-center mb-8">Success Stories</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card className="bg-gradient-card border-0">
-                <CardHeader>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      <Star className="h-6 w-6 text-primary" />
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Success Stories</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {successStories.map((story, index) => (
+                <Card key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-md hover:shadow-lg transition-all duration-300">
+                  <CardHeader>
+                    <div className="flex items-center space-x-3 mb-2">
+                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                        <Star className="h-6 w-6 text-blue-600" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-lg text-gray-900 font-bold">{story.name}</CardTitle>
+                        <CardDescription className="text-gray-700 font-medium">{story.course}</CardDescription>
+                      </div>
                     </div>
-                    <div>
-                      <CardTitle className="text-lg">Rahul Sharma</CardTitle>
-                      <CardDescription>Super10 Graduate 2023</CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    &quot;Thanks to the Super10 program, I learned PHP development without any financial burden. 
-                    Now I&apos;m working as a junior developer at a startup.&quot;
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gradient-card border-0">
-                <CardHeader>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      <Target className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-lg">Priya Patel</CardTitle>
-                      <CardDescription>Super10 Graduate 2023</CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    &quot;The Super10 program changed my life. I learned Python and got placed as a data analyst. 
-                    I&apos;m grateful for this opportunity.&quot;
-                  </p>
-                </CardContent>
-              </Card>
+                  </CardHeader>
+                  <CardContent>
+                    <Badge variant="secondary" className="mb-4 bg-green-100 text-green-700 border-green-300 font-medium">
+                      {story.achievement}
+                    </Badge>
+                    <p className="text-gray-700 text-sm italic font-medium">
+                      "{story.quote}"
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
 
-          {/* How to Apply */}
-          <div className="bg-gradient-super10 text-super10-foreground rounded-2xl p-8 mb-16">
-            <h3 className="text-2xl font-bold text-center mb-6">How to Apply for Super10</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-super10-foreground/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <BookOpen className="h-8 w-8" />
-                </div>
-                <h4 className="font-semibold mb-2">1. Submit Application</h4>
-                <p className="text-super10-foreground/90 text-sm">
-                  Fill out the Super10 application form with your details and background.
-                </p>
+          {/* Important Dates */}
+          <div className="bg-blue-50 rounded-2xl p-8 mb-16 border border-blue-200">
+            <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">Important Dates</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div>
+                <div className="text-2xl font-bold text-blue-600 mb-2">Every Month</div>
+                <div className="text-sm text-gray-700 font-medium">New batch applications open</div>
               </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-super10-foreground/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8" />
-                </div>
-                <h4 className="font-semibold mb-2">2. Interview Process</h4>
-                <p className="text-super10-foreground/90 text-sm">
-                  Shortlisted candidates will be invited for a personal interview.
-                </p>
+              <div>
+                <div className="text-2xl font-bold text-blue-600 mb-2">7 Days</div>
+                <div className="text-sm text-gray-700 font-medium">Selection process duration</div>
               </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-super10-foreground/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="h-8 w-8" />
-                </div>
-                <h4 className="font-semibold mb-2">3. Selection & Enrollment</h4>
-                <p className="text-super10-foreground/90 text-sm">
-                  Selected students will be enrolled in the next available batch.
-                </p>
+              <div>
+                <div className="text-2xl font-bold text-blue-600 mb-2">1st & 15th</div>
+                <div className="text-sm text-gray-700 font-medium">Batch start dates each month</div>
               </div>
             </div>
           </div>
 
           {/* Call to Action */}
-          <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4">Ready to Apply?</h3>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Don&apos;t let financial constraints stop you from learning. Apply for the Super10 program 
-              and start your IT journey today.
+          <div className="text-center bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-2xl p-12">
+            <h3 className="text-3xl font-bold mb-4">Ready to Transform Your Future?</h3>
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
+              Don't let financial constraints hold you back. Apply for Super10 and take the first step 
+              towards a successful career in technology.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-gradient-super10 text-super10-foreground hover:bg-super10/90">
+              <Button asChild size="lg" variant="secondary" className="bg-white text-orange-600 hover:bg-white/90 font-medium">
                 <Link href="/contact">
-                  Apply for Super10 <ArrowRight className="ml-2 h-5 w-5" />
+                  Apply Now <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline">
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600 font-medium">
                 <Link href="/courses">
                   View All Courses
                 </Link>
@@ -308,4 +272,4 @@ export default function Super10() {
       </div>
     </PageLayout>
   );
-};
+}
