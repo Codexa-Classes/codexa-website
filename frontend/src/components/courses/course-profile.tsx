@@ -194,7 +194,7 @@ export function CourseProfile({ courseId }: CourseProfileProps) {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="flex flex-row md:grid md:grid-cols-3 gap-4">
                 <div className="flex items-center gap-2">
                   <Clock className="h-5 w-5 text-muted-foreground" />
                   <span className="font-medium">{course.duration}</span>
