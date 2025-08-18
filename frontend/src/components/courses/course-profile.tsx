@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { CheckCircle, Clock, Users, Award, Edit, Trash2 } from "lucide-react"
+import { CheckCircle, Clock, Users, Award, Edit, Trash2, Home } from "lucide-react"
 import { courseService } from "@/lib/services/coursesService"
 import { Course } from "@/types/course"
 import { PageHeader } from "@/components/layout/page-header"
+import { Breadcrumb } from "@/components/ui/breadcrumb"
+import { ROUTES } from "@/lib/constants"
 import DevIcon from "@/components/DevIcon"
 
 interface CourseProfileProps {
@@ -135,7 +137,16 @@ export function CourseProfile({ courseId }: CourseProfileProps) {
   }
 
   return (
-    <div className="container mx-auto py-6">
+    <div className="space-y-4">
+      {/* Breadcrumb Navigation */}
+      <Breadcrumb
+        items={[
+          { href: ROUTES.admin.dashboard, label: 'Dashboard', icon: <Home className="h-4 w-4" /> },
+          { href: ROUTES.admin.courses, label: 'Courses' },
+          { label: course.name },
+        ]}
+      />
+
       <PageHeader
         title={`Course Details`}
         onBack={onBack}
@@ -155,7 +166,7 @@ export function CourseProfile({ courseId }: CourseProfileProps) {
         ]}
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Course Info */}
         <div className="lg:col-span-2 space-y-6">
           {/* Course Header */}
