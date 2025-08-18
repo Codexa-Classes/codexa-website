@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import PageLayout from '@/components/layout/PageLayout';
 import Super10Section from '@/components/Super10Section';
+import DevIcon from '@/components/DevIcon';
 
 export default function Courses() {
   const courses = [
@@ -37,7 +38,7 @@ export default function Courses() {
         "RESTful API Development",
         "Security Best Practices"
       ],
-      icon_component: <Server className="h-6 w-6" />
+      icon_name: "php"
     },
     {
       id: "python",
@@ -56,7 +57,7 @@ export default function Courses() {
         "Web Scraping",
         "API Development"
       ],
-      icon_component: <Code2 className="h-6 w-6" />
+      icon_name: "python"
     },
     {
       id: "react",
@@ -75,7 +76,7 @@ export default function Courses() {
         "TypeScript Integration",
         "Testing & Deployment"
       ],
-      icon_component: <Globe className="h-6 w-6" />
+      icon_name: "react"
     },
     {
       id: "aspnet",
@@ -94,7 +95,7 @@ export default function Courses() {
         "Authentication & Security",
         "Azure Deployment"
       ],
-      icon_component: <Server className="h-6 w-6" />
+      icon_name: "aspnet"
     },
     {
       id: "mysql",
@@ -113,7 +114,7 @@ export default function Courses() {
         "Backup & Recovery",
         "Database Security"
       ],
-      icon_component: <Database className="h-6 w-6" />
+      icon_name: "mysql"
     },
     {
       id: "linux",
@@ -132,7 +133,7 @@ export default function Courses() {
         "Shell Scripting",
         "Security & Monitoring"
       ],
-      icon_component: <Server className="h-6 w-6" />
+      icon_name: "linux"
     }
   ];
 
@@ -217,7 +218,7 @@ export default function Courses() {
                 <CardHeader>
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-4xl">
-                      <i className={`${course.icon} text-4xl`}></i>
+                      <DevIcon name={course.icon_name} size={48} />
                     </div>
                     <Badge className={`text-xs font-semibold ${getCategoryBadgeVariant(course.category)}`}>
                       {course.category}
