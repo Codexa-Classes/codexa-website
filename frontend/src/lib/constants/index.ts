@@ -21,19 +21,19 @@ export const APP_CONFIG = {
   } as const;
 
   // Helper functions for dynamic routes
-  export const getCandidateRoute = (id: string) => `/admin/candidates/${id}`;
-  export const getCandidateEditRoute = (id: string) => `/admin/candidates/${id}/edit`;
-  export const getCandidateViewRoute = (id: string) => `/admin/candidates?id=${id}`;
+  export const getCandidateRoute = (id: string | number) => `/admin/candidates/${id}`;
+  export const getCandidateEditRoute = (id: string | number) => `/admin/candidates/${id}/edit`;
+  export const getCandidateViewRoute = (id: string | number) => `/admin/candidates?id=${id}`;
 
   // Job route helper functions
-  export const getJobRoute = (id: string) => `/admin/jobs/${id}`;
-  export const getJobEditRoute = (id: string) => `/admin/jobs/${id}/edit`;
-  export const getJobViewRoute = (id: string) => `/admin/jobs?id=${id}`;
+  export const getJobRoute = (id: string | number) => `/admin/jobs/${id}`;
+  export const getJobEditRoute = (id: string | number) => `/admin/jobs/${id}/edit`;
+  export const getJobViewRoute = (id: string | number) => `/admin/jobs?id=${id}`;
 
   // Course route helper functions
-  export const getCourseRoute = (id: string) => `/admin/courses/${id}`;
-  export const getCourseEditRoute = (id: string) => `/admin/courses/${id}/edit`;
-  export const getCourseViewRoute = (id: string) => `/admin/courses?id=${id}`;
+  export const getCourseRoute = (id: string | number) => `/admin/courses/${id}`;
+  export const getCourseEditRoute = (id: string | number) => `/admin/courses/${id}/edit`;
+  export const getCourseViewRoute = (id: string | number) => `/admin/courses?id=${id}`;
 
   export const USER_ROLES = {
     ADMIN: 'admin',

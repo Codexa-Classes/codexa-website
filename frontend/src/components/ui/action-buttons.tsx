@@ -11,6 +11,7 @@ interface ActionButtonsProps {
   showView?: boolean;
   showEdit?: boolean;
   showDelete?: boolean;
+  getViewRoute?: (id: string | number) => string;
 }
 
 export const ActionButtons: React.FC<ActionButtonsProps> = ({
@@ -21,6 +22,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
   showView = true,
   showEdit = true,
   showDelete = true,
+  getViewRoute,
 }) => {
   const sizeClasses = {
     sm: 'w-8 h-8 p-0',
@@ -34,6 +36,9 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
     lg: 'h-5 w-5',
   };
 
+  // Use custom view route function if provided, otherwise fall back to default behavior
+  const viewRoute = getViewRoute ? getViewRoute(id) : `${basePath}/${id}`;
+
   return (
     <div className="flex items-center justify-center gap-2">
       {showView && (
@@ -43,7 +48,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
           asChild 
           className={`text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 ${sizeClasses[size]}`}
         >
-          <Link href={`${basePath}/${id}`}>
+          <Link href={viewRoute}>
             <Eye className={iconSizes[size]} />
           </Link>
         </Button>
@@ -66,7 +71,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
         <Button 
           variant="ghost" 
           size={size} 
-          className={`text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 ${sizeClasses[size]}`}
+          className={`text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 border border-red-200`}
           onClick={() => onDelete(id)}
         >
           <Trash2 className={iconSizes[size]} />

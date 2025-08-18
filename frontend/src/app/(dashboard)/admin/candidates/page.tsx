@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { ROUTES, getCandidateEditRoute, getCandidateViewRoute } from '@/lib/constants';
-import { DataTable } from '@/components/ui/data-table';
-import { createCandidatesColumns, Candidate } from '@/components/candidates/candidates-columns';
 import { candidatesService } from '@/lib/services/candidatesService';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home } from 'lucide-react';
@@ -13,6 +11,8 @@ import { CandidateProfile } from '@/components/candidates/candidate-profile';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { PageHeader } from '@/components/forms';
+import { ActionButtons } from '@/components/ui/action-buttons';
+import { Candidate } from '@/components/candidates/candidates-columns';
 
 export default function CandidatesPage() {
   const { user } = useAuth();
@@ -23,7 +23,7 @@ export default function CandidatesPage() {
   const [statusFilter, setStatusFilter] = useState('all');
   
   // Get candidate ID from URL query params
-  const candidateId = searchParams.get('id');
+  const candidateId = searchParams?.get('id') || null;
   const viewMode = candidateId ? 'profile' : 'list';
   const selectedCandidate = candidateId ? candidates.find(c => c.id === candidateId) : null;
 
@@ -135,16 +135,6 @@ export default function CandidatesPage() {
     setCandidates(storedCandidates);
   };
 
-  const handleViewCandidate = (candidate: Candidate) => {
-    console.log('View candidate profile clicked:', candidate);
-    router.push(getCandidateViewRoute(candidate.id));
-  };
-
-  const handleEditCandidate = (candidate: Candidate) => {
-    console.log('Edit candidate clicked:', candidate);
-    router.push(getCandidateEditRoute(candidate.id));
-  };
-
   const handleDeleteCandidate = (candidate: Candidate) => {
     if (confirm(`Are you sure you want to delete ${candidate.fullName}?`)) {
       const success = candidatesService.deleteCandidate(candidate.id);
@@ -181,16 +171,6 @@ export default function CandidatesPage() {
     console.log('Reject candidate:', candidate.fullName);
   };
 
-  // Create columns with handlers
-  const candidatesColumns = createCandidatesColumns({
-    onViewProfile: handleViewCandidate,
-    onEdit: handleEditCandidate,
-    onDelete: handleDeleteCandidate,
-    onScheduleInterview: handleScheduleInterview,
-    onApprove: handleApprove,
-    onReject: handleReject
-  });
-
   // Show detailed profile view
   if (viewMode === 'profile' && selectedCandidate) {
     return (
@@ -198,7 +178,7 @@ export default function CandidatesPage() {
         candidate={selectedCandidate}
         onBack={handleBackToList}
         onDelete={() => handleDeleteCandidate(selectedCandidate)}
-        onEdit={() => handleEditCandidate(selectedCandidate)}
+        onEdit={() => router.push(getCandidateEditRoute(selectedCandidate.id))}
       />
     );
   }
@@ -260,39 +240,16 @@ export default function CandidatesPage() {
                         </span>
                       </td>
                       <td className="px-4 py-3">
-                        <div className="flex items-center gap-2 whitespace-nowrap">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleViewCandidate(candidate)}
-                            className="h-8 w-8 p-0"
-                          >
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleEditCandidate(candidate)}
-                            className="h-8 w-8 p-0"
-                          >
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleDeleteCandidate(candidate)}
-                            className="h-8 w-8 p-0 text-red-600 hover:text-red-700"
-                          >
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg>
-                          </Button>
-                        </div>
+                        <ActionButtons
+                          id={candidate.id}
+                          basePath="/admin/candidates"
+                          onDelete={handleDeleteCandidate}
+                          size="sm"
+                          showView={true}
+                          showEdit={true}
+                          showDelete={true}
+                          getViewRoute={getCandidateViewRoute}
+                        />
                       </td>
                     </tr>
                   ))}
