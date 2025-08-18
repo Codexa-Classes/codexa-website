@@ -143,17 +143,15 @@ export default function AdminCoursesPage() {
 
 
       {/* Courses Table */}
-
-        <CardContent className="p-0">
-          <DataTable
-            columns={columns}
-            data={filteredCourses}
-            searchTerm={searchQuery}
-            onSearchChange={setSearchQuery}
-            searchPlaceholder="Search courses..."
-            emptyMessage="No courses found matching your criteria."
-          />
-        </CardContent>
+      <DataTable
+        columns={columns}
+        data={filteredCourses}
+        searchTerm=""
+        onSearchChange={() => {}}
+        searchPlaceholder=""
+        emptyMessage="No courses found matching your criteria."
+        useCard={false} // This removes the inner card wrapper
+      />
     </div>
   )
 }

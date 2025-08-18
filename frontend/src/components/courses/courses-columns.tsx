@@ -110,17 +110,15 @@ export const columns: DataTableColumn<Course>[] = [
       const course = row.original
 
       return (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center gap-2">
           <Button variant="ghost" size="sm" asChild>
             <Link href={`/admin/courses/${course.id}`}>
               <Eye className="h-4 w-4" />
-              <span className="hidden sm:inline ml-2">View</span>
             </Link>
           </Button>
           <Button variant="ghost" size="sm" asChild>
             <Link href={`/admin/courses/${course.id}/edit`}>
               <Edit className="h-4 w-4" />
-              <span className="hidden sm:inline ml-2">Edit</span>
             </Link>
           </Button>
           <Button 
@@ -130,7 +128,6 @@ export const columns: DataTableColumn<Course>[] = [
             onClick={() => handleDeleteCourse(course.id)}
           >
             <Trash2 className="h-4 w-4" />
-            <span className="hidden sm:inline ml-2">Delete</span>
           </Button>
         </div>
       )
