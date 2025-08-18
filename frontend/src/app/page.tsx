@@ -21,15 +21,16 @@ import {
 } from 'lucide-react';
 import PageLayout from '@/components/layout/PageLayout';
 import Super10Section from '@/components/Super10Section';
+import DevIcon from '@/components/DevIcon';
 
 export default function Home() {
   const popularCourses = [
-    { icon: "devicon-php-plain", name: "PHP", category: "backend" },
-    { icon: "devicon-python-plain", name: "Python", category: "backend" },
-    { icon: "devicon-react-original", name: "React", category: "frontend" },
-    { icon: "devicon-dot-net-plain", name: "ASP.NET", category: "framework" },
-    { icon: "devicon-mysql-plain", name: "MySQL", category: "database" },
-    { icon: "devicon-linux-plain", name: "Linux", category: "framework" }
+    { icon: "php", name: "PHP", category: "backend" },
+    { icon: "python", name: "Python", category: "backend" },
+    { icon: "react", name: "React", category: "frontend" },
+    { icon: "aspnet", name: "ASP.NET", category: "framework" },
+    { icon: "mysql", name: "MySQL", category: "database" },
+    { icon: "linux", name: "Linux", category: "framework" }
   ];
 
   const whyChooseUs = [
@@ -122,12 +123,14 @@ export default function Home() {
               <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-gray-200 hover:border-blue-300 bg-white hover:bg-blue-50">
                 <CardHeader className="pb-2">
                   <div className="text-4xl mb-2">
-                    <i className={`${course.icon} text-4xl`}></i>
+                    <DevIcon name={course.icon} size={48} />
                   </div>
                   <CardTitle className="text-lg text-gray-900 font-bold">{course.name}</CardTitle>
-                  <Badge className={`text-xs font-semibold ${getCategoryBadgeVariant(course.category)}`}>
-                    {course.category}
-                  </Badge>
+                  <div className="flex justify-center">
+                    <Badge className={`text-xs font-semibold ${getCategoryBadgeVariant(course.category)}`}>
+                      {course.category}
+                    </Badge>
+                  </div>
                 </CardHeader>
               </Card>
             ))}
