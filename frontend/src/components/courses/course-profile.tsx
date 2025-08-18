@@ -161,8 +161,9 @@ export function CourseProfile({ courseId }: CourseProfileProps) {
           {/* Course Header */}
           <Card>
             <CardHeader>
-              <div className="flex items-start justify-between">
-                <div>
+              <div className="space-y-4">
+                {/* Top section: Logo and Badges */}
+                <div className="flex items-start justify-between">
                   <div className="mb-4">
                     <DevIcon 
                       name={getCategoryIcon(course.category)} 
@@ -170,21 +171,25 @@ export function CourseProfile({ courseId }: CourseProfileProps) {
                       className="rounded-lg"
                     />
                   </div>
+                  <div className="flex flex-col gap-2">
+                    <Badge className={`${getStatusColor(course.status)} capitalize`}>
+                      {course.status}
+                    </Badge>
+                    <Badge className={`${getCategoryColor(course.category)} capitalize`}>
+                      {course.category}
+                    </Badge>
+                    <Badge className={`${getLevelColor(course.level)} capitalize`}>
+                      {course.level}
+                    </Badge>
+                  </div>
+                </div>
+
+                {/* Separate section: Title and Description with full width */}
+                <div>
                   <CardTitle className="text-2xl">{course.name}</CardTitle>
                   <CardDescription className="text-lg mt-2">
                     {course.description}
                   </CardDescription>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <Badge className={`${getStatusColor(course.status)} capitalize`}>
-                    {course.status}
-                  </Badge>
-                  <Badge className={`${getCategoryColor(course.category)} capitalize`}>
-                    {course.category}
-                  </Badge>
-                  <Badge className={`${getLevelColor(course.level)} capitalize`}>
-                    {course.level}
-                  </Badge>
                 </div>
               </div>
             </CardHeader>
