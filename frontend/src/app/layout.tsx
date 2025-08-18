@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Codexa Classes",
   description: "A modern classes portal application",
+  icons:{
+    icon: "/favicon-white.png"
+  }
 };
 
 export default function RootLayout({
