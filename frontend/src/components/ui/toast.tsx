@@ -9,9 +9,10 @@ interface ToastProps {
   type: 'success' | 'error';
   duration?: number;
   onClose: () => void;
+  className?: string; // Add this line
 }
 
-export function Toast({ message, type, duration = 3000, onClose }: ToastProps) {
+export function Toast({ message, type, duration = 3000, onClose, className }: ToastProps) {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -30,7 +31,8 @@ export function Toast({ message, type, duration = 3000, onClose }: ToastProps) {
       "fixed top-4 right-4 z-50 flex items-center gap-3 p-4 rounded-lg shadow-lg border transition-all duration-300",
       type === 'success' 
         ? "bg-green-50 border-green-200 text-green-800" 
-        : "bg-red-50 border-red-200 text-red-800"
+        : "bg-red-50 border-red-200 text-red-800",
+      className // Add this line
     )}>
       {type === 'success' ? (
         <CheckCircle className="h-5 w-5 text-green-600" />

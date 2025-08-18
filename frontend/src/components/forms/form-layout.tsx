@@ -40,6 +40,7 @@ export function FormLayout({
               message={toastMessage}
               type={toastType}
               onClose={onToastClose}
+              className="mt-12"
             />
           )}
 
