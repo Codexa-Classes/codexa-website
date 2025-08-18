@@ -111,12 +111,12 @@ export const columns: DataTableColumn<Course>[] = [
 
       return (
         <div className="flex items-center justify-center gap-2">
-          <Button variant="ghost" size="sm" asChild>
+          <Button variant="ghost" size="sm" asChild className="text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 w-8 h-8 p-0">
             <Link href={`/admin/courses/${course.id}`}>
               <Eye className="h-4 w-4" />
             </Link>
           </Button>
-          <Button variant="ghost" size="sm" asChild>
+          <Button variant="ghost" size="sm" asChild className="text-orange-600 hover:text-orange-700 bg-orange-50 hover:bg-orange-100 border border-orange-200 w-8 h-8 p-0">
             <Link href={`/admin/courses/${course.id}/edit`}>
               <Edit className="h-4 w-4" />
             </Link>
@@ -124,7 +124,7 @@ export const columns: DataTableColumn<Course>[] = [
           <Button 
             variant="ghost" 
             size="sm" 
-            className="text-red-600 hover:text-red-700"
+            className="text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 w-8 h-8 p-0"
             onClick={() => handleDeleteCourse(course.id)}
           >
             <Trash2 className="h-4 w-4" />
