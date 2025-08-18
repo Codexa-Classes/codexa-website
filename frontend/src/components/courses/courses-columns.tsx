@@ -110,34 +110,29 @@ export const columns: DataTableColumn<Course>[] = [
       const course = row.original
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <Link href={`/admin/courses/${course.id}`}>
-                <Eye className="mr-2 h-4 w-4" />
-                View
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href={`/admin/courses/${course.id}/edit`}>
-                <Edit className="mr-2 h-4 w-4" />
-                Edit
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="text-red-600">
-              <Trash2 className="mr-2 h-4 w-4" />
-              Delete
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="sm" asChild>
+            <Link href={`/admin/courses/${course.id}`}>
+              <Eye className="h-4 w-4" />
+              <span className="hidden sm:inline ml-2">View</span>
+            </Link>
+          </Button>
+          <Button variant="ghost" size="sm" asChild>
+            <Link href={`/admin/courses/${course.id}/edit`}>
+              <Edit className="h-4 w-4" />
+              <span className="hidden sm:inline ml-2">Edit</span>
+            </Link>
+          </Button>
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="text-red-600 hover:text-red-700"
+            onClick={() => handleDeleteCourse(course.id)}
+          >
+            <Trash2 className="h-4 w-4" />
+            <span className="hidden sm:inline ml-2">Delete</span>
+          </Button>
+        </div>
       )
     },
   },

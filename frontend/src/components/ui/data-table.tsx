@@ -91,7 +91,7 @@ export function DataTable<T>({
             <TableHeader>
               <TableRow>
                 {columns.map((column) => (
-                  <TableHead key={column.id}>
+                  <TableHead key={column.id} className="text-center">
                     {typeof column.header === 'function' ? column.header() : column.header}
                   </TableHead>
                 ))}
@@ -101,7 +101,7 @@ export function DataTable<T>({
               {data.map((item, index) => (
                 <TableRow key={index}>
                   {columns.map((column) => (
-                    <TableCell key={column.id}>
+                    <TableCell key={column.id} className="text-center">
                       {column.cell({ row: { getValue: (key: string) => (item as any)[key], original: item } })}
                     </TableCell>
                   ))}
