@@ -6,6 +6,7 @@ import { GraduationCap } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useRef, useEffect, useState } from 'react';
 import { Logo } from '../Logo';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 
 export default function AppHeader() {
   const pathname = usePathname();
@@ -57,6 +58,7 @@ export default function AppHeader() {
         <div className="flex items-center justify-between h-16">
           <Logo />
           
+          {/* Desktop Navigation */}
           <nav ref={navRef} className="hidden md:flex items-center space-x-8 relative">
             {/* Animated Sliding Underline */}
             <div 
@@ -90,7 +92,11 @@ export default function AppHeader() {
           </nav>
           
           <div className="flex items-center space-x-4">
-            <Button asChild variant="outline" size="sm">
+            {/* Mobile Menu Button */}
+            <SidebarTrigger className="md:hidden" />
+            
+            {/* Desktop Sign In Button */}
+            <Button asChild variant="outline" size="sm" className="hidden md:inline-flex">
               <Link href="/login">
                 Sign In
               </Link>
