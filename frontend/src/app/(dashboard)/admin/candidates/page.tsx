@@ -28,24 +28,15 @@ export default function CandidatesPage() {
   const selectedCandidate = candidateId ? candidates.find(c => c.id === candidateId) : null;
 
   useEffect(() => {
-    console.log('CandidatesPage: User role:', user?.role);
-    console.log('CandidatesPage: Current user:', user);
-    
     if (!user || user.role !== 'admin') {
-      console.log('CandidatesPage: Redirecting to login');
       router.push(ROUTES.login);
       return;
     }
-    
-    console.log('CandidatesPage: User authenticated as admin');
     
     try {
       // Initialize with one sample candidate if storage is empty
       candidatesService.initializeWithSampleData();
       const storedCandidates = candidatesService.getAllCandidates();
-      console.log('CandidatesPage: Loaded candidates:', storedCandidates);
-      
-      // Set candidates from localStorage
       setCandidates(storedCandidates);
     } catch (error) {
       console.error('CandidatesPage: Error loading candidates:', error);
@@ -53,21 +44,11 @@ export default function CandidatesPage() {
     }
   }, [user, router]);
 
-  // Debug: Log candidates data
-  useEffect(() => {
-    console.log('CandidatesPage: Current candidates state:', candidates);
-    console.log('CandidatesPage: Candidates length:', candidates?.length);
-    if (candidates && candidates.length > 0) {
-      console.log('CandidatesPage: First candidate sample:', candidates[0]);
-    }
-  }, [candidates]);
-
   // Handle URL changes and ensure candidate data is available
   useEffect(() => {
     if (candidateId && candidates.length > 0) {
       const candidate = candidates.find(c => c.id === candidateId);
       if (!candidate) {
-        console.log('Candidate not found, redirecting to list');
         router.push(ROUTES.admin.candidates);
       }
     }
@@ -84,7 +65,6 @@ export default function CandidatesPage() {
   }, []);
 
   if (!user || user.role !== 'admin') {
-    console.log('CandidatesPage: Rendering null - user not admin');
     return null;
   }
 
@@ -136,15 +116,9 @@ export default function CandidatesPage() {
   };
 
   const handleDeleteCandidate = (candidate: Candidate) => {
-    if (confirm(`Are you sure you want to delete ${candidate.fullName}?`)) {
-      const success = candidatesService.deleteCandidate(candidate.id);
-      if (success) {
-        refreshCandidates();
-        // Show success message
-        alert(`Successfully deleted ${candidate.fullName}`);
-      } else {
-        alert('Failed to delete candidate');
-      }
+    const success = candidatesService.deleteCandidate(candidate.id);
+    if (success) {
+      refreshCandidates();
     }
   };
 
