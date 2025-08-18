@@ -249,6 +249,8 @@ export default function CandidatesPage() {
                           showEdit={true}
                           showDelete={true}
                           getViewRoute={getCandidateViewRoute}
+                          deleteConfirmTitle={`Delete ${candidate.fullName}?`}
+                          deleteConfirmDescription={`Are you sure you want to delete ${candidate.fullName}? This action cannot be undone and will permanently remove this candidate from the system.`}
                         />
                       </td>
                     </tr>
