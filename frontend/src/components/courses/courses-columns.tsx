@@ -1,18 +1,8 @@
 "use client"
 
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { MoreHorizontal, Edit, Trash2, Eye } from "lucide-react"
 import { Course } from "@/types/course"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import Link from "next/link"
+import { ActionButtons } from "@/components/ui/action-buttons"
 
 interface DataTableColumn<T> {
   id: string;
@@ -20,7 +10,7 @@ interface DataTableColumn<T> {
   cell: (props: { row: { getValue: (key: string) => any; original: T } }) => React.ReactNode;
 }
 
-export const columns: DataTableColumn<Course>[] = [
+export const createColumns = (handleDeleteCourse: (id: string | number) => void): DataTableColumn<Course>[] => [
   {
     id: "name",
     header: "Course Name",
@@ -110,26 +100,11 @@ export const columns: DataTableColumn<Course>[] = [
       const course = row.original
 
       return (
-        <div className="flex items-center justify-center gap-2">
-          <Button variant="ghost" size="sm" asChild className="text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 w-8 h-8 p-0">
-            <Link href={`/admin/courses/${course.id}`}>
-              <Eye className="h-4 w-4" />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="sm" asChild className="text-orange-600 hover:text-orange-700 bg-orange-50 hover:bg-orange-100 border border-orange-200 w-8 h-8 p-0">
-            <Link href={`/admin/courses/${course.id}/edit`}>
-              <Edit className="h-4 w-4" />
-            </Link>
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            className="text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 w-8 h-8 p-0"
-            onClick={() => handleDeleteCourse(course.id)}
-          >
-            <Trash2 className="h-4 w-4" />
-          </Button>
-        </div>
+        <ActionButtons
+          id={course.id}
+          basePath="/admin/courses"
+          onDelete={handleDeleteCourse}
+        />
       )
     },
   },

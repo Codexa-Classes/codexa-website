@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { DataTable } from "@/components/ui/data-table"
-import { columns } from "@/components/courses"
+import { createColumns } from "@/components/courses"
 import { courseService, initializeCourses } from "@/lib/services/coursesService"
 import { Course } from "@/types/course"
 import { Plus, BookOpen, Users, TrendingUp, Home } from "lucide-react"
@@ -153,7 +153,7 @@ export default function AdminCoursesPage() {
 
           {/* Courses Table */}
           <DataTable
-            columns={columns}
+            columns={createColumns(handleDeleteCourse)}
             data={filteredCourses}
             searchTerm=""
             onSearchChange={() => {}}
