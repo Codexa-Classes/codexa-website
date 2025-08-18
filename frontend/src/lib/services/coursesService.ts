@@ -133,20 +133,17 @@ export const initializeCourses = () => {
 export const courseService = {
   // Get all courses
   getAll: async (): Promise<Course[]> => {
-    await simulateApiDelay();
     return getFromStorage();
   },
 
   // Get course by ID
   getById: async (id: string): Promise<Course | null> => {
-    await simulateApiDelay(300);
     const courses = getFromStorage();
     return courses.find(course => course.id === id) || null;
   },
 
   // Create new course
   create: async (courseData: Omit<Course, 'id' | 'createdAt' | 'updatedAt' | 'enrolledStudents'>): Promise<Course> => {
-    await simulateApiDelay(800);
     const courses = getFromStorage();
     
     const newCourse: Course = {
@@ -165,7 +162,6 @@ export const courseService = {
 
   // Update course
   update: async (id: string, updates: Partial<Course>): Promise<Course | null> => {
-    await simulateApiDelay(600);
     const courses = getFromStorage();
     const courseIndex = courses.findIndex(course => course.id === id);
     
@@ -185,7 +181,6 @@ export const courseService = {
 
   // Delete course
   delete: async (id: string): Promise<boolean> => {
-    await simulateApiDelay(400);
     const courses = getFromStorage();
     const filteredCourses = courses.filter(course => course.id !== id);
     
@@ -199,14 +194,12 @@ export const courseService = {
 
   // Get courses by category
   getByCategory: async (category: Course['category']): Promise<Course[]> => {
-    await simulateApiDelay(300);
     const courses = getFromStorage();
     return courses.filter(course => course.category === category);
   },
 
   // Get published courses only
   getPublished: async (): Promise<Course[]> => {
-    await simulateApiDelay(300);
     const courses = getFromStorage();
     return courses.filter(course => course.status === 'published');
   }

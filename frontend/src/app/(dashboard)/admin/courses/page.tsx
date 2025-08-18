@@ -7,15 +7,17 @@ import { DataTable } from "@/components/ui/data-table"
 import { columns } from "@/components/courses"
 import { courseService, initializeCourses } from "@/lib/services/coursesService"
 import { Course } from "@/types/course"
-import { Plus, BookOpen, Users, TrendingUp } from "lucide-react"
+import { Plus, BookOpen, Users, TrendingUp, Home } from "lucide-react"
 import { toast } from "sonner"
 import Link from "next/link"
+import { Breadcrumb } from "@/components/ui/breadcrumb"
+import { PageHeader } from "@/components/forms"
+import { ROUTES } from "@/lib/constants"
 
 export default function AdminCoursesPage() {
   const [courses, setCourses] = useState<Course[]>([])
-  const [loading, setLoading] = useState(true)
+  // Remove loading state
   const [searchQuery, setSearchQuery] = useState("")
-
 
   useEffect(() => {
     initializeCourses()
@@ -29,9 +31,8 @@ export default function AdminCoursesPage() {
     } catch (error) {
       console.error("Error loading courses:", error)
       toast.error("Failed to load courses")
-    } finally {
-      setLoading(false)
     }
+    // Remove finally block
   }
 
   const handleDeleteCourse = async (courseId: string) => {
@@ -60,98 +61,108 @@ export default function AdminCoursesPage() {
     totalRevenue: courses.reduce((sum, course) => sum + course.price, 0)
   }
 
-  if (loading) {
-    return (
-      <div className="container mx-auto py-6">
-        <div className="text-center">Loading courses...</div>
-      </div>
-    )
+  const handleBackToDashboard = () => {
+    // Navigate back to dashboard
+    window.history.back()
   }
 
+  const handleAddCourse = () => {
+    // Navigate to add course page
+    window.location.href = "/admin/courses/add"
+  }
+
+  // Remove loading check
+
   return (
-    <div className="container mx-auto py-6">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-3xl font-bold">Courses Management</h1>
-          <p className="text-muted-foreground">
-            Manage all courses and their content
-          </p>
-        </div>
-        <Button asChild>
-          <Link href="/admin/courses/add">
-            <Plus className="h-4 w-4 mr-2" />
-            Add Course
-          </Link>
-        </Button>
-      </div>
-
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Courses</CardTitle>
-            <BookOpen className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.totalCourses}</div>
-            <p className="text-xs text-muted-foreground">
-              All courses in the system
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Published</CardTitle>
-            <BookOpen className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.publishedCourses}</div>
-            <p className="text-xs text-muted-foreground">
-              Available for enrollment
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Students</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.totalStudents}</div>
-            <p className="text-xs text-muted-foreground">
-              Enrolled across all courses
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">₹{stats.totalRevenue.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">
-              Combined course value
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
-
-
-      {/* Courses Table */}
-      <DataTable
-        columns={columns}
-        data={filteredCourses}
-        searchTerm=""
-        onSearchChange={() => {}}
-        searchPlaceholder=""
-        emptyMessage="No courses found matching your criteria."
-        useCard={false} // This removes the inner card wrapper
+    <div className="space-y-4">
+      {/* Breadcrumb Navigation */}
+      <Breadcrumb
+        items={[
+          { href: ROUTES.admin.dashboard, label: 'Dashboard', icon: <Home className="h-4 w-4" /> },
+          { href: ROUTES.admin.courses, label: 'Courses' },
+        ]}
       />
+
+      <Card>
+        <CardHeader>
+          <PageHeader
+            title="Courses"
+            onBack={handleBackToDashboard}
+            actionButton={{
+              text: "Create",
+              onClick: handleAddCourse
+            }}
+          />
+        </CardHeader>
+        
+        <CardContent className="space-y-6">
+          {/* Stats Cards */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Total Courses</CardTitle>
+                <BookOpen className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{stats.totalCourses}</div>
+                <p className="text-xs text-muted-foreground">
+                  All courses in the system
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Published</CardTitle>
+                <BookOpen className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{stats.publishedCourses}</div>
+                <p className="text-xs text-muted-foreground">
+                  Available for enrollment
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Total Students</CardTitle>
+                <Users className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{stats.totalStudents}</div>
+                <p className="text-xs text-muted-foreground">
+                  Enrolled across all courses
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+                <TrendingUp className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">₹{stats.totalRevenue.toLocaleString()}</div>
+                <p className="text-xs text-muted-foreground">
+                  Combined course value
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Courses Table */}
+          <DataTable
+            columns={columns}
+            data={filteredCourses}
+            searchTerm=""
+            onSearchChange={() => {}}
+            searchPlaceholder=""
+            emptyMessage="No courses found matching your criteria."
+            useCard={false}
+          />
+        </CardContent>
+      </Card>
     </div>
   )
 }
