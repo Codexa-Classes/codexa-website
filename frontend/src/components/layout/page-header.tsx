@@ -29,7 +29,7 @@ export function PageHeader({
       <div className="flex items-center">
         <Button variant="outline" onClick={onBack} className="flex items-center gap-2">
           <ArrowLeft className="h-4 w-4" />
-          Back
+          <span className="hidden sm:inline">Back</span>
         </Button>
       </div>
 
@@ -49,7 +49,7 @@ export function PageHeader({
             className="flex items-center gap-2"
           >
             {action.icon}
-            {action.label}
+            <span className="hidden sm:inline">{action.label}</span>
           </Button>
         ))}
       </div>

@@ -121,7 +121,7 @@ export function CourseProfile({ courseId }: CourseProfileProps) {
   return (
     <div className="container mx-auto py-6">
       <PageHeader
-        title={`Course Details: ${course.name}`}
+        title={`Course Details`}
         onBack={onBack}
         actions={[
           {
