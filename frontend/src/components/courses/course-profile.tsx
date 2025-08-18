@@ -10,6 +10,7 @@ import { CheckCircle, Clock, Users, Award, Edit, Trash2 } from "lucide-react"
 import { courseService } from "@/lib/services/coursesService"
 import { Course } from "@/types/course"
 import { PageHeader } from "@/components/layout/page-header"
+import DevIcon from "@/components/DevIcon"
 
 interface CourseProfileProps {
   courseId: string
@@ -118,6 +119,21 @@ export function CourseProfile({ courseId }: CourseProfileProps) {
     }
   }
 
+  const getCategoryIcon = (category: string) => {
+    switch (category.toLowerCase()) {
+      case 'frontend':
+        return 'react'
+      case 'backend':
+        return 'python'
+      case 'database':
+        return 'mysql'
+      case 'framework':
+        return 'aspnet'
+      default:
+        return 'php' // fallback
+    }
+  }
+
   return (
     <div className="container mx-auto py-6">
       <PageHeader
@@ -147,7 +163,13 @@ export function CourseProfile({ courseId }: CourseProfileProps) {
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div>
-                  <div className="text-6xl mb-4">{course.image}</div>
+                  <div className="mb-4">
+                    <DevIcon 
+                      name={getCategoryIcon(course.category)} 
+                      size={64} 
+                      className="rounded-lg"
+                    />
+                  </div>
                   <CardTitle className="text-2xl">{course.name}</CardTitle>
                   <CardDescription className="text-lg mt-2">
                     {course.description}
