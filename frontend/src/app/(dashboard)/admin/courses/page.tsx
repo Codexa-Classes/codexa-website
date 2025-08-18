@@ -143,14 +143,8 @@ export default function AdminCoursesPage() {
 
 
       {/* Courses Table */}
-      <Card>
-        <CardHeader>
-          <CardTitle>All Courses</CardTitle>
-          <CardDescription>
-            Manage your course catalog and content
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+
+        <CardContent className="p-0">
           <DataTable
             columns={columns}
             data={filteredCourses}
@@ -160,7 +154,6 @@ export default function AdminCoursesPage() {
             emptyMessage="No courses found matching your criteria."
           />
         </CardContent>
-      </Card>
     </div>
   )
 }
