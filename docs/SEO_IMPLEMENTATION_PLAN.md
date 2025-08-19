@@ -444,38 +444,130 @@ export const metadata: Metadata = {
 
 ---
 
-## 🎯 **Implementation Timeline**
+## ⏰ **1-Hour Task Breakdown**
 
-### **Week 1: Foundation**
-- Root layout metadata optimization
-- Basic Open Graph tags
-- Viewport and language meta tags
+### **Task 1: Root Layout SEO (45 minutes)**
+**Priority:** 🔥 HIGH - Foundation for all pages  
+**Time:** 45 minutes  
+**Files:** `/frontend/src/app/layout.tsx`
 
-### **Week 2: Core Pages**
-- Homepage metadata and schema
-- Courses page optimization
-- Basic structured data implementation
+**What to do:**
+- [ ] Replace basic metadata with enhanced version (15 min)
+- [ ] Add Open Graph tags (10 min)
+- [ ] Add Twitter Card tags (10 min)
+- [ ] Add viewport and theme meta tags (5 min)
+- [ ] Test basic functionality (5 min)
 
-### **Week 3: Advanced Schema**
-- About page person schema
-- Contact page local business schema
-- Course schema markup
+**Expected Outcome:** All pages now have proper meta tags and social sharing optimization
 
-### **Week 4: Technical SEO**
-- Sitemap generation
-- Robots.txt creation
-- Image optimization
+---
 
-### **Week 5: Performance**
-- Core Web Vitals optimization
-- Loading speed improvements
-- Mobile optimization
+### **Task 2: Homepage & Courses Page (45 minutes)**
+**Priority:** 🔥 HIGH - Main landing pages  
+**Time:** 45 minutes  
+**Files:** `/frontend/src/app/page.tsx`, `/frontend/src/app/courses/page.tsx`
 
-### **Week 6: Testing & Launch**
-- Schema validation testing
-- Performance testing
-- Analytics setup
-- Launch and monitoring
+**What to do:**
+- [ ] Add page-specific metadata to homepage (15 min)
+- [ ] Add page-specific metadata to courses page (15 min)
+- [ ] Add basic structured data (JSON-LD) to homepage (10 min)
+- [ ] Test meta tags (5 min)
+
+**Expected Outcome:** Homepage and courses page have unique, optimized meta tags
+
+---
+
+### **Task 3: About & Contact Pages (45 minutes)**
+**Priority:** ⚡ MEDIUM - Supporting pages  
+**Time:** 45 minutes  
+**Files:** `/frontend/src/app/about/page.tsx`, `/frontend/src/app/contact/page.tsx`
+
+**What to do:**
+- [ ] Add metadata to about page (15 min)
+- [ ] Add metadata to contact page (15 min)
+- [ ] Add person schema to about page (10 min)
+- [ ] Add local business schema to contact page (5 min)
+
+**Expected Outcome:** About and contact pages have proper meta tags and basic schema
+
+---
+
+### **Task 4: Technical SEO Setup (45 minutes)**
+**Priority:** ⚡ MEDIUM - Technical foundation  
+**Time:** 45 minutes  
+**Files:** `/frontend/next.config.ts`, create new API routes
+
+**What to do:**
+- [ ] Update Next.js config for SEO (15 min)
+- [ ] Create sitemap API route (15 min)
+- [ ] Create robots.txt API route (10 min)
+- [ ] Test sitemap and robots.txt (5 min)
+
+**Expected Outcome:** Technical SEO infrastructure is in place
+
+---
+
+### **Task 5: Schema Implementation (45 minutes)**
+**Priority:** 📈 LOW - Advanced features  
+**Time:** 45 minutes  
+**Files:** Create new components, update existing pages
+
+**What to do:**
+- [ ] Create reusable StructuredData component (20 min)
+- [ ] Add course schema to courses page (15 min)
+- [ ] Add FAQ schema to contact page (10 min)
+
+**Expected Outcome:** Rich snippets and structured data for better search visibility
+
+---
+
+### **Task 6: Testing & Validation (45 minutes)**
+**Priority:** 📈 LOW - Quality assurance  
+**Time:** 45 minutes  
+**Tools:** Online validators and testing tools
+
+**What to do:**
+- [ ] Test all meta tags with online tools (15 min)
+- [ ] Validate schema markup (15 min)
+- [ ] Test Open Graph tags (10 min)
+- [ ] Final review and fixes (5 min)
+
+**Expected Outcome:** All SEO elements are properly implemented and validated
+
+---
+
+## 🚀 **Quick Start Guide (Choose Your Task)**
+
+### **If you have 1 hour total:**
+**Do Task 1** - Root Layout SEO (45 min) + quick testing (15 min)
+
+### **If you have 2 hours total:**
+**Do Task 1 + Task 2** - Foundation + Main pages
+
+### **If you have 3 hours total:**
+**Do Task 1 + Task 2 + Task 3** - Foundation + Main pages + Supporting pages
+
+### **If you have 4+ hours total:**
+**Do all tasks** - Complete SEO implementation
+
+---
+
+## ⚡ **Quick Wins (15 minutes each)**
+
+### **Quick Win 1: Basic Meta Tags**
+- Update root layout with basic Open Graph tags
+- Add viewport meta tag
+- Test one page
+
+### **Quick Win 2: Social Media Optimization**
+- Add Twitter Card tags
+- Test social sharing
+- Verify Open Graph images
+
+### **Quick Win 3: Basic Schema**
+- Add organization schema to homepage
+- Test with Google Rich Results Test
+- Verify basic functionality
 
 ---
 
