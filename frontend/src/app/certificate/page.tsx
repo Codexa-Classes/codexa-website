@@ -282,7 +282,7 @@ export default function Certificate() {
               <h2 className="text-3xl font-bold mb-4 text-gray-900">Certificate Verification</h2>
               <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto font-medium">
                 All our certificates can be independently verified using the unique certificate ID. 
-                Employers can verify the authenticity of any certificate issued by Shraddha Classes.
+                Employers can verify the authenticity of any certificate issued by Codexa Classes.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">

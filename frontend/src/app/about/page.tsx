@@ -57,7 +57,7 @@ export default function About() {
           {/* Header */}
           <div className="text-center mb-16">
             <Badge variant="secondary" className="mb-4 bg-orange-400 text-white border-orange-400 font-medium">
-              About Shraddha Classes
+              About Codexa Classes
             </Badge>
             <h1 className="text-4xl font-bold mb-6 text-gray-900">Learn from Industry Experts</h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto font-medium">
