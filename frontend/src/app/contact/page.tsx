@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -24,6 +23,77 @@ import {
 import PageLayout from '@/components/layout/PageLayout';
 import Link from 'next/link';
 import Super10Section from '@/components/Super10Section';
+
+export const metadata: Metadata = {
+  title: "Contact Codexa Classes - IT Training Institute Mumbai | Get Started Today",
+  description: "Ready to start your IT journey? Contact Codexa Classes in Mumbai for course enrollment, Super10 applications, and career guidance. Get in touch today!",
+  keywords: ["contact Codexa Classes", "IT training enrollment Mumbai", "course inquiry", "Super10 application", "career guidance Mumbai", "PHP course enrollment", "Python training contact"],
+  openGraph: {
+    title: "Contact Codexa Classes - IT Training Institute Mumbai",
+    description: "Ready to start your IT journey? Contact us for course enrollment and career guidance.",
+    url: "https://codexaclasses.com/contact",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Contact Codexa Classes - IT Training Institute Mumbai",
+      },
+    ],
+  },
+};
+
+// Local Business structured data for SEO
+const localBusinessStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Codexa Classes",
+  "description": "IT Training Institute in Mumbai offering programming courses in PHP, Python, React, ASP.NET, MySQL, and Linux",
+  "url": "https://codexaclasses.com",
+  "telephone": "+91-98765-43210",
+  "email": "hiVirajKadam@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Mumbai",
+    "addressRegion": "Maharashtra",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "19.0760",
+    "longitude": "72.8777"
+  },
+  "openingHours": "Mo-Sa 09:00-18:00",
+  "priceRange": "₹₹",
+  "serviceArea": {
+    "@type": "City",
+    "name": "Mumbai"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "IT Training Courses",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Course",
+          "name": "PHP Development Course"
+        },
+        "price": "10000",
+        "priceCurrency": "INR"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Course",
+          "name": "Python Programming Course"
+        },
+        "price": "10000",
+        "priceCurrency": "INR"
+      }
+    ]
+  }
+};
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -125,20 +195,29 @@ export default function Contact() {
   ];
 
   return (
-    <PageLayout>
-      <div className="py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4 bg-blue-400 text-white border-blue-400 font-medium">
-              📞 Contact Us
-            </Badge>
-            <h1 className="text-4xl font-bold mb-6 text-gray-900">Get in Touch</h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 font-medium">
-              Ready to start your IT journey? Have questions about our courses? 
-              We're here to help you take the next step in your career.
-            </p>
-          </div>
+    <>
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(localBusinessStructuredData),
+        }}
+      />
+      
+      <PageLayout>
+        <div className="py-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Header */}
+            <div className="text-center mb-16">
+              <Badge variant="secondary" className="mb-4 bg-blue-400 text-white border-blue-400 font-medium">
+                📞 Contact Us
+              </Badge>
+              <h1 className="text-4xl font-bold mb-6 text-gray-900">Get in Touch for IT Training in Mumbai</h1>
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 font-medium">
+                Ready to start your IT journey? Have questions about our programming courses in Mumbai? 
+                We're here to help you take the next step in your career.
+              </p>
+            </div>
 
           {/* Contact Information */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
@@ -174,5 +253,6 @@ export default function Contact() {
         </div>
       </div>
     </PageLayout>
+    </>
   );
 }
