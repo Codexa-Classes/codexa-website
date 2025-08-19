@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     description: 'Transform your career with comprehensive IT training in Mumbai. Learn PHP, Python, React, ASP.NET, MySQL, and Linux from industry experts.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Codexa Classes - IT Training Institute Mumbai',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Codexa Classes - Best IT Training Institute in Mumbai',
     description: 'Transform your career with comprehensive IT training in Mumbai. Learn PHP, Python, React, ASP.NET, MySQL, and Linux from industry experts.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
     creator: '@codexaclasses',
   },
   robots: {
