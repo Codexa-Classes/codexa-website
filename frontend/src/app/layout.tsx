@@ -15,11 +15,68 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Codexa Classes",
-  description: "A modern classes portal application",
-  icons:{
-    icon: "/favicon-white.png"
-  }
+  title: {
+    default: "Codexa Classes - Best IT Training Institute in Mumbai",
+    template: "%s | Codexa Classes"
+  },
+  description: "Transform your career with comprehensive IT training in Mumbai. Learn PHP, Python, React, ASP.NET, MySQL, and Linux from industry experts. Affordable courses starting at ₹10,000 with 100% job placement guarantee.",
+  keywords: ["IT training Mumbai", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification"],
+  authors: [{ name: "Viraj Kadam" }],
+  creator: "Codexa Classes",
+  publisher: "Codexa Classes",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://codexaclasses.com'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: 'https://codexaclasses.com',
+    siteName: 'Codexa Classes',
+    title: 'Codexa Classes - Best IT Training Institute in Mumbai',
+    description: 'Transform your career with comprehensive IT training in Mumbai. Learn PHP, Python, React, ASP.NET, MySQL, and Linux from industry experts.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Codexa Classes - IT Training Institute Mumbai',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Codexa Classes - Best IT Training Institute in Mumbai',
+    description: 'Transform your career with comprehensive IT training in Mumbai. Learn PHP, Python, React, ASP.NET, MySQL, and Linux from industry experts.',
+    images: ['/og-image.jpg'],
+    creator: '@codexaclasses',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+    yandex: 'your-yandex-verification-code',
+    yahoo: 'your-yahoo-verification-code',
+  },
+  icons: {
+    icon: "/favicon-white.png",
+    shortcut: "/favicon-white.png",
+    apple: "/favicon-white.png",
+  },
 };
 
 export default function RootLayout({
@@ -29,7 +86,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#1e40af" />
+        <meta name="msapplication-TileColor" content="#1e40af" />
+        <meta property="og:locale" content="en_IN" />
+        <meta property="og:locale:alternate" content="hi_IN" />
+        <link rel="alternate" href="https://codexaclasses.com" hrefLang="en-IN" />
+        <link rel="alternate" href="https://codexaclasses.com/hi" hrefLang="hi-IN" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
