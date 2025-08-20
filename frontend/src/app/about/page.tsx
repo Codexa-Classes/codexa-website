@@ -60,7 +60,7 @@ export default function About() {
 
   const achievements = [
     { icon: <Trophy className="h-6 w-6" />, title: "60+", description: "Projects Completed" },
-    { icon: <Code2 className="h-6 w-6" />, title: "8+", description: "Years Experience" },
+    { icon: <Code2 className="h-6 w-6" />, title: INSTRUCTOR.experience, description: "Experience" },
     { icon: <Users className="h-6 w-6" />, title: "500+", description: "Students Trained" },
     { icon: <Award className="h-6 w-6" />, title: "100%", description: "Job Placement Rate" }
   ];
