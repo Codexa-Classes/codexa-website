@@ -179,7 +179,7 @@ export default function Courses() {
     {
       icon: <Users className="h-5 w-5" />,
       title: "Small Batches",
-      description: "Maximum 15 students per batch for personalized attention"
+      description: "Maximum 20 students per batch for personalized attention"
     },
     {
       icon: <Award className="h-5 w-5" />,
@@ -312,86 +312,6 @@ export default function Courses() {
                   </CardContent>
                 </Card>
               ))}
-            </div>
-
-            {/* Course Path Recommendations */}
-            <div className="bg-gray-50 rounded-2xl p-8 mb-16 border border-gray-200">
-              <h3 className="text-2xl font-bold text-center mb-8 text-gray-900">Recommended Learning Paths</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-md hover:shadow-lg transition-all duration-300">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-gray-900 font-bold">🚀 Full-Stack Web Developer</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span className="text-gray-700 font-medium">React (Frontend)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span className="text-gray-700 font-medium">PHP or Python (Backend)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span className="text-gray-700 font-medium">MySQL (Database)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span className="text-gray-700 font-medium">Linux (Deployment)</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-gradient-to-r from-green-50 to-blue-50 border-green-200 shadow-md hover:shadow-lg transition-all duration-300">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-gray-900 font-bold">💼 Enterprise Developer</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span className="text-gray-700 font-medium">Python (Backend)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span className="text-gray-700 font-medium">MySQL (Database)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span className="text-gray-700 font-medium">Linux (Infrastructure)</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-gradient-to-r from-orange-50 to-red-50 border-orange-200 shadow-md hover:shadow-lg transition-all duration-300">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-gray-900 font-bold">🔧 Backend Specialist</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span className="text-gray-700 font-medium">Python (Programming)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span className="text-gray-700 font-medium">PHP (Web Development)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span className="text-gray-700 font-medium">MySQL (Database)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span className="text-gray-700 font-medium">Linux (Server Management)</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
             </div>
           </div>
         </div>
