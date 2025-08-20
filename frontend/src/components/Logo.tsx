@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { INSTRUCTOR } from '@/lib/constants';
 
 interface LogoProps {
   showLink?: boolean;
@@ -53,7 +54,7 @@ export const Logo: React.FC<LogoProps> = ({
           className={`${currentSize.text} object-contain mb-1 ${textClassName}`}
         />
         <span className={`text-black ${currentSize.byText} ${byTextClassName}`}>
-          by Viraj Kadam
+          by {INSTRUCTOR.name}
         </span>
       </div>
     </div>

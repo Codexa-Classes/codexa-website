@@ -1,4 +1,5 @@
 import { Course } from '@/types/course';
+import { INSTRUCTOR } from '@/lib/constants';
 
 // Simulate API delay
 const simulateApiDelay = (ms: number = 500) => new Promise(resolve => setTimeout(resolve, ms));
@@ -13,7 +14,7 @@ const mockCourses: Course[] = [
     duration: '8 weeks',
     price: 15000,
     image: '⚛️',
-    instructor: 'Viraj Kadam',
+    instructor: INSTRUCTOR.name,
     level: 'beginner',
     status: 'published',
     prerequisites: ['Basic JavaScript', 'HTML & CSS'],
@@ -41,7 +42,7 @@ const mockCourses: Course[] = [
     duration: '10 weeks',
     price: 18000,
     image: '🐍',
-    instructor: 'Viraj Kadam',
+    instructor: INSTRUCTOR.name,
     level: 'beginner',
     status: 'published',
     prerequisites: ['Basic computer knowledge'],
@@ -69,7 +70,7 @@ const mockCourses: Course[] = [
     duration: '6 weeks',
     price: 12000,
     image: '🗄️',
-    instructor: 'Viraj Kadam',
+    instructor: INSTRUCTOR.name,
     level: 'intermediate',
     status: 'published',
     prerequisites: ['Basic programming knowledge'],

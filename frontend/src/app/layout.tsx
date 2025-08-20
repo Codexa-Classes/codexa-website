@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { INSTRUCTOR } from "@/lib/constants";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   },
   description: "Transform your career with comprehensive IT training in Mumbai. Learn PHP, Python, React, ASP.NET, MySQL, and Linux from industry experts. Affordable courses starting at ₹10,000 with 100% job placement guarantee.",
   keywords: ["IT training Mumbai", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification"],
-  authors: [{ name: "Viraj Kadam" }],
+  authors: [{ name: INSTRUCTOR.name }],
   creator: "Codexa Classes",
   publisher: "Codexa Classes",
   formatDetection: {

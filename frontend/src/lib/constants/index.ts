@@ -44,3 +44,37 @@ export const APP_CONFIG = {
     EMPLOYEE: 'employee',
     CANDIDATE: 'candidate',
   } as const;
+
+export interface Instructor {
+  name: string;
+  title: string;
+  experience: string;
+  currentRole: string;
+  email: string;
+  expertise: readonly string[];
+  organizations: readonly string[];
+}
+
+export const INSTRUCTOR: Instructor = {
+  name: "Viraj Kadam",
+  title: "Business Analyst & Technology Consultant",
+  experience: "8+ Years",
+  currentRole: "Data Analyst - Sr. Manager at Kotak Mahindra Bank",
+  email: "hiVirajKadam@gmail.com",
+  expertise: [
+    "PHP & Laravel Framework",
+    "Python & Django Development", 
+    "Web Development (LAMP, MEAN, MERN)",
+    "Linux & System Administration",
+    "Cloud Computing (AWS, DigitalOcean)",
+    "Database Management (Oracle, MySQL)",
+    "Machine Learning & Data Analysis"
+  ],
+  organizations: [
+    "Kotak Mahindra Bank Ltd.",
+    "Nitor Infotech Pvt. Ltd.",
+    "Clover Infotech Pvt. Ltd.",
+    "Infodeal Technologies Pvt. Ltd.",
+    "OS3 Infotech Pvt. Ltd."
+  ]
+} as const;

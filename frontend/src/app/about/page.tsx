@@ -15,21 +15,22 @@ import {
 } from 'lucide-react';
 import PageLayout from '@/components/layout/PageLayout';
 import Super10Section from '@/components/Super10Section';
+import { INSTRUCTOR } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: "About Codexa Classes - IT Training Institute Mumbai | Viraj Kadam",
-  description: "Learn from industry expert Viraj Kadam with 8+ years of experience. Codexa Classes provides world-class IT education in Mumbai with 100% job placement rate.",
-  keywords: ["Viraj Kadam", "IT training expert Mumbai", "Codexa Classes about", "IT instructor Mumbai", "programming expert", "PHP training Mumbai", "Python course Mumbai"],
+  title: `About Codexa Classes - IT Training Institute Mumbai | ${INSTRUCTOR.name}`,
+  description: `Learn from industry expert ${INSTRUCTOR.name} with ${INSTRUCTOR.experience} of experience. Codexa Classes provides world-class IT education in Mumbai with 100% job placement rate.`,
+  keywords: [INSTRUCTOR.name, "IT training expert Mumbai", "Codexa Classes about", "IT instructor Mumbai", "programming expert", "PHP training Mumbai", "Python course Mumbai"],
   openGraph: {
     title: "About Codexa Classes - IT Training Institute Mumbai",
-    description: "Learn from industry expert Viraj Kadam with 8+ years of experience in IT training.",
+    description: `Learn from industry expert ${INSTRUCTOR.name} with ${INSTRUCTOR.experience} of experience in IT training.`,
     url: "https://codexaclasses.com/about",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Viraj Kadam - Codexa Classes IT Training Expert Mumbai",
+        alt: `${INSTRUCTOR.name} - Codexa Classes IT Training Expert Mumbai`,
       },
     ],
   },
@@ -39,24 +40,16 @@ export const metadata: Metadata = {
 const personStructuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Viraj Kadam",
-  "jobTitle": "Business Analyst & Technology Consultant",
+  "name": INSTRUCTOR.name,
+  "jobTitle": INSTRUCTOR.title,
   "description": "IT training expert with 8+ years of experience in programming and web development",
-  "email": "hiVirajKadam@gmail.com",
+  "email": INSTRUCTOR.email,
   "worksFor": {
     "@type": "Organization",
     "name": "Kotak Mahindra Bank",
     "jobTitle": "Data Analyst - Sr. Manager"
   },
-  "knowsAbout": [
-    "PHP & Laravel Framework",
-    "Python & Django Development",
-    "Web Development",
-    "Linux & System Administration",
-    "Cloud Computing",
-    "Database Management",
-    "Machine Learning & Data Analysis"
-  ],
+  "knowsAbout": INSTRUCTOR.expertise,
   "alumniOf": {
     "@type": "EducationalOrganization",
     "name": "Codexa Classes"
@@ -64,29 +57,6 @@ const personStructuredData = {
 };
 
 export default function About() {
-  const instructor = {
-    name: "Viraj Kadam",
-    title: "Business Analyst & Technology Consultant",
-    experience: "8+ Years",
-    currentRole: "Data Analyst - Sr. Manager at Kotak Mahindra Bank",
-    email: "hiVirajKadam@gmail.com",
-    expertise: [
-      "PHP & Laravel Framework",
-      "Python & Django Development", 
-      "Web Development (LAMP, MEAN, MERN)",
-      "Linux & System Administration",
-      "Cloud Computing (AWS, DigitalOcean)",
-      "Database Management (Oracle, MySQL)",
-      "Machine Learning & Data Analysis"
-    ],
-    organizations: [
-      "Kotak Mahindra Bank Ltd.",
-      "Nitor Infotech Pvt. Ltd.",
-      "Clover Infotech Pvt. Ltd.",
-      "Infodeal Technologies Pvt. Ltd.",
-      "OS3 Infotech Pvt. Ltd."
-    ]
-  };
 
   const achievements = [
     { icon: <Trophy className="h-6 w-6" />, title: "60+", description: "Projects Completed" },
@@ -130,27 +100,27 @@ export default function About() {
                       <Users className="h-8 w-8 text-blue-600" />
                     </div>
                     <div>
-                      <CardTitle className="text-2xl text-gray-900 font-bold">{instructor.name}</CardTitle>
-                      <CardDescription className="text-lg text-gray-700 font-medium">{instructor.title}</CardDescription>
+                              <CardTitle className="text-2xl text-gray-900 font-bold">{INSTRUCTOR.name}</CardTitle>
+        <CardDescription className="text-lg text-gray-700 font-medium">{INSTRUCTOR.title}</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center space-x-2">
                     <Building className="h-4 w-4 text-gray-600" />
-                    <span className="text-sm text-gray-700 font-medium">{instructor.currentRole}</span>
+                    <span className="text-sm text-gray-700 font-medium">{INSTRUCTOR.currentRole}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Award className="h-4 w-4 text-gray-600" />
-                    <span className="text-sm text-gray-700 font-medium">{instructor.experience} Industry Experience</span>
+                    <span className="text-sm text-gray-700 font-medium">{INSTRUCTOR.experience} Industry Experience</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Mail className="h-4 w-4 text-gray-600" />
                     <a 
-                      href={`mailto:${instructor.email}`}
+                      href={`mailto:${INSTRUCTOR.email}`}
                       className="text-sm text-blue-600 hover:underline font-medium"
                     >
-                      {instructor.email}
+                      {INSTRUCTOR.email}
                     </a>
                   </div>
                 </CardContent>
@@ -159,7 +129,7 @@ export default function About() {
               <div>
                 <h3 className="text-2xl font-bold mb-6 text-gray-900">Technical Expertise</h3>
                 <div className="grid grid-cols-1 gap-3">
-                  {instructor.expertise.map((skill, index) => (
+                  {INSTRUCTOR.expertise.map((skill, index) => (
                     <div key={index} className="flex items-center space-x-3">
                       <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
                       <span className="text-sm text-gray-700 font-medium">{skill}</span>
@@ -190,7 +160,7 @@ export default function About() {
               <div>
                 <h3 className="text-2xl font-bold mb-6 text-gray-900">Professional Experience</h3>
                 <div className="space-y-4">
-                  {instructor.organizations.map((org, index) => (
+                  {INSTRUCTOR.organizations.map((org, index) => (
                     <Card key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-md hover:shadow-lg transition-all duration-300">
                       <CardContent className="p-4">
                         <div className="flex items-center space-x-3">
