@@ -73,8 +73,8 @@ export default function Certificate() {
   const certificateFeatures = [
     {
       icon: <Shield className="h-6 w-6" />,
-      title: "Blockchain Verified",
-      description: "Tamper-proof digital certificates with blockchain verification"
+      title: "Digitally Secure",
+      description: "Unique certificate ID with online verification system"
     },
     {
       icon: <Globe className="h-6 w-6" />,
