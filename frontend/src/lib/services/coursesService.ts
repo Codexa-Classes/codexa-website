@@ -1,96 +1,27 @@
 import { Course } from '@/types/course';
-import { INSTRUCTOR } from '@/lib/constants';
+import { INSTRUCTOR, COURSES } from '@/lib/constants';
 
 // Simulate API delay
 const simulateApiDelay = (ms: number = 500) => new Promise(resolve => setTimeout(resolve, ms));
 
-// Mock data for courses
-const mockCourses: Course[] = [
-  {
-    id: 'course-1',
-    name: 'React Fundamentals',
-    description: 'Learn React from scratch with modern hooks and functional components. Build real-world applications and understand React ecosystem.',
-    category: 'frontend',
-    duration: '8 weeks',
-    price: 15000,
-    image: '⚛️',
-    instructor: INSTRUCTOR.name,
-    level: 'beginner',
-    status: 'published',
-    prerequisites: ['Basic JavaScript', 'HTML & CSS'],
-    syllabus: [
-      'Introduction to React',
-      'Components and Props',
-      'State and Lifecycle',
-      'Hooks (useState, useEffect)',
-      'Event Handling',
-      'Conditional Rendering',
-      'Lists and Keys',
-      'Forms and Controlled Components',
-      'Context API',
-      'Project: Todo App'
-    ],
-    enrolledStudents: ['student-1', 'student-2'],
-    createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-01-15T10:00:00Z'
-  },
-  {
-    id: 'course-2',
-    name: 'Python Programming',
-    description: 'Master Python programming language with practical examples. Learn data structures, OOP, and build real applications.',
-    category: 'backend',
-    duration: '10 weeks',
-    price: 18000,
-    image: '🐍',
-    instructor: INSTRUCTOR.name,
-    level: 'beginner',
-    status: 'published',
-    prerequisites: ['Basic computer knowledge'],
-    syllabus: [
-      'Python Basics',
-      'Data Types and Variables',
-      'Control Structures',
-      'Functions and Modules',
-      'Object-Oriented Programming',
-      'File Handling',
-      'Error Handling',
-      'Working with APIs',
-      'Database Integration',
-      'Project: Web Scraper'
-    ],
-    enrolledStudents: ['student-1'],
-    createdAt: '2024-01-10T10:00:00Z',
-    updatedAt: '2024-01-10T10:00:00Z'
-  },
-  {
-    id: 'course-3',
-    name: 'MySQL Database',
-    description: 'Learn database design and SQL programming with MySQL. Master data modeling, queries, and database administration.',
-    category: 'database',
-    duration: '6 weeks',
-    price: 12000,
-    image: '🗄️',
-    instructor: INSTRUCTOR.name,
-    level: 'intermediate',
-    status: 'published',
-    prerequisites: ['Basic programming knowledge'],
-    syllabus: [
-      'Database Fundamentals',
-      'MySQL Installation & Setup',
-      'Data Types and Constraints',
-      'SQL Queries (SELECT, INSERT, UPDATE, DELETE)',
-      'Joins and Relationships',
-      'Indexing and Performance',
-      'Stored Procedures',
-      'Triggers and Views',
-      'Database Security',
-      'Project: E-commerce Database'
-    ],
-    enrolledStudents: ['student-2'],
-    createdAt: '2024-01-20T10:00:00Z',
-    updatedAt: '2024-01-20T10:00:00Z'
-  }
-];
+// Use courses from constants
+const mockCourses: Course[] = COURSES.map((course, index) => ({
+  id: `course-${index + 1}`,
+  name: course.name,
+  description: course.description,
+  category: course.category,
+  duration: course.duration,
+  price: course.price,
+  image: course.icon,
+  instructor: INSTRUCTOR.name,
+  level: course.level.toLowerCase().split(' ')[0] as 'beginner' | 'intermediate' | 'advanced',
+  status: 'published',
+  prerequisites: ['Basic programming knowledge'],
+  syllabus: [...course.topics],
+  enrolledStudents: ['student-1', 'student-2'],
+  createdAt: '2024-01-15T10:00:00Z',
+  updatedAt: '2024-01-15T10:00Z'
+}));
 
 // LocalStorage key
 const STORAGE_KEY = 'job_portal_courses';

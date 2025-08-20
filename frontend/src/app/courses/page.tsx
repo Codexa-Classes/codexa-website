@@ -17,6 +17,7 @@ import {
 import PageLayout from '@/components/layout/PageLayout';
 import Super10Section from '@/components/Super10Section';
 import DevIcon from '@/components/DevIcon';
+import { COURSES, COURSE_CATEGORIES, COURSE_PRICE } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: "Programming Courses in Mumbai - PHP, Python, React, ASP.NET | Codexa Classes",
@@ -192,122 +193,6 @@ const courseStructuredData = {
 };
 
 export default function Courses() {
-  const courses = [
-    {
-      id: "php",
-      name: "PHP Development",
-      icon: "devicon-php-plain",
-      category: "backend",
-      description: "Learn server-side programming with PHP and Laravel framework",
-      duration: "8 weeks",
-      students: "150+",
-      level: "Beginner to Advanced",
-      topics: [
-        "PHP Fundamentals & Syntax",
-        "Object-Oriented Programming",
-        "Laravel Framework",
-        "Database Integration",
-        "RESTful API Development",
-        "Security Best Practices"
-      ],
-      icon_name: "php"
-    },
-    {
-      id: "python",
-      name: "Python Programming",
-      icon: "devicon-python-plain", 
-      category: "backend",
-      description: "Master Python programming and Django web development",
-      duration: "10 weeks",
-      students: "200+",
-      level: "Beginner to Advanced",
-      topics: [
-        "Python Fundamentals",
-        "Data Structures & Algorithms",
-        "Django Framework",
-        "Machine Learning Basics",
-        "Web Scraping",
-        "API Development"
-      ],
-      icon_name: "python"
-    },
-    {
-      id: "react",
-      name: "React Development",
-      icon: "devicon-react-original",
-      category: "frontend", 
-      description: "Build modern user interfaces with React and TypeScript",
-      duration: "6 weeks",
-      students: "180+",
-      level: "Intermediate",
-      topics: [
-        "React Fundamentals",
-        "Components & JSX",
-        "State Management",
-        "React Hooks",
-        "TypeScript Integration",
-        "Testing & Deployment"
-      ],
-      icon_name: "react"
-    },
-    {
-      id: "aspnet",
-      name: "ASP.NET Development",
-      icon: "devicon-dot-net-plain",
-      category: "framework", 
-      description: "Enterprise web development with ASP.NET Core and C#",
-      duration: "8 weeks",
-      students: "120+",
-      level: "Intermediate to Advanced",
-      topics: [
-        "C# Programming",
-        "ASP.NET Core MVC",
-        "Entity Framework",
-        "Web API Development",
-        "Authentication & Security",
-        "Azure Deployment"
-      ],
-      icon_name: "aspnet"
-    },
-    {
-      id: "mysql",
-      name: "MySQL Database",
-      icon: "devicon-mysql-plain",
-      category: "database",
-      description: "Master database design, queries, and administration",
-      duration: "4 weeks",
-      students: "250+", 
-      level: "Beginner to Advanced",
-      topics: [
-        "Database Design Principles",
-        "SQL Queries & Joins",
-        "Stored Procedures",
-        "Performance Optimization",
-        "Backup & Recovery",
-        "Database Security"
-      ],
-      icon_name: "mysql"
-    },
-    {
-      id: "linux",
-      name: "Linux Administration",
-      icon: "devicon-linux-plain",
-      category: "framework",
-      description: "System administration and server management with Linux",
-      duration: "6 weeks",
-      students: "100+",
-      level: "Beginner to Advanced", 
-      topics: [
-        "Linux Fundamentals",
-        "Command Line Mastery",
-        "System Administration",
-        "Server Configuration",
-        "Shell Scripting",
-        "Security & Monitoring"
-      ],
-      icon_name: "linux"
-    }
-  ];
 
   const features = [
     {
@@ -374,7 +259,7 @@ export default function Courses() {
               {/* Pricing Highlight */}
               <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white rounded-2xl p-6 max-w-md mx-auto">
                 <p className="text-sm text-white/90 mb-2 font-medium">Flat Rate for All Courses</p>
-                <p className="text-4xl font-bold text-yellow-300 mb-2">₹10,000</p>
+                <p className="text-4xl font-bold text-yellow-300 mb-2">₹{COURSE_PRICE.toLocaleString()}</p>
                 <p className="text-sm text-white/90 font-medium">Complete course + Certificate + Job Support</p>
               </div>
             </div>
@@ -394,7 +279,7 @@ export default function Courses() {
 
             {/* Courses Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {courses.map((course) => (
+              {COURSES.map((course) => (
                 <Card key={course.id} className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white border-gray-200 hover:border-blue-300 hover:bg-blue-50">
                   <CardHeader>
                     <div className="flex items-center justify-between mb-4">

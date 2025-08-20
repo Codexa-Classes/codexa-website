@@ -24,7 +24,7 @@ import {
 import PageLayout from '@/components/layout/PageLayout';
 import Link from 'next/link';
 import Super10Section from '@/components/Super10Section';
-import { INSTRUCTOR } from '@/lib/constants';
+import { INSTRUCTOR, COURSES } from '@/lib/constants';
 
 // Local Business structured data for SEO
 const localBusinessStructuredData = {
@@ -149,14 +149,7 @@ export default function Contact() {
     { value: "technical_support", label: "Technical Support" }
   ];
 
-  const courses = [
-    "PHP Development",
-    "Python Programming", 
-    "React Development",
-    "ASP.NET Development",
-    "MySQL Database",
-    "Linux Administration"
-  ];
+  const courses = COURSES.map(course => course.name);
 
   const faqs = [
     {

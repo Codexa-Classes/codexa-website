@@ -78,3 +78,6 @@ export const INSTRUCTOR: Instructor = {
     "OS3 Infotech Pvt. Ltd."
   ]
 } as const;
+
+// Export courses constants
+export * from './courses';

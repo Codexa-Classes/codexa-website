@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ROUTES, INSTRUCTOR } from '@/lib/constants';
+import { ROUTES, INSTRUCTOR, COURSES, COURSE_PRICE } from '@/lib/constants';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -69,14 +69,11 @@ const structuredData = {
 };
 
 export default function Home() {
-  const popularCourses = [
-    { icon: "php", name: "PHP", category: "backend" },
-    { icon: "python", name: "Python", category: "backend" },
-    { icon: "react", name: "React", category: "frontend" },
-    { icon: "aspnet", name: "ASP.NET", category: "framework" },
-    { icon: "mysql", name: "MySQL", category: "database" },
-    { icon: "linux", name: "Linux", category: "framework" }
-  ];
+  const popularCourses = COURSES.map(course => ({
+    icon: course.icon_name,
+    name: course.name.split(' ')[0], // Take first word for display
+    category: course.category
+  }));
 
   const whyChooseUs = [
     {
@@ -156,7 +153,7 @@ export default function Home() {
 
             <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-6 inline-block">
               <p className="text-sm text-white font-medium">All Courses Starting at</p>
-              <p className="text-3xl font-bold text-yellow-300">₹10,000</p>
+              <p className="text-3xl font-bold text-yellow-300">₹{COURSE_PRICE.toLocaleString()}</p>
               <p className="text-sm text-white font-medium">Complete course with certification</p>
             </div>
           </div>
