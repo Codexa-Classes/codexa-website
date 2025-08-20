@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -23,25 +24,6 @@ import {
 import PageLayout from '@/components/layout/PageLayout';
 import Link from 'next/link';
 import Super10Section from '@/components/Super10Section';
-
-export const metadata: Metadata = {
-  title: "Contact Codexa Classes - IT Training Institute Mumbai | Get Started Today",
-  description: "Ready to start your IT journey? Contact Codexa Classes in Mumbai for course enrollment, Super10 applications, and career guidance. Get in touch today!",
-  keywords: ["contact Codexa Classes", "IT training enrollment Mumbai", "course inquiry", "Super10 application", "career guidance Mumbai", "PHP course enrollment", "Python training contact"],
-  openGraph: {
-    title: "Contact Codexa Classes - IT Training Institute Mumbai",
-    description: "Ready to start your IT journey? Contact us for course enrollment and career guidance.",
-    url: "https://codexaclasses.com/contact",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Contact Codexa Classes - IT Training Institute Mumbai",
-      },
-    ],
-  },
-};
 
 // Local Business structured data for SEO
 const localBusinessStructuredData = {
