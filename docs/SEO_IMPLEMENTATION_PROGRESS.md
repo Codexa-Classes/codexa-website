@@ -268,7 +268,7 @@ Sitemap: https://codexaclasses.com/sitemap.xml
 - ✅ Mumbai-specific content optimization
 
 ### **Course-Specific SEO**
-- ✅ PHP, Python, React, MySQL, Linux
+- ✅ PHP, Python, React, MySQL, AWS, Linux
 - ✅ Course pricing and duration information
 - ✅ Structured data for course listings
 
@@ -314,7 +314,7 @@ Since all core SEO tasks are **100% COMPLETE**, here are optional next steps:
 - ✅ **Professional SEO foundation** - All core requirements met
 - ✅ **Rich social media sharing** - Open Graph & Twitter Cards
 - ✅ **Local search optimization** - Mumbai-specific targeting
-- ✅ **Course-specific visibility** - All 5 courses optimized
+- ✅ **Course-specific visibility** - All 6 courses optimized
 - ✅ **Technical SEO infrastructure** - Sitemap & robots.txt
 
 ### **SEO Score: 95/100 (Excellent)**

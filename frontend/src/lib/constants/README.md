@@ -23,7 +23,7 @@ Comprehensive course information with detailed data for each course.
 import { COURSES, COURSE_PRICE, COURSE_CATEGORIES } from '@/lib/constants';
 
 // Usage examples:
-console.log(COURSES.length); // 5 courses
+console.log(COURSES.length); // 6 courses
 console.log(COURSE_PRICE); // 10000
 console.log(COURSE_CATEGORIES.backend); // "Backend Development"
 
@@ -86,12 +86,13 @@ Each course includes:
 
 ## Available Courses
 
-We currently offer **5 comprehensive courses**:
+We currently offer **6 comprehensive courses**:
 1. **PHP Development** - Backend Developer path
 2. **Python Programming** - Python Developer path  
 3. **React Development** - Frontend Developer path
 4. **MySQL Database** - Database Administrator path
-5. **Linux Administration** - Linux System Administrator path
+5. **Cloud Administrator - AWS** - Cloud Administrator path
+6. **Linux Administration** - Linux System Administrator path
 
 ## MySQL Database Course Updates
 
@@ -100,3 +101,13 @@ The MySQL Database course has been enhanced with:
 - **Extended Topics**: High availability, replication, monitoring
 - **Advanced Skills**: Performance tuning, security implementation
 - **Professional Projects**: Enterprise-level database solutions
+
+## Cloud Administrator - AWS Course
+
+The new AWS course provides comprehensive cloud infrastructure training:
+- **Career Path**: Cloud Administrator
+- **Duration**: 8 weeks (40 hours approx.)
+- **Level**: Intermediate to Advanced
+- **Key Modules**: AWS Basics, Networking, Compute, Storage, Security, Automation
+- **Hands-on Projects**: VPC setup, Auto Scaling, S3 hosting, CloudWatch dashboards
+- **Outcome**: Able to manage AWS infrastructure, monitor costs, ensure security, and handle day-to-day administration

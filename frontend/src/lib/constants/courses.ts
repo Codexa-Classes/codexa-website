@@ -162,6 +162,50 @@ export const COURSES: readonly Course[] = [
     ]
   },
   {
+    id: "aws",
+    name: "Cloud Administrator - AWS",
+    icon: "devicon-amazonwebservices-original",
+    category: "framework",
+    description: "Master AWS cloud infrastructure administration and management",
+    duration: "8 weeks",
+    students: "120+",
+    level: "Intermediate to Advanced",
+    topics: [
+      "AWS Basics & IAM",
+      "Networking (VPC, Subnets, Security)",
+      "Compute (EC2, Auto Scaling, Load Balancing)",
+      "Storage & Databases (S3, EBS, RDS)",
+      "Monitoring & Logging (CloudWatch, CloudTrail)",
+      "Security & Compliance (KMS, WAF, IAM)",
+      "Automation & Deployment (CloudFormation, SSM)",
+      "Cost & Resource Management",
+      "High Availability & Disaster Recovery",
+      "Hands-on Labs & Real Projects"
+    ],
+    icon_name: "aws",
+    price: 10000,
+    careerPath: "Cloud Administrator",
+    skills: [
+      "AWS Infrastructure Management",
+      "VPC & Network Security",
+      "EC2 & Auto Scaling",
+      "S3 & Storage Management",
+      "RDS & Database Administration",
+      "CloudWatch & Monitoring",
+      "IAM & Security Best Practices",
+      "CloudFormation & Automation",
+      "Cost Optimization",
+      "High Availability Setup"
+    ],
+    projects: [
+      "Secure VPC with EC2 and RDS",
+      "Auto Scaling & Load Balancing Setup",
+      "S3 Hosting with CloudFront",
+      "CloudWatch Dashboards",
+      "IAM Roles & Security Implementation"
+    ]
+  },
+  {
     id: "linux",
     name: "Linux Administration",
     icon: "devicon-linux-plain",
