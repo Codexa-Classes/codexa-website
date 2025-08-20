@@ -21,6 +21,7 @@ import {
 import PageLayout from '@/components/layout/PageLayout';
 import Link from 'next/link';
 import Super10Section from '@/components/Super10Section';
+import { INSTRUCTOR } from '@/lib/constants';
 
 export default function Certificate() {
   const [studentId, setStudentId] = useState("");
@@ -214,7 +215,12 @@ export default function Certificate() {
                       <AlertCircle className="h-5 w-5 text-gray-600 mt-0.5 flex-shrink-0" />
                       <div className="text-sm text-gray-700">
                         <p className="font-medium mb-1">Need help finding your Student ID?</p>
-                        <p>Check your enrollment confirmation email or contact us at hiVirajKadam@gmail.com</p>
+                        <p>Check your enrollment confirmation email or contact us at <a 
+                          href={`mailto:${INSTRUCTOR.email}`}
+                          className="text-blue-600 hover:underline font-medium"
+                        >
+                          {INSTRUCTOR.email}
+                        </a></p>
                       </div>
                     </div>
                   </div>

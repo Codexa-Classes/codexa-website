@@ -42,7 +42,7 @@ const personStructuredData = {
   "@type": "Person",
   "name": INSTRUCTOR.name,
   "jobTitle": INSTRUCTOR.title,
-  "description": "IT training expert with 8+ years of experience in programming and web development",
+  "description": `IT training expert with ${INSTRUCTOR.experience} of experience in programming and web development`,
   "email": INSTRUCTOR.email,
   "worksFor": {
     "@type": "Organization",

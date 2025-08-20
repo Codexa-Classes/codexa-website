@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ROUTES } from '@/lib/constants';
+import { ROUTES, INSTRUCTOR } from '@/lib/constants';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -59,7 +59,7 @@ const structuredData = {
     "@type": "ContactPoint",
     "telephone": "+91-98765-43210",
     "contactType": "customer service",
-    "email": "hiVirajKadam@gmail.com"
+    "email": INSTRUCTOR.email
   },
   "sameAs": [
     "https://facebook.com/codexaclasses",
@@ -82,7 +82,7 @@ export default function Home() {
     {
       icon: <Users className="h-8 w-8" />,
       title: "Expert Instructors",
-      description: "Learn from industry professionals with 8+ years of experience"
+      description: `Learn from industry professionals with ${INSTRUCTOR.experience} of experience`
     },
     {
       icon: <Award className="h-8 w-8" />,

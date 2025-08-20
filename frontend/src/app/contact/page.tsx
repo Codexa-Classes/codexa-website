@@ -24,6 +24,7 @@ import {
 import PageLayout from '@/components/layout/PageLayout';
 import Link from 'next/link';
 import Super10Section from '@/components/Super10Section';
+import { INSTRUCTOR } from '@/lib/constants';
 
 // Local Business structured data for SEO
 const localBusinessStructuredData = {
@@ -33,7 +34,7 @@ const localBusinessStructuredData = {
   "description": "IT Training Institute in Mumbai offering programming courses in PHP, Python, React, ASP.NET, MySQL, and Linux",
   "url": "https://codexaclasses.com",
   "telephone": "+91-98765-43210",
-  "email": "hiVirajKadam@gmail.com",
+  "email": INSTRUCTOR.email,
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Mumbai",
@@ -121,7 +122,7 @@ export default function Contact() {
     {
       icon: <Mail className="h-5 w-5" />,
       title: "Email",
-      description: "hiVirajKadam@gmail.com"
+      description: INSTRUCTOR.email
     },
     {
       icon: <Phone className="h-5 w-5" />,
@@ -210,7 +211,16 @@ export default function Contact() {
                     {info.icon}
                   </div>
                   <h3 className="font-semibold text-sm mb-2 text-gray-900">{info.title}</h3>
-                  <p className="text-gray-700 text-xs font-medium">{info.description}</p>
+                  {info.title === "Email" ? (
+                    <a 
+                      href={`mailto:${info.description}`}
+                      className="text-blue-600 hover:underline font-medium text-xs block"
+                    >
+                      {info.description}
+                    </a>
+                  ) : (
+                    <p className="text-gray-700 text-xs font-medium">{info.description}</p>
+                  )}
                 </CardContent>
               </Card>
             ))}

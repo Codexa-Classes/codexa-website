@@ -58,7 +58,7 @@ export interface Instructor {
 export const INSTRUCTOR: Instructor = {
   name: "Viraj Kadam",
   title: "Business Analyst & Technology Consultant",
-  experience: "8+ Years",
+  experience: "10+ Years",
   currentRole: "Data Analyst - Sr. Manager at Kotak Mahindra Bank",
   email: "hiVirajKadam@gmail.com",
   expertise: [

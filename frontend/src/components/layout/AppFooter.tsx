@@ -5,6 +5,7 @@ import { GraduationCap } from 'lucide-react';
 import Super10Section from '../Super10Section';
 import { SocialMediaIcons, defaultSocialMediaLinks } from '../SocialMediaIcons';
 import { Logo } from '../Logo';
+import { INSTRUCTOR } from '@/lib/constants';
 
 export default function AppFooter() {
   return (
@@ -43,7 +44,14 @@ export default function AppFooter() {
           <div>
             <h3 className="font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li>Email: hiVirajKadam@gmail.com</li>
+              <li>
+                Email: <a 
+                  href={`mailto:${INSTRUCTOR.email}`}
+                  className="text-primary hover:underline transition-colors"
+                >
+                  {INSTRUCTOR.email}
+                </a>
+              </li>
               <li>All courses: ₹10,000</li>
             </ul>
             <div className="mt-4">
