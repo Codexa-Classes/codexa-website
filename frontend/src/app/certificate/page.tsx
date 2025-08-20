@@ -96,21 +96,21 @@ export default function Certificate() {
   const sampleCertificates = [
     {
       course: "PHP Development",
-      student: "John Doe",
+      student: "Rahul Deshmukh",
       completionDate: "March 2024",
       grade: "A+",
       skills: ["PHP Fundamentals", "Laravel Framework", "Database Integration", "API Development"]
     },
     {
       course: "Python Programming", 
-      student: "Jane Smith",
+      student: "Priya Patil",
       completionDate: "February 2024",
       grade: "A",
       skills: ["Python Syntax", "Django Framework", "Machine Learning", "Web Scraping"]
     },
     {
       course: "React Development",
-      student: "Mike Johnson", 
+      student: "Aishwarya Shinde", 
       completionDate: "January 2024",
       grade: "A+",
       skills: ["React Components", "State Management", "TypeScript", "Testing"]
