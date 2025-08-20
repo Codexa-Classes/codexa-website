@@ -31,7 +31,7 @@ const localBusinessStructuredData = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Codexa Classes",
-  "description": "IT Training Institute in Mumbai offering programming courses in PHP, Python, React, ASP.NET, MySQL, and Linux",
+  "description": "IT Training Institute in Mumbai offering programming courses in PHP, Python, React, MySQL, and Linux",
   "url": "https://codexaclasses.com",
   "telephone": "+91-98765-43210",
   "email": INSTRUCTOR.email,

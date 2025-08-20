@@ -20,12 +20,12 @@ import DevIcon from '@/components/DevIcon';
 import { COURSES, COURSE_CATEGORIES, COURSE_PRICE } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: "Programming Courses in Mumbai - PHP, Python, React, ASP.NET | Codexa Classes",
-  description: "Master in-demand programming skills with our comprehensive courses in Mumbai. Learn PHP, Python, React, ASP.NET, MySQL, and Linux. All courses at ₹10,000 with certification and job support.",
-  keywords: ["PHP course Mumbai", "Python training Mumbai", "React development course", "ASP.NET training", "MySQL course", "Linux administration course", "programming courses Mumbai"],
-  openGraph: {
-    title: "Programming Courses in Mumbai - PHP, Python, React, ASP.NET",
-    description: "Master in-demand programming skills with our comprehensive courses in Mumbai. All courses at ₹10,000 with certification and job support.",
+  title: "Programming Courses in Mumbai - PHP, Python, React | Codexa Classes",
+  description: "Master in-demand programming skills with our comprehensive courses in Mumbai. Learn PHP, Python, React, MySQL, and Linux. All courses at ₹10,000 with certification and job support.",
+  keywords: ["PHP course Mumbai", "Python training Mumbai", "React development course", "MySQL course", "Linux administration course", "programming courses Mumbai"],
+      openGraph: {
+      title: "Programming Courses in Mumbai - PHP, Python, React",
+      description: "Master in-demand programming skills with our comprehensive courses in Mumbai. All courses at ₹10,000 with certification and job support.",
     url: "https://codexaclasses.com/courses",
     images: [
       {
@@ -120,30 +120,6 @@ const courseStructuredData = {
     {
       "@type": "ListItem",
       "position": 4,
-      "item": {
-        "@type": "Course",
-        "name": "ASP.NET Development",
-        "description": "Enterprise web development with ASP.NET Core and C#",
-        "provider": {
-          "@type": "Organization",
-          "name": "Codexa Classes",
-          "sameAs": "https://codexaclasses.com"
-        },
-        "courseMode": "offline",
-        "educationalLevel": "Intermediate to Advanced",
-        "timeRequired": "P8W",
-        "inLanguage": "en",
-        "offers": {
-          "@type": "Offer",
-          "price": "10000",
-          "priceCurrency": "INR",
-          "availability": "https://schema.org/InStock"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 5,
       "item": {
         "@type": "Course",
         "name": "MySQL Database",
@@ -376,7 +352,7 @@ export default function Courses() {
                     <div className="space-y-2 text-sm">
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span className="text-gray-700 font-medium">ASP.NET (Framework)</span>
+                        <span className="text-gray-700 font-medium">Python (Backend)</span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="h-4 w-4 text-green-500" />

@@ -23,7 +23,7 @@ Comprehensive course information with detailed data for each course.
 import { COURSES, COURSE_PRICE, COURSE_CATEGORIES } from '@/lib/constants';
 
 // Usage examples:
-console.log(COURSES.length); // 6 courses
+console.log(COURSES.length); // 5 courses
 console.log(COURSE_PRICE); // 10000
 console.log(COURSE_CATEGORIES.backend); // "Backend Development"
 
@@ -83,6 +83,15 @@ Each course includes:
 - **Skills**: Technical skills learned
 - **Projects**: Real-world projects to build
 - **Topics**: Detailed curriculum breakdown
+
+## Available Courses
+
+We currently offer **5 comprehensive courses**:
+1. **PHP Development** - Backend Developer path
+2. **Python Programming** - Python Developer path  
+3. **React Development** - Frontend Developer path
+4. **MySQL Database** - Database Administrator path
+5. **Linux Administration** - Linux System Administrator path
 
 ## MySQL Database Course Updates
 

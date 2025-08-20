@@ -122,41 +122,6 @@ export const COURSES: readonly Course[] = [
     ]
   },
   {
-    id: "aspnet",
-    name: "ASP.NET Development",
-    icon: "devicon-dotnetcore-plain",
-    category: "framework",
-    description: "Enterprise web development with ASP.NET Core and C#",
-    duration: "10 weeks",
-    students: "150+",
-    level: "Beginner to Advanced",
-    topics: [
-      "C# Programming",
-      "ASP.NET Core",
-      "Entity Framework",
-      "Web API Development",
-      "Authentication & Authorization",
-      "Deployment & Hosting"
-    ],
-    icon_name: "aspnet",
-    price: 10000,
-    careerPath: ".NET Developer",
-    skills: [
-      "C# Programming",
-      "ASP.NET Core",
-      "Entity Framework",
-      "SQL Server",
-      "Web API Development",
-      "Azure Cloud Services"
-    ],
-    projects: [
-      "Enterprise Web Application",
-      "RESTful API Service",
-      "Authentication System",
-      "Cloud-Based Solution"
-    ]
-  },
-  {
     id: "mysql",
     name: "MySQL Database",
     icon: "devicon-mysql-plain",
