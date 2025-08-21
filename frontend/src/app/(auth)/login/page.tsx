@@ -181,8 +181,9 @@ export default function LoginPage() {
             </a>
             <a 
               href="/super10" 
-              className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-200 text-sm"
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-200 text-sm flex items-center gap-2"
             >
+              <img src="/super10.gif" alt="Super10" className="w-6 h-6" />
               Super10
             </a>
             <a 
