@@ -125,7 +125,7 @@ export default function Super10() {
               Every batch, we select 10 deserving candidates to receive complete training at no cost.
             </p>
             
-            <div className="bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-2xl p-8 max-w-2xl mx-auto">
+            <div className="bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-2xl p-8 max-w-2xl mx-auto hover:shadow-2xl hover:shadow-orange-300/30 transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-orange-300/50">
               <div className="text-6xl font-bold mb-2">10</div>
               <div className="text-lg mb-2 font-medium">Free Seats Every Batch</div>
               <div className="text-sm text-white/90 font-medium">
@@ -174,7 +174,7 @@ export default function Super10() {
                 ))}
               </div>
               <div className="mt-8">
-                <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600 text-black font-medium">
+                <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600 text-white font-medium">
                   <Link href="/contact">
                     Apply for Super10 <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
