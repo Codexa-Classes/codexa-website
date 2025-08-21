@@ -128,33 +128,64 @@ export default function Home() {
         <section className="bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 py-20 text-white">
           <div className="container mx-auto px-4 text-center">
             <Badge variant="secondary" className="mb-6 bg-orange-400 text-white border-orange-400 font-medium">
-              ✨ Now Enrolling for New Batch
+              ✨ Super10 Program - Free Education Initiative
             </Badge>
             <h1 className="text-5xl font-bold mb-6">
-              Master <span className="text-yellow-300">IT Skills</span> with Professional Training
+              Transform Lives with <span className="text-yellow-300">Super10</span> Program
             </h1>
             <p className="text-xl text-white max-w-3xl mx-auto mb-8">
-              Transform your career with comprehensive programming courses. Learn PHP, Python, React, and more from industry experts.
+              Empowering 10 underprivileged students every batch with free IT education and career opportunities.
             </p>
             
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
+              <Link href="/super10" className="group">
+                <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-6 hover:shadow-2xl hover:shadow-yellow-300/20 transition-all duration-300 hover:-translate-y-2 cursor-pointer">
+                  <div className="text-4xl mb-4">
+                    <img src="/super10.gif" alt="super10" className="h-16 w-16 mx-auto" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-300 transition-colors">Free Education</h3>
+                  <p className="text-white/80 text-sm">Complete course with certification at no cost</p>
+                </div>
+              </Link>
+              
+              <Link href="/super10" className="group">
+                <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-6 hover:shadow-2xl hover:shadow-yellow-300/20 transition-all duration-300 hover:-translate-y-2 cursor-pointer">
+                  <div className="text-4xl mb-4">
+                    <Users className="h-16 w-16 mx-auto text-yellow-300" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-300 transition-colors">10 Students</h3>
+                  <p className="text-white/80 text-sm">Selected every batch based on merit and need</p>
+                </div>
+              </Link>
+              
+              <Link href="/super10" className="group">
+                <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-6 hover:shadow-2xl hover:shadow-yellow-300/20 transition-all duration-300 hover:-translate-y-2 cursor-pointer">
+                  <div className="text-4xl mb-4">
+                    <Award className="h-16 w-16 mx-auto text-yellow-300" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-300 transition-colors">Job Ready</h3>
+                  <p className="text-white/80 text-sm">100% placement assistance and career support</p>
+                </div>
+              </Link>
+            </div>
+
             <div className="flex gap-4 items-center justify-center flex-col sm:flex-row mb-12">
-              <Button asChild size="lg" className="rounded-full bg-white text-blue-900 hover:bg-white/90 font-medium">
-                <Link href="/courses">
-                  View All Courses <ArrowRight className="ml-2 h-5 w-5" />
+              <Button asChild size="lg" className="rounded-full bg-yellow-400 text-blue-900 hover:bg-yellow-300 font-medium shadow-lg hover:shadow-xl transition-all duration-200">
+                <Link href="/super10">
+                  Learn More About Super10 <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full border-white text-black hover:bg-white hover:text-blue-900 font-medium">
-                <Link href="/super10">
-                <img src="/super10.gif" alt="super10" className="ml-2 h-7 w-7" />
-                  Learn About Super10
+              <Button asChild size="lg" variant="outline" className="rounded-full border-white text-white hover:bg-white hover:text-blue-900 font-medium text-black">
+                <Link href="/courses">
+                  View All Courses <ArrowRight className="ml-2 h-5 w-4" />
                 </Link>
               </Button>
             </div>
 
             <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-6 inline-block">
-              <p className="text-sm text-white font-medium">All Courses Starting at</p>
-              <p className="text-3xl font-bold text-yellow-300">₹{COURSE_PRICE.toLocaleString()}</p>
-              <p className="text-sm text-white font-medium">Complete course with certification</p>
+              <p className="text-sm text-white font-medium">Super10 Program</p>
+              <p className="text-3xl font-bold text-yellow-300">100% Free</p>
+              <p className="text-sm text-white font-medium">For deserving students</p>
             </div>
           </div>
         </section>
