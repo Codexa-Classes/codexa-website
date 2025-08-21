@@ -158,7 +158,7 @@ export default function Contact() {
     },
     {
       question: "What is the duration of each course?",
-      answer: "Course duration varies from 4-10 weeks depending on the subject. All details are available on our Courses page."
+      answer: "Course duration is 1.5 months (6 weeks) with Monday to Friday classes. We also offer weekend batches for working professionals. All details are available on our Courses page."
     },
     {
       question: "How do I apply for Super10?",
