@@ -24,11 +24,11 @@ import DevIcon from '@/components/DevIcon';
 
 export const metadata: Metadata = {
   title: "Best IT Training Institute in Mumbai - Codexa Classes",
-  description: "Transform your career with comprehensive IT training in Mumbai. Learn PHP, Python, React, MySQL, and Linux from industry experts. Affordable courses starting at ₹10,000 with 100% job placement guarantee.",
+  description: "Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts. Affordable courses starting at ₹10,000 with 100% job placement guarantee.",
   keywords: ["IT training Mumbai", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification", "job placement"],
   openGraph: {
     title: "Best IT Training Institute in Mumbai - Codexa Classes",
-    description: "Transform your career with comprehensive IT training in Mumbai. Learn PHP, Python, React, MySQL, and Linux from industry experts.",
+          description: "Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts.",
     url: "https://codexaclasses.com",
     images: [
       {
@@ -46,7 +46,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   "name": "Codexa Classes",
-  "description": "Leading IT training institute in Mumbai offering comprehensive programming courses",
+      "description": "Leading IT training institute offering comprehensive programming courses",
   "url": "https://codexaclasses.com",
   "logo": "https://codexaclasses.com/Codexa%20LOGO.png",
   "address": {

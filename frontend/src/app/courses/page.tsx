@@ -21,11 +21,11 @@ import { COURSES, COURSE_CATEGORIES, COURSE_PRICE } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: "Programming Courses in Mumbai - PHP, Python, React | Codexa Classes",
-  description: "Master in-demand programming skills with our comprehensive courses in Mumbai. Learn PHP, Python, React, MySQL, and Linux. All courses at ₹10,000 with certification and job support.",
+  description: "Master in-demand programming skills with our comprehensive courses. Learn PHP, Python, React, MySQL, and Linux. All courses at ₹10,000 with certification and job support.",
   keywords: ["PHP course Mumbai", "Python training Mumbai", "React development course", "MySQL course", "Linux administration course", "programming courses Mumbai"],
       openGraph: {
       title: "Programming Courses in Mumbai - PHP, Python, React",
-      description: "Master in-demand programming skills with our comprehensive courses in Mumbai. All courses at ₹10,000 with certification and job support.",
+      description: "Master in-demand programming skills with our comprehensive courses. All courses at ₹10,000 with certification and job support.",
     url: "https://codexaclasses.com/courses",
     images: [
       {
@@ -43,7 +43,7 @@ const courseStructuredData = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": "Programming Courses at Codexa Classes",
-  "description": "Comprehensive IT training courses in Mumbai",
+      "description": "Comprehensive IT training courses",
   "itemListElement": [
     {
       "@type": "ListItem",

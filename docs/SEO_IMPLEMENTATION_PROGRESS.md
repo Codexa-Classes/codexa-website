@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     default: "Codexa Classes - Best IT Training Institute in Mumbai",
     template: "%s | Codexa Classes"
   },
-  description: "Transform your career with comprehensive IT training in Mumbai...",
+  description: "Transform your career with comprehensive IT training...",
   keywords: ["IT training Mumbai", "programming courses", "PHP course"...],
   // ... all other fields implemented
 };

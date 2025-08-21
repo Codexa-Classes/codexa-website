@@ -31,7 +31,7 @@ const localBusinessStructuredData = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Codexa Classes",
-  "description": "IT Training Institute in Mumbai offering programming courses in PHP, Python, React, MySQL, and Linux",
+  "description": "IT Training Institute offering programming courses in PHP, Python, React, MySQL, and Linux",
   "url": "https://codexaclasses.com",
   "telephone": "+91-98765-43210",
   "email": INSTRUCTOR.email,
@@ -188,9 +188,9 @@ export default function Contact() {
               <Badge variant="secondary" className="mb-4 bg-blue-400 text-white border-blue-400 font-medium">
                 📞 Contact Us
               </Badge>
-              <h1 className="text-4xl font-bold mb-6 text-gray-900">Get in Touch for IT Training in Mumbai</h1>
+                              <h1 className="text-4xl font-bold mb-6 text-gray-900">Get in Touch for IT Training</h1>
               <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 font-medium">
-                Ready to start your IT journey? Have questions about our programming courses in Mumbai? 
+                Ready to start your IT journey? Have questions about our programming courses? 
                 We're here to help you take the next step in your career.
               </p>
             </div>

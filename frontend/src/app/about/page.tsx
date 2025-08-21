@@ -19,7 +19,7 @@ import { INSTRUCTOR } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: `About Codexa Classes - IT Training Institute Mumbai | ${INSTRUCTOR.name}`,
-  description: `Learn from industry expert ${INSTRUCTOR.name} with ${INSTRUCTOR.experience} of experience. Codexa Classes provides world-class IT education in Mumbai with 100% job placement rate.`,
+      description: `Learn from industry expert ${INSTRUCTOR.name} with ${INSTRUCTOR.experience} of experience. Codexa Classes provides world-class IT education with 100% job placement rate.`,
   keywords: [INSTRUCTOR.name, "IT training expert Mumbai", "Codexa Classes about", "IT instructor Mumbai", "programming expert", "PHP training Mumbai", "Python course Mumbai"],
   openGraph: {
     title: "About Codexa Classes - IT Training Institute Mumbai",
@@ -84,10 +84,10 @@ export default function About() {
               <Badge variant="secondary" className="mb-4 bg-orange-400 text-white border-orange-400 font-medium">
                 About Codexa Classes
               </Badge>
-              <h1 className="text-4xl font-bold mb-6 text-gray-900">Learn from Industry Experts in Mumbai</h1>
+                              <h1 className="text-4xl font-bold mb-6 text-gray-900">Learn from Industry Experts</h1>
               <p className="text-xl text-gray-700 max-w-3xl mx-auto font-medium">
-                Our mission is to provide world-class IT education that bridges the gap between 
-                academic learning and industry requirements, making technology accessible to everyone in Mumbai.
+                                  Our mission is to provide world-class IT education that bridges the gap between 
+                  academic learning and industry requirements, making technology accessible to everyone.
               </p>
             </div>
 
