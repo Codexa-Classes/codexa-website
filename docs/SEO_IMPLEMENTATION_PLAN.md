@@ -2,7 +2,7 @@
 
 ## 📋 **Project Overview**
 **Project:** Codexa Classes - IT Training Institute  
-**Location:** Mumbai, Maharashtra, India  
+**Location:** Maharashtra, India  
 **Primary Business:** Programming courses, IT training, and certification  
 **Target Audience:** Students, professionals, career changers in IT field  
 
@@ -12,30 +12,30 @@
 
 ### **Primary Goals**
 - Improve search engine rankings for local IT training keywords
-- Increase organic traffic from Mumbai and surrounding areas
+- Increase organic traffic from Maharashtra and surrounding areas
 - Enhance visibility for course-specific searches
 - Build local business authority in IT education sector
 
 ### **Target Keywords**
-- **Primary Keywords:**
-  - "IT training Mumbai"
-  - "programming courses Mumbai"
-  - "PHP course Mumbai"
-  - "Python training Mumbai"
-  - "React development course Mumbai"
+  - **Primary Keywords:**
+    - "IT training"
+    - "programming courses"
+    - "PHP course"
+    - "Python training"
+    - "React development course"
 
-- **Secondary Keywords:**
-  - "web development course Mumbai"
-  - "IT certification Mumbai"
-  - "affordable IT training"
-  - "job-oriented programming courses"
-  - "Laravel training Mumbai"
+  - **Secondary Keywords:**
+    - "web development course"
+    - "IT certification"
+    - "affordable IT training"
+    - "job-oriented programming courses"
+    - "Laravel training"
 
-- **Long-tail Keywords:**
-  - "best PHP course in Mumbai for beginners"
-  - "Python Django training with job placement Mumbai"
-  - "React TypeScript course Mumbai affordable"
-  - "IT training institute near me Mumbai"
+  - **Long-tail Keywords:**
+    - "best PHP course for beginners"
+    - "Python Django training with job placement"
+    - "React TypeScript course affordable"
+    - "IT training institute near me"
 
 ---
 
@@ -81,11 +81,11 @@ export const metadata: Metadata = {
   ```typescript
   export const metadata: Metadata = {
     title: {
-      default: "Codexa Classes - Best IT Training Institute in Mumbai",
+      default: "Codexa Classes - Best IT Training Institute",
       template: "%s | Codexa Classes"
     },
     description: "Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, AWS, and Linux from industry experts. Affordable courses starting at ₹10,000 with 100% job placement guarantee.",
-    keywords: ["IT training Mumbai", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification"],
+    keywords: ["IT training", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification"],
     authors: [{ name: "Viraj Kadam" }],
     creator: "Codexa Classes",
     publisher: "Codexa Classes",
@@ -103,20 +103,20 @@ export const metadata: Metadata = {
       locale: 'en_IN',
       url: 'https://codexaclasses.com',
       siteName: 'Codexa Classes',
-      title: 'Codexa Classes - Best IT Training Institute in Mumbai',
+      title: 'Codexa Classes - Best IT Training Institute',
       description: 'Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, AWS, and Linux from industry experts.',
       images: [
         {
           url: '/og-image.jpg',
           width: 1200,
           height: 630,
-          alt: 'Codexa Classes - IT Training Institute Mumbai',
+          alt: 'Codexa Classes - IT Training Institute',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Codexa Classes - Best IT Training Institute in Mumbai',
+      title: 'Codexa Classes - Best IT Training Institute',
       description: 'Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, AWS, and Linux from industry experts.',
       images: ['/og-image.jpg'],
       creator: '@codexaclasses',
@@ -166,11 +166,11 @@ export const metadata: Metadata = {
 - [ ] **Add Page-Specific Metadata**
   ```typescript
   export const metadata: Metadata = {
-    title: "Best IT Training Institute in Mumbai - Codexa Classes",
+    title: "Best IT Training Institute - Codexa Classes",
     description: "Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, AWS, and Linux from industry experts. Affordable courses starting at ₹10,000 with 100% job placement guarantee.",
-    keywords: ["IT training Mumbai", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification", "job placement"],
+    keywords: ["IT training", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification", "job placement"],
     openGraph: {
-      title: "Best IT Training Institute in Mumbai - Codexa Classes",
+      title: "Best IT Training Institute - Codexa Classes",
       description: "Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, AWS, and Linux from industry experts.",
       url: "https://codexaclasses.com",
       images: [
@@ -178,7 +178,7 @@ export const metadata: Metadata = {
           url: "/og-homepage.jpg",
           width: 1200,
           height: 630,
-          alt: "Codexa Classes - IT Training Institute Mumbai",
+          alt: "Codexa Classes - IT Training Institute",
         },
       ],
     },
@@ -197,7 +197,7 @@ export const metadata: Metadata = {
     "logo": "https://codexaclasses.com/logo.png",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Mumbai",
+      "addressLocality": "Maharashtra",
       "addressRegion": "Maharashtra",
       "addressCountry": "IN"
     },
@@ -221,11 +221,11 @@ export const metadata: Metadata = {
 - [ ] **Add Page-Specific Metadata**
   ```typescript
   export const metadata: Metadata = {
-    title: "Programming Courses in Mumbai - PHP, Python, React, AWS | Codexa Classes",
+    title: "Programming Courses - PHP, Python, React, AWS | Codexa Classes",
     description: "Master in-demand programming skills with our comprehensive courses. Learn PHP, Python, React, MySQL, AWS, and Linux. All courses at ₹10,000 with certification and job support.",
-    keywords: ["PHP course Mumbai", "Python training Mumbai", "React development course", "MySQL course", "AWS course Mumbai", "Linux administration course", "programming courses Mumbai"],
+    keywords: ["PHP course", "Python training", "React development course", "MySQL course", "AWS course", "Linux administration course", "programming courses"],
     openGraph: {
-      title: "Programming Courses in Mumbai - PHP, Python, React, AWS",
+      title: "Programming Courses - PHP, Python, React, AWS",
       description: "Master in-demand programming skills with our comprehensive courses. All courses at ₹10,000 with certification and job support.",
       url: "https://codexaclasses.com/courses",
     },
@@ -272,11 +272,11 @@ export const metadata: Metadata = {
 - [ ] **Add Page-Specific Metadata**
   ```typescript
   export const metadata: Metadata = {
-    title: "About Codexa Classes - IT Training Institute Mumbai | Viraj Kadam",
+    title: "About Codexa Classes - IT Training Institute | Viraj Kadam",
     description: "Learn from industry expert Viraj Kadam with 8+ years of experience. Codexa Classes provides world-class IT education with 100% job placement rate.",
-    keywords: ["Viraj Kadam", "IT training expert Mumbai", "Codexa Classes about", "IT instructor Mumbai", "programming expert"],
+    keywords: ["Viraj Kadam", "IT training expert", "Codexa Classes about", "IT instructor", "programming expert"],
     openGraph: {
-      title: "About Codexa Classes - IT Training Institute Mumbai",
+      title: "About Codexa Classes - IT Training Institute",
       description: "Learn from industry expert Viraj Kadam with 8+ years of experience in IT training.",
       url: "https://codexaclasses.com/about",
     },
@@ -315,11 +315,11 @@ export const metadata: Metadata = {
 - [ ] **Add Page-Specific Metadata**
   ```typescript
   export const metadata: Metadata = {
-    title: "Contact Codexa Classes - IT Training Institute Mumbai | Get Started Today",
+    title: "Contact Codexa Classes - IT Training Institute | Get Started Today",
     description: "Ready to start your IT journey? Contact Codexa Classes for course enrollment, Super10 applications, and career guidance. Get in touch today!",
-    keywords: ["contact Codexa Classes", "IT training enrollment Mumbai", "course inquiry", "Super10 application", "career guidance Mumbai"],
+    keywords: ["contact Codexa Classes", "IT training enrollment", "course inquiry", "Super10 application", "career guidance"],
     openGraph: {
-      title: "Contact Codexa Classes - IT Training Institute Mumbai",
+      title: "Contact Codexa Classes - IT Training Institute",
       description: "Ready to start your IT journey? Contact us for course enrollment and career guidance.",
       url: "https://codexaclasses.com/contact",
     },
@@ -338,7 +338,7 @@ export const metadata: Metadata = {
     "email": "hiVirajKadam@gmail.com",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Mumbai",
+      "addressLocality": "Maharashtra",
       "addressRegion": "Maharashtra",
       "addressCountry": "IN"
     },
@@ -351,7 +351,7 @@ export const metadata: Metadata = {
     "priceRange": "₹₹",
     "serviceArea": {
       "@type": "City",
-      "name": "Mumbai"
+      "name": "Maharashtra"
     }
   };
   ```
@@ -614,9 +614,9 @@ export const metadata: Metadata = {
 ## 🚨 **Important Notes**
 
 ### **Local SEO Priority**
-- Focus heavily on Mumbai-specific keywords
+- Focus heavily on location-specific keywords
 - Optimize for local business searches
-- Include Mumbai landmarks and areas
+- Include regional landmarks and areas
 - Target local language variations
 
 ### **Content Strategy**

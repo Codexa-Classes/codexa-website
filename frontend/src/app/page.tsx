@@ -23,11 +23,11 @@ import Super10Section from '@/components/Super10Section';
 import DevIcon from '@/components/DevIcon';
 
 export const metadata: Metadata = {
-  title: "Best IT Training Institute in Mumbai - Codexa Classes",
+  title: "Best IT Training Institute - Codexa Classes",
   description: "Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts. Affordable courses starting at ₹10,000 with 100% job placement guarantee.",
-  keywords: ["IT training Mumbai", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification", "job placement"],
+  keywords: ["IT training", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification", "job placement"],
   openGraph: {
-    title: "Best IT Training Institute in Mumbai - Codexa Classes",
+          title: "Best IT Training Institute - Codexa Classes",
           description: "Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts.",
     url: "https://codexaclasses.com",
     images: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Codexa Classes - IT Training Institute Mumbai",
+        alt: "Codexa Classes - IT Training Institute",
       },
     ],
   },
@@ -51,7 +51,7 @@ const structuredData = {
   "logo": "https://codexaclasses.com/Codexa%20LOGO.png",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Mumbai",
+    "addressLocality": "Maharashtra",
     "addressRegion": "Maharashtra",
     "addressCountry": "IN"
   },

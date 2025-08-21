@@ -20,11 +20,11 @@ import DevIcon from '@/components/DevIcon';
 import { COURSES, COURSE_CATEGORIES, COURSE_PRICE } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: "Programming Courses in Mumbai - PHP, Python, React | Codexa Classes",
+  title: "Programming Courses - PHP, Python, React | Codexa Classes",
   description: "Master in-demand programming skills with our comprehensive courses. Learn PHP, Python, React, MySQL, and Linux. All courses at ₹10,000 with certification and job support.",
-  keywords: ["PHP course Mumbai", "Python training Mumbai", "React development course", "MySQL course", "Linux administration course", "programming courses Mumbai"],
+  keywords: ["PHP course", "Python training", "React development course", "MySQL course", "Linux administration course", "programming courses"],
       openGraph: {
-      title: "Programming Courses in Mumbai - PHP, Python, React",
+      title: "Programming Courses - PHP, Python, React",
       description: "Master in-demand programming skills with our comprehensive courses. All courses at ₹10,000 with certification and job support.",
     url: "https://codexaclasses.com/courses",
     images: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Codexa Classes - Programming Courses Mumbai",
+        alt: "Codexa Classes - Programming Courses",
       },
     ],
   },

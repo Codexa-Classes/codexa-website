@@ -37,7 +37,7 @@ const localBusinessStructuredData = {
   "email": INSTRUCTOR.email,
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Mumbai",
+    "addressLocality": "Maharashtra",
     "addressRegion": "Maharashtra",
     "addressCountry": "IN"
   },
@@ -50,7 +50,7 @@ const localBusinessStructuredData = {
   "priceRange": "₹₹",
   "serviceArea": {
     "@type": "City",
-    "name": "Mumbai"
+    "name": "Maharashtra"
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -132,7 +132,7 @@ export default function Contact() {
     {
       icon: <MapPin className="h-5 w-5" />,
       title: "Location",
-      description: "Mumbai, Maharashtra"
+              description: "Maharashtra, India"
     },
     {
       icon: <Clock className="h-5 w-5" />,

@@ -17,11 +17,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Codexa Classes - Best IT Training Institute in Mumbai",
+          default: "Codexa Classes - Best IT Training Institute",
     template: "%s | Codexa Classes"
   },
   description: "Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts. Affordable courses starting at ₹10,000 with 100% job placement guarantee.",
-  keywords: ["IT training Mumbai", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification"],
+  keywords: ["IT training", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification"],
   authors: [{ name: INSTRUCTOR.name }],
   creator: "Codexa Classes",
   publisher: "Codexa Classes",
@@ -39,20 +39,20 @@ export const metadata: Metadata = {
       locale: 'en_IN',
       url: 'https://codexaclasses.com',
       siteName: 'Codexa Classes',
-      title: 'Codexa Classes - Best IT Training Institute in Mumbai',
+      title: 'Codexa Classes - Best IT Training Institute',
       description: 'Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts.',
       images: [
         {
           url: '/og-image.png',
           width: 1200,
           height: 630,
-          alt: 'Codexa Classes - IT Training Institute Mumbai',
+          alt: 'Codexa Classes - IT Training Institute',
         },
       ],
     },
       twitter: {
       card: 'summary_large_image',
-      title: 'Codexa Classes - Best IT Training Institute in Mumbai',
+      title: 'Codexa Classes - Best IT Training Institute',
       description: 'Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts.',
       images: ['/og-image.png'],
       creator: '@codexaclasses',

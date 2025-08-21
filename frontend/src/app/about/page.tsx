@@ -18,11 +18,11 @@ import Super10Section from '@/components/Super10Section';
 import { INSTRUCTOR } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: `About Codexa Classes - IT Training Institute Mumbai | ${INSTRUCTOR.name}`,
+  title: `About Codexa Classes - IT Training Institute | ${INSTRUCTOR.name}`,
       description: `Learn from industry expert ${INSTRUCTOR.name} with ${INSTRUCTOR.experience} of experience. Codexa Classes provides world-class IT education with 100% job placement rate.`,
-  keywords: [INSTRUCTOR.name, "IT training expert Mumbai", "Codexa Classes about", "IT instructor Mumbai", "programming expert", "PHP training Mumbai", "Python course Mumbai"],
+  keywords: [INSTRUCTOR.name, "IT training expert", "Codexa Classes about", "IT instructor", "programming expert", "PHP training", "Python course"],
   openGraph: {
-    title: "About Codexa Classes - IT Training Institute Mumbai",
+          title: "About Codexa Classes - IT Training Institute",
     description: `Learn from industry expert ${INSTRUCTOR.name} with ${INSTRUCTOR.experience} of experience in IT training.`,
     url: "https://codexaclasses.com/about",
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: `${INSTRUCTOR.name} - Codexa Classes IT Training Expert Mumbai`,
+        alt: `${INSTRUCTOR.name} - Codexa Classes IT Training Expert`,
       },
     ],
   },
