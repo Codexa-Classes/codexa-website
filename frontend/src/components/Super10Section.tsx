@@ -10,28 +10,32 @@ export default function Super10Section() {
       <section className="py-10 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            <div className="bg-gradient-to-br from-green-50 via-emerald-100 to-green-200 text-gray-800 rounded-2xl p-8 border border-green-200/50">
-              <h3 className="text-2xl font-bold mb-4">Ready to Enroll?</h3>
-              <p className="text-gray-700 mb-6 font-medium">
-                Start your IT career today with our comprehensive courses. 
-                All courses include hands-on projects and job placement support.
-              </p>
-              <div className="text-3xl font-bold text-green-600 mb-2">₹10,000</div>
-              <div className="text-sm text-gray-600 font-medium">Per course (Complete training + Certificate)</div>
-            </div>
+            <Link href="/courses" className="group">
+              <div className="bg-gradient-to-br from-green-50 via-emerald-100 to-green-200 text-gray-800 rounded-2xl p-8 border border-green-200/50 hover:shadow-2xl hover:shadow-green-300/30 transition-all duration-300 hover:-translate-y-2 cursor-pointer">
+                <h3 className="text-2xl font-bold mb-4">Ready to Enroll?</h3>
+                <p className="text-gray-700 mb-6 font-medium">
+                  Start your IT career today with our comprehensive courses. 
+                  All courses include hands-on projects and job placement support.
+                </p>
+                <div className="text-3xl font-bold text-green-600 mb-2 group-hover:text-green-700 transition-colors">₹10,000</div>
+                <div className="text-sm text-gray-600 font-medium">Per course (Complete training + Certificate)</div>
+              </div>
+            </Link>
 
-            <div className="bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-4">
-                <img src="/super10.gif" alt="super10" className="mr-2 h-7 w-7 inline" />
-                Super10 Program
-              </h3>
-              <p className="text-white/90 mb-6 font-medium">
-                Eligible for free education? Apply for our Super10 program and 
-                get complete IT training at no cost.
-              </p>
-              <div className="text-3xl font-bold mb-2">100% FREE</div>
-              <div className="text-sm text-white/80 font-medium">For 10 underprivileged students per batch</div>
-            </div>
+            <Link href="/super10" className="group">
+              <div className="bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-2xl p-8 hover:shadow-2xl hover:shadow-orange-300/30 transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-orange-300/50">
+                <h3 className="text-2xl font-bold mb-4">
+                  <img src="/super10.gif" alt="super10" className="mr-2 h-7 w-7 inline" />
+                  Super10 Program
+                </h3>
+                <p className="text-white/90 mb-6 font-medium">
+                  Eligible for free education? Apply for our Super10 program and 
+                  get complete IT training at no cost.
+                </p>
+                <div className="text-3xl font-bold mb-2 group-hover:text-yellow-200 transition-colors">100% FREE</div>
+                <div className="text-sm text-white/80 font-medium">For 10 underprivileged students per batch</div>
+              </div>
+            </Link>
           </div>
 
           {/* Call to Action */}
