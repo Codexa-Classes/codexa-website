@@ -125,7 +125,7 @@ export default function Home() {
       
       <PageLayout>
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 py-20 text-white">
+        <section className="bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 py-20 text-white min-h-screen flex items-center">
           <div className="container mx-auto px-4 text-center">
             <Badge variant="secondary" className="mb-6 bg-orange-400 text-white border-orange-400 font-medium">
               ✨ Super10 Program - Free Education Initiative
@@ -137,9 +137,9 @@ export default function Home() {
               Empowering 10 underprivileged students every batch with free IT education and career opportunities.
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12 max-w-6xl mx-auto">
               <Link href="/super10" className="group">
-                <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-6 hover:shadow-2xl hover:shadow-yellow-300/20 transition-all duration-300 hover:-translate-y-2 cursor-pointer">
+                <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-6 hover:shadow-2xl hover:shadow-yellow-300/20 transition-all duration-300 hover:-translate-y-2 cursor-pointer h-48 flex flex-col justify-center">
                   <div className="text-4xl mb-4">
                     <img src="/super10.gif" alt="super10" className="h-16 w-16 mx-auto" />
                   </div>
@@ -149,7 +149,7 @@ export default function Home() {
               </Link>
               
               <Link href="/super10" className="group">
-                <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-6 hover:shadow-2xl hover:shadow-yellow-300/20 transition-all duration-300 hover:-translate-y-2 cursor-pointer">
+                <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-6 hover:shadow-2xl hover:shadow-yellow-300/20 transition-all duration-300 hover:-translate-y-2 cursor-pointer h-48 flex flex-col justify-center">
                   <div className="text-4xl mb-4">
                     <Users className="h-16 w-16 mx-auto text-yellow-300" />
                   </div>
@@ -159,12 +159,22 @@ export default function Home() {
               </Link>
               
               <Link href="/super10" className="group">
-                <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-6 hover:shadow-2xl hover:shadow-yellow-300/20 transition-all duration-300 hover:-translate-y-2 cursor-pointer">
+                <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-6 hover:shadow-2xl hover:shadow-yellow-300/20 transition-all duration-300 hover:-translate-y-2 cursor-pointer h-48 flex flex-col justify-center">
                   <div className="text-4xl mb-4">
                     <Award className="h-16 w-16 mx-auto text-yellow-300" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-300 transition-colors">Job Ready</h3>
                   <p className="text-white/80 text-sm">100% placement assistance and career support</p>
+                </div>
+              </Link>
+
+              <Link href="/super10" className="group">
+                <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-6 hover:shadow-2xl hover:shadow-yellow-300/20 transition-all duration-300 hover:-translate-y-2 cursor-pointer h-48 flex flex-col justify-center">
+                  <div className="text-4xl mb-4">
+                    <Heart className="h-16 w-16 mx-auto text-yellow-300" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-300 transition-colors">Super10 Program</h3>
+                  <p className="text-white/80 text-sm">100% Free for deserving students</p>
                 </div>
               </Link>
             </div>
@@ -180,12 +190,6 @@ export default function Home() {
                   View All Courses <ArrowRight className="ml-2 h-5 w-4" />
                 </Link>
               </Button>
-            </div>
-
-            <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-6 inline-block">
-              <p className="text-sm text-white font-medium">Super10 Program</p>
-              <p className="text-3xl font-bold text-yellow-300">100% Free</p>
-              <p className="text-sm text-white font-medium">For deserving students</p>
             </div>
           </div>
         </section>
