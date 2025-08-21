@@ -166,7 +166,7 @@ export default function Contact() {
     },
     {
       question: "Are there any prerequisites?",
-      answer: "Basic computer knowledge is helpful but not mandatory. We start from fundamentals in all our courses."
+      answer: "Basic computer knowledge at MSCIT level or equivalent is required. We start from fundamentals in all our courses, but a solid foundation in computer basics is essential for optimal learning."
     }
   ];
 
