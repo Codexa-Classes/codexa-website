@@ -50,8 +50,8 @@ const courseStructuredData = {
       "position": 1,
       "item": {
         "@type": "Course",
-        "name": "PHP Development",
-        "description": "Learn server-side programming with PHP and Laravel framework",
+        "name": "Frontend Development (ReactJS + Tailwind)",
+        "description": "Master modern frontend development with ReactJS and Tailwind CSS",
         "provider": {
           "@type": "Organization",
           "name": "Codexa Classes",
@@ -74,8 +74,8 @@ const courseStructuredData = {
       "position": 2,
       "item": {
         "@type": "Course",
-        "name": "Python Programming",
-        "description": "Master Python programming and Django web development",
+        "name": "Web Development (Flask + Django)",
+        "description": "Learn Python web development with Flask and Django frameworks",
         "provider": {
           "@type": "Organization",
           "name": "Codexa Classes",
@@ -98,16 +98,16 @@ const courseStructuredData = {
       "position": 3,
       "item": {
         "@type": "Course",
-        "name": "React Development",
-        "description": "Build modern user interfaces with React and TypeScript",
+        "name": "Web Development (Bootstrap + Laravel)",
+        "description": "Master PHP web development with Laravel framework and Bootstrap",
         "provider": {
           "@type": "Organization",
           "name": "Codexa Classes",
           "sameAs": "https://codexaclasses.com"
         },
         "courseMode": "offline",
-        "educationalLevel": "Intermediate",
-        "timeRequired": "P6W",
+        "educationalLevel": "Beginner to Advanced",
+        "timeRequired": "P10W",
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
@@ -122,16 +122,40 @@ const courseStructuredData = {
       "position": 4,
       "item": {
         "@type": "Course",
-        "name": "MySQL Database",
-        "description": "Master database design, queries, and administration",
+        "name": "Business Analyst (PowerBI + MySQL + BRD)",
+        "description": "Become a Business Analyst with expertise in PowerBI, MySQL, and BRD",
         "provider": {
           "@type": "Organization",
           "name": "Codexa Classes",
           "sameAs": "https://codexaclasses.com"
         },
         "courseMode": "offline",
-        "educationalLevel": "Beginner to Advanced",
-        "timeRequired": "P4W",
+        "educationalLevel": "Intermediate to Advanced",
+        "timeRequired": "P8W",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "10000",
+          "priceCurrency": "INR",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Course",
+        "name": "Data Analyst (PowerBI + SQL + SAP + Python)",
+        "description": "Master data analysis with PowerBI, SQL, SAP, and Python",
+        "provider": {
+          "@type": "Organization",
+          "name": "Codexa Classes",
+          "sameAs": "https://codexaclasses.com"
+        },
+        "courseMode": "offline",
+        "educationalLevel": "Intermediate to Advanced",
+        "timeRequired": "P12W",
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
@@ -146,16 +170,64 @@ const courseStructuredData = {
       "position": 6,
       "item": {
         "@type": "Course",
-        "name": "Linux Administration",
-        "description": "System administration and server management with Linux",
+        "name": "DevOps Engineer (AWS)",
+        "description": "Master DevOps practices with AWS cloud infrastructure and automation",
         "provider": {
           "@type": "Organization",
           "name": "Codexa Classes",
           "sameAs": "https://codexaclasses.com"
         },
         "courseMode": "offline",
-        "educationalLevel": "Beginner to Advanced",
-        "timeRequired": "P6W",
+        "educationalLevel": "Intermediate to Advanced",
+        "timeRequired": "P10W",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "10000",
+          "priceCurrency": "INR",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "Course",
+        "name": "Database Admin (Oracle/PLSQL)",
+        "description": "Master Oracle database administration and PL/SQL programming",
+        "provider": {
+          "@type": "Organization",
+          "name": "Codexa Classes",
+          "sameAs": "https://codexaclasses.com"
+        },
+        "courseMode": "offline",
+        "educationalLevel": "Intermediate to Advanced",
+        "timeRequired": "P8W",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "10000",
+          "priceCurrency": "INR",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "Course",
+        "name": "App Support (MySQL + Linux)",
+        "description": "Learn application support with MySQL database and Linux administration",
+        "provider": {
+          "@type": "Organization",
+          "name": "Codexa Classes",
+          "sameAs": "https://codexaclasses.com"
+        },
+        "courseMode": "offline",
+        "educationalLevel": "Beginner to Intermediate",
+        "timeRequired": "P8W",
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
@@ -195,14 +267,20 @@ export default function Courses() {
 
   const getCategoryBadgeVariant = (category: string) => {
     switch (category) {
-      case 'backend':
-        return 'bg-orange-500 text-white border-orange-500';
       case 'frontend':
         return 'bg-purple-500 text-white border-purple-500';
-      case 'database':
-        return 'bg-green-500 text-white border-green-500';
-      case 'framework':
+      case 'web':
         return 'bg-blue-500 text-white border-blue-500';
+      case 'business':
+        return 'bg-green-500 text-white border-green-500';
+      case 'data':
+        return 'bg-indigo-500 text-white border-indigo-500';
+      case 'devops':
+        return 'bg-orange-500 text-white border-orange-500';
+      case 'database':
+        return 'bg-teal-500 text-white border-teal-500';
+      case 'support':
+        return 'bg-gray-500 text-white border-gray-500';
       default:
         return 'bg-gray-500 text-white border-gray-500';
     }

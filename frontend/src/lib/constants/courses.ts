@@ -2,7 +2,7 @@ export interface Course {
   id: string;
   name: string;
   icon: string;
-  category: 'backend' | 'frontend' | 'database' | 'framework';
+  category: 'frontend' | 'web' | 'business' | 'data' | 'devops' | 'database' | 'support';
   description: string;
   duration: string;
   students: string;
@@ -17,89 +17,21 @@ export interface Course {
 
 export const COURSES: readonly Course[] = [
   {
-    id: "php",
-    name: "PHP Development",
-    icon: "devicon-php-plain",
-    category: "backend",
-    description: "Master server-side programming with PHP and Laravel framework",
-    duration: "8 weeks",
-    students: "300+",
-    level: "Beginner to Advanced",
-    topics: [
-      "PHP Fundamentals",
-      "Object-Oriented Programming",
-      "Laravel Framework",
-      "Database Integration",
-      "API Development",
-      "Security Best Practices"
-    ],
-    icon_name: "php",
-    price: 10000,
-    careerPath: "Backend Developer",
-    skills: [
-      "PHP Programming",
-      "Laravel Framework",
-      "MySQL Database",
-      "RESTful APIs",
-      "MVC Architecture",
-      "Git Version Control"
-    ],
-    projects: [
-      "E-commerce Website",
-      "Blog Management System",
-      "User Authentication System",
-      "API Development"
-    ]
-  },
-  {
-    id: "python",
-    name: "Python Programming",
-    icon: "devicon-python-plain",
-    category: "backend",
-    description: "Learn Python programming and Django web development framework",
-    duration: "10 weeks",
-    students: "250+",
-    level: "Beginner to Advanced",
-    topics: [
-      "Python Basics",
-      "Data Structures & Algorithms",
-      "Django Framework",
-      "Web Development",
-      "Data Analysis",
-      "Machine Learning Basics"
-    ],
-    icon_name: "python",
-    price: 10000,
-    careerPath: "Python Developer",
-    skills: [
-      "Python Programming",
-      "Django Framework",
-      "Data Analysis",
-      "Web Scraping",
-      "API Development",
-      "Database Design"
-    ],
-    projects: [
-      "Web Application",
-      "Data Analysis Tool",
-      "Automation Scripts",
-      "Machine Learning Model"
-    ]
-  },
-  {
-    id: "react",
-    name: "React Development",
+    id: "frontend-react",
+    name: "Frontend Development (ReactJS + Tailwind)",
     icon: "devicon-react-original",
     category: "frontend",
-    description: "Build modern user interfaces with React and JavaScript",
+    description: "Master modern frontend development with ReactJS and Tailwind CSS for responsive web applications",
     duration: "8 weeks",
     students: "200+",
     level: "Beginner to Advanced",
     topics: [
-      "JavaScript ES6+",
-      "React Components",
-      "State Management",
-      "Hooks & Context",
+      "ReactJS Fundamentals",
+      "Component Architecture",
+      "State Management (Hooks & Context)",
+      "Tailwind CSS Framework",
+      "Responsive Design",
+      "Modern JavaScript (ES6+)",
       "Routing & Navigation",
       "Testing & Deployment"
     ],
@@ -107,151 +39,297 @@ export const COURSES: readonly Course[] = [
     price: 10000,
     careerPath: "Frontend Developer",
     skills: [
-      "React.js",
+      "React.js Development",
+      "Tailwind CSS",
       "JavaScript ES6+",
-      "HTML5 & CSS3",
+      "Component Design",
+      "Responsive Web Design",
       "State Management",
-      "Component Architecture",
-      "Responsive Design"
+      "Modern Frontend Tools"
     ],
     projects: [
-      "Single Page Application",
-      "E-commerce Frontend",
-      "Dashboard Interface",
-      "Mobile-Responsive Website"
+      "Responsive E-commerce Frontend",
+      "Admin Dashboard",
+      "Portfolio Website",
+      "Real-time Chat Interface"
     ]
   },
   {
-    id: "mysql",
-    name: "MySQL Database",
-    icon: "devicon-mysql-plain",
-    category: "database",
-    description: "Master database design, administration, and optimization for Database Administrator role",
-    duration: "6 weeks",
+    id: "web-flask-django",
+    name: "Web Development (Flask + Django)",
+    icon: "devicon-python-plain",
+    category: "web",
+    description: "Learn Python web development with Flask and Django frameworks for building scalable web applications",
+    duration: "10 weeks",
     students: "180+",
     level: "Beginner to Advanced",
     topics: [
-      "Database Design Principles",
-      "SQL Queries & Joins",
-      "Stored Procedures & Functions",
-      "Performance Optimization",
-      "Backup & Recovery",
-      "Database Security & Access Control",
-      "High Availability & Replication",
-      "Monitoring & Maintenance"
+      "Python Programming Basics",
+      "Flask Framework",
+      "Django Framework",
+      "Database Integration",
+      "RESTful API Development",
+      "Authentication & Security",
+      "Deployment & Hosting",
+      "Testing & Debugging"
     ],
-    icon_name: "mysql",
+    icon_name: "python",
     price: 10000,
-    careerPath: "Database Administrator",
+    careerPath: "Python Web Developer",
     skills: [
-      "MySQL Database Design",
-      "SQL Query Optimization",
-      "Database Administration",
-      "Performance Tuning",
-      "Backup & Recovery",
-      "Security Implementation",
-      "High Availability Setup",
-      "Database Monitoring"
+      "Python Programming",
+      "Flask Framework",
+      "Django Framework",
+      "Web Development",
+      "Database Design",
+      "API Development",
+      "Web Security"
     ],
     projects: [
-      "E-commerce Database Design",
-      "Performance Optimization",
-      "Backup & Recovery System",
-      "Security Implementation",
-      "High Availability Setup"
+      "E-commerce Platform",
+      "Blog Management System",
+      "REST API Backend",
+      "Content Management System"
     ]
   },
   {
-    id: "aws",
-    name: "Cloud Administrator - AWS",
+    id: "web-bootstrap-laravel",
+    name: "Web Development (Bootstrap + Laravel)",
+    icon: "devicon-php-plain",
+    category: "web",
+    description: "Master PHP web development with Laravel framework and Bootstrap for modern, responsive websites",
+    duration: "10 weeks",
+    students: "220+",
+    level: "Beginner to Advanced",
+    topics: [
+      "PHP Programming",
+      "Laravel Framework",
+      "Bootstrap CSS Framework",
+      "Database Design & MySQL",
+      "Authentication & Authorization",
+      "RESTful APIs",
+      "Frontend-Backend Integration",
+      "Deployment & Maintenance"
+    ],
+    icon_name: "php",
+    price: 10000,
+    careerPath: "PHP Web Developer",
+    skills: [
+      "PHP Programming",
+      "Laravel Framework",
+      "Bootstrap CSS",
+      "MySQL Database",
+      "Full-stack Development",
+      "Web Security",
+      "API Development"
+    ],
+    projects: [
+      "Corporate Website",
+      "E-learning Platform",
+      "Business Management System",
+      "Customer Portal"
+    ]
+  },
+  {
+    id: "business-analyst",
+    name: "Business Analyst (PowerBI + MySQL + BRD)",
+    icon: "devicon-mysql-plain",
+    category: "business",
+    description: "Become a Business Analyst with expertise in PowerBI, MySQL, and Business Requirements Documentation",
+    duration: "8 weeks",
+    students: "150+",
+    level: "Intermediate to Advanced",
+    topics: [
+      "Business Analysis Fundamentals",
+      "PowerBI Data Visualization",
+      "MySQL Database Management",
+      "Business Requirements Documentation (BRD)",
+      "Data Analysis & Reporting",
+      "Stakeholder Management",
+      "Process Modeling",
+      "Business Intelligence Tools"
+    ],
+    icon_name: "mysql",
+    price: 10000,
+    careerPath: "Business Analyst",
+    skills: [
+      "Business Analysis",
+      "PowerBI Development",
+      "MySQL Database",
+      "BRD Documentation",
+      "Data Visualization",
+      "Requirements Gathering",
+      "Process Analysis"
+    ],
+    projects: [
+      "Business Intelligence Dashboard",
+      "Requirements Documentation",
+      "Data Analysis Reports",
+      "Process Optimization Study"
+    ]
+  },
+  {
+    id: "data-analyst",
+    name: "Data Analyst (PowerBI + SQL + SAP + Python)",
+    icon: "devicon-python-plain",
+    category: "data",
+    description: "Master data analysis with PowerBI, SQL, SAP, and Python for comprehensive business intelligence",
+    duration: "12 weeks",
+    students: "160+",
+    level: "Intermediate to Advanced",
+    topics: [
+      "Data Analysis Fundamentals",
+      "PowerBI Advanced Features",
+      "SQL Query Optimization",
+      "SAP Business Intelligence",
+      "Python for Data Analysis",
+      "Statistical Analysis",
+      "Data Visualization",
+      "Predictive Analytics"
+    ],
+    icon_name: "python",
+    price: 10000,
+    careerPath: "Data Analyst",
+    skills: [
+      "Data Analysis",
+      "PowerBI Development",
+      "SQL Programming",
+      "SAP BI Tools",
+      "Python Programming",
+      "Statistical Analysis",
+      "Data Visualization"
+    ],
+    projects: [
+      "Business Intelligence Dashboard",
+      "Data Analysis Reports",
+      "Predictive Analytics Model",
+      "Performance Metrics Dashboard"
+    ]
+  },
+  {
+    id: "devops-aws",
+    name: "DevOps Engineer (AWS)",
     icon: "devicon-amazonwebservices-original",
-    category: "framework",
-    description: "Master AWS cloud infrastructure administration and management",
+    category: "devops",
+    description: "Master DevOps practices with AWS cloud infrastructure, automation, and deployment pipelines",
+    duration: "10 weeks",
+    students: "140+",
+    level: "Intermediate to Advanced",
+    topics: [
+      "DevOps Fundamentals",
+      "AWS Core Services",
+      "Infrastructure as Code",
+      "CI/CD Pipeline Development",
+      "Containerization (Docker)",
+      "Monitoring & Logging",
+      "Security & Compliance",
+      "Auto Scaling & Load Balancing"
+    ],
+    icon_name: "aws",
+    price: 10000,
+    careerPath: "DevOps Engineer",
+    skills: [
+      "DevOps Practices",
+      "AWS Cloud Services",
+      "Infrastructure Automation",
+      "CI/CD Pipelines",
+      "Container Management",
+      "Monitoring & Alerting",
+      "Cloud Security"
+    ],
+    projects: [
+      "Automated CI/CD Pipeline",
+      "Infrastructure as Code",
+      "Monitoring Dashboard",
+      "Auto-scaling Application"
+    ]
+  },
+  {
+    id: "database-admin",
+    name: "Database Admin (Oracle/PLSQL)",
+    icon: "devicon-oracle-original",
+    category: "database",
+    description: "Master Oracle database administration and PL/SQL programming for enterprise database management",
     duration: "8 weeks",
     students: "120+",
     level: "Intermediate to Advanced",
     topics: [
-      "AWS Basics & IAM",
-      "Networking (VPC, Subnets, Security)",
-      "Compute (EC2, Auto Scaling, Load Balancing)",
-      "Storage & Databases (S3, EBS, RDS)",
-      "Monitoring & Logging (CloudWatch, CloudTrail)",
-      "Security & Compliance (KMS, WAF, IAM)",
-      "Automation & Deployment (CloudFormation, SSM)",
-      "Cost & Resource Management",
-      "High Availability & Disaster Recovery",
-      "Hands-on Labs & Real Projects"
+      "Oracle Database Architecture",
+      "PL/SQL Programming",
+      "Database Administration",
+      "Performance Tuning",
+      "Backup & Recovery",
+      "Security & Access Control",
+      "High Availability",
+      "Database Monitoring"
     ],
-    icon_name: "aws",
+    icon_name: "oracle",
     price: 10000,
-    careerPath: "Cloud Administrator",
+    careerPath: "Database Administrator",
     skills: [
-      "AWS Infrastructure Management",
-      "VPC & Network Security",
-      "EC2 & Auto Scaling",
-      "S3 & Storage Management",
-      "RDS & Database Administration",
-      "CloudWatch & Monitoring",
-      "IAM & Security Best Practices",
-      "CloudFormation & Automation",
-      "Cost Optimization",
+      "Oracle Database",
+      "PL/SQL Programming",
+      "Database Administration",
+      "Performance Optimization",
+      "Backup & Recovery",
+      "Security Implementation",
       "High Availability Setup"
     ],
     projects: [
-      "Secure VPC with EC2 and RDS",
-      "Auto Scaling & Load Balancing Setup",
-      "S3 Hosting with CloudFront",
-      "CloudWatch Dashboards",
-      "IAM Roles & Security Implementation"
+      "Database Design & Setup",
+      "Performance Optimization",
+      "Backup & Recovery System",
+      "Security Implementation"
     ]
   },
   {
-    id: "linux",
-    name: "Linux Administration",
+    id: "app-support",
+    name: "App Support (MySQL + Linux)",
     icon: "devicon-linux-plain",
-    category: "framework",
-    description: "System administration and server management with Linux",
-    duration: "6 weeks",
-    students: "120+",
-    level: "Beginner to Advanced",
+    category: "support",
+    description: "Learn application support with MySQL database management and Linux system administration",
+    duration: "8 weeks",
+    students: "130+",
+    level: "Beginner to Intermediate",
     topics: [
-      "Linux Fundamentals",
-      "Command Line Mastery",
-      "System Administration",
-      "Server Configuration",
-      "Shell Scripting",
-      "Security & Monitoring",
-      "Network Configuration",
-      "Service Management"
+      "Linux System Administration",
+      "MySQL Database Management",
+      "Application Support",
+      "Troubleshooting & Debugging",
+      "Performance Monitoring",
+      "Backup & Maintenance",
+      "Security Best Practices",
+      "User Support & Documentation"
     ],
     icon_name: "linux",
     price: 10000,
-    careerPath: "Linux System Administrator",
+    careerPath: "Application Support Engineer",
     skills: [
-      "Linux System Administration",
-      "Shell Scripting",
-      "Server Configuration",
-      "Network Administration",
-      "Security Implementation",
-      "Monitoring & Logging",
-      "Automation & DevOps",
-      "Troubleshooting"
+      "Linux Administration",
+      "MySQL Database",
+      "Application Support",
+      "Troubleshooting",
+      "Performance Monitoring",
+      "System Maintenance",
+      "User Support"
     ],
     projects: [
-      "Server Setup & Configuration",
-      "Automation Scripts",
-      "Security Hardening",
+      "System Setup & Configuration",
+      "Database Management",
       "Monitoring System",
-      "Backup & Recovery"
+      "Support Documentation"
     ]
   }
 ] as const;
 
 export const COURSE_CATEGORIES = {
-  backend: "Backend Development",
-  frontend: "Frontend Development", 
-  database: "Database Management",
-  framework: "Framework & Tools"
+  frontend: "Frontend Development",
+  web: "Web Development", 
+  business: "Business Analysis",
+  data: "Data Analysis",
+  devops: "DevOps Engineering",
+  database: "Database Administration",
+  support: "Application Support"
 } as const;
 
 export const COURSE_LEVELS = {
