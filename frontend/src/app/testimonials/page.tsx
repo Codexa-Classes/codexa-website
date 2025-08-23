@@ -87,7 +87,7 @@ const candidateSuccessStories = [
   {
     id: 1,
     name: "Avani Joshi",
-    photo: "/candidate-photos/avani-joshi.jpg",
+    photo: "/avani_joshi_profile.jpg",
     photoFallback: "AJ",
     role: "Full Stack Developer",
     company: "TCS",
@@ -102,7 +102,7 @@ const candidateSuccessStories = [
   {
     id: 2,
     name: "Atharva Kulkarni",
-    photo: "/candidate-photos/atharva-kulkarni.jpg",
+    photo: "/atharva_kulkarni_profile.jpg",
     photoFallback: "AK",
     role: "Frontend Developer",
     company: "Infosys",
@@ -117,7 +117,7 @@ const candidateSuccessStories = [
   {
     id: 3,
     name: "Vedika Patil",
-    photo: "/candidate-photos/vedika-patil.jpg",
+    photo: "/vedika_patil_profile.jpg",
     photoFallback: "VP",
     role: "Backend Developer",
     company: "Wipro",
@@ -132,7 +132,7 @@ const candidateSuccessStories = [
   {
     id: 4,
     name: "Vivaan Deshmukh",
-    photo: "/candidate-photos/vivaan-deshmukh.jpg",
+    photo: "/mahak_meena_profile.jpg", // Using Mahak Meena's profile as Vivaan Deshmukh
     photoFallback: "VD",
     role: "DevOps Engineer",
     company: "HCL",
@@ -147,7 +147,7 @@ const candidateSuccessStories = [
   {
     id: 5,
     name: "Ishaani Bhosale",
-    photo: "/candidate-photos/ishaani-bhosale.jpg",
+    photo: "/ananya_kulkarni_2.jpg", // Using Ananya Kulkarni's profile as Ishaani Bhosale
     photoFallback: "IB",
     role: "UI/UX Designer",
     company: "Tech Mahindra",
@@ -162,7 +162,7 @@ const candidateSuccessStories = [
   {
     id: 6,
     name: "Aarush Wagh",
-    photo: "/candidate-photos/aarush-wagh.jpg",
+    photo: "/aarush_wagh_profile.jpg",
     photoFallback: "AW",
     role: "Data Scientist",
     company: "Cognizant",
@@ -271,8 +271,16 @@ export default function TestimonialsPage() {
               <Card key={candidate.id} className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 hover:shadow-xl hover:border-blue-400 transition-all duration-300 hover:-translate-y-2">
                 <CardHeader className="pb-4">
                   <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                      {candidate.photoFallback}
+                    <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl overflow-hidden">
+                      {candidate.photo ? (
+                        <img 
+                          src={candidate.photo} 
+                          alt={`${candidate.name} profile`}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        candidate.photoFallback
+                      )}
                     </div>
                     <div className="flex-1">
                       <CardTitle className="text-xl text-gray-900 font-bold mb-2">{candidate.name}</CardTitle>
