@@ -22,6 +22,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import Super10Section from '@/components/Super10Section';
 import DevIcon from '@/components/DevIcon';
 
+
 export const metadata: Metadata = {
   title: "Best IT Training Institute - Codexa Classes",
   description: "Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts. Affordable courses starting at ₹10,000 with 100% job placement guarantee.",
@@ -257,9 +258,10 @@ export default function Home() {
                 </Card>
               ))}
             </div>
-          </div>
-        </section>
-      </PageLayout>
+                      </div>
+          </section>
+
+        </PageLayout>
     </>
   );
 }

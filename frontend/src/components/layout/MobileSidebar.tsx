@@ -21,6 +21,7 @@ export function MobileSidebar() {
     { href: "/about", label: "About" },
     { href: "/courses", label: "Courses" },
     { href: "/super10", label: "Super10", icon: <img src="/super10.gif" alt="super10" className="h-5 w-5" /> },
+    { href: "/testimonials", label: "Testimonials" },
     { href: "/certificate", label: "Certificate" },
     { href: "/contact", label: "Contact" }
   ];
