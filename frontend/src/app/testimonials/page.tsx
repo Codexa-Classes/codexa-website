@@ -74,7 +74,7 @@ const companyPlacements = [
   {
     id: 6,
     name: "Cognizant",
-    logo: "/cognizant-logo.svg",
+    logo: "/cognizant-logo.png",
     logoFallback: "CTS",
     placementCount: 7,
     avgPackage: "4.1 LPA",
@@ -166,7 +166,7 @@ const candidateSuccessStories = [
     photoFallback: "AW",
     role: "App Support Engineer",
     company: "Cognizant",
-    companyLogo: "/cognizant-logo.svg",
+    companyLogo: "/cognizant-logo.png",
     companyLogoFallback: "CTS",
     package: "7.8 LPA",
     placementDate: "October 2023",
@@ -219,22 +219,22 @@ export default function TestimonialsPage() {
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-7xl mx-auto">
             {companyPlacements.map((company) => (
-              <Card key={company.id} className="text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-gray-200 hover:border-blue-300 bg-white">
-                <CardHeader className="pb-4">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-white rounded-lg flex items-center justify-center border-2 border-gray-200 hover:border-blue-300 transition-colors">
-                    {company.logo ? (
-                      <img 
-                        src={company.logo} 
-                        alt={`${company.name} logo`}
-                        className="w-12 h-12 object-contain"
-                      />
-                    ) : (
-                      <span className="text-blue-600 font-bold text-sm">{company.logoFallback}</span>
-                    )}
-                  </div>
-                  <CardTitle className="text-lg text-gray-900 font-bold">{company.name}</CardTitle>
-                </CardHeader>
-                <CardContent>
+              <div key={company.id} className="text-center hover:scale-105 transition-all duration-300">
+                <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                  {company.logo ? (
+                    <img 
+                      src={company.logo} 
+                      alt={`${company.name} logo`}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gray-100 rounded-lg flex items-center justify-center">
+                      <span className="text-blue-600 font-bold text-lg">{company.logoFallback}</span>
+                    </div>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-bold text-gray-900">{company.name}</h3>
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center justify-center gap-2">
                       <Users className="h-4 w-4 text-blue-600" />
@@ -249,8 +249,8 @@ export default function TestimonialsPage() {
                       <span className="text-gray-700 text-xs">{company.location}</span>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -304,19 +304,19 @@ export default function TestimonialsPage() {
                           ))}
                         </div>
                         
-                        {/* Company Info - Small card on the right */}
-                        <div className="flex items-center gap-2 p-2 bg-white rounded-lg border border-gray-200 ml-4 flex-shrink-0">
-                          <div className="w-6 h-6 bg-white rounded flex items-center justify-center border border-gray-200">
-                            {candidate.companyLogo ? (
-                              <img 
-                                src={candidate.companyLogo} 
-                                alt={`${candidate.company} logo`}
-                                className="w-4 h-4 object-contain"
-                              />
-                            ) : (
+                        {/* Company Info - Logo and details without card */}
+                        <div className="flex items-center gap-3 ml-4 flex-shrink-0">
+                          {candidate.companyLogo ? (
+                            <img 
+                              src={candidate.companyLogo} 
+                              alt={`${candidate.company} logo`}
+                              className="w-8 h-8 object-contain"
+                            />
+                          ) : (
+                            <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center">
                               <span className="text-gray-600 font-bold text-xs">{candidate.companyLogoFallback}</span>
-                            )}
-                          </div>
+                            </div>
+                          )}
                           <div>
                             <div className="font-semibold text-gray-900 text-sm">{candidate.company}</div>
                             <div className="text-xs text-gray-600">{candidate.package} • {candidate.location}</div>
