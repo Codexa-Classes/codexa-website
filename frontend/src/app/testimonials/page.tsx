@@ -271,7 +271,7 @@ export default function TestimonialsPage() {
               <Card key={candidate.id} className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 hover:shadow-xl hover:border-blue-400 transition-all duration-300 hover:-translate-y-2">
                 <CardHeader className="pb-4">
                   <div className="flex items-start gap-4">
-                    <div className="w-[30px] h-[30px] bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm overflow-hidden flex-shrink-0">
+                    <div className="w-[90px] h-[90px] bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg overflow-hidden flex-shrink-0">
                       {candidate.photo ? (
                         <img 
                           src={candidate.photo} 

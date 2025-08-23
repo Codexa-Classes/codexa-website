@@ -78,12 +78,12 @@ export function TestimonialsSection() {
             <Card key={testimonial.id} className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 hover:shadow-xl hover:border-blue-400 transition-all duration-300 hover:-translate-y-2">
               <CardHeader className="pb-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-blue-200">
+                  <div className="w-36 h-36 rounded-full overflow-hidden border-2 border-blue-200">
                     <Image
                       src={testimonial.avatar}
                       alt={`${testimonial.name} profile`}
-                      width={48}
-                      height={48}
+                      width={144}
+                      height={144}
                       className="w-full h-full object-cover"
                     />
                   </div>
