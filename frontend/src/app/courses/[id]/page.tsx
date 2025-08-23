@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Breadcrumb, BreadcrumbItem } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import { 
   Clock, 
@@ -21,7 +22,8 @@ import {
   Server,
   Globe,
   Phone,
-  Mail
+  Mail,
+  Home
 } from "lucide-react";
 import PageLayout from '@/components/layout/PageLayout';
 import DevIcon from '@/components/DevIcon';
@@ -101,14 +103,16 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
     <PageLayout>
       <div className="py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Back Button */}
+          {/* Breadcrumb Navigation */}
           <div className="mb-8">
-            <Button variant="outline" asChild className="mb-6">
-              <Link href="/courses">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Courses
-              </Link>
-            </Button>
+            <Breadcrumb 
+              items={[
+                { label: "Home", href: "/", icon: <Home className="h-4 w-4" /> },
+                { label: "Courses", href: "/courses" },
+                { label: course.name }
+              ]} 
+              className="mb-6"
+            />
           </div>
 
           {/* Course Header */}
