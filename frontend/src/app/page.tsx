@@ -99,20 +99,7 @@ export default function Home() {
     }
   ];
 
-  const getCategoryBadgeVariant = (category: string) => {
-    switch (category) {
-      case 'backend':
-        return 'bg-orange-500 text-white border-orange-500';
-      case 'frontend':
-        return 'bg-purple-500 text-white border-purple-500';
-      case 'database':
-        return 'bg-green-500 text-white border-green-500';
-      case 'framework':
-        return 'bg-blue-500 text-white border-blue-500';
-      default:
-        return 'bg-gray-500 text-white border-gray-500';
-    }
-  };
+
 
   return (
     <>
@@ -212,17 +199,17 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 max-w-6xl mx-auto">
               {popularCourses.map((course, index) => (
                 <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-gray-200 hover:border-blue-300 bg-white hover:bg-blue-50">
                   <CardHeader className="pb-2">
                     <div className="text-4xl mb-2">
-                      <DevIcon name={course.icon} size={48} />
+                      <DevIcon name={course.icon} size={84} />
                     </div>
                     <CardTitle className="text-lg text-gray-900 font-bold">{course.name}</CardTitle>
                     <div className="flex justify-center">
-                      <Badge className={`text-xs font-semibold ${getCategoryBadgeVariant(course.category)}`}>
-                        {course.category}
+                      <Badge className="text-xs font-semibold bg-gray-500 text-white border-gray-500">
+                        {course.category.toUpperCase()}
                       </Badge>
                     </div>
                   </CardHeader>
