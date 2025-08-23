@@ -56,7 +56,7 @@ export default function AppHeader() {
     <header className="bg-white border-b border-border/40 sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Logo />
+          <Logo size="2xl" />
           
           {/* Desktop Navigation */}
           <nav ref={navRef} className="hidden md:flex items-center space-x-8 relative">

@@ -89,7 +89,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md dark:bg-gray-800 dark:border-gray-700">
         <CardHeader className="space-y-1">
           <div className="flex justify-center mb-2">
-            <Logo size="md" showLink={false} />
+            <Logo size="2xl" showLink={false} />
           </div>
           <CardDescription className="text-center dark:text-gray-400">
             Sign in to your account
