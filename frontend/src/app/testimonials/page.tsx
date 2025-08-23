@@ -271,7 +271,7 @@ export default function TestimonialsPage() {
               <Card key={candidate.id} className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 hover:shadow-xl hover:border-blue-400 transition-all duration-300 hover:-translate-y-2">
                 <CardHeader className="pb-4">
                   <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl overflow-hidden">
+                    <div className="w-[30px] h-[30px] bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm overflow-hidden flex-shrink-0">
                       {candidate.photo ? (
                         <img 
                           src={candidate.photo} 
@@ -294,51 +294,50 @@ export default function TestimonialsPage() {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-4 mb-3">
+                      {/* Skills/Tech Stack */}
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex flex-wrap gap-2">
+                          {candidate.skills.map((skill, index) => (
+                            <Badge key={index} variant="outline" className="text-xs">
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                        
+                        {/* Company Info - Small card on the right */}
+                        <div className="flex items-center gap-2 p-2 bg-white rounded-lg border border-gray-200 ml-4 flex-shrink-0">
+                          <div className="w-6 h-6 bg-white rounded flex items-center justify-center border border-gray-200">
+                            {candidate.companyLogo ? (
+                              <img 
+                                src={candidate.companyLogo} 
+                                alt={`${candidate.company} logo`}
+                                className="w-4 h-4 object-contain"
+                              />
+                            ) : (
+                              <span className="text-gray-600 font-bold text-xs">{candidate.companyLogoFallback}</span>
+                            )}
+                          </div>
+                          <div>
+                            <div className="font-semibold text-gray-900 text-sm">{candidate.company}</div>
+                            <div className="text-xs text-gray-600">{candidate.package} • {candidate.location}</div>
+                          </div>
+                        </div>
                       </div>
                       
-                      {/* Company Info */}
-                      <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-200">
-                        <div className="w-8 h-8 bg-white rounded flex items-center justify-center border border-gray-200">
-                          {candidate.companyLogo ? (
-                            <img 
-                              src={candidate.companyLogo} 
-                              alt={`${candidate.company} logo`}
-                              className="w-6 h-6 object-contain"
-                            />
-                          ) : (
-                            <span className="text-gray-600 font-bold text-xs">{candidate.companyLogoFallback}</span>
-                          )}
-                        </div>
-                        <div>
-                          <div className="font-semibold text-gray-900">{candidate.company}</div>
-                          <div className="text-sm text-gray-600">{candidate.package} • {candidate.location}</div>
-                        </div>
+                      {/* Placement Date */}
+                      <div className="flex items-center gap-2 mt-4 text-sm text-gray-500">
+                        <Calendar className="h-4 w-4" />
+                        <span>Placed in {candidate.placementDate}</span>
                       </div>
                     </div>
                   </div>
                 </CardHeader>
                 
                 <CardContent>
-                  {/* Skills */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {candidate.skills.map((skill, index) => (
-                      <Badge key={index} variant="outline" className="text-xs">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                  
                   {/* Testimonial */}
                   <blockquote className="text-gray-700 leading-relaxed italic border-l-4 border-blue-300 pl-4">
                     "{candidate.testimonial}"
                   </blockquote>
-                  
-                  {/* Placement Date */}
-                  <div className="flex items-center gap-2 mt-4 text-sm text-gray-500">
-                    <Calendar className="h-4 w-4" />
-                    <span>Placed in {candidate.placementDate}</span>
-                  </div>
                 </CardContent>
               </Card>
             ))}
