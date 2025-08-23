@@ -382,11 +382,18 @@ export default function Courses() {
                       </ul>
                     </div>
 
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium" asChild>
-                      <Link href="/contact">
-                        Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
+                    <div className="grid grid-cols-2 gap-3">
+                      <Button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium border border-gray-300" asChild>
+                        <Link href={`/courses/${course.id}`}>
+                          View Details <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                      <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium" asChild>
+                        <Link href="/contact">
+                          Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
