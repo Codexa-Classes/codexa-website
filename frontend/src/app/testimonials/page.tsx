@@ -286,7 +286,7 @@ export default function TestimonialsPage() {
                       <div className="flex items-center gap-3 mb-2">
                         <CardTitle className="text-xl text-gray-900 font-bold">{candidate.name}</CardTitle>
                         <Badge variant="secondary" className="bg-blue-100 text-blue-800 border-blue-200">{candidate.role}</Badge>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 ml-auto">
                           <div className="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center">
                             <div className="w-2 h-2 bg-green-600 rounded-full"></div>
                           </div>
