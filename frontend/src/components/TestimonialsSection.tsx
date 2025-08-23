@@ -15,50 +15,50 @@ const testimonials: Testimonial[] = [
   {
     id: 1,
     name: "Aarav Joshi",
-    role: "Full Stack Developer",
+    role: "Web Developer",
     avatar: "/mahak_meena_profile.jpg", // Using Mahak Meena's profile as Aarav Joshi
     rating: 5,
-    quote: "Codexa Classes transformed my career completely! I was struggling to find a job after my engineering degree. The practical approach and real-world projects here were exactly what I needed. My instructor taught me React and Node.js from the ground up. Within 4 months, I was building full-stack applications and got placed at a top tech company. The instructors are incredibly supportive and the curriculum is perfectly aligned with industry needs."
+    quote: "Codexa Classes transformed my career completely! I was struggling to find a job after my engineering degree. The Web Development course with Bootstrap and Laravel was exactly what I needed. My instructor taught me PHP development and modern web frameworks from the ground up. Within 4 months, I was building complete web applications with beautiful responsive designs and got placed at a top tech company. The curriculum is perfectly aligned with industry needs."
   },
   {
     id: 2,
     name: "Ananya Kulkarni",
-    role: "Frontend Developer",
+    role: "Data Analyst", 
     avatar: "/ananya_kulkarni_2.jpg", // Using real Ananya Kulkarni profile
     rating: 5,
-    quote: "I came from a completely non-tech background - I was working as a content writer before joining Codexa Classes. The structured curriculum and hands-on learning made everything click for me. We built real projects that I could showcase in interviews. The instructors were so patient with my questions. Now I'm working on exciting frontend projects and absolutely loving every moment of my new career!"
+    quote: "I came from a completely non-tech background - I was working as a content writer before joining Codexa Classes. The Data Analyst course with PowerBI, SQL, SAP, and Python made everything click for me. We worked with real business datasets and created interactive dashboards. The instructors were so patient with my questions. Now I'm working on exciting data analysis projects and absolutely loving every moment of my new career!"
   },
   {
     id: 3,
     name: "Siddharth Patil",
-    role: "Backend Developer",
+    role: "Database Administrator",
     avatar: "/gaurav_pandit_profile.jpg", // Using Gaurav Pandit's profile as Siddharth Patil
     rating: 5,
-    quote: "The Super10 program gave me an opportunity I never thought possible. Free education that's actually world-class quality! I learned Python, Django, and database management from industry experts. The practical projects were amazing - we built real APIs and worked with actual databases. I'm forever grateful to Codexa Classes for believing in me and giving me this chance to transform my life."
+    quote: "The Super10 program gave me an opportunity I never thought possible. Free education that's actually world-class quality! I learned Oracle database administration and plSQL from industry experts. The practical projects were amazing - we optimized real enterprise databases and wrote complex stored procedures. I'm forever grateful to Codexa Classes for believing in me and giving me this chance to transform my life."
   },
   {
     id: 4,
     name: "Dhruv Deshmukh",
-    role: "DevOps Engineer",
+    role: "App Support Engineer",
     avatar: "/amar_jondhalekar_profile.jpg", // Using Amar Jondhalekar's profile as Dhruv Deshmukh
     rating: 5,
-    quote: "Excellent course structure and amazing placement support! I was working as a system administrator before joining here. The DevOps course covered everything from Linux administration to cloud technologies. Within 3 months of completing the course, I got placed with a 40% salary hike. The placement team was incredibly helpful throughout the process. I highly recommend Codexa Classes to anyone serious about their IT career!"
+    quote: "Excellent course structure and amazing placement support! I was working as a system administrator before joining here. The App Support course with MySQL and Linux covered everything from database optimization to server management. Within 3 months of completing the course, I got placed with a 40% salary hike. The placement team was incredibly helpful throughout the process. I highly recommend Codexa Classes to anyone serious about their IT career!"
   },
   {
     id: 5,
     name: "Aarohi Bhosale",
-    role: "UI/UX Designer",
+    role: "Frontend Developer",
     avatar: "/ananya_kulkarni_3.jpg", // Using another Ananya Kulkarni profile as Aarohi Bhosale
     rating: 5,
-    quote: "The design courses here are absolutely exceptional! I learned not just the tools like Figma and Adobe XD, but the fundamental principles of good design. The instructors taught us user research, wireframing, and prototyping. The portfolio projects we created were so professional that I used them directly in my job interviews. Now I'm working with international clients and loving every project!"
+    quote: "The Frontend Development course with ReactJS and Tailwind is absolutely exceptional! I learned not just the tools but the fundamental principles of modern web development. The instructors taught us component-based architecture, responsive design, and state management. The portfolio projects we created were so professional that I used them directly in my job interviews. Now I'm working with international clients and loving every project!"
   },
   {
     id: 6,
     name: "Chaitanya Wagh",
-    role: "Data Scientist",
+    role: "Business Analyst",
     avatar: "/swapnali_nalawade_profile.jpg", // Using Swapnali Nalawade's profile as Chaitanya Wagh
     rating: 5,
-    quote: "From zero coding knowledge to a data scientist role in just 6 months! The instructors here break down complex concepts so well that even beginners can understand. We worked with real datasets, built machine learning models, and learned industry tools like Python, SQL, and Tableau. This place is truly a game-changer for anyone wanting to enter the data science field."
+    quote: "From zero business analysis knowledge to a Business Analyst role in just 6 months! The instructors here break down complex concepts so well that even beginners can understand. We learned PowerBI for data visualization, MySQL for database queries, and how to write comprehensive Business Requirements Documents (BRD). The practical projects involved real business scenarios. This place is truly a game-changer for anyone wanting to enter the business analysis field."
   }
 ];
 

@@ -89,45 +89,45 @@ const candidateSuccessStories = [
     name: "Avani Joshi",
     photo: "/avani_joshi_profile.jpg",
     photoFallback: "AJ",
-    role: "Full Stack Developer",
+    role: "Frontend Developer",
     company: "TCS",
     companyLogo: "/tcs-logo.svg",
     companyLogoFallback: "TCS",
-    package: "4.5 LPA",
+    package: "7.2 LPA",
     placementDate: "March 2024",
     location: "Mumbai",
-    testimonial: "Codexa Classes ने माझे जीवन पूर्णपणे बदलले! I was working as a receptionist before joining here, and now I'm a Full Stack Developer at TCS. The practical approach and real-world projects made all the difference. My instructor Viraj sir was so patient with me - I had zero coding knowledge when I started. Within 6 months, I was building full applications and got placed with a 4.5 LPA package. I still can't believe this transformation!",
-    skills: ["React", "Node.js", "MongoDB", "AWS"]
+    testimonial: "I was working as a reciptionist before joining Codexa Classes. The Frontend Development course with ReactJS and Tailwind completly changed my life! Viraj sir was so patient with me - I had zero coding knowlegde when I started. We built real responsive websites using React components and Tailwind CSS. The hands-on approach made learning soo much easier. Within 6 months, I was creating beautifull user interfaces and got placed at TCS with a 7.2 LPA package... I still can't beleive this transformation! 😊",
+    skills: ["ReactJS", "Tailwind CSS", "JavaScript", "HTML5"]
   },
   {
     id: 2,
     name: "Atharva Kulkarni",
     photo: "/atharva_kulkarni_profile.jpg",
     photoFallback: "AK",
-    role: "Frontend Developer",
+    role: "Web Developer",
     company: "Infosys",
     companyLogo: "/infosys-logo.svg",
     companyLogoFallback: "INFY",
     package: "3.8 LPA",
     placementDate: "February 2024",
     location: "Bangalore",
-    testimonial: "I was a B.Com graduate working in a small accounting firm, earning just 15k per month. The Super10 program literally changed my life. I learned React, TypeScript, and modern web development from scratch. The hands-on projects were amazing - we built real applications that I could show in interviews. Now I'm at Infosys Bangalore, working on cutting-edge projects. My family is so proud!",
-    skills: ["React", "TypeScript", "CSS3", "Git"]
+    testimonial: "I was a B.Com graduate earning just 15k per month in a small accounting firm. The Web Development course with Flask and Django literally changed my life! I learned Python web frameworks from scratch and built complete web applications. The practical projects were amazing - we created real e-commerce websites with user authentication and database integration. Now I'm at Infosys Bangalore, working as a backend developer. My family is so proud!",
+    skills: ["Flask", "Django", "Python", "PostgreSQL"]
   },
   {
     id: 3,
     name: "Vedika Patil",
     photo: "/vedika_patil_profile.jpg",
     photoFallback: "VP",
-    role: "Backend Developer",
+    role: "Database Administrator",
     company: "Wipro",
     companyLogo: "/wipro-logo.svg",
     companyLogoFallback: "WIPRO",
     package: "4.2 LPA",
     placementDate: "January 2024",
     location: "Pune",
-    testimonial: "I still remember my first day at Codexa Classes - I was so nervous because I had never written a single line of code. But the Super10 program gave me hope. The Python and Django classes were incredible. We built real e-commerce applications, worked with databases, and learned Docker. Within 3 months of completing the course, I got placed at Wipro Pune. The placement team was so supportive throughout the process.",
-    skills: ["Python", "Django", "PostgreSQL", "Docker"]
+    testimonial: "I was so nervous on my first day because I had never worked with databases before. But the Database Admin course with Oracle and plSQL gave me hope. The instructors taught us everything from basic SQL queries to advanced stored procedures and database optimization. We worked with real enterprise databases and learned performance tuning. Within 3 months of completing the course, I got placed at Wipro Pune as a Database Administrator. The placement team was incredibly supportive!",
+    skills: ["Oracle", "plSQL", "Database Design", "Performance Tuning"]
   },
   {
     id: 4,
@@ -141,38 +141,38 @@ const candidateSuccessStories = [
     package: "4.8 LPA",
     placementDate: "December 2023",
     location: "Noida",
-    testimonial: "I was a mechanical engineer working in a factory, but I always had a passion for technology. Codexa Classes helped me transition into DevOps. The Linux administration classes were intense but amazing. We set up real servers, worked with Docker containers, and learned Kubernetes. The instructors had actual industry experience, which made learning so much more practical. Now I'm at HCL Noida, working with cloud technologies I never thought I'd understand.",
-    skills: ["Linux", "Docker", "Kubernetes", "Jenkins"]
+    testimonial: "I was a mechanical engineer working in a factory, but I always had a passion for cloud technologies. The DevOps Engineer course with AWS helped me transition completely. We learned everything from EC2 instances to S3 storage, Lambda functions, and CloudFormation. The hands-on labs were incredible - we deployed real applications on AWS infrastructure. The instructors had actual industry experience. Now I'm at HCL Noida, managing cloud infrastructure that serves millions of users!",
+    skills: ["AWS", "EC2", "S3", "Lambda", "CloudFormation"]
   },
   {
     id: 5,
     name: "Ishaani Bhosale",
     photo: "/ananya_kulkarni_2.jpg", // Using Ananya Kulkarni's profile as Ishaani Bhosale
     photoFallback: "IB",
-    role: "UI/UX Designer",
+    role: "Business Analyst",
     company: "Tech Mahindra",
     companyLogo: "/tech-mahindra-logo.svg",
     companyLogoFallback: "TECHM",
     package: "3.9 LPA",
     placementDate: "November 2023",
     location: "Mumbai",
-    testimonial: "I was always creative but never knew how to channel it into a career. The UI/UX design course at Codexa Classes opened my eyes to a whole new world. We learned Figma, Adobe XD, and most importantly, user research and prototyping. The portfolio projects we created were so professional - I used them directly in my Tech Mahindra interview. The design principles I learned here are still helping me in my current role. I'm so grateful for this opportunity!",
-    skills: ["Figma", "Adobe XD", "User Research", "Prototyping"]
+    testimonial: "I was always good with numbers but never knew how to turn it into a tech career. The Business Analyst course with PowerBI, MySQL, and BRD writing opened my eyes to a whole new world. We learned to create interactive dashboards, analyze business data, and write comprehensive Business Requirements Documents. The practical projects involved real business scenarios from local companies. I used my portfolio directly in the Tech Mahindra interview. Now I'm helping businesses make data-driven decisions!",
+    skills: ["PowerBI", "MySQL", "BRD", "Data Visualization"]
   },
   {
     id: 6,
     name: "Aarush Wagh",
     photo: "/aarush_wagh_profile.jpg",
     photoFallback: "AW",
-    role: "Data Scientist",
+    role: "App Support Engineer",
     company: "Cognizant",
     companyLogo: "/cognizant-logo.svg",
     companyLogoFallback: "CTS",
     package: "5.2 LPA",
     placementDate: "October 2023",
     location: "Chennai",
-    testimonial: "The data science program at Codexa Classes exceeded all my expectations. We worked with real datasets from Kaggle, learned Python for machine learning, and built predictive models. The instructors made complex concepts so simple to understand. We even worked on a real project analyzing customer data for a local business. This hands-on experience was invaluable. Now I'm at Cognizant Chennai, working on AI/ML projects that I'm truly passionate about. The 5.2 LPA package was beyond my dreams!",
-    skills: ["Python", "Machine Learning", "SQL", "Tableau"]
+    testimonial: "The App Support course with MySQL and Linux exceeded all my expectations. We learned Linux system administration, MySQL database management, and application troubleshooting. The practical training included setting up Linux servers, optimizing MySQL databases, and monitoring application performance. We even worked on real support tickets from actual companies. This hands-on experience was invaluable. Now I'm at Cognizant Chennai, providing 24/7 support for critical business applications. The 5.2 LPA package was beyond my dreams!",
+    skills: ["MySQL", "Linux", "System Administration", "Application Support"]
   }
 ];
 
