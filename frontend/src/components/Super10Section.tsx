@@ -24,16 +24,25 @@ export default function Super10Section() {
 
             <Link href="/super10" className="group">
               <div className="bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-600 text-white rounded-2xl p-8 hover:shadow-2xl hover:shadow-blue-300/30 transition-all duration-500 hover:-translate-y-1 cursor-pointer border border-blue-400/50">
-                <h3 className="text-2xl font-bold mb-4">
-                  <img src="/super10.gif" alt="super10" className="mr-2 h-7 w-7 inline" />
-                  Super10 Program
-                </h3>
-                <p className="text-white/95 mb-6 font-medium">
-                  Eligible for free education? Apply for our Super10 program and 
-                  get complete IT training at no cost.
-                </p>
-                <div className="text-3xl font-bold mb-2 group-hover:text-yellow-200 transition-colors duration-500">100% FREE</div>
-                <div className="text-sm text-white/90 font-medium">For 10 underprivileged students per batch</div>
+                <div className="flex items-start justify-between">
+                  {/* Left Side - Text Content */}
+                  <div className="flex-1 pr-4">
+                    <h3 className="text-2xl font-bold mb-4">
+                      Super10 Program
+                    </h3>
+                    <p className="text-white/95 mb-6 font-medium">
+                      Eligible for free education? Apply for our Super10 program and 
+                      get complete IT training at no cost.
+                    </p>
+                    <div className="text-3xl font-bold mb-2 group-hover:text-yellow-200 transition-colors duration-500">100% FREE</div>
+                    <div className="text-sm text-white/90 font-medium">For 10 underprivileged students per batch</div>
+                  </div>
+                  
+                  {/* Right Side - GIF */}
+                  <div className="flex-shrink-0">
+                    <img src="/super10.gif" alt="super10" className="h-40 w-40" />
+                  </div>
+                </div>
               </div>
             </Link>
           </div>
