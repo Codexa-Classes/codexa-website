@@ -190,18 +190,18 @@ export default function TestimonialsPage() {
           </p>
           
           {/* Placement Statistics */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl p-6">
-              <div className="text-3xl font-bold text-yellow-300 mb-2">500+</div>
-              <div className="text-white/90">Students Placed</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto justify-items-center">
+            <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl p-8 text-center min-w-[200px]">
+              <div className="text-4xl font-bold text-yellow-300 mb-3">500+</div>
+              <div className="text-white/90 text-lg">Students Placed</div>
             </div>
-            <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl p-6">
-              <div className="text-3xl font-bold text-yellow-300 mb-2">80+</div>
-              <div className="text-white/90">Companies</div>
+            <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl p-8 text-center min-w-[200px]">
+              <div className="text-4xl font-bold text-yellow-300 mb-3">80+</div>
+              <div className="text-white/90 text-lg">Companies</div>
             </div>
-            <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl p-6">
-              <div className="text-3xl font-bold text-yellow-300 mb-2">9 LPA</div>
-              <div className="text-white/90">Avg Package</div>
+            <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl p-8 text-center min-w-[200px]">
+              <div className="text-4xl font-bold text-yellow-300 mb-3">7.0 LPA</div>
+              <div className="text-white/90 text-lg">Avg Package</div>
             </div>
           </div>
         </div>
@@ -217,7 +217,7 @@ export default function TestimonialsPage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-7xl mx-auto">
             {companyPlacements.map((company) => (
               <Card key={company.id} className="text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-gray-200 hover:border-blue-300 bg-white">
                 <CardHeader className="pb-4">
@@ -266,7 +266,7 @@ export default function TestimonialsPage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
             {candidateSuccessStories.map((candidate) => (
               <Card key={candidate.id} className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 hover:shadow-xl hover:border-blue-400 transition-all duration-300 hover:-translate-y-2">
                 <CardHeader className="pb-4">
