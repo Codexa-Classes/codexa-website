@@ -16,7 +16,7 @@ const testimonials: Testimonial[] = [
     id: 1,
     name: "Aarav Joshi",
     role: "Web Developer",
-    avatar: "/mahak_meena_profile.jpg", // Using Mahak Meena's profile as Aarav Joshi
+    avatar: "/aarav_joshi.jpg", // Using Aarav Joshi's own profile image
     rating: 5,
     quote: "Codexa Classes transformed my career! Was struggling after engineering. The Bootstrap and Laravel course taught me PHP from scratch. Within 4 months, I was building web apps and got placed at a top tech company! 🚀"
   },
@@ -32,7 +32,7 @@ const testimonials: Testimonial[] = [
     id: 3,
     name: "Siddharth Patil",
     role: "Database Administrator",
-    avatar: "/gaurav_pandit_profile.jpg", // Using Gaurav Pandit's profile as Siddharth Patil
+    avatar: "/siddharth_patil.jpg", // Using Siddharth Patil's own profile image
     rating: 5,
     quote: "The Super10 program gave me an opportunity I never thought possible! Free education that's world-class quality. Learned Oracle and plSQL from industry experts. Optimized real enterprise databases. Forever grateful to Codexa Classes! 🙏"
   },
@@ -40,7 +40,7 @@ const testimonials: Testimonial[] = [
     id: 4,
     name: "Dhruv Deshmukh",
     role: "App Support Engineer",
-    avatar: "/amar_jondhalekar_profile.jpg", // Using Amar Jondhalekar's profile as Dhruv Deshmukh
+    avatar: "/dhruv_deshmukh.jpg", // Using Dhruv Deshmukh's own profile image
     rating: 5,
     quote: "Excellent course structure and placement support! Was a system administrator before. The MySQL and Linux course covered everything. Got placed within 3 months with a 40% salary hike. Placement team was incredibly helpful! 💼"
   },
@@ -48,7 +48,7 @@ const testimonials: Testimonial[] = [
     id: 5,
     name: "Aarohi Bhosale",
     role: "Frontend Developer",
-    avatar: "/ananya_kulkarni_3.jpg", // Using another Ananya Kulkarni profile as Aarohi Bhosale
+    avatar: "/aarohi_bhosale.jpg", // Using Aarohi Bhosale's own profile image
     rating: 5,
     quote: "The ReactJS and Tailwind course is exceptional! Learned fundamental principles of modern web development. Taught us component architecture, responsive design, state management. Portfolio projects were so professional I used them in interviews. Now working with international clients! 🌟"
   },
@@ -56,7 +56,7 @@ const testimonials: Testimonial[] = [
     id: 6,
     name: "Chaitanya Wagh",
     role: "Business Analyst",
-    avatar: "/chaitanya_wagh_profile.jpg", // Using new LinkedIn profile image for Chaitanya Wagh
+    avatar: "/chaitanya_wagh.jpg", // Using Chaitanya Wagh's own profile image
     rating: 5,
     quote: "From zero to Business Analyst in 6 months! Instructors break down complex concepts perfectly. Learned PowerBI, MySQL, and BRD writing. Practical projects with real business scenarios. This place is truly a game-changer! 🎯"
   }
