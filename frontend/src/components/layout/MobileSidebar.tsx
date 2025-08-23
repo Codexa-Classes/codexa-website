@@ -20,7 +20,7 @@ export function MobileSidebar() {
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/courses", label: "Courses" },
-    { href: "/super10", label: "Super10" },
+    { href: "/super10", label: "Super10", icon: <img src="/super10.gif" alt="super10" className="h-5 w-5" /> },
     { href: "/certificate", label: "Certificate" },
     { href: "/contact", label: "Contact" }
   ];
@@ -45,6 +45,7 @@ export function MobileSidebar() {
                 >
                   <Link href={item.href}>
                     <span>{item.label}</span>
+                    {item.icon && item.icon}
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
