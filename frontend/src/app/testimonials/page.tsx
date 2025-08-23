@@ -29,7 +29,7 @@ const companyPlacements = [
   {
     id: 1,
     name: "TCS",
-    logo: "/company-logos/tcs-logo.png",
+    logo: "/tcs-logo.svg",
     logoFallback: "TCS",
     placementCount: 15,
     avgPackage: "4.2 LPA",
@@ -38,7 +38,7 @@ const companyPlacements = [
   {
     id: 2,
     name: "Infosys",
-    logo: "/company-logos/infosys-logo.png",
+    logo: "/infosys-logo.svg",
     logoFallback: "INFY",
     placementCount: 12,
     avgPackage: "3.8 LPA",
@@ -47,7 +47,7 @@ const companyPlacements = [
   {
     id: 3,
     name: "Wipro",
-    logo: "/company-logos/wipro-logo.png",
+    logo: "/wipro-logo.svg",
     logoFallback: "WIPRO",
     placementCount: 10,
     avgPackage: "3.5 LPA",
@@ -56,7 +56,7 @@ const companyPlacements = [
   {
     id: 4,
     name: "HCL",
-    logo: "/company-logos/hcl-logo.png",
+    logo: "/hcl-logo.svg",
     logoFallback: "HCL",
     placementCount: 8,
     avgPackage: "3.9 LPA",
@@ -65,7 +65,7 @@ const companyPlacements = [
   {
     id: 5,
     name: "Tech Mahindra",
-    logo: "/company-logos/tech-mahindra-logo.png",
+    logo: "/tech-mahindra-logo.svg",
     logoFallback: "TECHM",
     placementCount: 6,
     avgPackage: "3.6 LPA",
@@ -74,7 +74,7 @@ const companyPlacements = [
   {
     id: 6,
     name: "Cognizant",
-    logo: "/company-logos/cognizant-logo.png",
+    logo: "/cognizant-logo.svg",
     logoFallback: "CTS",
     placementCount: 7,
     avgPackage: "4.1 LPA",
@@ -91,7 +91,7 @@ const candidateSuccessStories = [
     photoFallback: "PS",
     role: "Full Stack Developer",
     company: "TCS",
-    companyLogo: "/company-logos/tcs-logo.png",
+    companyLogo: "/tcs-logo.svg",
     companyLogoFallback: "TCS",
     package: "4.5 LPA",
     placementDate: "March 2024",
@@ -192,20 +192,16 @@ export default function TestimonialsPage() {
           {/* Placement Statistics */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl p-6">
-              <div className="text-3xl font-bold text-yellow-300 mb-2">150+</div>
+              <div className="text-3xl font-bold text-yellow-300 mb-2">500+</div>
               <div className="text-white/90">Students Placed</div>
             </div>
             <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl p-6">
-              <div className="text-3xl font-bold text-yellow-300 mb-2">25+</div>
+              <div className="text-3xl font-bold text-yellow-300 mb-2">80+</div>
               <div className="text-white/90">Companies</div>
             </div>
             <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl p-6">
-              <div className="text-3xl font-bold text-yellow-300 mb-2">4.2 LPA</div>
+              <div className="text-3xl font-bold text-yellow-300 mb-2">9 LPA</div>
               <div className="text-white/90">Avg Package</div>
-            </div>
-            <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl p-6">
-              <div className="text-3xl font-bold text-yellow-300 mb-2">95%</div>
-              <div className="text-white/90">Placement Rate</div>
             </div>
           </div>
         </div>
@@ -225,8 +221,16 @@ export default function TestimonialsPage() {
             {companyPlacements.map((company) => (
               <Card key={company.id} className="text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-gray-200 hover:border-blue-300 bg-white">
                 <CardHeader className="pb-4">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 font-bold text-sm">
-                    {company.logoFallback}
+                  <div className="w-16 h-16 mx-auto mb-4 bg-white rounded-lg flex items-center justify-center border-2 border-gray-200 hover:border-blue-300 transition-colors">
+                    {company.logo ? (
+                      <img 
+                        src={company.logo} 
+                        alt={`${company.name} logo`}
+                        className="w-12 h-12 object-contain"
+                      />
+                    ) : (
+                      <span className="text-blue-600 font-bold text-sm">{company.logoFallback}</span>
+                    )}
                   </div>
                   <CardTitle className="text-lg text-gray-900 font-bold">{company.name}</CardTitle>
                 </CardHeader>
@@ -286,8 +290,16 @@ export default function TestimonialsPage() {
                       
                       {/* Company Info */}
                       <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-200">
-                        <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center text-gray-600 font-bold text-xs">
-                          {candidate.companyLogoFallback}
+                        <div className="w-8 h-8 bg-white rounded flex items-center justify-center border border-gray-200">
+                          {candidate.companyLogo ? (
+                            <img 
+                              src={candidate.companyLogo} 
+                              alt={`${candidate.company} logo`}
+                              className="w-6 h-6 object-contain"
+                            />
+                          ) : (
+                            <span className="text-gray-600 font-bold text-xs">{candidate.companyLogoFallback}</span>
+                          )}
                         </div>
                         <div>
                           <div className="font-semibold text-gray-900">{candidate.company}</div>
