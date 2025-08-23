@@ -18,7 +18,7 @@ export default function AppFooter() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                       <div>
               <div className="mb-4">
-                <Logo />
+                <Logo size="2xl" />
               </div>
               <p className="text-muted-foreground">
               Empowering futures through quality IT education. Learn programming, web development, and database management with industry experts.
