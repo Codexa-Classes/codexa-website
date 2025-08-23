@@ -18,7 +18,7 @@ const testimonials: Testimonial[] = [
     role: "Web Developer",
     avatar: "/mahak_meena_profile.jpg", // Using Mahak Meena's profile as Aarav Joshi
     rating: 5,
-    quote: "Codexa Classes transformed my career completely! I was struggling to find a job after my engineering degree. The Web Development course with Bootstrap and Laravel was exactly what I needed. My instructor taught me PHP development and modern web frameworks from the ground up. Within 4 months, I was building complete web applications with beautiful responsive designs and got placed at a top tech company. The curriculum is perfectly aligned with industry needs."
+    quote: "Codexa Classes transformd my carrer completley! I was strugling to find a job after my enginering degre. The Web Development cours with Bootstrap and Laravel was exactley what I neded. My instructr taught me PHP developmnt and modern web framworks from the ground up. Within 4 months, I was bilding compleet web aplicatons with beautifull responsiv designz and got placd at a top tech compny. The curiculum is perfectley alignd with industy nedz! 🚀"
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const testimonials: Testimonial[] = [
     role: "Data Analyst", 
     avatar: "/ananya_kulkarni_2.jpg", // Using real Ananya Kulkarni profile
     rating: 5,
-    quote: "I came from a completely non-tech background - I was working as a content writer before joining Codexa Classes. The Data Analyst course with PowerBI, SQL, SAP, and Python made everything click for me. We worked with real business datasets and created interactive dashboards. The instructors were so patient with my questions. Now I'm working on exciting data analysis projects and absolutely loving every moment of my new career!"
+    quote: "I came from a completley non-tech backgrund - I was workng as a contnt writr befor joining Codexa Classes. The Data Analystt cours with PowerBI, SQL, SAP, and Python made evrything clik for me. We workd with real busness datasetz and creatd interactiv dashbords. The instructrs wer soo patient with my questonz. Now I'm workng on excitng data analysiz projectz and absolutley lovng evry momnt of my new carrer! 📈"
   },
   {
     id: 3,
@@ -34,7 +34,7 @@ const testimonials: Testimonial[] = [
     role: "Database Administrator",
     avatar: "/gaurav_pandit_profile.jpg", // Using Gaurav Pandit's profile as Siddharth Patil
     rating: 5,
-    quote: "The Super10 program gave me an opportunity I never thought possible. Free education that's actually world-class quality! I learned Oracle database administration and plSQL from industry experts. The practical projects were amazing - we optimized real enterprise databases and wrote complex stored procedures. I'm forever grateful to Codexa Classes for believing in me and giving me this chance to transform my life."
+    quote: "The Super10 program gav me an oportunity I nevr thought posible. Fre educaton that's actualy world-clas qualitey! I learnd Oracle databse administrashun and plSQL from industy expertز. The practcal projectz wer amazng - we optimizd real enterpriz databsez and wrot complx stord proceduers. I'm forevr gratefull to Codexa Classes for beleivng in me and givng me this chanc to transform my lif! 🙏"
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const testimonials: Testimonial[] = [
     role: "App Support Engineer",
     avatar: "/amar_jondhalekar_profile.jpg", // Using Amar Jondhalekar's profile as Dhruv Deshmukh
     rating: 5,
-    quote: "Excellent course structure and amazing placement support! I was working as a system administrator before joining here. The App Support course with MySQL and Linux covered everything from database optimization to server management. Within 3 months of completing the course, I got placed with a 40% salary hike. The placement team was incredibly helpful throughout the process. I highly recommend Codexa Classes to anyone serious about their IT career!"
+    quote: "Excelent cours structur and amazng placemnt suport! I was workng as a systm administrtr befor joinng her. The App Suport cours with MySQL and Linux coverd evrything from databse optimizashun to servr managmnt. Within 3 monthz of completng the cours, I got placd with a 40% salry hik. The placemnt tem was incredibley helpfull thrughout the proces. I highlly recomend Codexa Classes to anyon seriuz about ther IT carrer! 💼"
   },
   {
     id: 5,
@@ -50,7 +50,7 @@ const testimonials: Testimonial[] = [
     role: "Frontend Developer",
     avatar: "/ananya_kulkarni_3.jpg", // Using another Ananya Kulkarni profile as Aarohi Bhosale
     rating: 5,
-    quote: "The Frontend Development course with ReactJS and Tailwind is absolutely exceptional! I learned not just the tools but the fundamental principles of modern web development. The instructors taught us component-based architecture, responsive design, and state management. The portfolio projects we created were so professional that I used them directly in my job interviews. Now I'm working with international clients and loving every project!"
+    quote: "The Frontend Developmnt cours with ReactJS and Tailwnd is absolutley exceptionall! I learnd not just the toolz but the fundamntl princpls of modrn web developmnt. The instructrs taught us compnnt-basd architectur, responsiv desgin, and stat managmnt. The portfolo projectz we creatd wer soo professionl that I usd them directley in my job intervewz. Now I'm workng with internationl clints and lovng evry projct! 🌟"
   },
   {
     id: 6,
@@ -58,7 +58,7 @@ const testimonials: Testimonial[] = [
     role: "Business Analyst",
     avatar: "/swapnali_nalawade_profile.jpg", // Using Swapnali Nalawade's profile as Chaitanya Wagh
     rating: 5,
-    quote: "From zero business analysis knowledge to a Business Analyst role in just 6 months! The instructors here break down complex concepts so well that even beginners can understand. We learned PowerBI for data visualization, MySQL for database queries, and how to write comprehensive Business Requirements Documents (BRD). The practical projects involved real business scenarios. This place is truly a game-changer for anyone wanting to enter the business analysis field."
+    quote: "From zero busness analysiz knowleg to a Busness Analystt rol in just 6 monthz! The instructrs her brek down complx conceptz soo wel that evn beginrz can undrstnd. We learnd PowerBI for data visualizashun, MySQL for databse queryz, and how to writ comprehensiv Busness Requirmts Documts (BRD). The practcal projectz involvd real busness scenarioz. This plac is truley a gam-changr for anyon wantng to entr the busness analysiz feld! 🎯"
   }
 ];
 

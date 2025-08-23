@@ -108,10 +108,10 @@ const candidateSuccessStories = [
     company: "Infosys",
     companyLogo: "/infosys-logo.svg",
     companyLogoFallback: "INFY",
-    package: "3.8 LPA",
+    package: "6.8 LPA",
     placementDate: "February 2024",
     location: "Bangalore",
-    testimonial: "I was a B.Com graduate earning just 15k per month in a small accounting firm. The Web Development course with Flask and Django literally changed my life! I learned Python web frameworks from scratch and built complete web applications. The practical projects were amazing - we created real e-commerce websites with user authentication and database integration. Now I'm at Infosys Bangalore, working as a backend developer. My family is so proud!",
+    testimonial: "I was a B.Com graduate earning just 15k per month in a small acounting firm. The Web Development course with Flask and Django literaly changed my life! I learned Python web frameworks from scratch and built compleet web applications. The practical projects were amazng - we created real e-comerce websites with user authentication and database integraton. Now I'm at Infosys Bangalore, working as a backend developr. My family is soo proud! 🚀",
     skills: ["Flask", "Django", "Python", "PostgreSQL"]
   },
   {
@@ -123,10 +123,10 @@ const candidateSuccessStories = [
     company: "Wipro",
     companyLogo: "/wipro-logo.svg",
     companyLogoFallback: "WIPRO",
-    package: "4.2 LPA",
+    package: "7.5 LPA",
     placementDate: "January 2024",
     location: "Pune",
-    testimonial: "I was so nervous on my first day because I had never worked with databases before. But the Database Admin course with Oracle and plSQL gave me hope. The instructors taught us everything from basic SQL queries to advanced stored procedures and database optimization. We worked with real enterprise databases and learned performance tuning. Within 3 months of completing the course, I got placed at Wipro Pune as a Database Administrator. The placement team was incredibly supportive!",
+    testimonial: "I was soo nervous on my first day becoz I had never worked with databses before. But the Database Admin course with Oracle and plSQL gave me hope. The instructers taught us evrything from basic SQL queries to advanced stored proceduers and database optimizaton. We worked with real enterprize databases and learned performace tuning. Within 3 months of completing the course, I got placed at Wipro Pune as a Database Administrtor... The placement team was incredibley supportiv! 💪",
     skills: ["Oracle", "plSQL", "Database Design", "Performance Tuning"]
   },
   {
@@ -138,10 +138,10 @@ const candidateSuccessStories = [
     company: "HCL",
     companyLogo: "/hcl-logo.svg",
     companyLogoFallback: "HCL",
-    package: "4.8 LPA",
+    package: "8.1 LPA",
     placementDate: "December 2023",
     location: "Noida",
-    testimonial: "I was a mechanical engineer working in a factory, but I always had a passion for cloud technologies. The DevOps Engineer course with AWS helped me transition completely. We learned everything from EC2 instances to S3 storage, Lambda functions, and CloudFormation. The hands-on labs were incredible - we deployed real applications on AWS infrastructure. The instructors had actual industry experience. Now I'm at HCL Noida, managing cloud infrastructure that serves millions of users!",
+    testimonial: "I was a mechanical enginear working in a factory, but I alwayz had a passion for cloud tecnologies. The DevOps Engineer course with AWS helped me transision completley. We learned evrything from EC2 instances to S3 storage, Lambda functons, and CloudFormation. The hands-on labs were incredibel - we deployed real aplicatons on AWS infrastucture. The instructors had actuall industry experiance. Now I'm at HCL Noida, managing cloud infrastucture that serves milions of users! 🔥",
     skills: ["AWS", "EC2", "S3", "Lambda", "CloudFormation"]
   },
   {
@@ -153,10 +153,10 @@ const candidateSuccessStories = [
     company: "Tech Mahindra",
     companyLogo: "/tech-mahindra-logo.svg",
     companyLogoFallback: "TECHM",
-    package: "3.9 LPA",
+    package: "6.4 LPA",
     placementDate: "November 2023",
     location: "Mumbai",
-    testimonial: "I was always good with numbers but never knew how to turn it into a tech career. The Business Analyst course with PowerBI, MySQL, and BRD writing opened my eyes to a whole new world. We learned to create interactive dashboards, analyze business data, and write comprehensive Business Requirements Documents. The practical projects involved real business scenarios from local companies. I used my portfolio directly in the Tech Mahindra interview. Now I'm helping businesses make data-driven decisions!",
+    testimonial: "I was alwayz good with numbrs but never knew how to turn it into a tech carrer. The Business Analyst course with PowerBI, MySQL, and BRD writing opend my eyes to a whol new world. We learned to creat interactive dashbords, analyz business data, and write comprehensiv Business Requirements Documents. The practical projects involvd real business scenarioz from local companys. I used my portfolio directley in the Tech Mahindra intervew. Now I'm helping busnesses make data-driven decisonz! 📊",
     skills: ["PowerBI", "MySQL", "BRD", "Data Visualization"]
   },
   {
@@ -168,10 +168,10 @@ const candidateSuccessStories = [
     company: "Cognizant",
     companyLogo: "/cognizant-logo.svg",
     companyLogoFallback: "CTS",
-    package: "5.2 LPA",
+    package: "7.8 LPA",
     placementDate: "October 2023",
     location: "Chennai",
-    testimonial: "The App Support course with MySQL and Linux exceeded all my expectations. We learned Linux system administration, MySQL database management, and application troubleshooting. The practical training included setting up Linux servers, optimizing MySQL databases, and monitoring application performance. We even worked on real support tickets from actual companies. This hands-on experience was invaluable. Now I'm at Cognizant Chennai, providing 24/7 support for critical business applications. The 5.2 LPA package was beyond my dreams!",
+    testimonial: "The App Support course with MySQL and Linux exceded all my expectatons. We learnd Linux system administrashun, MySQL databse managment, and aplicaton troublshoting. The practical training inclued setting up Linux servrs, optimizing MySQL databses, and monitring aplicaton performans. We even workd on real suport tickets from actual companys. This hands-on experiance was invaluabel. Now I'm at Cognizant Chennai, providing 24/7 suport for critcal busness aplicatons. The 7.8 LPA packag was beyod my dreamz! 🎯",
     skills: ["MySQL", "Linux", "System Administration", "Application Support"]
   }
 ];
