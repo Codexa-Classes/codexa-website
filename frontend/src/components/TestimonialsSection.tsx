@@ -13,51 +13,51 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Priya Sharma",
+    name: "Aarav Joshi",
     role: "Full Stack Developer",
-    avatar: "PS",
+    avatar: "AJ",
     rating: 5,
-    quote: "Codexa Classes transformed my career! The practical approach and real-world projects helped me land my dream job at a top tech company. The instructors are incredibly supportive."
+    quote: "[Codexa Classes transformed my career! The practical approach and real-world projects helped me land my dream job at a top tech company. The instructors are incredibly supportive.]"
   },
   {
     id: 2,
-    name: "Rahul Kumar",
+    name: "Ananya Kulkarni",
     role: "Frontend Developer",
-    avatar: "RK",
+    avatar: "AK",
     rating: 5,
-    quote: "I came from a non-tech background, but the structured curriculum and hands-on learning made everything click. Now I'm working on exciting projects and loving every moment!"
+    quote: "[I came from a non-tech background, but the structured curriculum and hands-on learning made everything click. Now I'm working on exciting projects and loving every moment!]"
   },
   {
     id: 3,
-    name: "Anjali Patel",
+    name: "Siddharth Patil",
     role: "Backend Developer",
-    avatar: "AP",
+    avatar: "SP",
     rating: 5,
-    quote: "The Super10 program gave me the opportunity I never thought possible. Free education that's actually world-class quality. I'm forever grateful to Codexa Classes."
+    quote: "[The Super10 program gave me the opportunity I never thought possible. Free education that's actually world-class quality. I'm forever grateful to Codexa Classes.]"
   },
   {
     id: 4,
-    name: "Vikram Singh",
+    name: "Dhruv Deshmukh",
     role: "DevOps Engineer",
-    avatar: "VS",
+    avatar: "DD",
     rating: 5,
-    quote: "Excellent course structure and amazing placement support. Within 3 months of completing the course, I got placed with a 40% salary hike. Highly recommended!"
+    quote: "[Excellent course structure and amazing placement support. Within 3 months of completing the course, I got placed with a 40% salary hike. Highly recommended!]"
   },
   {
     id: 5,
-    name: "Meera Reddy",
+    name: "Aarohi Bhosale",
     role: "UI/UX Designer",
-    avatar: "MR",
+    avatar: "AB",
     rating: 5,
-    quote: "The design courses here are exceptional. I learned not just the tools but the principles of good design. Now I'm working with international clients!"
+    quote: "[The design courses here are exceptional. I learned not just the tools but the principles of good design. Now I'm working with international clients!]"
   },
   {
     id: 6,
-    name: "Arjun Malhotra",
+    name: "Chaitanya Wagh",
     role: "Data Scientist",
-    avatar: "AM",
+    avatar: "CW",
     rating: 5,
-    quote: "From zero coding knowledge to a data scientist role in just 6 months! The instructors break down complex concepts so well. This place is a game-changer."
+    quote: "[From zero coding knowledge to a data scientist role in just 6 months! The instructors break down complex concepts so well. This place is a game-changer.]"
   }
 ];
 
