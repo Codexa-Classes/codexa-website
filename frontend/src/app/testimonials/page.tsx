@@ -32,7 +32,7 @@ const companyPlacements = [
           logo: "/tcs-logo.png",
       logoFallback: "TCS",
     placementCount: 15,
-    avgPackage: "4.2 LPA",
+    avgPackage: "6.8 LPA",
     location: "Mumbai, Pune, Bangalore"
   },
   {
@@ -41,7 +41,7 @@ const companyPlacements = [
     logo: "/infosys-logo.svg",
     logoFallback: "INFY",
     placementCount: 12,
-    avgPackage: "3.8 LPA",
+    avgPackage: "6.5 LPA",
     location: "Bangalore, Hyderabad, Chennai"
   },
   {
@@ -50,7 +50,7 @@ const companyPlacements = [
     logo: "/wipro-logo.svg",
     logoFallback: "WIPRO",
     placementCount: 10,
-    avgPackage: "3.5 LPA",
+    avgPackage: "6.2 LPA",
     location: "Bangalore, Pune, Gurgaon"
   },
   {
@@ -59,7 +59,7 @@ const companyPlacements = [
     logo: "/hcl-logo.svg",
     logoFallback: "HCL",
     placementCount: 8,
-    avgPackage: "3.9 LPA",
+    avgPackage: "6.9 LPA",
     location: "Noida, Chennai, Bangalore"
   },
   {
@@ -68,7 +68,7 @@ const companyPlacements = [
     logo: "/tech-mahindra-logo.svg",
     logoFallback: "TECHM",
     placementCount: 6,
-    avgPackage: "3.6 LPA",
+    avgPackage: "6.3 LPA",
     location: "Mumbai, Pune, Hyderabad"
   },
   {
@@ -77,7 +77,7 @@ const companyPlacements = [
     logo: "/cognizant-logo.png",
     logoFallback: "CTS",
     placementCount: 7,
-    avgPackage: "4.1 LPA",
+    avgPackage: "6.7 LPA",
     location: "Chennai, Bangalore, Pune"
   }
 ];
@@ -200,7 +200,7 @@ export default function TestimonialsPage() {
               <div className="text-white/90 text-lg">Companies</div>
             </div>
             <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl p-8 text-center min-w-[200px]">
-              <div className="text-4xl font-bold text-yellow-300 mb-3">7.0 LPA</div>
+              <div className="text-4xl font-bold text-yellow-300 mb-3">6.6 LPA</div>
               <div className="text-white/90 text-lg">Avg Package</div>
             </div>
           </div>
@@ -219,7 +219,7 @@ export default function TestimonialsPage() {
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-7xl mx-auto">
             {companyPlacements.map((company) => (
-              <div key={company.id} className="text-center hover:scale-105 transition-all duration-300">
+              <div key={company.id} className="text-center hover:scale-105 transition-all duration-300 bg-white rounded-xl p-6 shadow-md hover:shadow-xl border border-gray-100">
                 <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
                   {company.logo ? (
                     <img 
@@ -296,16 +296,25 @@ export default function TestimonialsPage() {
 
                       {/* Skills/Tech Stack */}
                       <div className="flex items-start justify-between">
-                        <div className="flex flex-wrap gap-2">
-                          {candidate.skills.map((skill, index) => (
-                            <Badge key={index} variant="outline" className="text-xs">
-                              {skill}
-                            </Badge>
-                          ))}
+                        <div className="flex flex-col gap-2 w-1/2">
+                          <div className="flex flex-wrap gap-2">
+                            {candidate.skills.slice(0, Math.ceil(candidate.skills.length / 2)).map((skill, index) => (
+                              <Badge key={index} variant="outline" className="text-xs">
+                                {skill}
+                              </Badge>
+                            ))}
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {candidate.skills.slice(Math.ceil(candidate.skills.length / 2)).map((skill, index) => (
+                              <Badge key={index + Math.ceil(candidate.skills.length / 2)} variant="outline" className="text-xs">
+                                {skill}
+                              </Badge>
+                            ))}
+                          </div>
                         </div>
                         
                         {/* Vertical Divider */}
-                        <div className="w-px h-16 bg-gray-200 mx-4 flex-shrink-0"></div>
+                        <div className="w-px h-20 bg-gray-200 mx-6 flex-shrink-0"></div>
                         
                         {/* Company Info - Logo and details without card */}
                         <div className="flex items-center gap-4 flex-shrink-0">
@@ -313,11 +322,11 @@ export default function TestimonialsPage() {
                             <img 
                               src={candidate.companyLogo} 
                               alt={`${candidate.company} logo`}
-                              className="w-12 h-12 object-contain"
+                              className="w-16 h-16 object-contain"
                             />
                           ) : (
-                            <div className="w-12 h-12 bg-gray-100 rounded flex items-center justify-center">
-                              <span className="text-gray-600 font-bold text-sm">{candidate.companyLogoFallback}</span>
+                            <div className="w-16 h-16 bg-gray-100 rounded flex items-center justify-center">
+                              <span className="text-gray-600 font-bold text-base">{candidate.companyLogoFallback}</span>
                             </div>
                           )}
                           <div>
