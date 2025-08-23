@@ -18,7 +18,7 @@ const testimonials: Testimonial[] = [
     role: "Web Developer",
     avatar: "/mahak_meena_profile.jpg", // Using Mahak Meena's profile as Aarav Joshi
     rating: 5,
-    quote: "Codexa Classes transformd my carrer completley! I was strugling to find a job after my enginering degre. The Web Development cours with Bootstrap and Laravel was exactley what I neded. My instructr taught me PHP developmnt and modern web framworks from the ground up. Within 4 months, I was bilding compleet web aplicatons with beautifull responsiv designz and got placd at a top tech compny. The curiculum is perfectley alignd with industy nedz! 🚀"
+    quote: "Codexa Classes completely transformed my career! Struggling to find a job after engineering. The Bootstrap and Laravel course was exactly what I needed. Learned PHP and modern web frameworks from scratch. Within 4 months, I was building complete web applications and got placed at a top tech company! 🚀"
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const testimonials: Testimonial[] = [
     role: "Data Analyst", 
     avatar: "/ananya_kulkarni_2.jpg", // Using real Ananya Kulkarni profile
     rating: 5,
-    quote: "I came from a completley non-tech backgrund - I was workng as a contnt writr befor joining Codexa Classes. The Data Analystt cours with PowerBI, SQL, SAP, and Python made evrything clik for me. We workd with real busness datasetz and creatd interactiv dashbords. The instructrs wer soo patient with my questonz. Now I'm workng on excitng data analysiz projectz and absolutley lovng evry momnt of my new carrer! 📈"
+    quote: "Came from a completely non-tech background - was working as a content writer. The PowerBI, SQL, SAP, and Python course made everything click! Worked with real business datasets and created interactive dashboards. Instructors were so patient with my questions. Now working on exciting data analysis projects and absolutely loving every moment! 📈"
   },
   {
     id: 3,
@@ -34,7 +34,7 @@ const testimonials: Testimonial[] = [
     role: "Database Administrator",
     avatar: "/gaurav_pandit_profile.jpg", // Using Gaurav Pandit's profile as Siddharth Patil
     rating: 5,
-    quote: "The Super10 program gav me an oportunity I nevr thought posible. Fre educaton that's actualy world-clas qualitey! I learnd Oracle databse administrashun and plSQL from industy expertز. The practcal projectz wer amazng - we optimizd real enterpriz databsez and wrot complx stord proceduers. I'm forevr gratefull to Codexa Classes for beleivng in me and givng me this chanc to transform my lif! 🙏"
+    quote: "The Super10 program gave me an opportunity I never thought possible. Free education that's actually world-class quality! Learned Oracle database administration and plSQL from industry experts. The practical projects were amazing - we optimized real enterprise databases and wrote complex stored procedures. Forever grateful to Codexa Classes for believing in me! 🙏"
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const testimonials: Testimonial[] = [
     role: "App Support Engineer",
     avatar: "/amar_jondhalekar_profile.jpg", // Using Amar Jondhalekar's profile as Dhruv Deshmukh
     rating: 5,
-    quote: "Excelent cours structur and amazng placemnt suport! I was workng as a systm administrtr befor joinng her. The App Suport cours with MySQL and Linux coverd evrything from databse optimizashun to servr managmnt. Within 3 monthz of completng the cours, I got placd with a 40% salry hik. The placemnt tem was incredibley helpfull thrughout the proces. I highlly recomend Codexa Classes to anyon seriuz about ther IT carrer! 💼"
+    quote: "Excellent course structure and amazing placement support! Was working as a system administrator before joining. The MySQL and Linux course covered everything from database optimization to server management. Within 3 months, I got placed with a 40% salary hike. The placement team was incredibly helpful throughout! 💼"
   },
   {
     id: 5,
@@ -50,7 +50,7 @@ const testimonials: Testimonial[] = [
     role: "Frontend Developer",
     avatar: "/ananya_kulkarni_3.jpg", // Using another Ananya Kulkarni profile as Aarohi Bhosale
     rating: 5,
-    quote: "The Frontend Developmnt cours with ReactJS and Tailwnd is absolutley exceptionall! I learnd not just the toolz but the fundamntl princpls of modrn web developmnt. The instructrs taught us compnnt-basd architectur, responsiv desgin, and stat managmnt. The portfolo projectz we creatd wer soo professionl that I usd them directley in my job intervewz. Now I'm workng with internationl clints and lovng evry projct! 🌟"
+    quote: "The ReactJS and Tailwind course is absolutely exceptional! Learned not just the tools but the fundamental principles of modern web development. Taught us component-based architecture, responsive design, and state management. The portfolio projects were so professional that I used them directly in job interviews. Now working with international clients and loving every project! 🌟"
   },
   {
     id: 6,
@@ -58,7 +58,7 @@ const testimonials: Testimonial[] = [
     role: "Business Analyst",
     avatar: "/swapnali_nalawade_profile.jpg", // Using Swapnali Nalawade's profile as Chaitanya Wagh
     rating: 5,
-    quote: "From zero busness analysiz knowleg to a Busness Analystt rol in just 6 monthz! The instructrs her brek down complx conceptz soo wel that evn beginrz can undrstnd. We learnd PowerBI for data visualizashun, MySQL for databse queryz, and how to writ comprehensiv Busness Requirmts Documts (BRD). The practcal projectz involvd real busness scenarioz. This plac is truley a gam-changr for anyon wantng to entr the busness analysiz feld! 🎯"
+    quote: "From zero business analysis knowledge to a Business Analyst role in just 6 months! The instructors break down complex concepts so well that even beginners can understand. Learned PowerBI for data visualization, MySQL for database queries, and how to write comprehensive Business Requirements Documents. The practical projects involved real business scenarios. This place is truly a game-changer! 🎯"
   }
 ];
 
@@ -90,15 +90,15 @@ export function TestimonialsSection() {
                   <div>
                     <CardTitle className="text-lg text-gray-900 font-bold">{testimonial.name}</CardTitle>
                     <CardDescription className="text-blue-600 font-medium">{testimonial.role}</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="flex gap-1 mb-3">
+                  
+                <div className="flex gap-1 mb-3 mt-2">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className={`h-4 w-4 ${i < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
                   ))}
+                </div></div>
                 </div>
+              </CardHeader>
+              <CardContent>
                 <blockquote className="text-gray-700 leading-relaxed italic">
                   "{testimonial.quote}"
                 </blockquote>
