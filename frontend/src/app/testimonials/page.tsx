@@ -295,7 +295,7 @@ export default function TestimonialsPage() {
                       </div>
 
                       {/* Skills/Tech Stack */}
-                      <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-start justify-between">
                         <div className="flex flex-wrap gap-2">
                           {candidate.skills.map((skill, index) => (
                             <Badge key={index} variant="outline" className="text-xs">
@@ -308,27 +308,27 @@ export default function TestimonialsPage() {
                         <div className="w-px h-16 bg-gray-200 mx-4 flex-shrink-0"></div>
                         
                         {/* Company Info - Logo and details without card */}
-                        <div className="flex items-center gap-3 flex-shrink-0">
+                        <div className="flex items-center gap-4 flex-shrink-0">
                           {candidate.companyLogo ? (
                             <img 
                               src={candidate.companyLogo} 
                               alt={`${candidate.company} logo`}
-                              className="w-8 h-8 object-contain"
+                              className="w-12 h-12 object-contain"
                             />
                           ) : (
-                            <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center">
-                              <span className="text-gray-600 font-bold text-xs">{candidate.companyLogoFallback}</span>
+                            <div className="w-12 h-12 bg-gray-100 rounded flex items-center justify-center">
+                              <span className="text-gray-600 font-bold text-sm">{candidate.companyLogoFallback}</span>
                             </div>
                           )}
                           <div>
-                            <div className="font-semibold text-gray-900 text-sm">{candidate.company}</div>
-                            <div className="text-xs text-gray-600">{candidate.package} • {candidate.location}</div>
+                            <div className="font-bold text-gray-900 text-base">{candidate.company}</div>
+                            <div className="text-sm text-gray-600">{candidate.package} • {candidate.location}</div>
                           </div>
                         </div>
                       </div>
                       
                       {/* Placement Date */}
-                      <div className="flex items-center gap-2 mt-4 text-sm text-gray-500">
+                      <div className="flex items-center gap-2 text-sm text-gray-500">
                         <Calendar className="h-4 w-4" />
                         <span>Placed in {candidate.placementDate}</span>
                       </div>
