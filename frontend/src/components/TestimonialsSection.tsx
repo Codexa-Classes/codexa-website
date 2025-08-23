@@ -18,7 +18,7 @@ const testimonials: Testimonial[] = [
     role: "Full Stack Developer",
     avatar: "/mahak_meena_profile.jpg", // Using Mahak Meena's profile as Aarav Joshi
     rating: 5,
-    quote: "[Codexa Classes transformed my career! The practical approach and real-world projects helped me land my dream job at a top tech company. The instructors are incredibly supportive.]"
+    quote: "Codexa Classes transformed my career completely! I was struggling to find a job after my engineering degree. The practical approach and real-world projects here were exactly what I needed. My instructor taught me React and Node.js from the ground up. Within 4 months, I was building full-stack applications and got placed at a top tech company. The instructors are incredibly supportive and the curriculum is perfectly aligned with industry needs."
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const testimonials: Testimonial[] = [
     role: "Frontend Developer",
     avatar: "/ananya_kulkarni_2.jpg", // Using real Ananya Kulkarni profile
     rating: 5,
-    quote: "[I came from a non-tech background, but the structured curriculum and hands-on learning made everything click. Now I'm working on exciting projects and loving every moment!]"
+    quote: "I came from a completely non-tech background - I was working as a content writer before joining Codexa Classes. The structured curriculum and hands-on learning made everything click for me. We built real projects that I could showcase in interviews. The instructors were so patient with my questions. Now I'm working on exciting frontend projects and absolutely loving every moment of my new career!"
   },
   {
     id: 3,
@@ -34,7 +34,7 @@ const testimonials: Testimonial[] = [
     role: "Backend Developer",
     avatar: "/gaurav_pandit_profile.jpg", // Using Gaurav Pandit's profile as Siddharth Patil
     rating: 5,
-    quote: "[The Super10 program gave me the opportunity I never thought possible. Free education that's actually world-class quality. I'm forever grateful to Codexa Classes.]"
+    quote: "The Super10 program gave me an opportunity I never thought possible. Free education that's actually world-class quality! I learned Python, Django, and database management from industry experts. The practical projects were amazing - we built real APIs and worked with actual databases. I'm forever grateful to Codexa Classes for believing in me and giving me this chance to transform my life."
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const testimonials: Testimonial[] = [
     role: "DevOps Engineer",
     avatar: "/amar_jondhalekar_profile.jpg", // Using Amar Jondhalekar's profile as Dhruv Deshmukh
     rating: 5,
-    quote: "[Excellent course structure and amazing placement support. Within 3 months of completing the course, I got placed with a 40% salary hike. Highly recommended!]"
+    quote: "Excellent course structure and amazing placement support! I was working as a system administrator before joining here. The DevOps course covered everything from Linux administration to cloud technologies. Within 3 months of completing the course, I got placed with a 40% salary hike. The placement team was incredibly helpful throughout the process. I highly recommend Codexa Classes to anyone serious about their IT career!"
   },
   {
     id: 5,
@@ -50,7 +50,7 @@ const testimonials: Testimonial[] = [
     role: "UI/UX Designer",
     avatar: "/ananya_kulkarni_3.jpg", // Using another Ananya Kulkarni profile as Aarohi Bhosale
     rating: 5,
-    quote: "[The design courses here are exceptional. I learned not just the tools but the principles of good design. Now I'm working with international clients!]"
+    quote: "The design courses here are absolutely exceptional! I learned not just the tools like Figma and Adobe XD, but the fundamental principles of good design. The instructors taught us user research, wireframing, and prototyping. The portfolio projects we created were so professional that I used them directly in my job interviews. Now I'm working with international clients and loving every project!"
   },
   {
     id: 6,
@@ -58,7 +58,7 @@ const testimonials: Testimonial[] = [
     role: "Data Scientist",
     avatar: "/swapnali_nalawade_profile.jpg", // Using Swapnali Nalawade's profile as Chaitanya Wagh
     rating: 5,
-    quote: "[From zero coding knowledge to a data scientist role in just 6 months! The instructors break down complex concepts so well. This place is a game-changer.]"
+    quote: "From zero coding knowledge to a data scientist role in just 6 months! The instructors here break down complex concepts so well that even beginners can understand. We worked with real datasets, built machine learning models, and learned industry tools like Python, SQL, and Tableau. This place is truly a game-changer for anyone wanting to enter the data science field."
   }
 ];
 

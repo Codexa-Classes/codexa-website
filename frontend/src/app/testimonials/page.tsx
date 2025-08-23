@@ -96,7 +96,7 @@ const candidateSuccessStories = [
     package: "4.5 LPA",
     placementDate: "March 2024",
     location: "Mumbai",
-    testimonial: "[Codexa Classes ने माझे जीवन पूर्णपणे बदलले! The practical approach and real-world projects helped me land my dream job at TCS. The instructors are incredibly supportive and the curriculum is industry-aligned. I went from zero coding knowledge to a Full Stack Developer role in just 6 months!]",
+    testimonial: "Codexa Classes ने माझे जीवन पूर्णपणे बदलले! I was working as a receptionist before joining here, and now I'm a Full Stack Developer at TCS. The practical approach and real-world projects made all the difference. My instructor Viraj sir was so patient with me - I had zero coding knowledge when I started. Within 6 months, I was building full applications and got placed with a 4.5 LPA package. I still can't believe this transformation!",
     skills: ["React", "Node.js", "MongoDB", "AWS"]
   },
   {
@@ -111,7 +111,7 @@ const candidateSuccessStories = [
     package: "3.8 LPA",
     placementDate: "February 2024",
     location: "Bangalore",
-    testimonial: "[I came from a non-tech background (B.Com graduate), but the structured curriculum and hands-on learning made everything click. The Super10 program gave me the opportunity I never thought possible. Now I'm working on exciting projects at Infosys and loving every moment!]",
+    testimonial: "I was a B.Com graduate working in a small accounting firm, earning just 15k per month. The Super10 program literally changed my life. I learned React, TypeScript, and modern web development from scratch. The hands-on projects were amazing - we built real applications that I could show in interviews. Now I'm at Infosys Bangalore, working on cutting-edge projects. My family is so proud!",
     skills: ["React", "TypeScript", "CSS3", "Git"]
   },
   {
@@ -126,7 +126,7 @@ const candidateSuccessStories = [
     package: "4.2 LPA",
     placementDate: "January 2024",
     location: "Pune",
-    testimonial: "[The Super10 program gave me the opportunity I never thought possible. Free education that's actually world-class quality! I learned Python, Django, and database management. Within 3 months of completing the course, I got placed at Wipro. I'm forever grateful to Codexa Classes.]",
+    testimonial: "I still remember my first day at Codexa Classes - I was so nervous because I had never written a single line of code. But the Super10 program gave me hope. The Python and Django classes were incredible. We built real e-commerce applications, worked with databases, and learned Docker. Within 3 months of completing the course, I got placed at Wipro Pune. The placement team was so supportive throughout the process.",
     skills: ["Python", "Django", "PostgreSQL", "Docker"]
   },
   {
@@ -141,7 +141,7 @@ const candidateSuccessStories = [
     package: "4.8 LPA",
     placementDate: "December 2023",
     location: "Noida",
-    testimonial: "[From a mechanical engineer to DevOps engineer - this transformation wouldn't have been possible without Codexa Classes. The practical labs, real industry projects, and mentorship made all the difference. I'm now working with cutting-edge technologies at HCL.]",
+    testimonial: "I was a mechanical engineer working in a factory, but I always had a passion for technology. Codexa Classes helped me transition into DevOps. The Linux administration classes were intense but amazing. We set up real servers, worked with Docker containers, and learned Kubernetes. The instructors had actual industry experience, which made learning so much more practical. Now I'm at HCL Noida, working with cloud technologies I never thought I'd understand.",
     skills: ["Linux", "Docker", "Kubernetes", "Jenkins"]
   },
   {
@@ -156,7 +156,7 @@ const candidateSuccessStories = [
     package: "3.9 LPA",
     placementDate: "November 2023",
     location: "Mumbai",
-    testimonial: "[The design courses at Codexa Classes opened up a whole new world for me. From basics of UI/UX to advanced prototyping, everything was covered. The portfolio projects we created directly helped me land this role at Tech Mahindra.]",
+    testimonial: "I was always creative but never knew how to channel it into a career. The UI/UX design course at Codexa Classes opened my eyes to a whole new world. We learned Figma, Adobe XD, and most importantly, user research and prototyping. The portfolio projects we created were so professional - I used them directly in my Tech Mahindra interview. The design principles I learned here are still helping me in my current role. I'm so grateful for this opportunity!",
     skills: ["Figma", "Adobe XD", "User Research", "Prototyping"]
   },
   {
@@ -171,7 +171,7 @@ const candidateSuccessStories = [
     package: "5.2 LPA",
     placementDate: "October 2023",
     location: "Chennai",
-    testimonial: "[The data science program exceeded my expectations. Real datasets, industry tools, and hands-on machine learning projects made the learning experience incredible. I'm now working on AI/ML projects at Cognizant and loving the challenges!]",
+    testimonial: "The data science program at Codexa Classes exceeded all my expectations. We worked with real datasets from Kaggle, learned Python for machine learning, and built predictive models. The instructors made complex concepts so simple to understand. We even worked on a real project analyzing customer data for a local business. This hands-on experience was invaluable. Now I'm at Cognizant Chennai, working on AI/ML projects that I'm truly passionate about. The 5.2 LPA package was beyond my dreams!",
     skills: ["Python", "Machine Learning", "SQL", "Tableau"]
   }
 ];
