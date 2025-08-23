@@ -296,17 +296,17 @@ export default function TestimonialsPage() {
 
                       {/* Skills/Tech Stack */}
                       <div className="flex items-start justify-between">
-                        <div className="flex flex-col gap-2 w-1/2">
-                          <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-col gap-2 w-3/5">
+                          <div className="flex flex-wrap gap-1.5">
                             {candidate.skills.slice(0, Math.ceil(candidate.skills.length / 2)).map((skill, index) => (
-                              <Badge key={index} variant="outline" className="text-xs">
+                              <Badge key={index} variant="outline" className="text-xs px-2 py-1">
                                 {skill}
                               </Badge>
                             ))}
                           </div>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-1.5">
                             {candidate.skills.slice(Math.ceil(candidate.skills.length / 2)).map((skill, index) => (
-                              <Badge key={index + Math.ceil(candidate.skills.length / 2)} variant="outline" className="text-xs">
+                              <Badge key={index + Math.ceil(candidate.skills.length / 2)} variant="outline" className="text-xs px-2 py-1">
                                 {skill}
                               </Badge>
                             ))}
@@ -314,10 +314,10 @@ export default function TestimonialsPage() {
                         </div>
                         
                         {/* Vertical Divider */}
-                        <div className="w-px h-20 bg-gray-200 mx-6 flex-shrink-0"></div>
+                        <div className="w-px h-20 bg-gray-400 mx-6 flex-shrink-0"></div>
                         
                         {/* Company Info - Logo and details without card */}
-                        <div className="flex items-center gap-4 flex-shrink-0">
+                        <div className="flex items-center gap-4 flex-shrink-0 w-2/5">
                           {candidate.companyLogo ? (
                             <img 
                               src={candidate.companyLogo} 
