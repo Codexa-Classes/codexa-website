@@ -217,7 +217,7 @@ export default function TestimonialsPage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-7xl mx-auto">
             {companyPlacements.map((company) => (
               <div key={company.id} className="text-center hover:scale-105 transition-all duration-300 bg-white rounded-xl p-6 shadow-md hover:shadow-xl border border-gray-100">
                 <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
