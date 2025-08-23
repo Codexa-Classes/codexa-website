@@ -180,17 +180,24 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="flex gap-4 items-center justify-center flex-col sm:flex-row mb-12">
-              <Button asChild size="lg" className="rounded-full bg-yellow-400 text-blue-900 hover:bg-yellow-300 font-medium shadow-lg hover:shadow-xl transition-all duration-200">
-                <Link href="/super10">
-                  Learn More About Super10 <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full border-white text-white hover:bg-white hover:text-blue-900 font-medium text-black">
-                <Link href="/courses">
-                  View All Courses <ArrowRight className="ml-2 h-5 w-4" />
-                </Link>
-              </Button>
+            <div className="flex flex-wrap gap-4 items-center justify-center mb-12">
+              <Link href="/courses" className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-blue-900 font-medium transition-all duration-200 border border-white/20 hover:border-white">
+                Courses
+              </Link>
+              <Link href="/super10" className="px-6 py-3 rounded-full bg-yellow-400 text-blue-900 hover:bg-yellow-300 font-medium transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2 group">
+                <img 
+                  src="/super10.gif" 
+                  alt="Super10" 
+                  className="w-5 h-5 rounded-full object-cover group-hover:scale-110 transition-transform duration-200"
+                />
+                Super10
+              </Link>
+              <Link href="/testimonials" className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-blue-900 font-medium transition-all duration-200 border border-white/20 hover:border-white">
+                Testimonials
+              </Link>
+              <Link href="/certificate" className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-blue-900 font-medium transition-all duration-200 border border-white/20 hover:border-white">
+                Certificate
+              </Link>
             </div>
           </div>
         </section>
