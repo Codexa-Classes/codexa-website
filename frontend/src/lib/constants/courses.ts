@@ -19,7 +19,7 @@ export const COURSES: readonly Course[] = [
   {
     id: "frontend-react",
     name: "Frontend Development (ReactJS + Tailwind)",
-    icon: "devicon-react-original",
+    icon: "react",
     category: "frontend",
     description: "Master modern frontend development with ReactJS and Tailwind CSS for responsive web applications",
     duration: "8 weeks",
@@ -57,7 +57,7 @@ export const COURSES: readonly Course[] = [
   {
     id: "web-flask-django",
     name: "Web Development (Flask + Django)",
-    icon: "devicon-python-plain",
+    icon: "python",
     category: "web",
     description: "Learn Python web development with Flask and Django frameworks for building scalable web applications",
     duration: "10 weeks",
@@ -95,7 +95,7 @@ export const COURSES: readonly Course[] = [
   {
     id: "web-bootstrap-laravel",
     name: "Web Development (Bootstrap + Laravel)",
-    icon: "devicon-php-plain",
+    icon: "php",
     category: "web",
     description: "Master PHP web development with Laravel framework and Bootstrap for modern, responsive websites",
     duration: "10 weeks",
@@ -133,7 +133,7 @@ export const COURSES: readonly Course[] = [
   {
     id: "business-analyst",
     name: "Business Analyst (PowerBI + MySQL + BRD)",
-    icon: "devicon-mysql-plain",
+    icon: "powerbi",
     category: "business",
     description: "Become a Business Analyst with expertise in PowerBI, MySQL, and Business Requirements Documentation",
     duration: "8 weeks",
@@ -149,7 +149,7 @@ export const COURSES: readonly Course[] = [
       "Process Modeling",
       "Business Intelligence Tools"
     ],
-    icon_name: "mysql",
+    icon_name: "powerbi",
     price: 10000,
     careerPath: "Business Analyst",
     skills: [
@@ -171,7 +171,7 @@ export const COURSES: readonly Course[] = [
   {
     id: "data-analyst",
     name: "Data Analyst (PowerBI + SQL + SAP + Python)",
-    icon: "devicon-python-plain",
+    icon: "powerbi",
     category: "data",
     description: "Master data analysis with PowerBI, SQL, SAP, and Python for comprehensive business intelligence",
     duration: "12 weeks",
@@ -187,7 +187,7 @@ export const COURSES: readonly Course[] = [
       "Data Visualization",
       "Predictive Analytics"
     ],
-    icon_name: "python",
+    icon_name: "powerbi",
     price: 10000,
     careerPath: "Data Analyst",
     skills: [
@@ -209,7 +209,7 @@ export const COURSES: readonly Course[] = [
   {
     id: "devops-aws",
     name: "DevOps Engineer (AWS)",
-    icon: "devicon-amazonwebservices-original",
+    icon: "aws",
     category: "devops",
     description: "Master DevOps practices with AWS cloud infrastructure, automation, and deployment pipelines",
     duration: "10 weeks",
@@ -247,7 +247,7 @@ export const COURSES: readonly Course[] = [
   {
     id: "database-admin",
     name: "Database Admin (Oracle/PLSQL)",
-    icon: "devicon-oracle-original",
+    icon: "oracle",
     category: "database",
     description: "Master Oracle database administration and PL/SQL programming for enterprise database management",
     duration: "8 weeks",
@@ -285,7 +285,7 @@ export const COURSES: readonly Course[] = [
   {
     id: "app-support",
     name: "App Support (MySQL + Linux)",
-    icon: "devicon-linux-plain",
+    icon: "linux",
     category: "support",
     description: "Learn application support with MySQL database management and Linux system administration",
     duration: "8 weeks",
@@ -318,6 +318,44 @@ export const COURSES: readonly Course[] = [
       "Database Management",
       "Monitoring System",
       "Support Documentation"
+    ]
+  },
+  {
+    id: "data-powerbi",
+    name: "Data Analysis with PowerBI",
+    icon: "powerbi",
+    category: "data",
+    description: "Master data analysis and visualization using Microsoft PowerBI for business intelligence and reporting",
+    duration: "8 weeks",
+    students: "150+",
+    level: "Beginner to Advanced",
+    topics: [
+      "PowerBI Desktop Fundamentals",
+      "Data Modeling & Relationships",
+      "DAX (Data Analysis Expressions)",
+      "Advanced Visualizations",
+      "Power Query & Data Transformation",
+      "Dashboard Design Principles",
+      "Report Publishing & Sharing",
+      "PowerBI Service & Mobile"
+    ],
+    icon_name: "powerbi",
+    price: 10000,
+    careerPath: "Data Analyst / BI Developer",
+    skills: [
+      "PowerBI Development",
+      "Data Modeling",
+      "DAX Programming",
+      "Data Visualization",
+      "Business Intelligence",
+      "Report Design",
+      "Dashboard Creation"
+    ],
+    projects: [
+      "Sales Performance Dashboard",
+      "Financial Analytics Report",
+      "Customer Insights Dashboard",
+      "Operational Metrics Dashboard"
     ]
   }
 ] as const;

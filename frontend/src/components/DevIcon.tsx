@@ -62,6 +62,7 @@ export const getIconColors = (iconName: string) => {
     // Data Science & ML
     'tensorflow': { primary: '#FF6F00', secondary: '#FF8F00', accent: '#FF9800' }, // TensorFlow orange
     'pandas': { primary: '#130654', secondary: '#150458', accent: '#1F0B7A' }, // Pandas dark blue
+    'powerbi': { primary: '#F2C811', secondary: '#000000', accent: '#FF6B35' }, // PowerBI yellow + black + orange
     
     // Default fallback
     'default': { primary: '#3B82F6', secondary: '#1D4ED8', accent: '#60A5FA' }
@@ -114,6 +115,7 @@ export const getIconGradient = (iconName: string) => {
     'pytorch': 'var(--gradient-pytorch)',
     'pandas': 'var(--gradient-pandas)',
     'numpy': 'var(--gradient-numpy)',
+    'powerbi': 'var(--gradient-powerbi)',
     'wordpress': 'var(--gradient-wordpress)',
     'figma': 'var(--gradient-figma)',
     'unity': 'var(--gradient-unity)',
@@ -234,6 +236,7 @@ const DevIcon: React.FC<DevIconProps> = ({ name, size = 24, className = "" }) =>
     'pytorch': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg',
     'pandas': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg',
     'numpy': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg',
+    'powerbi': '/powerbi-logo.png',
     'jupyter': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg',
     'r': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/r/r-original.svg',
     'matlab': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matlab/matlab-original.svg',
