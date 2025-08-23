@@ -304,8 +304,11 @@ export default function TestimonialsPage() {
                           ))}
                         </div>
                         
+                        {/* Vertical Divider */}
+                        <div className="w-px h-16 bg-gray-200 mx-4 flex-shrink-0"></div>
+                        
                         {/* Company Info - Logo and details without card */}
-                        <div className="flex items-center gap-3 ml-4 flex-shrink-0">
+                        <div className="flex items-center gap-3 flex-shrink-0">
                           {candidate.companyLogo ? (
                             <img 
                               src={candidate.companyLogo} 
