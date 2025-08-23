@@ -283,17 +283,18 @@ export default function TestimonialsPage() {
                       )}
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-xl text-gray-900 font-bold mb-2">{candidate.name}</CardTitle>
-                      <div className="flex items-center gap-4 mb-3">
-                        <Badge variant="secondary" className="bg-blue-100 text-blue-800 border-blue-200">
-                          {candidate.role}
-                        </Badge>
-                        <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                            <div className="w-3 h-3 bg-green-600 rounded-full"></div>
+                      <div className="flex items-center gap-3 mb-2">
+                        <CardTitle className="text-xl text-gray-900 font-bold">{candidate.name}</CardTitle>
+                        <Badge variant="secondary" className="bg-blue-100 text-blue-800 border-blue-200">{candidate.role}</Badge>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center">
+                            <div className="w-2 h-2 bg-green-600 rounded-full"></div>
                           </div>
                           <span className="text-sm text-gray-600">Placed</span>
                         </div>
+                      </div>
+
+                      <div className="flex items-center gap-4 mb-3">
                       </div>
                       
                       {/* Company Info */}
