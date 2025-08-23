@@ -6,6 +6,94 @@ interface DevIconProps {
   className?: string;
 }
 
+// Color mapping based on actual brand colors from each technology
+export const getIconColors = (iconName: string) => {
+  const colorMap: { [key: string]: { primary: string; secondary: string; accent: string } } = {
+    // Frontend Frameworks
+    'react': { primary: '#61DAFB', secondary: '#282C34', accent: '#764ABC' }, // React blue + purple
+    'vuejs': { primary: '#4FC08D', secondary: '#35495E', accent: '#42B883' }, // Vue green
+    'angular': { primary: '#DD0031', secondary: '#A6120D', accent: '#C3002F' }, // Angular red
+    'svelte': { primary: '#FF3E00', secondary: '#FF8E3C', accent: '#FF6B35' }, // Svelte orange
+    
+    // Backend & Languages
+    'php': { primary: '#777BB4', secondary: '#4F5D95', accent: '#8993BE' }, // PHP purple
+    'python': { primary: '#3776AB', secondary: '#FFD43B', accent: '#306998' }, // Python blue + yellow
+    'java': { primary: '#ED8B00', secondary: '#5382A1', accent: '#F89820' }, // Java orange + blue
+    'nodejs': { primary: '#339933', secondary: '#68A063', accent: '#4CAF50' }, // Node.js green
+    'typescript': { primary: '#3178C6', secondary: '#235A97', accent: '#4A9EFF' }, // TypeScript blue
+    'javascript': { primary: '#F7DF1E', secondary: '#000000', accent: '#FFD600' }, // JavaScript yellow
+    
+    // CSS & Styling
+    'css3': { primary: '#1572B6', secondary: '#33A9DC', accent: '#E34F26' }, // CSS3 blue + orange
+    'tailwindcss': { primary: '#06B6D4', secondary: '#0891B2', accent: '#0EA5E9' }, // Tailwind cyan
+    'bootstrap': { primary: '#7952B3', secondary: '#563D7C', accent: '#6F42C1' }, // Bootstrap purple
+    
+    // Backend Frameworks
+    'django': { primary: '#092E20', secondary: '#44B78B', accent: '#2BA977' }, // Django green
+    'flask': { primary: '#000000', secondary: '#FFFFFF', accent: '#3776AB' }, // Flask black + Python blue
+    'laravel': { primary: '#FF2D20', secondary: '#F05340', accent: '#E74430' }, // Laravel red
+    
+    // Databases
+    'mysql': { primary: '#4479A1', secondary: '#00758F', accent: '#00B4DB' }, // MySQL blue
+    'postgresql': { primary: '#336791', secondary: '#4C85D1', accent: '#2E5A88' }, // PostgreSQL blue
+    'mongodb': { primary: '#47A248', secondary: '#4DB33D', accent: '#66C14F' }, // MongoDB green
+    'oracle': { primary: '#F80000', secondary: '#FF0000', accent: '#DC143C' }, // Oracle red
+    'redis': { primary: '#DC382D', secondary: '#A41E11', accent: '#CC0000' }, // Redis red
+    
+    // Cloud & DevOps
+    'aws': { primary: '#FF9900', secondary: '#232F3E', accent: '#F90' }, // AWS orange + dark blue
+    'azure': { primary: '#0089D6', secondary: '#0078D4', accent: '#00A1F1' }, // Azure blue
+    'docker': { primary: '#2496ED', secondary: '#0DB7ED', accent: '#00A6FB' }, // Docker blue
+    'kubernetes': { primary: '#326CE5', secondary: '#4C5AE5', accent: '#5B73E7' }, // Kubernetes blue
+    
+    // Operating Systems
+    'linux': { primary: '#FCC624', secondary: '#000000', accent: '#F0B90B' }, // Linux yellow + black
+    'ubuntu': { primary: '#E95420', secondary: '#772953', accent: '#DD4814' }, // Ubuntu orange + purple
+    
+    // Mobile Development
+    'android': { primary: '#3DDC84', secondary: '#073042', accent: '#4CAF50' }, // Android green
+    'flutter': { primary: '#02569B', secondary: '#027DFD', accent: '#00D4AA' }, // Flutter blue + teal
+    
+    // Testing & Tools
+    'jest': { primary: '#C21325', secondary: '#99425B', accent: '#E31B23' }, // Jest red
+    'git': { primary: '#F05032', secondary: '#DD4C35', accent: '#F14F32' }, // Git orange
+    'github': { primary: '#181717', secondary: '#24292E', accent: '#2F80ED' }, // GitHub black + blue
+    
+    // Data Science & ML
+    'tensorflow': { primary: '#FF6F00', secondary: '#FF8F00', accent: '#FF9800' }, // TensorFlow orange
+    'pandas': { primary: '#130654', secondary: '#150458', accent: '#1F0B7A' }, // Pandas dark blue
+    
+    // Default fallback
+    'default': { primary: '#3B82F6', secondary: '#1D4ED8', accent: '#60A5FA' }
+  };
+
+  return colorMap[iconName.toLowerCase()] || colorMap['default'];
+};
+
+// Generate complementary gradients based on icon colors
+export const getIconGradient = (iconName: string) => {
+  // Use CSS custom properties defined in globals.css for Tailwind v4
+  const gradientMap: { [key: string]: string } = {
+    'react': 'var(--gradient-react)',
+    'python': 'var(--gradient-python)',
+    'php': 'var(--gradient-php)',
+    'mysql': 'var(--gradient-mysql)',
+    'aws': 'var(--gradient-aws)',
+    'oracle': 'var(--gradient-oracle)',
+    'linux': 'var(--gradient-linux)',
+    'java': 'var(--gradient-java)',
+    'nodejs': 'var(--gradient-nodejs)',
+    'typescript': 'var(--gradient-typescript)',
+    'javascript': 'var(--gradient-javascript)',
+    'docker': 'var(--gradient-docker)',
+    'kubernetes': 'var(--gradient-kubernetes)',
+    'git': 'var(--gradient-git)',
+    'github': 'var(--gradient-github)'
+  };
+  
+  return gradientMap[iconName.toLowerCase()] || 'var(--gradient-react)';
+};
+
 const DevIcon: React.FC<DevIconProps> = ({ name, size = 24, className = "" }) => {
   const iconMap: { [key: string]: string } = {
     // Backend & Languages

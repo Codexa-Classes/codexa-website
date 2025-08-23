@@ -26,7 +26,7 @@ import {
   Home
 } from "lucide-react";
 import PageLayout from '@/components/layout/PageLayout';
-import DevIcon from '@/components/DevIcon';
+import DevIcon, { getIconGradient } from '@/components/DevIcon';
 import { getCourseById, COURSE_CATEGORIES, COURSE_PRICE } from '@/lib/constants';
 
 interface CourseDetailPageProps {
@@ -78,6 +78,8 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
     notFound();
   }
 
+
+
   const getCategoryBadgeVariant = (category: string) => {
     switch (category) {
       case 'frontend':
@@ -99,6 +101,8 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
     }
   };
 
+
+
   return (
     <PageLayout>
       <div className="py-12">
@@ -116,7 +120,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
           </div>
 
           {/* Course Header */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 mb-12">
+          <div className="rounded-2xl p-8 mb-12" style={{ background: getIconGradient(course.icon_name) }}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
               {/* Course Icon and Basic Info */}
               <div className="text-center lg:text-left">

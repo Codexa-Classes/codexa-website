@@ -41,6 +41,23 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  
+  /* Custom gradient colors for technology icons */
+  --gradient-react: linear-gradient(to bottom right, oklch(0.9 0.02 220), oklch(0.95 0.01 240), oklch(0.85 0.03 260));
+  --gradient-python: linear-gradient(to bottom right, oklch(0.9 0.02 140), oklch(0.95 0.01 160), oklch(0.9 0.02 220));
+  --gradient-php: linear-gradient(to bottom right, oklch(0.9 0.02 280), oklch(0.95 0.01 240), oklch(0.9 0.02 220));
+  --gradient-mysql: linear-gradient(to bottom right, oklch(0.9 0.02 220), oklch(0.95 0.01 200), oklch(0.9 0.02 180));
+  --gradient-aws: linear-gradient(to bottom right, oklch(0.9 0.02 40), oklch(0.95 0.01 20), oklch(0.9 0.02 60));
+  --gradient-oracle: linear-gradient(to bottom right, oklch(0.9 0.02 20), oklch(0.95 0.01 40), oklch(0.9 0.02 60));
+  --gradient-linux: linear-gradient(to bottom right, oklch(0.9 0.02 60), oklch(0.95 0.01 40), oklch(0.9 0.02 220));
+  --gradient-java: linear-gradient(to bottom right, oklch(0.9 0.02 40), oklch(0.95 0.01 220), oklch(0.9 0.02 60));
+  --gradient-nodejs: linear-gradient(to bottom right, oklch(0.9 0.02 140), oklch(0.95 0.01 160), oklch(0.9 0.02 180));
+  --gradient-typescript: linear-gradient(to bottom right, oklch(0.9 0.02 220), oklch(0.95 0.01 240), oklch(0.9 0.02 280));
+  --gradient-javascript: linear-gradient(to bottom right, oklch(0.9 0.02 60), oklch(0.95 0.01 50), oklch(0.9 0.02 40));
+  --gradient-docker: linear-gradient(to bottom right, oklch(0.9 0.02 220), oklch(0.95 0.01 200), oklch(0.9 0.02 240));
+  --gradient-kubernetes: linear-gradient(to bottom right, oklch(0.9 0.02 220), oklch(0.95 0.01 240), oklch(0.9 0.02 280));
+  --gradient-git: linear-gradient(to bottom right, oklch(0.9 0.02 40), oklch(0.95 0.01 20), oklch(0.9 0.02 60));
+  --gradient-github: linear-gradient(to bottom right, oklch(0.9 0.02 240), oklch(0.95 0.01 220), oklch(0.9 0.02 220));
 }
 
 :root {
