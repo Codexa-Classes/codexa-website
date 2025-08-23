@@ -29,8 +29,8 @@ const companyPlacements = [
   {
     id: 1,
     name: "TCS",
-    logo: "/tcs-logo.svg",
-    logoFallback: "TCS",
+          logo: "/tcs-logo.png",
+      logoFallback: "TCS",
     placementCount: 15,
     avgPackage: "4.2 LPA",
     location: "Mumbai, Pune, Bangalore"
@@ -91,8 +91,8 @@ const candidateSuccessStories = [
     photoFallback: "AJ",
     role: "Frontend Developer",
     company: "TCS",
-    companyLogo: "/tcs-logo.svg",
-    companyLogoFallback: "TCS",
+          companyLogo: "/tcs-logo.png",
+      companyLogoFallback: "TCS",
     package: "7.2 LPA",
     placementDate: "March 2024",
     location: "Mumbai",
