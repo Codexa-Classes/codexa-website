@@ -96,7 +96,7 @@ const candidateSuccessStories = [
     package: "7.2 LPA",
     placementDate: "March 2024",
     location: "Mumbai",
-    testimonial: "I was working as a reciptionist before joining Codexa Classes. The Frontend Development course with ReactJS and Tailwind completly changed my life! Viraj sir was so patient with me - I had zero coding knowlegde when I started. We built real responsive websites using React components and Tailwind CSS. The hands-on approach made learning soo much easier. Within 6 months, I was creating beautifull user interfaces and got placed at TCS with a 7.2 LPA package... I still can't beleive this transformation! 😊",
+    testimonial: "From receptionist to frontend developer in just 6 months! Viraj sir was incredibly patient with my zero coding knowledge. We built real websites with React and Tailwind - the hands-on approach made everything click. Now I'm at TCS with a 7.2 LPA package. Still can't believe this transformation! 😊",
     skills: ["ReactJS", "Tailwind CSS", "JavaScript", "HTML5"]
   },
   {
@@ -111,7 +111,7 @@ const candidateSuccessStories = [
     package: "6.8 LPA",
     placementDate: "February 2024",
     location: "Bangalore",
-    testimonial: "I was a B.Com graduate earning just 15k per month in a small acounting firm. The Web Development course with Flask and Django literaly changed my life! I learned Python web frameworks from scratch and built compleet web applications. The practical projects were amazng - we created real e-comerce websites with user authentication and database integraton. Now I'm at Infosys Bangalore, working as a backend developr. My family is soo proud! 🚀",
+    testimonial: "B.Com graduate earning just 15k/month in accounting. The Flask and Django course literally changed everything! Built real e-commerce sites with authentication and databases. Now I'm at Infosys Bangalore as a backend developer. My family is so proud! 🚀",
     skills: ["Flask", "Django", "Python", "PostgreSQL"]
   },
   {
@@ -126,7 +126,7 @@ const candidateSuccessStories = [
     package: "7.5 LPA",
     placementDate: "January 2024",
     location: "Pune",
-    testimonial: "I was soo nervous on my first day becoz I had never worked with databses before. But the Database Admin course with Oracle and plSQL gave me hope. The instructers taught us evrything from basic SQL queries to advanced stored proceduers and database optimizaton. We worked with real enterprize databases and learned performace tuning. Within 3 months of completing the course, I got placed at Wipro Pune as a Database Administrtor... The placement team was incredibley supportiv! 💪",
+    testimonial: "Was so nervous on day one - never touched databases before! But the Oracle and plSQL course gave me hope. Learned everything from basic SQL to advanced stored procedures and optimization. Worked with real enterprise databases. Got placed at Wipro Pune as DBA within 3 months! 💪",
     skills: ["Oracle", "plSQL", "Database Design", "Performance Tuning"]
   },
   {
@@ -141,7 +141,7 @@ const candidateSuccessStories = [
     package: "8.1 LPA",
     placementDate: "December 2023",
     location: "Noida",
-    testimonial: "I was a mechanical enginear working in a factory, but I alwayz had a passion for cloud tecnologies. The DevOps Engineer course with AWS helped me transision completley. We learned evrything from EC2 instances to S3 storage, Lambda functons, and CloudFormation. The hands-on labs were incredibel - we deployed real aplicatons on AWS infrastucture. The instructors had actuall industry experiance. Now I'm at HCL Noida, managing cloud infrastucture that serves milions of users! 🔥",
+    testimonial: "Mechanical engineer in a factory, but always had a passion for cloud tech. The AWS DevOps course helped me transition completely. Learned EC2, S3, Lambda, CloudFormation. Deployed real apps on AWS infrastructure. Now at HCL Noida managing cloud infrastructure serving millions! 🔥",
     skills: ["AWS", "EC2", "S3", "Lambda", "CloudFormation"]
   },
   {
@@ -156,7 +156,7 @@ const candidateSuccessStories = [
     package: "6.4 LPA",
     placementDate: "November 2023",
     location: "Mumbai",
-    testimonial: "I was alwayz good with numbrs but never knew how to turn it into a tech carrer. The Business Analyst course with PowerBI, MySQL, and BRD writing opend my eyes to a whol new world. We learned to creat interactive dashbords, analyz business data, and write comprehensiv Business Requirements Documents. The practical projects involvd real business scenarioz from local companys. I used my portfolio directley in the Tech Mahindra intervew. Now I'm helping busnesses make data-driven decisonz! 📊",
+    testimonial: "Always good with numbers but never knew how to turn it into a tech career. The PowerBI, MySQL, and BRD course opened my eyes! Created interactive dashboards and analyzed real business data. Used my portfolio in the Tech Mahindra interview. Now helping businesses make data-driven decisions! 📊",
     skills: ["PowerBI", "MySQL", "BRD", "Data Visualization"]
   },
   {
@@ -171,7 +171,7 @@ const candidateSuccessStories = [
     package: "7.8 LPA",
     placementDate: "October 2023",
     location: "Chennai",
-    testimonial: "The App Support course with MySQL and Linux exceded all my expectatons. We learnd Linux system administrashun, MySQL databse managment, and aplicaton troublshoting. The practical training inclued setting up Linux servrs, optimizing MySQL databses, and monitring aplicaton performans. We even workd on real suport tickets from actual companys. This hands-on experiance was invaluabel. Now I'm at Cognizant Chennai, providing 24/7 suport for critcal busness aplicatons. The 7.8 LPA packag was beyod my dreamz! 🎯",
+    testimonial: "The MySQL and Linux course exceeded all expectations! Learned system administration, database management, and application troubleshooting. Set up real Linux servers and optimized databases. Worked on actual support tickets from companies. Now at Cognizant Chennai providing 24/7 support for critical business applications. The 7.8 LPA package was beyond my dreams! 🎯",
     skills: ["MySQL", "Linux", "System Administration", "Application Support"]
   }
 ];
