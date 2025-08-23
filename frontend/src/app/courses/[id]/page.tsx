@@ -120,7 +120,11 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
           </div>
 
           {/* Course Header */}
-          <div className="rounded-2xl p-8 mb-12" style={{ background: getIconGradient(course.icon_name) }}>
+          <div className="rounded-2xl p-8 mb-12 shadow-xl border border-white/20" style={{ 
+            background: getIconGradient(course.icon_name),
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)'
+          }}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
               {/* Course Icon and Basic Info */}
               <div className="text-center lg:text-left">
