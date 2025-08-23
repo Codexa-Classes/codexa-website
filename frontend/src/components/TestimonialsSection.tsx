@@ -56,7 +56,7 @@ const testimonials: Testimonial[] = [
     id: 6,
     name: "Chaitanya Wagh",
     role: "Business Analyst",
-    avatar: "/swapnali_nalawade_profile.jpg", // Using Swapnali Nalawade's profile as Chaitanya Wagh
+    avatar: "/chaitanya_wagh_profile.jpg", // Using new LinkedIn profile image for Chaitanya Wagh
     rating: 5,
     quote: "From zero to Business Analyst in 6 months! Instructors break down complex concepts perfectly. Learned PowerBI, MySQL, and BRD writing. Practical projects with real business scenarios. This place is truly a game-changer! 🎯"
   }
