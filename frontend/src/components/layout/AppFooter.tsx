@@ -82,38 +82,50 @@ export default function AppFooter() {
             <ul className="space-y-2">
               <li>
                 <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                  <DevIcon name="php" size={16} />
-                  PHP Development
+                  <DevIcon name="react" size={16} />
+                  Frontend Development
                 </Link>
               </li>
               <li>
                 <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
                   <DevIcon name="python" size={16} />
-                  Python Programming
+                  Web Development
                 </Link>
               </li>
               <li>
                 <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                  <DevIcon name="react" size={16} />
-                  React Development
+                  <DevIcon name="php" size={16} />
+                  Web Development
                 </Link>
               </li>
               <li>
                 <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                  <DevIcon name="mysql" size={16} />
-                  MySQL Database
+                  <DevIcon name="powerbi" size={16} />
+                  Business Analyst
+                </Link>
+              </li>
+              <li>
+                <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+                  <DevIcon name="python" size={16} />
+                  Data Analyst
                 </Link>
               </li>
               <li>
                 <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
                   <DevIcon name="aws" size={16} />
-                  Cloud Administrator - AWS
+                  DevOps Engineer
                 </Link>
               </li>
               <li>
                 <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                  <DevIcon name="linux" size={16} />
-                  Linux Administration
+                  <DevIcon name="oracle" size={16} />
+                  Database Admin
+                </Link>
+              </li>
+              <li>
+                <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+                  <DevIcon name="mysql" size={16} />
+                  App Support
                 </Link>
               </li>
             </ul>
