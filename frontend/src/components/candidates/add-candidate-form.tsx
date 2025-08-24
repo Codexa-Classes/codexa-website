@@ -19,13 +19,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ArrowLeft, Save, UserPlus } from "lucide-react";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { ArrowLeft, Save, UserPlus, CalendarIcon } from "lucide-react";
 import { CreateCandidateData } from "@/lib/services/candidatesService";
 import { Toast } from "@/components/ui/toast";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { ROUTES } from "@/lib/constants";
 import { Home } from "lucide-react";
 import { FormHeader, PasswordInput, FormLayout } from "@/components/forms";
+import dayjs from "dayjs";
+import { cn } from "@/lib/utils";
 
 interface AddCandidateFormProps {
   onCancel: () => void;
@@ -59,8 +67,10 @@ export function AddCandidateForm({
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState<"success" | "error">("success");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent) => {
+    if (e) {
+      e.preventDefault();
+    }
     setIsSubmitting(true);
 
     try {
@@ -91,21 +101,22 @@ export function AddCandidateForm({
     }
   };
 
-  const handleInputChange = (field: keyof CreateCandidateData, value: string | string[]) => {
+  const handleInputChange = (field: keyof CreateCandidateData, value: string | string[] | Date) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
     }));
   };
 
-  const isFormValid =
+  const isFormValid = Boolean(
     formData.fullName?.trim() &&
     formData.email?.trim() &&
     formData.phoneNumber?.trim() &&
     formData.location?.trim() &&
     formData.city?.trim() &&
     formData.pincode?.trim() &&
-    formData.password?.trim();
+    formData.password?.trim()
+  );
 
   return (
     <FormLayout
@@ -156,14 +167,36 @@ export function AddCandidateForm({
             <Label htmlFor="dateOfBirth" className="mb-2 block">
               Date of Birth
             </Label>
-            <Input
-              id="dateOfBirth"
-              type="date"
-              value={formData.dateOfBirth || ""}
-              onChange={(e) =>
-                handleInputChange("dateOfBirth", e.target.value)
-              }
-            />
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className={cn(
+                    "w-full justify-start text-left font-normal",
+                    !formData.dateOfBirth && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {formData.dateOfBirth ? (
+                    dayjs(formData.dateOfBirth).format("DD MMM YYYY")
+                  ) : (
+                    <span>Pick a date</span>
+                  )}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  mode="single"
+                  selected={formData.dateOfBirth}
+                  onSelect={(date) => {
+                    if (date) {
+                      handleInputChange("dateOfBirth", date);
+                    }
+                  }}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
           </div>
 
           <div>

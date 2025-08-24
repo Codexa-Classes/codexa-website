@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Filter, Search, RefreshCw } from 'lucide-react';
 import { enquiryService } from '@/lib/services/enquiry/enquiryService';
 import { Enquiry, EnquiryFilters, EnquiryStatus, EnquiryPriority } from '@/types/enquiry';
+import dayjs from 'dayjs';
 
 const statusColors: Record<EnquiryStatus, string> = {
   pending: 'bg-yellow-100 text-yellow-800',
@@ -180,7 +181,7 @@ export function EnquiryList() {
       header: 'Submitted',
       cell: ({ row }: { row: { getValue: (key: string) => any; original: Enquiry } }) => (
         <div className="text-sm text-muted-foreground">
-          {new Date(row.getValue('createdAt')).toLocaleDateString()}
+          {dayjs(row.getValue('createdAt')).format("DD MMM YYYY")}
         </div>
       )
     }

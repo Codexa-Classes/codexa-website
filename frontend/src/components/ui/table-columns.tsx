@@ -3,6 +3,10 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
+import { ColumnDef } from "@tanstack/react-table"
+import { Checkbox } from "@/components/ui/checkbox"
+import { ArrowUpDown } from "lucide-react"
+import dayjs from "dayjs"
 
 // Generic column types
 export interface BaseColumn {
@@ -80,16 +84,33 @@ export const createStatusColumn = (
 
 export const createDateColumn = (
   id: string,
-  header: string
-): BaseColumn => ({
+  header: string,
+  options?: {
+    format?: string;
+    showTime?: boolean;
+  }
+): ColumnDef<any> => ({
   id,
-  header,
-  cell: ({ row }) => (
-    <div className="text-muted-foreground">
-      {new Date(row.getValue(id)).toLocaleDateString()}
-    </div>
-  ),
-});
+  header: ({ column }) => {
+    return (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        {header}
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    )
+  },
+  cell: ({ row }) => {
+    const date = row.getValue(id)
+    if (!date) return "Not specified"
+    
+    const format = options?.format || "DD MMM YYYY"
+    return dayjs(date).format(format)
+  },
+  sortingFn: "datetime",
+})
 
 export const createActionsColumn = (
   id: string = 'actions',

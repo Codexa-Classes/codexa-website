@@ -33,6 +33,7 @@ import {
 } from 'lucide-react';
 import { jobsService } from '@/lib/services/jobsService';
 import { Job } from '@/components/jobs/jobs-columns';
+import dayjs from 'dayjs';
 
 export default function JobDetailPage() {
   const { user } = useAuth();
@@ -124,15 +125,8 @@ export default function JobDetailPage() {
   };
 
   const getJobPostedTime = (datePosted: string) => {
-    const now = new Date();
-    const posted = new Date(datePosted);
-    const diffTime = Math.abs(now.getTime() - posted.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
-    if (diffDays === 1) return '1 day ago';
-    if (diffDays < 7) return `${diffDays} days ago`;
-    if (diffDays < 30) return `${Math.ceil(diffDays / 7)} weeks ago`;
-    return `${Math.ceil(diffDays / 30)} months ago`;
+    const posted = dayjs(datePosted);
+    return posted.format("DD MMM YYYY");
   };
 
   const getCompanyRating = (companyName: string) => {
@@ -440,7 +434,7 @@ export default function JobDetailPage() {
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-600">Deadline</span>
                     <span className="font-semibold text-gray-900">
-                      {new Date(job.applicationDeadline).toLocaleDateString()}
+                      {dayjs(job.applicationDeadline).format("DD MMM YYYY")}
                     </span>
                   </div>
                 )}

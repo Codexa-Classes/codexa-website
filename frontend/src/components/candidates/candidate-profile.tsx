@@ -20,6 +20,7 @@ import {
   Home
 } from 'lucide-react';
 import { Candidate } from './candidates-columns';
+import dayjs from 'dayjs';
 
 interface CandidateProfileProps {
   candidate: Candidate;
@@ -111,7 +112,7 @@ export function CandidateProfile({
                     <span className="text-sm font-medium text-muted-foreground">Gender</span>
                   </div>
                   <div className="space-y-2">
-                    <div className="text-base">{candidate.dateOfBirth || 'Not specified'}</div>
+                    <div className="text-base">{candidate.dateOfBirth ? dayjs(candidate.dateOfBirth).format("DD MMM YYYY") : 'Not specified'}</div>
                     <span className="text-sm font-medium text-muted-foreground">Date of Birth</span>
                   </div>
                   <div className="space-y-2">
@@ -123,7 +124,7 @@ export function CandidateProfile({
                     <span className="text-sm font-medium text-muted-foreground">Notice Period</span>
                   </div>
                   <div className="space-y-2">
-                    <div className="text-base">{new Date(candidate.createdAt).toLocaleDateString()}</div>
+                    <div className="text-base">{dayjs(candidate.createdAt).format("DD MMM YYYY")}</div>
                     <span className="text-sm font-medium text-muted-foreground">Applied Date</span>
                   </div>
                 </div>

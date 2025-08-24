@@ -34,6 +34,7 @@ import {
 import { mockJobs } from '@/lib/mock/jobs';
 import { jobsService } from '@/lib/services/jobsService';
 import { Job } from '@/components/jobs/jobs-columns';
+import dayjs from 'dayjs';
 
 interface AppliedJob extends Job {
   applicationDate: string;
@@ -414,7 +415,7 @@ export default function AppliedJobsPage() {
                           {job.interviewDate && (
                             <div className="flex items-center gap-2 text-sm text-purple-600">
                               <Calendar className="h-4 w-4" />
-                              <span>Interview: {new Date(job.interviewDate).toLocaleDateString()}</span>
+                              <span>Interview: {dayjs(job.interviewDate).format("DD MMM YYYY")}</span>
                             </div>
                           )}
                         </div>

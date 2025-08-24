@@ -7,7 +7,7 @@ export interface CreateCandidateData {
   fullName: string;
   email: string;
   phoneNumber: string;
-  dateOfBirth?: string;
+  dateOfBirth?: Date;
   gender?: 'male' | 'female' | 'other' | 'prefer-not-to-say';
   location: string;
   city: string;
@@ -155,7 +155,7 @@ class CandidatesService {
         fullName: 'John Smith',
         email: 'john.smith@email.com',
         phoneNumber: '9876543210',
-        dateOfBirth: '1990-05-15',
+        dateOfBirth: new Date('1990-05-15'),
         gender: 'male',
         location: 'San Francisco',
         city: 'San Francisco',

@@ -18,7 +18,7 @@ export interface Candidate {
   fullName: string;
   email: string;
   phoneNumber: string;
-  dateOfBirth?: string; // optional
+  dateOfBirth?: Date; // optional
   gender?: 'male' | 'female' | 'other' | 'prefer-not-to-say'; // optional
   location: string;
   city: string;

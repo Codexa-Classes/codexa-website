@@ -35,6 +35,7 @@ import { mockJobs } from '@/lib/mock/jobs';
 import { jobsService } from '@/lib/services/jobsService';
 import { Job } from '@/components/jobs/jobs-columns';
 import { Label } from '@/components/ui/label';
+import dayjs from 'dayjs';
 
 export default function UserJobsPage() {
   const { user } = useAuth();
@@ -238,15 +239,8 @@ export default function UserJobsPage() {
   ];
 
   const getJobPostedTime = (datePosted: string) => {
-    const now = new Date();
-    const posted = new Date(datePosted);
-    const diffTime = Math.abs(now.getTime() - posted.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
-    if (diffDays === 1) return '1 day ago';
-    if (diffDays < 7) return `${diffDays} days ago`;
-    if (diffDays < 30) return `${Math.ceil(diffDays / 7)} weeks ago`;
-    return `${Math.ceil(diffDays / 30)} months ago`;
+    const posted = dayjs(datePosted);
+    return posted.format("DD MMM YYYY");
   };
 
   const getCompanyRating = (companyName: string) => {

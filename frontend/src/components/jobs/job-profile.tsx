@@ -20,6 +20,7 @@ import {
   Star
 } from 'lucide-react';
 import { Job } from './jobs-columns';
+import dayjs from 'dayjs';
 
 interface JobProfileProps {
   job: Job;
@@ -132,7 +133,7 @@ export function JobProfile({
                   <span className="text-sm font-medium text-muted-foreground">Company Location</span>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-base">{new Date(job.datePosted).toLocaleDateString()}</div>
+                  <div className="text-base">{dayjs(job.datePosted).format("DD MMM YYYY")}</div>
                   <span className="text-sm font-medium text-muted-foreground">Date Posted</span>
                 </div>
               </div>
@@ -314,7 +315,7 @@ export function JobProfile({
                   <span className="text-sm font-medium text-muted-foreground">Work Authorization</span>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-base">{new Date(job.lastUpdated).toLocaleDateString()}</div>
+                  <div className="text-base">{dayjs(job.lastUpdated).format("DD MMM YYYY")}</div>
                   <span className="text-sm font-medium text-muted-foreground">Last Updated</span>
                 </div>
                 <div className="space-y-2">
@@ -351,7 +352,7 @@ export function JobProfile({
                     <FileText className="h-5 w-5 text-muted-foreground" />
                     <div>
                       <p className="font-medium">Job Description.pdf</p>
-                      <p className="text-sm text-muted-foreground">Updated {new Date(job.datePosted).toLocaleDateString()}</p>
+                      <p className="text-sm text-muted-foreground">Updated {dayjs(job.datePosted).format("DD MMM YYYY")}</p>
                     </div>
                   </div>
                   <div className="flex gap-2">
