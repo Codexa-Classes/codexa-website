@@ -100,7 +100,7 @@ export function EnquiryForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-6">
       <Card className="w-full">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">Course Enquiry Form</CardTitle>
@@ -128,87 +128,93 @@ export function EnquiryForm() {
           )}
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            {/* Name Field */}
-            <div className="space-y-2">
-              <Label htmlFor="name">Full Name *</Label>
-              <Input
-                id="name"
-                placeholder="Enter your full name"
-                {...register('name')}
-                className={errors.name ? 'border-red-500' : ''}
-              />
-              {errors.name && (
-                <p className="text-sm text-red-600">{errors.name.message}</p>
-              )}
+            {/* Row 1: Name, Mobile, Email */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Name Field */}
+              <div className="space-y-2">
+                <Label htmlFor="name">Full Name *</Label>
+                <Input
+                  id="name"
+                  placeholder="Enter your full name"
+                  {...register('name')}
+                  className={errors.name ? 'border-red-500' : ''}
+                />
+                {errors.name && (
+                  <p className="text-sm text-red-600">{errors.name.message}</p>
+                )}
+              </div>
+
+              {/* Mobile Field */}
+              <div className="space-y-2">
+                <Label htmlFor="mobile">Mobile Number *</Label>
+                <Input
+                  id="mobile"
+                  placeholder="Enter your 10-digit mobile number"
+                  {...register('mobile')}
+                  className={errors.mobile ? 'border-red-500' : ''}
+                />
+                {errors.mobile && (
+                  <p className="text-sm text-red-600">{errors.mobile.message}</p>
+                )}
+              </div>
+
+              {/* Email Field */}
+              <div className="space-y-2">
+                <Label htmlFor="email">Email Address *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email address"
+                  {...register('email')}
+                  className={errors.email ? 'border-red-500' : ''}
+                />
+                {errors.email && (
+                  <p className="text-sm text-red-600">{errors.email.message}</p>
+                )}
+              </div>
             </div>
 
-            {/* Mobile Field */}
-            <div className="space-y-2">
-              <Label htmlFor="mobile">Mobile Number *</Label>
-              <Input
-                id="mobile"
-                placeholder="Enter your 10-digit mobile number"
-                {...register('mobile')}
-                className={errors.mobile ? 'border-red-500' : ''}
-              />
-              {errors.mobile && (
-                <p className="text-sm text-red-600">{errors.mobile.message}</p>
-              )}
-            </div>
+            {/* Row 2: Pass Out Year, Technology */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Pass Out Year Field */}
+              <div className="space-y-2">
+                <Label htmlFor="passOutYear">Pass Out Year *</Label>
+                <Select onValueChange={handleYearChange} defaultValue={currentYear.toString()}>
+                  <SelectTrigger className={`w-full ${errors.passOutYear ? 'border-red-500' : ''}`}>
+                    <SelectValue placeholder="Select your pass out year" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {yearOptions.map((year) => (
+                      <SelectItem key={year} value={year.toString()}>
+                        {year}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.passOutYear && (
+                  <p className="text-sm text-red-600">{errors.passOutYear.message}</p>
+                )}
+              </div>
 
-            {/* Email Field */}
-            <div className="space-y-2">
-              <Label htmlFor="email">Email Address *</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email address"
-                {...register('email')}
-                className={errors.email ? 'border-red-500' : ''}
-              />
-              {errors.email && (
-                <p className="text-sm text-red-600">{errors.email.message}</p>
-              )}
-            </div>
-
-            {/* Pass Out Year Field */}
-            <div className="space-y-2">
-              <Label htmlFor="passOutYear">Pass Out Year *</Label>
-              <Select onValueChange={handleYearChange} defaultValue={currentYear.toString()}>
-                <SelectTrigger className={errors.passOutYear ? 'border-red-500' : ''}>
-                  <SelectValue placeholder="Select your pass out year" />
-                </SelectTrigger>
-                <SelectContent>
-                  {yearOptions.map((year) => (
-                    <SelectItem key={year} value={year.toString()}>
-                      {year}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.passOutYear && (
-                <p className="text-sm text-red-600">{errors.passOutYear.message}</p>
-              )}
-            </div>
-
-            {/* Technology Field */}
-            <div className="space-y-2">
-              <Label htmlFor="technology">Technology Interest *</Label>
-              <Select onValueChange={handleTechnologyChange} defaultValue="">
-                <SelectTrigger className={errors.technology ? 'border-red-500' : ''}>
-                  <SelectValue placeholder="Select your technology interest" />
-                </SelectTrigger>
-                <SelectContent>
-                  {technologyOptions.map((tech) => (
-                    <SelectItem key={tech} value={tech}>
-                      {tech}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.technology && (
-                <p className="text-sm text-red-600">{errors.technology.message}</p>
-              )}
+              {/* Technology Field */}
+              <div className="space-y-2">
+                <Label htmlFor="technology">Technology Interest *</Label>
+                <Select onValueChange={handleTechnologyChange} defaultValue="">
+                  <SelectTrigger className={`w-full ${errors.technology ? 'border-red-500' : ''}`}>
+                    <SelectValue placeholder="Select your technology interest" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {technologyOptions.map((tech) => (
+                      <SelectItem key={tech} value={tech}>
+                        {tech}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.technology && (
+                  <p className="text-sm text-red-600">{errors.technology.message}</p>
+                )}
+              </div>
             </div>
 
             {/* Submit Button */}
