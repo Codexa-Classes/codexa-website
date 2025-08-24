@@ -216,48 +216,40 @@ export function EnquiryForm() {
             <div className="space-y-2">
               <Label htmlFor="technology">Technology Interest *</Label>
               <div className="relative technology-dropdown">
-                <button
-                  type="button"
-                  onClick={() => setIsTechnologyOpen(!isTechnologyOpen)}
-                  className={`w-full flex items-center justify-between p-3 border rounded-md bg-white text-left ${
-                    errors.technology ? 'border-red-500' : 'border-input'
-                  } ${isTechnologyOpen ? 'ring-2 ring-ring' : ''}`}
-                >
-                  <span className={watch('technology')?.length > 0 ? 'text-foreground' : 'text-muted-foreground'}>
-                    {watch('technology')?.length > 0 
-                      ? `${watch('technology')?.length} technology${watch('technology')?.length === 1 ? 'y' : 'ies'} selected`
-                      : 'Select your technology interests'
-                    }
-                  </span>
-                  <svg className="w-4 h-4 transition-transform" style={{ transform: isTechnologyOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                    <path fill="currentColor" d="M7 10l5 5 5-5z"/>
-                  </svg>
-                </button>
-                
-                {isTechnologyOpen && (
-                  <div className="absolute z-50 w-full mt-1 bg-white border border-input rounded-md shadow-lg max-h-60 overflow-auto">
+                <Select open={isTechnologyOpen} onOpenChange={setIsTechnologyOpen}>
+                  <SelectTrigger className={`w-full ${errors.technology ? 'border-red-500' : ''}`}>
+                    <SelectValue placeholder="Select your technology interests">
+                      {watch('technology')?.length > 0 
+                        ? `${watch('technology')?.length} technology${watch('technology')?.length === 1 ? 'y' : 'ies'} selected`
+                        : 'Select your technology interests'
+                      }
+                    </SelectValue>
+                  </SelectTrigger>
+                  <SelectContent className="max-h-60">
                     {technologyOptions.map((tech) => (
-                      <label key={tech} className="flex items-center p-3 hover:bg-accent cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={watch('technology')?.includes(tech) || false}
-                          onChange={(e) => {
-                            const currentTechs = watch('technology') || [];
-                            if (e.target.checked) {
-                              const newTechs = [...currentTechs, tech];
-                              setValue('technology', newTechs);
-                            } else {
-                              const newTechs = currentTechs.filter(t => t !== tech);
-                              setValue('technology', newTechs);
-                            }
-                          }}
-                          className="mr-3 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-                        />
-                        <span className="text-sm">{tech}</span>
-                      </label>
+                      <SelectItem key={tech} value={tech} className="cursor-pointer">
+                        <div className="flex items-center space-x-2" onClick={(e) => e.stopPropagation()}>
+                          <input
+                            type="checkbox"
+                            checked={watch('technology')?.includes(tech) || false}
+                            onChange={(e) => {
+                              const currentTechs = watch('technology') || [];
+                              if (e.target.checked) {
+                                const newTechs = [...currentTechs, tech];
+                                setValue('technology', newTechs);
+                              } else {
+                                const newTechs = currentTechs.filter(t => t !== tech);
+                                setValue('technology', newTechs);
+                              }
+                            }}
+                            className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                          />
+                          <span>{tech}</span>
+                        </div>
+                      </SelectItem>
                     ))}
-                  </div>
-                )}
+                  </SelectContent>
+                </Select>
               </div>
               {errors.technology && (
                 <p className="text-sm text-red-600">{errors.technology.message}</p>
