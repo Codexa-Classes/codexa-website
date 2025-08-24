@@ -147,7 +147,7 @@ export function EnquiryForm() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Name Field */}
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name *</Label>
+                <Label htmlFor="name"><span className="text-red-500">*</span> Full Name</Label>
                 <Input
                   id="name"
                   placeholder="Enter your full name"
@@ -161,7 +161,7 @@ export function EnquiryForm() {
 
               {/* Mobile Field */}
               <div className="space-y-2">
-                <Label htmlFor="mobile">Mobile Number *</Label>
+                <Label htmlFor="mobile"><span className="text-red-500">*</span> Mobile Number</Label>
                 <Input
                   id="mobile"
                   placeholder="Enter your 10-digit mobile number"
@@ -175,7 +175,7 @@ export function EnquiryForm() {
 
               {/* Email Field */}
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address *</Label>
+                <Label htmlFor="email"><span className="text-red-500">*</span> Email Address</Label>
                 <Input
                   id="email"
                   type="email"
@@ -193,7 +193,7 @@ export function EnquiryForm() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Pass Out Year Field */}
               <div className="space-y-2">
-                <Label htmlFor="passOutYear">Pass Out Year *</Label>
+                <Label htmlFor="passOutYear"><span className="text-red-500">*</span> Pass Out Year</Label>
                 <Select onValueChange={handleYearChange} defaultValue={currentYear.toString()}>
                   <SelectTrigger className={`w-full ${errors.passOutYear ? 'border-red-500' : ''}`}>
                     <SelectValue placeholder="Select your pass out year" />
@@ -213,7 +213,7 @@ export function EnquiryForm() {
 
                           {/* Technology Field */}
             <div className="space-y-2">
-              <Label htmlFor="technology">Technology Interest *</Label>
+              <Label htmlFor="technology"><span className="text-red-500">*</span> Technology Interest</Label>
               <DropdownMenu open={isTechnologyOpen} onOpenChange={setIsTechnologyOpen}>
                 <DropdownMenuTrigger asChild>
                   <Button
