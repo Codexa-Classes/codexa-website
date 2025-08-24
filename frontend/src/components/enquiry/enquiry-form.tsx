@@ -8,7 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
+
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { enquiryService } from '@/lib/services/enquiry/enquiryService';
@@ -113,12 +114,6 @@ export function EnquiryForm() {
   return (
     <div className="max-w-4xl mx-auto p-6">
       <Card className="w-full">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold">Course Enquiry Form</CardTitle>
-          <CardDescription>
-            Fill out the form below and we'll get back to you with course details and enrollment information.
-          </CardDescription>
-        </CardHeader>
         <CardContent>
           {submitStatus === 'success' && (
             <Alert className="mb-6 border-green-200 bg-green-50">
