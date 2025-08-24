@@ -69,7 +69,7 @@ export const INSTRUCTOR: Instructor = {
   experience: "10+ Years",
   currentRole: "Senior Business Analyst at Kotak Mahindra Bank",
   email: "hiVirajKadam@gmail.com",
-  website: "https://www.virajkadam.in",
+  website: "VirajKadam.in",
   expertise: [
     "PHP & Laravel Framework",
     "Python & Django Development", 
