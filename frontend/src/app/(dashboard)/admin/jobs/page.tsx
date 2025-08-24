@@ -13,6 +13,7 @@ import { JobProfile } from '@/components/jobs/job-profile';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { PageHeader } from '@/components/forms';
+import { ActionButtons } from '@/components/ui/action-buttons';
 
 export default function AdminJobsPage() {
   const { user } = useAuth();
@@ -23,7 +24,7 @@ export default function AdminJobsPage() {
   const [statusFilter, setStatusFilter] = useState('all');
   
   // Get job ID from URL query params
-  const jobId = searchParams.get('id');
+  const jobId = searchParams?.get('id') || null;
   const viewMode = jobId ? 'profile' : 'list';
   const selectedJob = jobId ? jobs.find(j => j.id === jobId) : null;
 
@@ -144,26 +145,10 @@ export default function AdminJobsPage() {
     setJobs(storedJobs);
   };
 
-  const handleViewJob = (job: Job) => {
-    console.log('View job profile clicked:', job);
-    router.push(getJobViewRoute(job.id));
-  };
-
-  const handleEditJob = (job: Job) => {
-    console.log('Edit job clicked:', job);
-    router.push(getJobEditRoute(job.id));
-  };
-
   const handleDeleteJob = (job: Job) => {
-    if (confirm(`Are you sure you want to delete ${job.jobTitle}?`)) {
-      const success = jobsService.deleteJob(job.id);
-      if (success) {
-        refreshJobs();
-        // Show success message
-        alert(`Successfully deleted ${job.jobTitle}`);
-      } else {
-        alert('Failed to delete job');
-      }
+    const success = jobsService.deleteJob(job.id);
+    if (success) {
+      refreshJobs();
     }
   };
 
@@ -197,7 +182,7 @@ export default function AdminJobsPage() {
         job={selectedJob}
         onBack={handleBackToList}
         onDelete={() => handleDeleteJob(selectedJob)}
-        onEdit={() => handleEditJob(selectedJob)}
+        onEdit={() => router.push(getJobEditRoute(selectedJob.id))}
       />
     );
   }
@@ -223,6 +208,26 @@ export default function AdminJobsPage() {
               text: "Create",
               onClick: handleAddJob
             }}
+            filters={[
+              {
+                label: "Search",
+                value: searchTerm,
+                type: "search",
+                placeholder: "Search jobs...",
+                onChange: setSearchTerm
+              },
+              {
+                label: "Status",
+                value: statusFilter,
+                options: [
+                  { value: "all", label: "All Status" },
+                  { value: "active", label: "Active" },
+                  { value: "closed", label: "Closed" },
+                  { value: "draft", label: "Draft" }
+                ],
+                onChange: setStatusFilter
+              }
+            ]}
           />
         </CardHeader>
         
@@ -234,22 +239,22 @@ export default function AdminJobsPage() {
               <table className="w-full min-w-[600px]">
                 <thead className="bg-muted/50">
                   <tr>
-                    <th className="px-4 py-3 text-left text-sm font-medium whitespace-nowrap">Title</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium whitespace-nowrap">Company</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium whitespace-nowrap">Status</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium whitespace-nowrap">Actions</th>
+                    <th className="px-4 py-3 text-center text-sm font-medium whitespace-nowrap">Title</th>
+                    <th className="px-4 py-3 text-center text-sm font-medium whitespace-nowrap">Company</th>
+                    <th className="px-4 py-3 text-center text-sm font-medium whitespace-nowrap">Status</th>
+                    <th className="px-4 py-3 text-center text-sm font-medium whitespace-nowrap">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredJobs.map((job) => (
                     <tr key={job.id} className="border-t hover:bg-muted/25">
-                      <td className="px-4 py-3">
+                      <td className="px-4 py-3 text-center">
                         <div>
                           <div className="text-sm font-medium whitespace-nowrap">{job.jobTitle}</div>
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-sm whitespace-nowrap">{job.companyName}</td>
-                      <td className="px-4 py-3">
+                      <td className="px-4 py-3 text-sm whitespace-nowrap text-center">{job.companyName}</td>
+                      <td className="px-4 py-3 text-center">
                         <span className={`px-2 py-1 text-xs rounded-full whitespace-nowrap ${
                           job.status === 'active' ? 'bg-green-100 text-green-800' :
                           job.status === 'closed' ? 'bg-red-100 text-red-800' :
@@ -258,40 +263,19 @@ export default function AdminJobsPage() {
                           {job.status}
                         </span>
                       </td>
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-2 whitespace-nowrap">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleViewJob(job)}
-                            className="h-8 w-8 p-0"
-                          >
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleEditJob(job)}
-                            className="h-8 w-8 p-0"
-                          >
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleDeleteJob(job)}
-                            className="h-8 w-8 p-0 text-red-600 hover:text-red-700"
-                          >
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg>
-                          </Button>
-                        </div>
+                      <td className="px-4 py-3 text-center">
+                        <ActionButtons
+                          id={job.id}
+                          basePath="/admin/jobs"
+                          onDelete={handleDeleteJob}
+                          size="sm"
+                          showView={true}
+                          showEdit={true}
+                          showDelete={true}
+                          getViewRoute={getJobViewRoute}
+                          deleteConfirmTitle={`Delete ${job.jobTitle}?`}
+                          deleteConfirmDescription={`Are you sure you want to delete ${job.jobTitle}? This action cannot be undone and will permanently remove this job from the system.`}
+                        />
                       </td>
                     </tr>
                   ))}
