@@ -209,22 +209,22 @@ export default function CandidatesPage() {
               <table className="w-full min-w-[600px]">
                 <thead className="bg-muted/50">
                   <tr>
-                    <th className="px-4 py-3 text-left text-sm font-medium whitespace-nowrap">Name</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium whitespace-nowrap">Email</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium whitespace-nowrap">Status</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium whitespace-nowrap">Actions</th>
+                    <th className="px-4 py-3 text-center text-sm font-medium whitespace-nowrap">Name</th>
+                    <th className="px-4 py-3 text-center text-sm font-medium whitespace-nowrap">Email</th>
+                    <th className="px-4 py-3 text-center text-sm font-medium whitespace-nowrap">Status</th>
+                    <th className="px-4 py-3 text-center text-sm font-medium whitespace-nowrap">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredCandidates.map((candidate) => (
                     <tr key={candidate.id} className="border-t hover:bg-muted/25">
-                      <td className="px-4 py-3">
+                      <td className="px-4 py-3 text-center">
                         <div>
                           <div className="text-sm font-medium whitespace-nowrap">{candidate.fullName}</div>
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-sm whitespace-nowrap">{candidate.email}</td>
-                      <td className="px-4 py-3">
+                      <td className="px-4 py-3 text-sm whitespace-nowrap text-center">{candidate.email}</td>
+                      <td className="px-4 py-3 text-center">
                         <span className={`px-2 py-1 text-xs rounded-full whitespace-nowrap ${
                           candidate.status === 'approved' ? 'bg-green-100 text-green-800' :
                           candidate.status === 'rejected' ? 'bg-red-100 text-red-800' :
@@ -233,7 +233,7 @@ export default function CandidatesPage() {
                           {candidate.status}
                         </span>
                       </td>
-                      <td className="px-4 py-3">
+                      <td className="px-4 py-3 text-center">
                         <ActionButtons
                           id={candidate.id}
                           basePath="/admin/candidates"
