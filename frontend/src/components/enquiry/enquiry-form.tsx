@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -19,7 +19,7 @@ const enquirySchema = z.object({
   mobile: z.string().regex(/^[6-9]\d{9}$/, 'Mobile number must start with 6, 7, 8, or 9 and be exactly 10 digits'),
   email: z.string().email('Please enter a valid email address'),
   passOutYear: z.number().min(2000).max(new Date().getFullYear() + 1, 'Please enter a valid year'),
-  technology: z.string().min(1, 'Please select a technology')
+  technology: z.array(z.string()).min(1, 'Please select at least one technology')
 });
 
 type EnquiryFormData = z.infer<typeof enquirySchema>;
@@ -46,6 +46,8 @@ export function EnquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isTechnologyOpen, setIsTechnologyOpen] = useState(false);
+
 
   const {
     register,
@@ -61,7 +63,7 @@ export function EnquiryForm() {
       mobile: '',
       email: '',
       passOutYear: currentYear,
-      technology: ''
+      technology: []
     }
   });
 
@@ -91,13 +93,27 @@ export function EnquiryForm() {
     }
   };
 
-  const handleTechnologyChange = (value: string) => {
+  const handleTechnologyChange = (value: string[]) => {
     setValue('technology', value);
   };
 
   const handleYearChange = (value: string) => {
     setValue('passOutYear', parseInt(value));
   };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isTechnologyOpen && !(event.target as Element).closest('.technology-dropdown')) {
+        setIsTechnologyOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isTechnologyOpen]);
+
+
 
   return (
     <div className="max-w-4xl mx-auto p-6">
@@ -196,25 +212,57 @@ export function EnquiryForm() {
                 )}
               </div>
 
-              {/* Technology Field */}
-              <div className="space-y-2">
-                <Label htmlFor="technology">Technology Interest *</Label>
-                <Select onValueChange={handleTechnologyChange} defaultValue="">
-                  <SelectTrigger className={`w-full ${errors.technology ? 'border-red-500' : ''}`}>
-                    <SelectValue placeholder="Select your technology interest" />
-                  </SelectTrigger>
-                  <SelectContent>
+                          {/* Technology Field */}
+            <div className="space-y-2">
+              <Label htmlFor="technology">Technology Interest *</Label>
+              <div className="relative technology-dropdown">
+                <button
+                  type="button"
+                  onClick={() => setIsTechnologyOpen(!isTechnologyOpen)}
+                  className={`w-full flex items-center justify-between p-3 border rounded-md bg-white text-left ${
+                    errors.technology ? 'border-red-500' : 'border-input'
+                  } ${isTechnologyOpen ? 'ring-2 ring-ring' : ''}`}
+                >
+                  <span className={watch('technology')?.length > 0 ? 'text-foreground' : 'text-muted-foreground'}>
+                    {watch('technology')?.length > 0 
+                      ? `${watch('technology')?.length} technology${watch('technology')?.length === 1 ? 'y' : 'ies'} selected`
+                      : 'Select your technology interests'
+                    }
+                  </span>
+                  <svg className="w-4 h-4 transition-transform" style={{ transform: isTechnologyOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                    <path fill="currentColor" d="M7 10l5 5 5-5z"/>
+                  </svg>
+                </button>
+                
+                {isTechnologyOpen && (
+                  <div className="absolute z-50 w-full mt-1 bg-white border border-input rounded-md shadow-lg max-h-60 overflow-auto">
                     {technologyOptions.map((tech) => (
-                      <SelectItem key={tech} value={tech}>
-                        {tech}
-                      </SelectItem>
+                      <label key={tech} className="flex items-center p-3 hover:bg-accent cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={watch('technology')?.includes(tech) || false}
+                          onChange={(e) => {
+                            const currentTechs = watch('technology') || [];
+                            if (e.target.checked) {
+                              const newTechs = [...currentTechs, tech];
+                              setValue('technology', newTechs);
+                            } else {
+                              const newTechs = currentTechs.filter(t => t !== tech);
+                              setValue('technology', newTechs);
+                            }
+                          }}
+                          className="mr-3 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                        />
+                        <span className="text-sm">{tech}</span>
+                      </label>
                     ))}
-                  </SelectContent>
-                </Select>
-                {errors.technology && (
-                  <p className="text-sm text-red-600">{errors.technology.message}</p>
+                  </div>
                 )}
               </div>
+              {errors.technology && (
+                <p className="text-sm text-red-600">{errors.technology.message}</p>
+              )}
+            </div>  
             </div>
 
             {/* Submit Button */}

@@ -102,13 +102,13 @@ class EnquiryService {
         enquiry.name.toLowerCase().includes(searchTerm) ||
         enquiry.email.toLowerCase().includes(searchTerm) ||
         enquiry.mobile.includes(searchTerm) ||
-        enquiry.technology.toLowerCase().includes(searchTerm)
+        enquiry.technology.some(tech => tech.toLowerCase().includes(searchTerm))
       );
     }
 
     if (filters.technology) {
       enquiries = enquiries.filter(enquiry => 
-        enquiry.technology.toLowerCase() === filters.technology!.toLowerCase()
+        enquiry.technology.some(tech => tech.toLowerCase() === filters.technology!.toLowerCase())
       );
     }
 
@@ -132,8 +132,8 @@ class EnquiryService {
   // Get unique technologies
   getUniqueTechnologies(): string[] {
     const enquiries = this.getEnquiriesFromStorage();
-    const technologies = enquiries.map(enquiry => enquiry.technology);
-    return [...new Set(technologies)].sort();
+    const allTechnologies = enquiries.flatMap(enquiry => enquiry.technology);
+    return [...new Set(allTechnologies)].sort();
   }
 
   // Get unique pass out years
@@ -155,19 +155,21 @@ class EnquiryService {
       byYear: {}
     };
 
-    enquiries.forEach(enquiry => {
-      // Count by status
-      stats.byStatus[enquiry.status]++;
-      
-      // Count by priority
-      stats.byPriority[enquiry.priority]++;
-      
-      // Count by technology
-      stats.byTechnology[enquiry.technology] = (stats.byTechnology[enquiry.technology] || 0) + 1;
-      
-      // Count by year
-      stats.byYear[enquiry.passOutYear] = (stats.byYear[enquiry.passOutYear] || 0) + 1;
-    });
+          enquiries.forEach(enquiry => {
+        // Count by status
+        stats.byStatus[enquiry.status]++;
+        
+        // Count by priority
+        stats.byPriority[enquiry.priority]++;
+        
+        // Count by technology (handle array)
+        enquiry.technology.forEach(tech => {
+          stats.byTechnology[tech] = (stats.byTechnology[tech] || 0) + 1;
+        });
+        
+        // Count by year
+        stats.byYear[enquiry.passOutYear] = (stats.byYear[enquiry.passOutYear] || 0) + 1;
+      });
 
     return stats;
   }

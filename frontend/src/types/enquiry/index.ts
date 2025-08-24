@@ -4,7 +4,7 @@ export interface Enquiry {
   mobile: string;
   email: string;
   passOutYear: number;
-  technology: string;
+  technology: string[];
   createdAt: string;
   updatedAt: string;
   status: EnquiryStatus;
@@ -16,7 +16,7 @@ export interface CreateEnquiryData {
   mobile: string;
   email: string;
   passOutYear: number;
-  technology: string;
+  technology: string[];
 }
 
 export interface UpdateEnquiryData extends Partial<CreateEnquiryData> {
