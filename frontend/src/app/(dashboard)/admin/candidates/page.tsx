@@ -184,7 +184,7 @@ export default function CandidatesPage() {
                 value: searchTerm,
                 type: "search",
                 placeholder: "Search candidates...",
-                onChange: setSearchTerm
+                onChange: (value) => setSearchTerm(value as string)
               },
               {
                 label: "Status",
@@ -195,7 +195,7 @@ export default function CandidatesPage() {
                   { value: "approved", label: "Approved" },
                   { value: "rejected", label: "Rejected" }
                 ],
-                onChange: setStatusFilter
+                onChange: (value) => setStatusFilter(value as string)
               }
             ]}
           />

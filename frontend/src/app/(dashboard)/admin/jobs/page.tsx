@@ -214,7 +214,7 @@ export default function AdminJobsPage() {
                 value: searchTerm,
                 type: "search",
                 placeholder: "Search jobs...",
-                onChange: setSearchTerm
+                onChange: (value) => setSearchTerm(value as string)
               },
               {
                 label: "Status",
@@ -225,7 +225,7 @@ export default function AdminJobsPage() {
                   { value: "closed", label: "Closed" },
                   { value: "draft", label: "Draft" }
                 ],
-                onChange: setStatusFilter
+                onChange: (value) => setStatusFilter(value as string)
               }
             ]}
           />

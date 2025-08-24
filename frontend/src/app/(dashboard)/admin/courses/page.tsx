@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { courseService, initializeCourses } from "@/lib/services/coursesService"
 import { Course } from "@/types/course"
-import { Plus, BookOpen, Users, TrendingUp, Home } from "lucide-react"
+import { Plus, BookOpen, Users, TrendingUp, Home, Filter } from "lucide-react"
 import { toast } from "sonner"
 import Link from "next/link"
 import { Breadcrumb } from "@/components/ui/breadcrumb"
@@ -17,6 +17,10 @@ export default function AdminCoursesPage() {
   const [courses, setCourses] = useState<Course[]>([])
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState('all')
+  const [categoryFilter, setCategoryFilter] = useState('all')
+  const [levelFilter, setLevelFilter] = useState('all')
+  const [durationFilter, setDurationFilter] = useState('all')
+  const [priceRange, setPriceRange] = useState({ min: 0, max: 0 })
 
   useEffect(() => {
     initializeCourses()
@@ -64,6 +68,38 @@ export default function AdminCoursesPage() {
     if (statusFilter !== 'all' && course.status !== statusFilter) {
       return false;
     }
+
+    // Category filter
+    if (categoryFilter !== 'all' && course.category !== categoryFilter) {
+      return false;
+    }
+
+    // Level filter
+    if (levelFilter !== 'all' && course.level !== levelFilter) {
+      return false;
+    }
+
+    // Duration filter
+    if (durationFilter !== 'all') {
+      const courseDuration = course.duration.toLowerCase();
+      if (durationFilter === 'short' && !courseDuration.includes('week') && !courseDuration.includes('day')) {
+        return false;
+      }
+      if (durationFilter === 'medium' && !courseDuration.includes('8') && !courseDuration.includes('10')) {
+        return false;
+      }
+      if (durationFilter === 'long' && !courseDuration.includes('12') && !courseDuration.includes('month')) {
+        return false;
+      }
+    }
+
+    // Price range filter
+    if (priceRange.min > 0 && course.price < priceRange.min) {
+      return false;
+    }
+    if (priceRange.max > 0 && course.price > priceRange.max) {
+      return false;
+    }
     
     // Search filter
     if (searchTerm) {
@@ -97,6 +133,19 @@ export default function AdminCoursesPage() {
     window.location.href = "/admin/courses/add"
   }
 
+  const clearAllFilters = () => {
+    setSearchTerm("")
+    setStatusFilter('all')
+    setCategoryFilter('all')
+    setLevelFilter('all')
+    setDurationFilter('all')
+    setPriceRange({ min: 0, max: 0 })
+  }
+
+  // Get unique categories and levels from courses
+  const uniqueCategories = Array.from(new Set(courses.map(c => c.category))).filter(Boolean);
+  const uniqueLevels = Array.from(new Set(courses.map(c => c.level))).filter(Boolean);
+
   // Remove loading check
 
   return (
@@ -118,14 +167,50 @@ export default function AdminCoursesPage() {
               text: "Create",
               onClick: handleAddCourse
             }}
+            onClearFilters={clearAllFilters}
             filters={[
               {
                 label: "Search",
                 value: searchTerm,
                 type: "search",
                 placeholder: "Search courses...",
-                onChange: setSearchTerm
+                onChange: (value) => setSearchTerm(value as string)
               },
+              {
+                label: "Category",
+                value: categoryFilter,
+                options: [
+                  { value: "all", label: "All Categories" },
+                  ...uniqueCategories.map(cat => ({ 
+                    value: cat, 
+                    label: cat.charAt(0).toUpperCase() + cat.slice(1) 
+                  }))
+                ],
+                onChange: (value) => setCategoryFilter(value as string)
+              },
+              {
+                label: "Level",
+                value: levelFilter,
+                options: [
+                  { value: "all", label: "All Levels" },
+                  ...uniqueLevels.map(level => ({ 
+                    value: level, 
+                    label: level.charAt(0).toUpperCase() + level.slice(1) 
+                  }))
+                ],
+                onChange: (value) => setLevelFilter(value as string)
+              },
+              {
+                label: "Duration",
+                value: durationFilter,
+                options: [
+                  { value: "all", label: "All Durations" },
+                  { value: "short", label: "Short" },
+                  { value: "medium", label: "Medium" },
+                  { value: "long", label: "Long" }
+                ],
+                onChange: (value) => setDurationFilter(value as string)
+              },  
               {
                 label: "Status",
                 value: statusFilter,
@@ -135,13 +220,70 @@ export default function AdminCoursesPage() {
                   { value: "published", label: "Published" },
                   { value: "archived", label: "Archived" }
                 ],
-                onChange: setStatusFilter
+                onChange: (value) => setStatusFilter(value as string)
               }
             ]}
           />
         </CardHeader>
         
+        {/* Filter Summary */}
+        {(searchTerm || statusFilter !== 'all' || categoryFilter !== 'all' || levelFilter !== 'all' || durationFilter !== 'all' || priceRange.min > 0 || priceRange.max > 0) && (
+          <div className="px-6 py-3 bg-muted/30 border-b">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Filter className="h-4 w-4" />
+              <span>Active filters:</span>
+              {searchTerm && (
+                <span className="px-2 py-1 bg-primary/10 text-primary rounded-md">
+                  Search: "{searchTerm}"
+                </span>
+              )}
+              {statusFilter !== 'all' && (
+                <span className="px-2 py-1 bg-primary/10 text-primary rounded-md">
+                  Status: {statusFilter}
+                </span>
+              )}
+              {categoryFilter !== 'all' && (
+                <span className="px-2 py-1 bg-primary/10 text-primary rounded-md">
+                  Category: {categoryFilter}
+                </span>
+              )}
+              {levelFilter !== 'all' && (
+                <span className="px-2 py-1 bg-primary/10 text-primary rounded-md">
+                  Level: {levelFilter}
+                </span>
+              )}
+              {durationFilter !== 'all' && (
+                <span className="px-2 py-1 bg-primary/10 text-primary rounded-md">
+                  Duration: {durationFilter}
+                </span>
+              )}
+              {(priceRange.min > 0 || priceRange.max > 0) && (
+                <span className="px-2 py-1 bg-primary/10 text-primary rounded-md">
+                  Price: ₹{priceRange.min > 0 ? priceRange.min.toLocaleString() : '0'} - ₹{priceRange.max > 0 ? priceRange.max.toLocaleString() : '∞'}
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+        
         <CardContent className="space-y-6">
+
+          {/* Results Count */}
+          <div className="flex items-center justify-between">
+            <div className="text-sm text-muted-foreground">
+              Showing {filteredCourses.length} of {courses.length} courses
+            </div>
+            {filteredCourses.length !== courses.length && (
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={clearAllFilters}
+                className="text-muted-foreground hover:text-foreground"
+              >
+                Clear all filters
+              </Button>
+            )}
+          </div>
 
           {/* Table: Clean data display with horizontal scroll on mobile */}
           <div className="border rounded-lg overflow-hidden">
