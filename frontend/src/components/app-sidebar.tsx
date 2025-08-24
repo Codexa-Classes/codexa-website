@@ -14,6 +14,7 @@ import {
   MessageSquare,
 } from 'lucide-react';
 import { Logo } from './Logo';
+import { SocialMediaIcons, defaultSocialMediaLinks } from './SocialMediaIcons';
 import {
   Sidebar,
   SidebarContent,
@@ -121,6 +122,21 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      
+      <SidebarFooter className="border-t border-sidebar-border p-4">
+        <div className="flex flex-col items-center space-y-4">
+          <div className="text-xs text-muted-foreground text-center">
+            Connect with us
+          </div>
+          <SocialMediaIcons 
+            links={defaultSocialMediaLinks}
+            iconSize={16}
+            className=""
+            containerClassName="flex"
+            gap={20}
+          />
+        </div>
+      </SidebarFooter>
     </Sidebar>
   );
 }
