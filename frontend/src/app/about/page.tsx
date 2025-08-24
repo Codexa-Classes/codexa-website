@@ -11,7 +11,8 @@ import {
   Mail,
   ArrowRight,
   CheckCircle,
-  Trophy
+  Trophy,
+  Globe
 } from 'lucide-react';
 import Image from 'next/image';
 import PageLayout from '@/components/layout/PageLayout';
@@ -122,12 +123,14 @@ export default function About() {
                     <span className="text-sm text-gray-700 font-medium">{INSTRUCTOR.experience} Industry Experience</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Mail className="h-4 w-4 text-gray-600" />
+                    <Globe className="h-4 w-4 text-gray-600" />
                     <a 
-                      href={`mailto:${INSTRUCTOR.email}`}
+                      href={INSTRUCTOR.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-sm text-blue-600 hover:underline font-medium"
                     >
-                      {INSTRUCTOR.email}
+                      {INSTRUCTOR.website.replace('https://', '')}
                     </a>
                   </div>
                 </CardContent>
