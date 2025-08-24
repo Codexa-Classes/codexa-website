@@ -16,7 +16,7 @@ import { CreateEnquiryData } from '@/types/enquiry';
 
 const enquirySchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
-  mobile: z.string().regex(/^[6-9]\d{9}$/, 'Please enter a valid 10-digit mobile number'),
+  mobile: z.string().regex(/^[6-9]\d{9}$/, 'Mobile number must start with 6, 7, 8, or 9 and be exactly 10 digits'),
   email: z.string().email('Please enter a valid email address'),
   passOutYear: z.number().min(2000).max(new Date().getFullYear() + 1, 'Please enter a valid year'),
   technology: z.string().min(1, 'Please select a technology')
