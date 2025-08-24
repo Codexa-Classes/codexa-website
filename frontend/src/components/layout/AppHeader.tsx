@@ -19,12 +19,11 @@ export default function AppHeader() {
   
   const navItems = [
     { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
     { href: "/courses", label: "Courses" },
     { href: "/super10", label: "Super10" },
     { href: "/testimonials", label: "Testimonials" },
     { href: "/certificate", label: "Certificate" },
-    { href: "/contact", label: "Contact" }
+    { href: "/candidate/enquiry", label: "Enquiry" }
   ];
 
   // Update underline position and width when pathname changes
