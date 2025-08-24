@@ -70,41 +70,56 @@ export function JobProfile({
             </CardHeader>
             <CardContent className="pt-0">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                <div className="space-y-2">
-                  <div className="text-xl font-semibold">{job.jobTitle}</div>
-                  <span className="text-sm font-medium text-muted-foreground">Job Title</span>
+                {/* Column 1: Job Title + Job Type */}
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <div className="text-xl font-semibold">{job.jobTitle}</div>
+                    <span className="text-sm font-medium text-muted-foreground">Job Title</span>
+                  </div>
+                  <div className="space-y-2">
+                    <Badge variant="secondary">{job.jobType}</Badge>
+                    <span className="text-sm font-medium text-muted-foreground">Job Type</span>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <div className="text-base">{job.role}</div>
-                  <span className="text-sm font-medium text-muted-foreground">Role / Designation</span>
+
+                {/* Column 2: Industry + Department */}
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <div className="text-base font-semibold">{job.industry}</div>
+                    <span className="text-sm font-medium text-muted-foreground">Industry</span>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-base font-semibold">{job.department}</div>
+                    <span className="text-sm font-medium text-muted-foreground">Department</span>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Badge variant="secondary">{job.jobType}</Badge>
-                  <span className="text-sm font-medium text-muted-foreground">Job Type</span>
+
+                {/* Column 3: Role + Work Mode */}
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <div className="text-base font-semibold">{job.role}</div>
+                    <span className="text-sm font-medium text-muted-foreground">Role / Designation</span>
+                  </div>
+                  <div className="space-y-2">
+                    <Badge variant="secondary">{job.workMode}</Badge>
+                    <span className="text-sm font-medium text-muted-foreground">Work Mode</span>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Badge variant={job.status === 'active' ? 'default' : job.status === 'closed' ? 'destructive' : 'secondary'}>
-                    {job.status}
-                  </Badge>
-                  <span className="block text-sm font-medium text-muted-foreground">Status</span>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-base">{job.industry}</div>
-                  <span className="text-sm font-medium text-muted-foreground">Industry</span>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-base">{job.department}</div>
-                  <span className="text-sm font-medium text-muted-foreground">Department</span>
-                </div>
-                <div className="space-y-2">
-                  <Badge variant="secondary">{job.workMode}</Badge>
-                  <span className="block text-sm font-medium text-muted-foreground">Work Mode</span>
-                </div>
-                <div className="space-y-2">
-                  <Badge variant={job.priority === 'high' ? 'destructive' : job.priority === 'medium' ? 'default' : 'secondary'}>
-                    {job.priority}
-                  </Badge>
-                  <span className="block text-sm font-medium text-muted-foreground">Priority</span>
+
+                {/* Column 4: Status + Priority */}
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Badge variant={job.status === 'active' ? 'default' : job.status === 'closed' ? 'destructive' : 'secondary'}>
+                      {job.status}
+                    </Badge>
+                    <span className="text-sm font-medium text-muted-foreground">Status</span>
+                  </div>
+                  <div className="space-y-2">
+                    <Badge variant={job.priority === 'high' ? 'destructive' : job.priority === 'medium' ? 'default' : 'secondary'}>
+                      {job.priority}
+                    </Badge>
+                    <span className="text-sm font-medium text-muted-foreground">Priority</span>
+                  </div>
                 </div>
               </div>
             </CardContent>
