@@ -86,7 +86,7 @@ export function JobProfile({
                   <Badge variant={job.status === 'active' ? 'default' : job.status === 'closed' ? 'destructive' : 'secondary'}>
                     {job.status}
                   </Badge>
-                  <span className="text-sm font-medium text-muted-foreground">Status</span>
+                  <span className="block text-sm font-medium text-muted-foreground">Status</span>
                 </div>
                 <div className="space-y-2">
                   <div className="text-base">{job.industry}</div>
@@ -98,13 +98,13 @@ export function JobProfile({
                 </div>
                 <div className="space-y-2">
                   <Badge variant="secondary">{job.workMode}</Badge>
-                  <span className="text-sm font-medium text-muted-foreground">Work Mode</span>
+                  <span className="block text-sm font-medium text-muted-foreground">Work Mode</span>
                 </div>
                 <div className="space-y-2">
                   <Badge variant={job.priority === 'high' ? 'destructive' : job.priority === 'medium' ? 'default' : 'secondary'}>
                     {job.priority}
                   </Badge>
-                  <span className="text-sm font-medium text-muted-foreground">Priority</span>
+                  <span className="block text-sm font-medium text-muted-foreground">Priority</span>
                 </div>
               </div>
             </CardContent>
@@ -300,7 +300,7 @@ export function JobProfile({
                 </div>
                 <div className="space-y-2">
                   <Badge variant="secondary">{job.shiftTiming}</Badge>
-                  <span className="text-sm font-medium text-muted-foreground">Shift Timing</span>
+                  <span className="block text-sm font-medium text-muted-foreground">Shift Timing</span>
                 </div>
                 <div className="space-y-2">
                   <div className="text-base">{job.noticePeriodPreference || 'Not specified'}</div>
