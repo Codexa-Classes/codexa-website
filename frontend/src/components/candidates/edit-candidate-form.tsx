@@ -48,10 +48,12 @@ export function EditCandidateForm({
     email: "",
     phoneNumber: "",
     address: "",
+    pincode: "",
     password: "",
     course: "",
     joiningDate: undefined,
     feesTransactionNumber: "",
+    jobAdmission: false,
     profileTitle: "",
     currentJobStatus: "employed",
     primarySkills: [],
@@ -93,10 +95,12 @@ export function EditCandidateForm({
           email: candidateData.email || "",
           phoneNumber: candidateData.phoneNumber || "",
           address: candidateData.address || "",
+          pincode: candidateData.pincode || "",
           password: candidateData.password || "",
           course: candidateData.course || "",
           joiningDate: candidateData.joiningDate || undefined,
           feesTransactionNumber: candidateData.feesTransactionNumber || "",
+          jobAdmission: candidateData.jobAdmission || false,
           profileTitle: candidateData.profileTitle || "",
           currentJobStatus: candidateData.currentJobStatus || "employed",
           primarySkills: candidateData.primarySkills || [],
@@ -153,7 +157,7 @@ export function EditCandidateForm({
     }
   };
 
-  const handleInputChange = (field: keyof CreateCandidateData, value: string | string[] | Date) => {
+  const handleInputChange = (field: keyof CreateCandidateData, value: string | string[] | Date | boolean) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
@@ -415,6 +419,25 @@ export function EditCandidateForm({
               }
               required
             />
+          </div>
+
+          {/* Job Admission - Only available for editing existing candidates */}
+          <div>
+            <Label htmlFor="jobAdmission" className="mb-2 block">
+              Job Admission Status
+            </Label>
+            <Select
+              value={formData.jobAdmission ? "1" : "0"}
+              onValueChange={(value) => handleInputChange("jobAdmission", value === "1")}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select admission status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="0">Not Admitted</SelectItem>
+                <SelectItem value="1">Admitted</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
       </form>

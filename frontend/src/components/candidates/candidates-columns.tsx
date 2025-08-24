@@ -23,6 +23,10 @@ export interface Candidate {
   address: string;
   pincode: string;
   password: string; // for login
+  course?: string;
+  joiningDate?: Date;
+  feesTransactionNumber?: string;
+  jobAdmission?: boolean;
   
   // Candidate Self-Update Fields (can be updated later)
   profileTitle?: string;

@@ -15,6 +15,7 @@ export interface CreateCandidateData {
   course?: string;
   joiningDate?: Date;
   feesTransactionNumber?: string;
+  jobAdmission?: boolean;
   
   // Optional fields that can be filled later
   profileTitle?: string;
@@ -162,6 +163,10 @@ class CandidatesService {
         address: '123 Main St, San Francisco, CA 94102',
         pincode: '94102',
         password: 'hashed_password_123',
+        course: 'web-development',
+        joiningDate: new Date('2024-01-15'),
+        feesTransactionNumber: 'TXN123456',
+        jobAdmission: false,
         
         // Candidate Self-Update Fields
         profileTitle: 'Senior Frontend Developer',
