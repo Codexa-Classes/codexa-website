@@ -94,7 +94,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className="border-b border-sidebar-border p-4">
+      <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center justify-center">
           <Logo size="2xl" showLink={false} />
         </div>

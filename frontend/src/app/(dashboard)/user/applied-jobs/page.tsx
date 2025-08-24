@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { PageHeader } from '@/components/forms';
+import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { 
   ArrowLeft, 
   Search, 
@@ -29,14 +30,26 @@ import {
   MessageSquare,
   Phone,
   Mail,
-  ExternalLink
+  ExternalLink,
+  Home,
+  User
 } from 'lucide-react';
 import { mockJobs } from '@/lib/mock/jobs';
 import { jobsService } from '@/lib/services/jobsService';
 import { Job } from '@/components/jobs/jobs-columns';
 import dayjs from 'dayjs';
 
-interface AppliedJob extends Job {
+interface AppliedJob {
+  id: string;
+  jobTitle: string;
+  companyName: string;
+  location: string;
+  salaryRange: {
+    min: number;
+    max: number;
+  };
+  requiredSkills: string[];
+  jobDescription: string;
   applicationDate: string;
   status: 'applied' | 'reviewing' | 'shortlisted' | 'interview' | 'offered' | 'rejected';
   lastUpdate: string;
@@ -197,21 +210,60 @@ export default function AppliedJobsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navigation Header */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <PageHeader
-            title="Applied Jobs"
-            onBack={handleBackToDashboard}
-            actionButton={{
-              text: "Back to Dashboard",
-              onClick: handleBackToDashboard
-            }}
-          />
-        </div>
-      </div>
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {/* Breadcrumb Navigation */}
+        <Breadcrumb
+          items={[
+            { href: ROUTES.user.dashboard, label: 'Dashboard', icon: <Home className="h-4 w-4" /> },
+            { href: ROUTES.user.appliedJobs, label: 'Applied Jobs', icon: <User className="h-4 w-4" /> },
+          ]}
+        />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {/* Page Header with Filters */}
+        <Card className="mb-6">
+          <CardHeader>
+            <div className="flex items-center justify-between mb-4">
+              <Button variant="outline" onClick={handleBackToDashboard}>
+                <ArrowLeft className="h-4 w-4" />
+                <span className="hidden sm:inline">Back</span>
+              </Button>
+              <h1 className="text-3xl font-bold tracking-tight">Applied Jobs</h1>
+              <div className="w-[100px]"></div> {/* Spacer to balance the layout */}
+            </div>
+            <PageHeader
+              title=""
+              onBack={() => {}}
+              filters={[
+                {
+                  label: "Search",
+                  value: searchTerm,
+                  type: "search",
+                  placeholder: "Search applied jobs...",
+                  onChange: (value) => setSearchTerm(value as string)
+                },
+                {
+                  label: "Status",
+                  value: statusFilter,
+                  options: [
+                    { value: "all", label: "All Statuses" },
+                    { value: "applied", label: "Applied" },
+                    { value: "reviewing", label: "Under Review" },
+                    { value: "shortlisted", label: "Shortlisted" },
+                    { value: "interview", label: "Interview" },
+                    { value: "offered", label: "Offer Received" },
+                    { value: "rejected", label: "Not Selected" }
+                  ],
+                  onChange: (value) => setStatusFilter(value as string)
+                }
+              ]}
+              onClearFilters={() => {
+                setSearchTerm('');
+                setStatusFilter('all');
+              }}
+            />
+          </CardHeader>
+        </Card>
+
         {/* Application Statistics */}
         <div className="grid grid-cols-2 md:grid-cols-7 gap-4 mb-6">
           <Card className="text-center">
@@ -257,37 +309,6 @@ export default function AppliedJobsPage() {
             </CardContent>
           </Card>
         </div>
-
-        {/* Search and Filters */}
-        <Card className="mb-6">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-4">
-              <div className="flex-1 relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input
-                  placeholder="Search applied jobs..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-              <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-48">
-                  <SelectValue placeholder="Filter by status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Statuses</SelectItem>
-                  <SelectItem value="applied">Applied</SelectItem>
-                  <SelectItem value="reviewing">Under Review</SelectItem>
-                  <SelectItem value="shortlisted">Shortlisted</SelectItem>
-                  <SelectItem value="interview">Interview</SelectItem>
-                  <SelectItem value="offered">Offer Received</SelectItem>
-                  <SelectItem value="rejected">Not Selected</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </CardContent>
-        </Card>
 
         {/* Results Summary */}
         <div className="flex items-center justify-between mb-4">

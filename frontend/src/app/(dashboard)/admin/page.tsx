@@ -96,26 +96,20 @@ export default function AdminDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Candidates</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <Users className="h-10 w-10 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats.totalCandidates}</div>
-            <p className="text-xs text-muted-foreground">
-              {stats.totalCandidates > 0 ? '+2 from last month' : 'No candidates yet'}
-            </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Active Jobs</CardTitle>
-            <Briefcase className="h-4 w-4 text-muted-foreground" />
+            <Briefcase className="h-10 w-10 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats.activeJobs}</div>
-            <p className="text-xs text-muted-foreground">
-              {stats.activeJobs > 0 ? '+1 from last week' : 'No active jobs'}
-            </p>
           </CardContent>
         </Card>
 
@@ -124,26 +118,20 @@ export default function AdminDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Courses</CardTitle>
-            <BookOpen className="h-4 w-4 text-muted-foreground" />
+            <BookOpen className="h-10 w-10 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats.totalCourses}</div>
-            <p className="text-xs text-muted-foreground">
-              {stats.totalCourses > 0 ? 'Available courses' : 'No courses yet'}
-            </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Enquiries</CardTitle>
-            <MessageSquare className="h-4 w-4 text-muted-foreground" />
+            <MessageSquare className="h-10 w-10 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-blue-600">{stats.totalEnquiries}</div>
-            <p className="text-xs text-muted-foreground">
-              {stats.totalEnquiries > 0 ? 'Course enquiries' : 'No enquiries yet'}
-            </p>
           </CardContent>
         </Card>
       </div>

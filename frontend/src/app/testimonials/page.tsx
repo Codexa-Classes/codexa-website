@@ -217,7 +217,7 @@ export default function TestimonialsPage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6  mx-auto">
             {companyPlacements.map((company) => (
               <div key={company.id} className="text-center hover:scale-105 transition-all duration-300 bg-white rounded-xl p-6 shadow-md hover:shadow-xl border border-gray-100">
                 <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
@@ -266,7 +266,7 @@ export default function TestimonialsPage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mx-auto">
             {candidateSuccessStories.map((candidate) => (
               <Card key={candidate.id} className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 hover:shadow-xl hover:border-blue-400 transition-all duration-300 hover:-translate-y-2">
                 <CardHeader className="pb-4">

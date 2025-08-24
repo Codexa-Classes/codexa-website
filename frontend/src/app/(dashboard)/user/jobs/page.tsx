@@ -259,7 +259,7 @@ export default function UserJobsPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Navigation Header */}
       <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 py-4">
       <div className="flex items-center gap-4">
         <Button variant="outline" onClick={handleBackToDashboard}>
           <ArrowLeft className="mr-2 h-4 w-4" />
@@ -275,7 +275,7 @@ export default function UserJobsPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex gap-6">
           {/* Left Sidebar - Filters */}
           <div className="w-80 flex-shrink-0">

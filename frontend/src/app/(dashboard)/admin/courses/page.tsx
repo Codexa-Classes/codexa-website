@@ -234,32 +234,32 @@ export default function AdminCoursesPage() {
               <span>Active filters:</span>
               {searchTerm && (
                 <span className="px-2 py-1 bg-primary/10 text-primary rounded-md">
-                  Search: "{searchTerm}"
+                  {searchTerm}
                 </span>
               )}
               {statusFilter !== 'all' && (
                 <span className="px-2 py-1 bg-primary/10 text-primary rounded-md">
-                  Status: {statusFilter}
+                  {statusFilter}
                 </span>
               )}
               {categoryFilter !== 'all' && (
                 <span className="px-2 py-1 bg-primary/10 text-primary rounded-md">
-                  Category: {categoryFilter}
+                  {categoryFilter}
                 </span>
               )}
               {levelFilter !== 'all' && (
                 <span className="px-2 py-1 bg-primary/10 text-primary rounded-md">
-                  Level: {levelFilter}
+                  {levelFilter}
                 </span>
               )}
               {durationFilter !== 'all' && (
                 <span className="px-2 py-1 bg-primary/10 text-primary rounded-md">
-                  Duration: {durationFilter}
+                  {durationFilter}
                 </span>
               )}
               {(priceRange.min > 0 || priceRange.max > 0) && (
                 <span className="px-2 py-1 bg-primary/10 text-primary rounded-md">
-                  Price: ₹{priceRange.min > 0 ? priceRange.min.toLocaleString() : '0'} - ₹{priceRange.max > 0 ? priceRange.max.toLocaleString() : '∞'}
+                  ₹{priceRange.min > 0 ? priceRange.min.toLocaleString() : '0'} - ₹{priceRange.max > 0 ? priceRange.max.toLocaleString() : '∞'}
                 </span>
               )}
             </div>

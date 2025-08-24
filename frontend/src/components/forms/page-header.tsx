@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Plus, Filter, Search } from "lucide-react";
+import { ArrowLeft, Plus, Filter, Search, ExternalLink } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 
@@ -55,7 +55,7 @@ export function PageHeader({
             onClick={actionButton.onClick}
             className={actionButton.text.toLowerCase().includes('create') ? 'bg-green-600 hover:bg-green-700' : ''}
           >
-            {actionButton.icon || <Plus className="h-4 w-4" />}
+            {actionButton.icon || <ExternalLink className="h-4 w-4" />}
             <span className="hidden sm:inline">{actionButton.text}</span>
           </Button>
         )}
@@ -66,9 +66,6 @@ export function PageHeader({
         <div className="flex items-center justify-end gap-4 flex-wrap">
           {filters.map((filter, index) => (
             <div key={index} className="flex items-center gap-2">
-              <label className="text-sm font-medium whitespace-nowrap">
-                {filter.label}:
-              </label>
               {filter.type === 'search' ? (
                 <div className="relative">
                   <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />

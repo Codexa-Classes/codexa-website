@@ -153,7 +153,7 @@ export default function JobDetailPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Navigation Header */}
       <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <PageHeader
             title="Job Details"
             onBack={() => router.push(ROUTES.user.jobs)}
@@ -165,7 +165,7 @@ export default function JobDetailPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Main Content - Job Details */}
           <div className="lg:col-span-2 space-y-6">

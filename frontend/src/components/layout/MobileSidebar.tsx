@@ -28,7 +28,7 @@ export function MobileSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader className="border-b border-border p-4">
+      <SidebarHeader className="border-b border-border">
         <div className="flex items-center justify-center">
           <Logo />
         </div>
