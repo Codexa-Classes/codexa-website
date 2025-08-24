@@ -72,7 +72,7 @@ const structuredData = {
 export default function Home() {
   const popularCourses = COURSES.map(course => ({
     icon: course.icon_name,
-    name: course.name.split(' ')[0], // Take first word for display
+    name: course.name, // Take first word for display
     category: course.category
   }));
 
@@ -199,7 +199,7 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 mx-auto">
               {popularCourses.map((course, index) => (
                 <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-gray-200 hover:border-blue-300 bg-white hover:bg-blue-50">
                   <CardHeader className="pb-2">
