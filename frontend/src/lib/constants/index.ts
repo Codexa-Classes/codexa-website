@@ -64,9 +64,9 @@ export interface Instructor {
 
 export const INSTRUCTOR: Instructor = {
   name: "Viraj Kadam",
-  title: "Business Analyst & Technology Consultant",
+  title: "Senior Business Analyst & Technology Consultant",
   experience: "10+ Years",
-  currentRole: "Data Analyst - Sr. Manager at Kotak Mahindra Bank",
+  currentRole: "Senior Business Analyst at Kotak Mahindra Bank",
   email: "hiVirajKadam@gmail.com",
   expertise: [
     "PHP & Laravel Framework",
