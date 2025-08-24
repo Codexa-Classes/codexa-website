@@ -189,8 +189,8 @@ export function EnquiryForm() {
               </div>
             </div>
 
-            {/* Row 2: Pass Out Year, Technology */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Row 2: Pass Out Year, Technology Interest, and Others Input */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Pass Out Year Field */}
               <div className="space-y-2">
                 <Label htmlFor="passOutYear"><span className="text-red-500">*</span> Pass Out Year</Label>
@@ -211,55 +211,62 @@ export function EnquiryForm() {
                 )}
               </div>
 
-                          {/* Technology Field */}
-            <div className="space-y-2">
-              <Label htmlFor="technology"><span className="text-red-500">*</span> Technology Interest</Label>
-              <DropdownMenu open={isTechnologyOpen} onOpenChange={setIsTechnologyOpen}>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="outline"
-                    role="combobox"
-                    aria-expanded={isTechnologyOpen}
-                    className={`w-full justify-between ${errors.technology ? 'border-red-500' : ''}`}
-                  >
-                    {watch('technology')?.length > 0 
-                      ? `${watch('technology')?.length} technology${watch('technology')?.length === 1 ? 'y' : 'ies'} selected`
-                      : 'Select your technology interests'
-                    }
-                    <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-full min-w-[200px] max-h-60 overflow-auto">
-                  {technologyOptions.map((tech) => (
-                    <div key={tech} className="flex items-center space-x-2 px-2 py-1.5 hover:bg-accent rounded-sm cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={watch('technology')?.includes(tech) || false}
-                        onChange={(e) => {
-                          const currentTechs = watch('technology') || [];
-                          if (e.target.checked) {
-                            const newTechs = [...currentTechs, tech];
-                            setValue('technology', newTechs);
-                          } else {
-                            const newTechs = currentTechs.filter(t => t !== tech);
-                            setValue('technology', newTechs);
-                            if (tech === 'Others') {
-                              setOtherTechnology('');
+              {/* Technology Field */}
+              <div className="space-y-2">
+                <Label htmlFor="technology"><span className="text-red-500">*</span> Technology Interest</Label>
+                <DropdownMenu open={isTechnologyOpen} onOpenChange={setIsTechnologyOpen}>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={isTechnologyOpen}
+                      className={`w-full justify-between ${errors.technology ? 'border-red-500' : ''}`}
+                    >
+                      {watch('technology')?.length > 0 
+                        ? `${watch('technology')?.length} technology${watch('technology')?.length === 1 ? 'y' : 'ies'} selected`
+                        : 'Select your technology interests'
+                      }
+                      <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-full min-w-[200px] max-h-60 overflow-auto">
+                    {technologyOptions.map((tech) => (
+                      <div key={tech} className="flex items-center space-x-2 px-2 py-1.5 hover:bg-accent rounded-sm cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={watch('technology')?.includes(tech) || false}
+                          onChange={(e) => {
+                            const currentTechs = watch('technology') || [];
+                            if (e.target.checked) {
+                              const newTechs = [...currentTechs, tech];
+                              setValue('technology', newTechs);
+                            } else {
+                              const newTechs = currentTechs.filter(t => t !== tech);
+                              setValue('technology', newTechs);
+                              if (tech === 'Others') {
+                                setOtherTechnology('');
+                              }
                             }
-                          }
-                        }}
-                        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span className="text-sm">{tech}</span>
-                    </div>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-              
-              {/* Others Technology Input */}
+                          }}
+                          className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                        />
+                        <span className="text-sm">{tech}</span>
+                      </div>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                
+                {errors.technology && (
+                  <p className="text-sm text-red-600">{errors.technology.message}</p>
+                )}
+              </div>
+
+              {/* Others Technology Input - Only shows when "Others" is selected */}
               {(watch('technology')?.includes('Others') || false) && (
-                <div className="mt-2">
+                <div className="space-y-2">
+                  <Label htmlFor="otherTechnology">Other Technology</Label>
                   <Input
+                    id="otherTechnology"
                     placeholder="Specify other technology"
                     value={otherTechnology}
                     onChange={(e) => setOtherTechnology(e.target.value)}
@@ -267,11 +274,6 @@ export function EnquiryForm() {
                   />
                 </div>
               )}
-              
-              {errors.technology && (
-                <p className="text-sm text-red-600">{errors.technology.message}</p>
-              )}
-            </div>  
             </div>
 
             {/* Submit Button */}
