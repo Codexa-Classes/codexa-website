@@ -178,6 +178,26 @@ export default function CandidatesPage() {
               text: "Create",
               onClick: handleAddCandidate
             }}
+            filters={[
+              {
+                label: "Search",
+                value: searchTerm,
+                type: "search",
+                placeholder: "Search candidates...",
+                onChange: setSearchTerm
+              },
+              {
+                label: "Status",
+                value: statusFilter,
+                options: [
+                  { value: "all", label: "All Status" },
+                  { value: "pending", label: "Pending" },
+                  { value: "approved", label: "Approved" },
+                  { value: "rejected", label: "Rejected" }
+                ],
+                onChange: setStatusFilter
+              }
+            ]}
           />
         </CardHeader>
       
