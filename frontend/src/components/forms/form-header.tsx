@@ -22,6 +22,12 @@ export function FormHeader({
   submitButtonIcon = <Save className="h-4 w-4" />,
   loadingText = "Processing...",
 }: FormHeaderProps) {
+  // Determine button variant based on submitButtonText
+  const buttonVariant = submitButtonText === "Create" ? "default" : "default";
+  const buttonClassName = submitButtonText === "Create" 
+    ? "px-2 sm:px-4 bg-green-600 hover:bg-green-700" 
+    : "px-2 sm:px-4";
+
   return (
     <div className="flex items-center justify-between">
       <Button variant="outline" onClick={onCancel} className="px-2 sm:px-4">
@@ -34,7 +40,7 @@ export function FormHeader({
       <Button 
         onClick={() => onSubmit()}
         disabled={!isFormValid || isSubmitting}
-        className="px-2 sm:px-4"
+        className={buttonClassName}
       >
         {isSubmitting ? (
           <>
