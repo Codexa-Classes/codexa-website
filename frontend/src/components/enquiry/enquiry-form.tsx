@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -8,10 +8,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuCheckboxItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Card, CardContent } from '@/components/ui/card';
 
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle, AlertCircle, Loader2, ChevronDown } from 'lucide-react';
 import { enquiryService } from '@/lib/services/enquiry/enquiryService';
 import { CreateEnquiryData } from '@/types/enquiry';
 
@@ -32,7 +33,8 @@ const technologyOptions = [
   'Data Analyst',
   'DevOps Engineer',
   'Database Admin',
-  'App Support'
+  'App Support',
+  'Others'
 ];
 
 const currentYear = new Date().getFullYear();
@@ -43,6 +45,7 @@ export function EnquiryForm() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [isTechnologyOpen, setIsTechnologyOpen] = useState(false);
+  const [otherTechnology, setOtherTechnology] = useState('');
 
 
   const {
@@ -69,14 +72,29 @@ export function EnquiryForm() {
     setErrorMessage('');
 
     try {
+      // Handle "Others" technology with custom text
+      let finalTechnology = [...data.technology];
+      if (data.technology.includes('Others') && otherTechnology.trim()) {
+        // Replace "Others" with the custom technology text
+        const othersIndex = finalTechnology.indexOf('Others');
+        finalTechnology[othersIndex] = otherTechnology.trim();
+      }
+
+      // Create enquiry data with processed technology
+      const enquiryData = {
+        ...data,
+        technology: finalTechnology
+      };
+
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      const newEnquiry = enquiryService.createEnquiry(data);
+      const newEnquiry = enquiryService.createEnquiry(enquiryData);
       console.log('Enquiry created:', newEnquiry);
       
       setSubmitStatus('success');
       reset();
+      setOtherTechnology('');
       
       // Reset success message after 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000);
@@ -98,16 +116,7 @@ export function EnquiryForm() {
   };
 
   // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (isTechnologyOpen && !(event.target as Element).closest('.technology-dropdown')) {
-        setIsTechnologyOpen(false);
-      }
-    };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isTechnologyOpen]);
 
 
 
@@ -205,42 +214,58 @@ export function EnquiryForm() {
                           {/* Technology Field */}
             <div className="space-y-2">
               <Label htmlFor="technology">Technology Interest *</Label>
-              <div className="relative technology-dropdown">
-                <Select open={isTechnologyOpen} onOpenChange={setIsTechnologyOpen}>
-                  <SelectTrigger className={`w-full ${errors.technology ? 'border-red-500' : ''}`}>
-                    <SelectValue placeholder="Select your technology interests">
-                      {watch('technology')?.length > 0 
-                        ? `${watch('technology')?.length} technology${watch('technology')?.length === 1 ? 'y' : 'ies'} selected`
-                        : 'Select your technology interests'
-                      }
-                    </SelectValue>
-                  </SelectTrigger>
-                  <SelectContent className="max-h-60">
-                    {technologyOptions.map((tech) => (
-                      <SelectItem key={tech} value={tech} className="cursor-pointer">
-                        <div className="flex items-center space-x-2" onClick={(e) => e.stopPropagation()}>
-                          <input
-                            type="checkbox"
-                            checked={watch('technology')?.includes(tech) || false}
-                            onChange={(e) => {
-                              const currentTechs = watch('technology') || [];
-                              if (e.target.checked) {
-                                const newTechs = [...currentTechs, tech];
-                                setValue('technology', newTechs);
-                              } else {
-                                const newTechs = currentTechs.filter(t => t !== tech);
-                                setValue('technology', newTechs);
-                              }
-                            }}
-                            className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-                          />
-                          <span>{tech}</span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              <DropdownMenu open={isTechnologyOpen} onOpenChange={setIsTechnologyOpen}>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    role="combobox"
+                    aria-expanded={isTechnologyOpen}
+                    className={`w-full justify-between ${errors.technology ? 'border-red-500' : ''}`}
+                  >
+                    {watch('technology')?.length > 0 
+                      ? `${watch('technology')?.length} technology${watch('technology')?.length === 1 ? 'y' : 'ies'} selected`
+                      : 'Select your technology interests'
+                    }
+                    <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-full min-w-[200px] max-h-60 overflow-auto">
+                  {technologyOptions.map((tech) => (
+                    <DropdownMenuCheckboxItem
+                      key={tech}
+                      checked={watch('technology')?.includes(tech) || false}
+                      onCheckedChange={(checked) => {
+                        const currentTechs = watch('technology') || [];
+                        if (checked) {
+                          const newTechs = [...currentTechs, tech];
+                          setValue('technology', newTechs);
+                        } else {
+                          const newTechs = currentTechs.filter(t => t !== tech);
+                          setValue('technology', newTechs);
+                          if (tech === 'Others') {
+                            setOtherTechnology('');
+                          }
+                        }
+                      }}
+                    >
+                      {tech}
+                    </DropdownMenuCheckboxItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+              
+              {/* Others Technology Input */}
+              {(watch('technology')?.includes('Others') || false) && (
+                <div className="mt-2">
+                  <Input
+                    placeholder="Specify other technology"
+                    value={otherTechnology}
+                    onChange={(e) => setOtherTechnology(e.target.value)}
+                    className="w-full"
+                  />
+                </div>
+              )}
+              
               {errors.technology && (
                 <p className="text-sm text-red-600">{errors.technology.message}</p>
               )}
