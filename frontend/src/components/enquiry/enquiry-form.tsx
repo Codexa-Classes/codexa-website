@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuCheckboxItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Card, CardContent } from '@/components/ui/card';
 
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -231,25 +231,27 @@ export function EnquiryForm() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-full min-w-[200px] max-h-60 overflow-auto">
                   {technologyOptions.map((tech) => (
-                    <DropdownMenuCheckboxItem
-                      key={tech}
-                      checked={watch('technology')?.includes(tech) || false}
-                      onCheckedChange={(checked) => {
-                        const currentTechs = watch('technology') || [];
-                        if (checked) {
-                          const newTechs = [...currentTechs, tech];
-                          setValue('technology', newTechs);
-                        } else {
-                          const newTechs = currentTechs.filter(t => t !== tech);
-                          setValue('technology', newTechs);
-                          if (tech === 'Others') {
-                            setOtherTechnology('');
+                    <div key={tech} className="flex items-center space-x-2 px-2 py-1.5 hover:bg-accent rounded-sm cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={watch('technology')?.includes(tech) || false}
+                        onChange={(e) => {
+                          const currentTechs = watch('technology') || [];
+                          if (e.target.checked) {
+                            const newTechs = [...currentTechs, tech];
+                            setValue('technology', newTechs);
+                          } else {
+                            const newTechs = currentTechs.filter(t => t !== tech);
+                            setValue('technology', newTechs);
+                            if (tech === 'Others') {
+                              setOtherTechnology('');
+                            }
                           }
-                        }
-                      }}
-                    >
-                      {tech}
-                    </DropdownMenuCheckboxItem>
+                        }}
+                        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span className="text-sm">{tech}</span>
+                    </div>
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
