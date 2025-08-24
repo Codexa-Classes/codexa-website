@@ -102,13 +102,13 @@ class EnquiryService {
         enquiry.name.toLowerCase().includes(searchTerm) ||
         enquiry.email.toLowerCase().includes(searchTerm) ||
         enquiry.mobile.includes(searchTerm) ||
-        (Array.isArray(enquiry.technology) ? enquiry.technology.some(tech => tech.toLowerCase().includes(searchTerm)) : enquiry.technology.toLowerCase().includes(searchTerm))
+        (Array.isArray(enquiry.technology) ? enquiry.technology.some(tech => tech.toLowerCase().includes(searchTerm)) : (enquiry.technology as string).toLowerCase().includes(searchTerm))
       );
     }
 
     if (filters.technology) {
       enquiries = enquiries.filter(enquiry => 
-        enquiry.technology.some(tech => tech.toLowerCase() === filters.technology!.toLowerCase())
+        (Array.isArray(enquiry.technology) ? enquiry.technology.some(tech => tech.toLowerCase() === filters.technology!.toLowerCase()) : (enquiry.technology as string).toLowerCase() === filters.technology!.toLowerCase())
       );
     }
 
@@ -132,7 +132,9 @@ class EnquiryService {
   // Get unique technologies
   getUniqueTechnologies(): string[] {
     const enquiries = this.getEnquiriesFromStorage();
-    const allTechnologies = enquiries.flatMap(enquiry => enquiry.technology);
+    const allTechnologies = enquiries.flatMap(enquiry => 
+      Array.isArray(enquiry.technology) ? enquiry.technology : [enquiry.technology as string]
+    );
     return [...new Set(allTechnologies)].sort();
   }
 
