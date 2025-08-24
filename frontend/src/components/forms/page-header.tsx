@@ -46,7 +46,10 @@ export function PageHeader({
         <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
         
         {actionButton && (
-          <Button onClick={actionButton.onClick}>
+          <Button 
+            onClick={actionButton.onClick}
+            className={actionButton.text.toLowerCase().includes('create') ? 'bg-green-600 hover:bg-green-700' : ''}
+          >
             {actionButton.icon || <Plus className="h-4 w-4" />}
             <span className="hidden sm:inline">{actionButton.text}</span>
           </Button>
