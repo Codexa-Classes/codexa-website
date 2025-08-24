@@ -12,22 +12,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+import { Calendar } from "@/components/ui/calendar";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { ArrowLeft, Save, UserPlus, Loader2 } from "lucide-react";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { ArrowLeft, Save, Loader2, CalendarIcon } from "lucide-react";
 import { CreateCandidateData, candidatesService } from "@/lib/services/candidatesService";
 import { Candidate } from "@/components/candidates/candidates-columns";
-import { Toast } from "@/components/ui/toast";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { ROUTES } from "@/lib/constants";
 import { Home } from "lucide-react";
 import { FormHeader, PasswordInput, FormLayout } from "@/components/forms";
+import dayjs from "dayjs";
+import { cn } from "@/lib/utils";
 
 interface EditCandidateFormProps {
   onCancel: () => void;
@@ -49,10 +47,11 @@ export function EditCandidateForm({
     fullName: "",
     email: "",
     phoneNumber: "",
-    location: "",
-    city: "",
-    pincode: "",
+    address: "",
     password: "",
+    course: "",
+    joiningDate: undefined,
+    feesTransactionNumber: "",
     profileTitle: "",
     currentJobStatus: "employed",
     primarySkills: [],
@@ -93,12 +92,11 @@ export function EditCandidateForm({
           fullName: candidateData.fullName || "",
           email: candidateData.email || "",
           phoneNumber: candidateData.phoneNumber || "",
-          dateOfBirth: candidateData.dateOfBirth || "",
-          gender: candidateData.gender || "male",
-          location: candidateData.location || "",
-          city: candidateData.city || "",
-          pincode: candidateData.pincode || "",
+          address: candidateData.address || "",
           password: candidateData.password || "",
+          course: candidateData.course || "",
+          joiningDate: candidateData.joiningDate || undefined,
+          feesTransactionNumber: candidateData.feesTransactionNumber || "",
           profileTitle: candidateData.profileTitle || "",
           currentJobStatus: candidateData.currentJobStatus || "employed",
           primarySkills: candidateData.primarySkills || [],
@@ -155,7 +153,7 @@ export function EditCandidateForm({
     }
   };
 
-  const handleInputChange = (field: keyof CreateCandidateData, value: string | string[]) => {
+  const handleInputChange = (field: keyof CreateCandidateData, value: string | string[] | Date) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
@@ -164,7 +162,10 @@ export function EditCandidateForm({
 
   const isFormValid = Boolean(
     formData.fullName?.trim() &&
-    formData.email?.trim()
+    formData.email?.trim() &&
+    formData.phoneNumber?.trim() &&
+    formData.address?.trim() &&
+    formData.password?.trim()
   );
 
   if (isLoading) {
@@ -188,16 +189,12 @@ export function EditCandidateForm({
           </Button>
         </div>
         
-        <Card>
-          <CardContent className="pt-6">
-            <div className="text-center space-y-4">
-              <div className="text-red-500 text-lg font-medium">{error}</div>
-              <Button onClick={onCancel} variant="outline">
-                Go Back
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="text-center space-y-4">
+          <div className="text-red-500 text-lg font-medium">{error}</div>
+          <Button onClick={onCancel} variant="outline">
+            Go Back
+          </Button>
+        </div>
       </div>
     );
   }
@@ -236,6 +233,7 @@ export function EditCandidateForm({
     >
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {/* Name */}
           <div>
             <Label htmlFor="fullName" className="mb-2 block">
               <span className="text-red-500 mr-1">*</span>Full Name
@@ -251,20 +249,7 @@ export function EditCandidateForm({
             />
           </div>
 
-          <div>
-            <Label htmlFor="dateOfBirth" className="mb-2 block">
-              Date of Birth
-            </Label>
-            <Input
-              id="dateOfBirth"
-              type="date"
-              value={formData.dateOfBirth || ""}
-              onChange={(e) =>
-                handleInputChange("dateOfBirth", e.target.value)
-              }
-            />
-          </div>
-
+          {/* Email */}
           <div>
             <Label htmlFor="email" className="mb-2 block">
               <span className="text-red-500 mr-1">*</span>Email Address
@@ -279,6 +264,7 @@ export function EditCandidateForm({
             />
           </div>
 
+          {/* Gender */}
           <div>
             <Label htmlFor="gender" className="mb-2 block">
               <span className="text-red-500 mr-1">*</span>Gender
@@ -301,6 +287,7 @@ export function EditCandidateForm({
             </Select>
           </div>
 
+          {/* Phone */}
           <div>
             <Label htmlFor="phoneNumber" className="mb-2 block">
               <span className="text-red-500 mr-1">*</span>Phone Number
@@ -331,57 +318,21 @@ export function EditCandidateForm({
               )}
           </div>
 
+          {/* Address */}
           <div>
-            <Label htmlFor="location" className="mb-2 block">
-              <span className="text-red-500 mr-1">*</span>Location
+            <Label htmlFor="address" className="mb-2 block">
+              <span className="text-red-500 mr-1">*</span>Address
             </Label>
             <Input
-              id="location"
-              placeholder="Enter city/location"
-              value={formData.location || ""}
-              onChange={(e) =>
-                handleInputChange("location", e.target.value)
-              }
+              id="address"
+              placeholder="Enter address"
+              value={formData.address || ""}
+              onChange={(e) => handleInputChange("address", e.target.value)}
               required
             />
           </div>
 
-          <div>
-            <Label htmlFor="city" className="mb-2 block">
-              <span className="text-red-500 mr-1">*</span>City
-            </Label>
-            <Input
-              id="city"
-              placeholder="Enter city"
-              value={formData.city || ""}
-              onChange={(e) => handleInputChange("city", e.target.value)}
-              required
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="pincode" className="mb-2 block">
-              <span className="text-red-500 mr-1">*</span>Pincode
-            </Label>
-            <Input
-              id="pincode"
-              type="text"
-              placeholder="Enter pincode"
-              value={formData.pincode || ""}
-              onChange={(e) => {
-                const value = e.target.value;
-                // Only allow digits and limit to 6 characters (standard pincode length)
-                if (/^\d{0,6}$/.test(value)) {
-                  handleInputChange("pincode", value);
-                }
-              }}
-              maxLength={6}
-              pattern="[0-9]{6}"
-              title="Pincode must be 6 digits"
-              required
-            />
-          </div>
-
+          {/* Password */}
           <PasswordInput
             id="password"
             label="Password"
@@ -390,6 +341,81 @@ export function EditCandidateForm({
             placeholder="Enter password"
             required
           />
+
+          {/* Course */}
+          <div>
+            <Label htmlFor="course" className="mb-2 block">
+              <span className="text-red-500 mr-1">*</span>Course
+            </Label>
+            <Select
+              value={formData.course || ""}
+              onValueChange={(value) => handleInputChange("course", value)}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select course" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="web-development">Web Development</SelectItem>
+                <SelectItem value="data-science">Data Science</SelectItem>
+                <SelectItem value="mobile-development">Mobile Development</SelectItem>
+                <SelectItem value="cybersecurity">Cybersecurity</SelectItem>
+                <SelectItem value="ai-ml">AI/ML</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Joining Date */}
+          <div>
+            <Label htmlFor="joiningDate" className="mb-2 block">
+              <span className="text-red-500 mr-1">*</span>Joining Date
+            </Label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className={cn(
+                    "w-full justify-start text-left font-normal",
+                    !formData.joiningDate && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {formData.joiningDate ? (
+                    dayjs(formData.joiningDate).format("DD MMM YYYY")
+                  ) : (
+                    <span>Pick a date</span>
+                  )}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  mode="single"
+                  selected={formData.joiningDate}
+                  onSelect={(date) => {
+                    if (date) {
+                      handleInputChange("joiningDate", date);
+                    }
+                  }}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          {/* Fees Transaction Number */}
+          <div>
+            <Label htmlFor="feesTransactionNumber" className="mb-2 block">
+              <span className="text-red-500 mr-1">*</span>Fees Transaction Number
+            </Label>
+            <Input
+              id="feesTransactionNumber"
+              placeholder="Enter transaction number"
+              value={formData.feesTransactionNumber || ""}
+              onChange={(e) =>
+                handleInputChange("feesTransactionNumber", e.target.value)
+              }
+              required
+            />
+          </div>
         </div>
       </form>
     </FormLayout>
