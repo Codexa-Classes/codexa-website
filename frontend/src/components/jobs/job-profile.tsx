@@ -140,40 +140,6 @@ export function JobProfile({
             </CardContent>
           </Card>
 
-          {/* Location Details */}
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg flex items-center gap-2">
-                <MapPin className="h-5 w-5" />
-                Location Details
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                <div className="space-y-2">
-                  <div className="text-base">{job.location}</div>
-                  <span className="text-sm font-medium text-muted-foreground">Location</span>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-base">{job.city}</div>
-                  <span className="text-sm font-medium text-muted-foreground">City</span>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-base">{job.state}</div>
-                  <span className="text-sm font-medium text-muted-foreground">State</span>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-base">{job.country}</div>
-                  <span className="text-sm font-medium text-muted-foreground">Country</span>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-base">{job.pincode}</div>
-                  <span className="text-sm font-medium text-muted-foreground">Pincode / Zip Code</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
           {/* Skills & Requirements */}
           <Card>
             <CardHeader className="pb-3">
@@ -271,6 +237,40 @@ export function JobProfile({
                     }
                   </div>
                   <span className="text-sm font-medium text-muted-foreground">Additional Benefits</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Location Details */}
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-lg flex items-center gap-2">
+                <MapPin className="h-5 w-5" />
+                Location Details
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <div className="space-y-2">
+                  <div className="text-base">{job.location}</div>
+                  <span className="text-sm font-medium text-muted-foreground">Location</span>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-base">{job.city}</div>
+                  <span className="text-sm font-medium text-muted-foreground">City</span>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-base">{job.state}</div>
+                  <span className="text-sm font-medium text-muted-foreground">State</span>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-base">{job.country}</div>
+                  <span className="text-sm font-medium text-muted-foreground">Country</span>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-base">{job.pincode}</div>
+                  <span className="text-sm font-medium text-muted-foreground">Pincode / Zip Code</span>
                 </div>
               </div>
             </CardContent>
