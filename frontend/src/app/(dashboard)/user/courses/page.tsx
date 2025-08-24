@@ -9,6 +9,7 @@ import { courseService, initializeCourses } from "@/lib/services/coursesService"
 import { Course, EnrolledCourse } from "@/types/course"
 import { Search, Clock, Users, Award, BookOpen, Filter, Download, CheckCircle, Circle } from "lucide-react"
 import { toast } from "sonner"
+import DevIcon from "@/components/DevIcon"
 
 export default function UserCoursesPage() {
   const [enrolledCourses, setEnrolledCourses] = useState<EnrolledCourse[]>([])
@@ -129,7 +130,20 @@ export default function UserCoursesPage() {
             <Card key={course.id} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <CardHeader>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="text-4xl">{course.image}</div>
+                  <div className="text-4xl">
+                    {course.category === "frontend" && <DevIcon name="javascript" size={48} />}
+                    {course.category === "backend" && <DevIcon name="nodejs" size={48} />}
+                    {course.category === "database" && <DevIcon name="mongodb" size={48} />}
+                    {course.category === "framework" && <DevIcon name="react" size={48} />}
+                    {/* Fallback icon for any other category */}
+                    {!["frontend", "backend", "database", "framework"].includes(course.category) && (
+                      course.name.toLowerCase().includes('flask') || course.name.toLowerCase().includes('django') ? 
+                        <DevIcon name="python" size={48} /> : 
+                        course.name.toLowerCase().includes('laravel') || course.name.toLowerCase().includes('php') ?
+                          <DevIcon name="php" size={48} /> :
+                          <DevIcon name="javascript" size={48} />
+                    )}
+                  </div>
                   <div className="flex flex-col gap-2">
                     <Badge className={getCategoryColor(course.category)}>
                       {course.category}
