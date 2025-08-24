@@ -38,19 +38,19 @@ export const StudentTestimonial: React.FC<StudentTestimonialProps> = ({
       <div className="md:flex">
         <div className="md:shrink-0">
           <img 
-            className="h-48 w-full object-cover md:h-full md:w-48" 
+            className="h-32 w-full object-cover md:h-full md:w-32" 
             src={imageUrl} 
             alt={`${name}'s profile picture`}
           />
         </div>
-        <div className="p-8">
+        <div className="p-4">
           <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
             {role}
           </div>
-          <p className="mt-2 text-slate-500">
+          <p className="mt-1 text-slate-500 text-sm">
             "{testimonial}"
           </p>
-          <div className="mt-4">
+          <div className="mt-2">
             <span className="text-slate-900 font-bold">{name}</span>
             
           </div>{company && (
