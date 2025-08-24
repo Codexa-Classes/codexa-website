@@ -102,7 +102,7 @@ class EnquiryService {
         enquiry.name.toLowerCase().includes(searchTerm) ||
         enquiry.email.toLowerCase().includes(searchTerm) ||
         enquiry.mobile.includes(searchTerm) ||
-        enquiry.technology.some(tech => tech.toLowerCase().includes(searchTerm))
+        (Array.isArray(enquiry.technology) ? enquiry.technology.some(tech => tech.toLowerCase().includes(searchTerm)) : enquiry.technology.toLowerCase().includes(searchTerm))
       );
     }
 
@@ -162,10 +162,15 @@ class EnquiryService {
         // Count by priority
         stats.byPriority[enquiry.priority]++;
         
-        // Count by technology (handle array)
-        enquiry.technology.forEach(tech => {
-          stats.byTechnology[tech] = (stats.byTechnology[tech] || 0) + 1;
-        });
+        // Count by technology (handle both string and array)
+        if (Array.isArray(enquiry.technology)) {
+          enquiry.technology.forEach(tech => {
+            stats.byTechnology[tech] = (stats.byTechnology[tech] || 0) + 1;
+          });
+        } else if (typeof enquiry.technology === 'string') {
+          // Handle legacy enquiries with string technology
+          stats.byTechnology[enquiry.technology] = (stats.byTechnology[enquiry.technology] || 0) + 1;
+        }
         
         // Count by year
         stats.byYear[enquiry.passOutYear] = (stats.byYear[enquiry.passOutYear] || 0) + 1;
