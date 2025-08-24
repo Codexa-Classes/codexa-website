@@ -26,17 +26,12 @@ type EnquiryFormData = z.infer<typeof enquirySchema>;
 
 const technologyOptions = [
   'Full Stack Development',
-  'Frontend Development',
-  'Backend Development',
-  'Mobile App Development',
-  'Data Science & Analytics',
-  'Machine Learning & AI',
-  'DevOps & Cloud Computing',
-  'Cybersecurity',
-  'Database Management',
-  'UI/UX Design',
-  'Digital Marketing',
-  'Other'
+  'Web Development',
+  'Business Analyst',
+  'Data Analyst',
+  'DevOps Engineer',
+  'Database Admin',
+  'App Support'
 ];
 
 const currentYear = new Date().getFullYear();
