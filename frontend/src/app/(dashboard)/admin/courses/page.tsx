@@ -38,12 +38,12 @@ export default function AdminCoursesPage() {
     if (window.confirm("Are you sure you want to delete this course?")) {
       courseService.delete(courseId as string)
         .then(() => {
-          setCourses(courses.filter(c => c.id !== courseId))
-          toast.success("Course deleted successfully!")
+        setCourses(courses.filter(c => c.id !== courseId))
+        toast.success("Course deleted successfully!")
         })
         .catch((error) => {
-          console.error("Error deleting course:", error)
-          toast.error("Failed to delete course")
+        console.error("Error deleting course:", error)
+        toast.error("Failed to delete course")
         })
     }
   }

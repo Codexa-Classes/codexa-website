@@ -14,19 +14,10 @@ export default function EnquiryPage() {
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
         <div className="container mx-auto py-12">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Course Enquiry
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Interested in our technology courses? Fill out the form below and our team will get back to you with detailed course information, pricing, and enrollment details.
-            </p>
-          </div>
-          
           <EnquiryForm />
           
           {/* Featured Student Testimonials - Side by Side */}
-          <div className="mt-16 mb-16">
+          <div className="mt-8 mb-16">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">Student Success Stories</h2>
               <p className="text-lg text-gray-600">Hear from our graduates about their learning experience</p>

@@ -123,6 +123,17 @@ export function EnquiryForm() {
   return (
     <div className="max-w-4xl mx-auto p-6">
       <Card className="w-full">
+
+      <CardContent className="pt-6 pb-6">
+          <div className="text-center mb-6">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              Course Enquiry
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Interested in our technology courses? Fill out the form below and our team will get back to you with detailed course information, pricing, and enrollment details.
+            </p>
+          </div>
+        </CardContent>
         <CardContent>
           {submitStatus === 'success' && (
             <Alert className="mb-6 border-green-200 bg-green-50">
