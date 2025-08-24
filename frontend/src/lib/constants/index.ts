@@ -5,11 +5,15 @@ export const APP_CONFIG = {
 
   export const ROUTES = {
     login: '/login',
+    candidate: {
+      enquiry: '/candidate/enquiry',
+    },
     admin: {
       dashboard: '/admin',
       candidates: '/admin/candidates',
       jobs: '/admin/jobs',
       courses: '/admin/courses',
+      enquiry: '/admin/enquiry',
     },
     user: {
       dashboard: '/user',
@@ -34,6 +38,9 @@ export const APP_CONFIG = {
   export const getCourseRoute = (id: string | number) => `/admin/courses/${id}`;
   export const getCourseEditRoute = (id: string | number) => `/admin/courses/${id}/edit`;
   export const getCourseViewRoute = (id: string | number) => `/admin/courses?id=${id}`;
+
+  // Enquiry route helper functions
+  export const getEnquiryRoute = (id: string | number) => `/admin/enquiry?id=${id}`;
 
   export const USER_ROLES = {
     ADMIN: 'admin',

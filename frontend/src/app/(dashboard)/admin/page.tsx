@@ -6,11 +6,12 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ROUTES } from '@/lib/constants';
-import { Users, Briefcase, Building2, TrendingUp, FileText, BookOpen } from 'lucide-react';
+import { Users, Briefcase, Building2, TrendingUp, FileText, BookOpen, MessageSquare } from 'lucide-react';
 import { Loading, LoadingGrid, LoadingCard } from '@/components/ui/loading';
 import { candidatesService } from '@/lib/services/candidatesService';
 import { jobsService } from '@/lib/services/jobsService';
 import { courseService } from '@/lib/services/coursesService';
+import { enquiryService } from '@/lib/services/enquiry/enquiryService';
 
 export default function AdminDashboard() {
   const { user } = useAuth();
@@ -20,6 +21,7 @@ export default function AdminDashboard() {
     totalCandidates: 0,
     activeJobs: 0,
     totalCourses: 0,
+    totalEnquiries: 0,
     growth: 0
   });
 
@@ -34,11 +36,13 @@ export default function AdminDashboard() {
       const candidatesStats = candidatesService.getCandidatesStats();
       const jobsStats = jobsService.getJobsStats();
       const courses = await courseService.getAll();
+      const enquiryStats = enquiryService.getEnquiryStats();
       
       setStats({
         totalCandidates: candidatesStats.total,
         activeJobs: jobsStats.byStatus.active,
         totalCourses: courses.length,
+        totalEnquiries: enquiryStats.total,
         growth: Math.round((candidatesStats.byStatus.approved / Math.max(candidatesStats.total, 1)) * 100)
       });
     };
@@ -132,6 +136,19 @@ export default function AdminDashboard() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Enquiries</CardTitle>
+            <MessageSquare className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-blue-600">{stats.totalEnquiries}</div>
+            <p className="text-xs text-muted-foreground">
+              {stats.totalEnquiries > 0 ? 'Course enquiries' : 'No enquiries yet'}
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Approval Rate</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
@@ -207,6 +224,28 @@ export default function AdminDashboard() {
                 onClick={() => router.push(ROUTES.admin.courses)}
               >
                 Go to Courses
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <MessageSquare className="h-5 w-5" />
+              <span>Manage Enquiries</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground mb-4">
+              View and manage course enquiries from potential students.
+            </p>
+            <div className="space-y-2">
+              <Button 
+                className="w-full"
+                onClick={() => router.push(ROUTES.admin.enquiry)}
+              >
+                Go to Enquiries
               </Button>
             </div>
           </CardContent>

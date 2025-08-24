@@ -11,6 +11,7 @@ import {
   Home,
   FileText,
   BookOpen,
+  MessageSquare,
 } from 'lucide-react';
 import { Logo } from './Logo';
 import {
@@ -54,6 +55,11 @@ export function AppSidebar() {
       title: 'Courses',
       url: ROUTES.admin.courses,
       icon: BookOpen,
+    },
+    {
+      title: 'Enquiries',
+      url: ROUTES.admin.enquiry,
+      icon: MessageSquare,
     },
   ];
 
