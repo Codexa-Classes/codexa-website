@@ -115,7 +115,6 @@ export function AddCandidateForm({
     formData.email?.trim() &&
     formData.phoneNumber?.trim() &&
     formData.address?.trim() &&
-    formData.pincode?.trim() &&
     formData.password?.trim()
   );
 
@@ -248,30 +247,6 @@ export function AddCandidateForm({
             />
           </div>
 
-          {/* Pincode */}
-          <div>
-            <Label htmlFor="pincode" className="mb-2 block">
-              <span className="text-red-500 mr-1">*</span>Pincode
-            </Label>
-            <Input
-              id="pincode"
-              type="text"
-              placeholder="Enter pincode"
-              value={formData.pincode || ""}
-              onChange={(e) => {
-                const value = e.target.value;
-                // Only allow digits and limit to 6 characters (standard pincode length)
-                if (/^\d{0,6}$/.test(value)) {
-                  handleInputChange("pincode", value);
-                }
-              }}
-              maxLength={6}
-              pattern="[0-9]{6}"
-              title="Pincode must be 6 digits"
-              required
-            />
-          </div>
-
           {/* Password */}
           <PasswordInput
             id="password"
@@ -355,43 +330,6 @@ export function AddCandidateForm({
               }
               required
             />
-          </div>
-
-          {/* Date of Birth - moved to end as it's not in the main sequence */}
-          <div>
-            <Label htmlFor="dateOfBirth" className="mb-2 block">
-              Date of Birth
-            </Label>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant={"outline"}
-                  className={cn(
-                    "w-full justify-start text-left font-normal",
-                    !formData.dateOfBirth && "text-muted-foreground"
-                  )}
-                >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {formData.dateOfBirth ? (
-                    dayjs(formData.dateOfBirth).format("DD MMM YYYY")
-                  ) : (
-                    <span>Pick a date</span>
-                  )}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar
-                  mode="single"
-                  selected={formData.dateOfBirth}
-                  onSelect={(date) => {
-                    if (date) {
-                      handleInputChange("dateOfBirth", date);
-                    }
-                  }}
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
           </div>
         </div>
       </form>
