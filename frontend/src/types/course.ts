@@ -16,6 +16,14 @@ export interface Course {
   updatedAt: string;
 }
 
+export interface EnrolledCourse extends Course {
+  progress: number; // 0-100
+  completedTopics: number;
+  isCompleted: boolean;
+  enrollmentDate: Date;
+  certificateId?: string;
+}
+
 export interface Student {
   id: string;
   studentId: string;

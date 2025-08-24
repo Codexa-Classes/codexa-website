@@ -6,34 +6,43 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { courseService, initializeCourses } from "@/lib/services/coursesService"
-import { Course } from "@/types/course"
-import { Search, Clock, Users, Award, BookOpen, Filter } from "lucide-react"
+import { Course, EnrolledCourse } from "@/types/course"
+import { Search, Clock, Users, Award, BookOpen, Filter, Download, CheckCircle, Circle } from "lucide-react"
 import { toast } from "sonner"
 
 export default function UserCoursesPage() {
-  const [courses, setCourses] = useState<Course[]>([])
+  const [enrolledCourses, setEnrolledCourses] = useState<EnrolledCourse[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
 
   useEffect(() => {
     initializeCourses()
-    loadCourses()
+    loadEnrolledCourses()
   }, [])
 
-  const loadCourses = async () => {
+  const loadEnrolledCourses = async () => {
     try {
-      const coursesData = await courseService.getPublished()
-      setCourses(coursesData)
+      // Mock enrolled courses - in real app, this would come from user's enrollment data
+      const allCourses = await courseService.getPublished()
+      // Simulate some enrolled courses with progress
+      const mockEnrolledCourses: EnrolledCourse[] = allCourses.slice(0, 3).map((course, index) => ({
+        ...course,
+        progress: Math.floor(Math.random() * 100), // Random progress for demo
+        completedTopics: Math.floor(Math.random() * course.syllabus.length), // Random completed topics
+        isCompleted: index === 0 ? true : false, // First course is completed for demo
+        enrollmentDate: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000) // Random enrollment date
+      }))
+      setEnrolledCourses(mockEnrolledCourses)
     } catch (error) {
-      console.error("Error loading courses:", error)
-      toast.error("Failed to load courses")
+      console.error("Error loading enrolled courses:", error)
+      toast.error("Failed to load enrolled courses")
     } finally {
       setLoading(false)
     }
   }
 
-  const filteredCourses = courses.filter(course => {
+  const filteredCourses = enrolledCourses.filter(course => {
     const matchesSearch = course.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          course.description.toLowerCase().includes(searchQuery.toLowerCase())
     const matchesCategory = selectedCategory === "all" || course.category === selectedCategory
@@ -41,7 +50,7 @@ export default function UserCoursesPage() {
   })
 
   const categories = [
-    { value: "all", label: "All Categories" },
+    { value: "all", label: "All Courses" },
     { value: "frontend", label: "Frontend" },
     { value: "backend", label: "Backend" },
     { value: "database", label: "Database" },
@@ -76,10 +85,22 @@ export default function UserCoursesPage() {
     }
   }
 
+  const getProgressColor = (progress: number) => {
+    if (progress >= 80) return 'bg-green-500'
+    if (progress >= 60) return 'bg-yellow-500'
+    if (progress >= 40) return 'bg-blue-500'
+    return 'bg-gray-300'
+  }
+
+  const handleDownloadCertificate = (courseId: string) => {
+    toast.success(`Certificate for course ${courseId} downloaded successfully!`)
+    // In real app, this would trigger actual certificate download
+  }
+
   if (loading) {
     return (
       <div className="container mx-auto py-6">
-        <div className="text-center">Loading courses...</div>
+        <div className="text-center">Loading your enrolled courses...</div>
       </div>
     )
   }
@@ -87,46 +108,19 @@ export default function UserCoursesPage() {
   return (
     <div className="container mx-auto py-6">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-4">Available Courses</h1>
+        <h1 className="text-4xl font-bold mb-4">My Enrolled Courses</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          Explore our comprehensive courses designed to help you master in-demand skills
+          Track your progress and continue learning with your enrolled courses
         </p>
       </div>
 
-      {/* Search and Filters */}
-      <div className="mb-8">
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search courses..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-          <div className="flex gap-2">
-            {categories.map((category) => (
-              <Button
-                key={category.value}
-                variant={selectedCategory === category.value ? "default" : "outline"}
-                size="sm"
-                onClick={() => setSelectedCategory(category.value)}
-              >
-                {category.label}
-              </Button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Courses Grid */}
+      {/* Enrolled Courses Grid */}
       {filteredCourses.length === 0 ? (
         <div className="text-center py-12">
           <BookOpen className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-lg font-semibold mb-2">No courses found</h3>
+          <h3 className="text-lg font-semibold mb-2">No enrolled courses found</h3>
           <p className="text-muted-foreground">
-            Try adjusting your search or filter criteria
+            You haven't enrolled in any courses yet. Browse our course catalog to get started!
           </p>
         </div>
       ) : (
@@ -151,6 +145,20 @@ export default function UserCoursesPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
+                {/* Progress Bar */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between text-sm mb-2">
+                    <span>Progress</span>
+                    <span className="font-semibold">{course.progress}%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div 
+                      className={`h-2 rounded-full transition-all duration-300 ${getProgressColor(course.progress)}`}
+                      style={{ width: `${course.progress}%` }}
+                    />
+                  </div>
+                </div>
+
                 <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4 text-muted-foreground" />
@@ -162,54 +170,93 @@ export default function UserCoursesPage() {
                   </div>
                   <div className="col-span-2 flex items-center space-x-2">
                     <Award className="h-4 w-4 text-muted-foreground" />
-                    <span>₹{course.price.toLocaleString()}</span>
+                    <span>Enrolled on {course.enrollmentDate.toLocaleDateString()}</span>
                   </div>
                 </div>
 
+                {/* Syllabus with Progress Indicators */}
                 <div className="mb-6">
-                  <h4 className="font-semibold text-sm mb-3">What You&apos;ll Learn:</h4>
+                  <h4 className="font-semibold text-sm mb-3">Course Progress:</h4>
                   <ul className="space-y-2">
-                    {course.syllabus.slice(0, 3).map((topic, index) => (
-                      <li key={index} className="flex items-start space-x-2 text-sm">
-                        <div className="h-2 w-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
-                        <span className="line-clamp-2">{topic}</span>
-                      </li>
-                    ))}
-                    {course.syllabus.length > 3 && (
+                    {course.syllabus.slice(0, 5).map((topic, index) => {
+                      const isCompleted = index < course.completedTopics
+                      return (
+                        <li key={index} className="flex items-start space-x-2 text-sm">
+                          {isCompleted ? (
+                            <CheckCircle className="h-4 w-4 text-green-500 mt-1 flex-shrink-0" />
+                          ) : (
+                            <Circle className="h-4 w-4 text-gray-300 mt-1 flex-shrink-0" />
+                          )}
+                          <span className={`line-clamp-2 ${isCompleted ? 'line-through text-gray-500' : ''}`}>
+                            {topic}
+                          </span>
+                        </li>
+                      )
+                    })}
+                    {course.syllabus.length > 5 && (
                       <li className="text-sm text-muted-foreground">
-                        +{course.syllabus.length - 3} more topics...
+                        +{course.syllabus.length - 5} more topics...
                       </li>
                     )}
                   </ul>
                 </div>
 
-                <Button className="w-full">
-                  Enroll Now
-                </Button>
+                {/* Action Buttons */}
+                {course.isCompleted ? (
+                  <div className="space-y-2">
+                    <Button 
+                      className="w-full bg-green-600 hover:bg-green-700"
+                      onClick={() => handleDownloadCertificate(course.id)}
+                    >
+                      <Download className="mr-2 h-4 w-4" />
+                      Download Certificate
+                    </Button>
+                    <Button variant="outline" className="w-full">
+                      Review Course
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <Button className="w-full">
+                      Continue Learning
+                    </Button>
+                    {course.progress > 0 && (
+                      <Button variant="outline" className="w-full">
+                        Resume from {course.progress}%
+                      </Button>
+                    )}
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
         </div>
       )}
 
-      {/* Course Statistics */}
+      {/* Learning Statistics */}
       <div className="mt-12 text-center">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
           <div>
-            <div className="text-3xl font-bold text-primary">{courses.length}</div>
-            <div className="text-sm text-muted-foreground">Total Courses</div>
+            <div className="text-3xl font-bold text-primary">{enrolledCourses.length}</div>
+            <div className="text-sm text-muted-foreground">Enrolled Courses</div>
           </div>
           <div>
             <div className="text-3xl font-bold text-primary">
-              {courses.reduce((sum, course) => sum + course.enrolledStudents.length, 0)}
+              {enrolledCourses.filter(course => course.isCompleted).length}
             </div>
-            <div className="text-sm text-muted-foreground">Total Students</div>
+            <div className="text-sm text-muted-foreground">Completed Courses</div>
           </div>
           <div>
             <div className="text-3xl font-bold text-primary">
-              {courses.reduce((sum, course) => sum + course.price, 0).toLocaleString()}
+              {Math.round(enrolledCourses.reduce((sum, course) => sum + course.progress, 0) / enrolledCourses.length)}%
             </div>
-            <div className="text-sm text-muted-foreground">Total Value</div>
+            <div className="text-sm text-muted-foreground">Average Progress</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-primary">
+              {enrolledCourses.reduce((sum, course) => sum + course.completedTopics, 0)}
+            </div>
+            <div className="text-sm text-muted-foreground">Topics Completed</div>
           </div>
         </div>
       </div>
