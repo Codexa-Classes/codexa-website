@@ -5,11 +5,14 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Users, TrendingUp, Clock, CheckCircle } from 'lucide-react';
+import { Users, TrendingUp, Clock, CheckCircle, Home } from 'lucide-react';
 import { EnquiryList } from '@/components/admin/enquiry/enquiry-list';
 import { enquiryService } from '@/lib/services/enquiry/enquiryService';
 import { useState } from 'react';
 import { EnquiryStats } from '@/types/enquiry';
+import { Breadcrumb } from '@/components/ui/breadcrumb';
+import { PageHeader } from '@/components/forms';
+import { ROUTES } from '@/lib/constants';
 
 export default function AdminEnquiryPage() {
   const { user } = useAuth();
@@ -37,152 +40,168 @@ export default function AdminEnquiryPage() {
     loadStats();
   }, [user, router]);
 
+  const handleBackToDashboard = () => {
+    // Navigate back to dashboard
+    window.history.back();
+  };
+
+  const handleAddEnquiry = () => {
+    // Navigate to enquiry form
+    window.location.href = "/candidate/enquiry";
+  };
+
   if (!user || user.role !== 'admin') {
     return null;
   }
 
   return (
-    <div className="space-y-8 w-full max-w-none">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Enquiry Management</h1>
-          <p className="text-muted-foreground mt-2">
-            Manage and track all course enquiries from potential students
-          </p>
-        </div>
-      </div>
+    <div className="space-y-4">
+      {/* Breadcrumb Navigation */}
+      <Breadcrumb
+        items={[
+          { href: ROUTES.admin.dashboard, label: 'Dashboard', icon: <Home className="h-4 w-4" /> },
+          { href: ROUTES.admin.enquiry, label: 'Enquiries' },
+        ]}
+      />
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 w-full">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Enquiries</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.total}</div>
-            <p className="text-xs text-muted-foreground">
-              {stats.total > 0 ? 'All time enquiries' : 'No enquiries yet'}
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pending</CardTitle>
-            <Clock className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-yellow-600">{stats.byStatus.pending}</div>
-            <p className="text-xs text-muted-foreground">
-              Awaiting contact
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Contacted</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-blue-600">{stats.byStatus.contacted}</div>
-            <p className="text-xs text-muted-foreground">
-              In progress
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Enrolled</CardTitle>
-            <CheckCircle className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-green-600">{stats.byStatus.enrolled}</div>
-            <p className="text-xs text-muted-foreground">
-              Successfully converted
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Priority Summary */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Priority Distribution</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-sm">High Priority</span>
-              <Badge variant="secondary" className="bg-red-100 text-red-800">
-                {stats.byPriority.high}
-              </Badge>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm">Medium Priority</span>
-              <Badge variant="secondary" className="bg-orange-100 text-orange-800">
-                {stats.byPriority.medium}
-              </Badge>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm">Low Priority</span>
-              <Badge variant="secondary" className="bg-gray-100 text-gray-800">
-                {stats.byPriority.low}
-              </Badge>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Top Technologies</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {Object.entries(stats.byTechnology)
-              .sort(([,a], [,b]) => b - a)
-              .slice(0, 5)
-              .map(([tech, count]) => (
-                <div key={tech} className="flex items-center justify-between">
-                  <span className="text-sm truncate">{tech}</span>
-                  <Badge variant="secondary">{count}</Badge>
-                </div>
-              ))}
-            {Object.keys(stats.byTechnology).length === 0 && (
-              <p className="text-sm text-muted-foreground">No enquiries yet</p>
-            )}
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Recent Years</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {Object.entries(stats.byYear)
-              .sort(([a], [b]) => parseInt(b) - parseInt(a))
-              .slice(0, 5)
-              .map(([year, count]) => (
-                <div key={year} className="flex items-center justify-between">
-                  <span className="text-sm">{year}</span>
-                  <Badge variant="secondary">{count}</Badge>
-                </div>
-              ))}
-            {Object.keys(stats.byYear).length === 0 && (
-              <p className="text-sm text-muted-foreground">No enquiries yet</p>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Enquiry List */}
       <Card>
         <CardHeader>
-          <CardTitle>All Enquiries</CardTitle>
+          <PageHeader
+            title="Enquiries"
+            onBack={handleBackToDashboard}
+            actionButton={{
+              text: "View Form",
+              onClick: handleAddEnquiry
+            }}
+          />
         </CardHeader>
-        <CardContent>
+        
+        <CardContent className="space-y-6">
+          {/* Stats Cards */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Total Enquiries</CardTitle>
+                <Users className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{stats.total}</div>
+                <p className="text-xs text-muted-foreground">
+                  All enquiries in the system
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Pending</CardTitle>
+                <Clock className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-yellow-600">{stats.byStatus.pending}</div>
+                <p className="text-xs text-muted-foreground">
+                  Awaiting contact
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Contacted</CardTitle>
+                <TrendingUp className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-blue-600">{stats.byStatus.contacted}</div>
+                <p className="text-xs text-muted-foreground">
+                  In progress
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Enrolled</CardTitle>
+                <CheckCircle className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-green-600">{stats.byStatus.enrolled}</div>
+                <p className="text-xs text-muted-foreground">
+                  Successfully converted
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Priority Summary */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium">Priority Distribution</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm">High Priority</span>
+                  <Badge variant="secondary" className="bg-red-100 text-red-800">
+                    {stats.byPriority.high}
+                  </Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm">Medium Priority</span>
+                  <Badge variant="secondary" className="bg-orange-100 text-orange-800">
+                    {stats.byPriority.medium}
+                  </Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm">Low Priority</span>
+                  <Badge variant="secondary" className="bg-gray-100 text-gray-800">
+                    {stats.byPriority.low}
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium">Top Technologies</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {Object.entries(stats.byTechnology)
+                  .sort(([,a], [,b]) => b - a)
+                  .slice(0, 5)
+                  .map(([tech, count]) => (
+                    <div key={tech} className="flex items-center justify-between">
+                      <span className="text-sm truncate">{tech}</span>
+                      <Badge variant="secondary">{count}</Badge>
+                    </div>
+                  ))}
+                {Object.keys(stats.byTechnology).length === 0 && (
+                  <p className="text-sm text-muted-foreground">No enquiries yet</p>
+                )}
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium">Recent Years</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {Object.entries(stats.byYear)
+                  .sort(([a], [,b]) => Number(b) - Number(a))
+                  .slice(0, 5)
+                  .map(([year, count]) => (
+                    <div key={year} className="flex items-center justify-between">
+                      <span className="text-sm">{year}</span>
+                      <Badge variant="secondary">{count}</Badge>
+                    </div>
+                  ))}
+                {Object.keys(stats.byYear).length === 0 && (
+                  <p className="text-sm text-muted-foreground">No enquiries yet</p>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Enquiry List */}
           <EnquiryList />
         </CardContent>
       </Card>
