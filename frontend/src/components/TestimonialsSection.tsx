@@ -1,7 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
-import { StudentTestimonial } from '@/components/StudentTestimonial';
 
 interface Testimonial {
   id: number;
@@ -72,28 +71,6 @@ export function TestimonialsSection() {
           <p className="text-xl text-gray-700 max-w-3xl mx-auto font-medium">
             Hear from our graduates about their learning experience and career success
           </p>
-        </div>
-
-        {/* Featured Student Testimonials - Side by Side */}
-        <div className="mb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <StudentTestimonial
-              imageUrl="/aarav_joshi.jpg"
-              name="Aarav Joshi"
-              role="Student Success Story"
-              company="Web Developer at Top Tech Company"
-              testimonial="Codexa Classes transformed my career! Was struggling after engineering. The Bootstrap and Laravel course taught me PHP from scratch. Within 4 months, I was building web apps and got placed at a top tech company! 🚀"
-              rating={5}
-            />
-            <StudentTestimonial
-              imageUrl="/ananya_kulkarni_2.jpg"
-              name="Ananya Kulkarni"
-              role="Career Changer Success"
-              company="Data Analyst at Leading Firm"
-              testimonial="From content writer to data analyst! The PowerBI, SQL, SAP, and Python course made everything click. Worked with real datasets, created dashboards. Now loving my new career in data analysis! 📈"
-              rating={5}
-            />
-          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">

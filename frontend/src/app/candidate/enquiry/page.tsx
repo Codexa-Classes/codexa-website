@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { EnquiryForm } from '@/components/enquiry/enquiry-form';
 import PageLayout from '@/components/layout/PageLayout';
+import { StudentTestimonial } from '@/components/StudentTestimonial';
 
 export const metadata: Metadata = {
   title: 'Course Enquiry - Codexa Classes',
@@ -23,6 +24,32 @@ export default function EnquiryPage() {
           </div>
           
           <EnquiryForm />
+          
+          {/* Featured Student Testimonials - Side by Side */}
+          <div className="mt-16 mb-16">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Student Success Stories</h2>
+              <p className="text-lg text-gray-600">Hear from our graduates about their learning experience</p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              <StudentTestimonial
+                imageUrl="/aarav_joshi.jpg"
+                name="Aarav Joshi"
+                role="Student Success Story"
+                company="Web Developer at Top Tech Company"
+                testimonial="Codexa Classes transformed my career! Was struggling after engineering. The Bootstrap and Laravel course taught me PHP from scratch. Within 4 months, I was building web apps and got placed at a top tech company! 🚀"
+                rating={5}
+              />
+              <StudentTestimonial
+                imageUrl="/ananya_kulkarni_2.jpg"
+                name="Ananya Kulkarni"
+                role="Career Changer Success"
+                company="Data Analyst at Leading Firm"
+                testimonial="From content writer to data analyst! The PowerBI, SQL, SAP, and Python course made everything click. Worked with real datasets, created dashboards. Now loving my new career in data analysis! 📈"
+                rating={5}
+              />
+            </div>
+          </div>
           
           <div className="mt-16 text-center">
             <div className="max-w-4xl mx-auto">
