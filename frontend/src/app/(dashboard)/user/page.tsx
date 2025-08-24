@@ -104,76 +104,15 @@ export default function UserDashboardPage() {
                 Ready to find your next opportunity? Here&apos;s what&apos;s happening with your job search.
               </p>
             </div>
-            <div className="flex items-center gap-3">
-              <Button variant="outline" size="sm">
-                <Bell className="mr-2 h-4 w-4" />
-                Notifications
-              </Button>
-              <Button variant="outline" size="sm">
-                <Settings className="mr-2 h-4 w-4" />
-                Settings
-              </Button>
-            </div>
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-blue-100 text-sm font-medium">Total Jobs</p>
-                  <p className="text-3xl font-bold">{stats.totalJobs}</p>
-                </div>
-                <Briefcase className="h-12 w-12 text-blue-200" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-r from-green-500 to-green-600 text-white">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-green-100 text-sm font-medium">Applied Jobs</p>
-                  <p className="text-3xl font-bold">{stats.appliedJobs}</p>
-                </div>
-                <FileText className="h-12 w-12 text-green-200" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-purple-100 text-sm font-medium">Saved Jobs</p>
-                  <p className="text-3xl font-bold">{stats.savedJobs}</p>
-                </div>
-                <Bookmark className="h-12 w-12 text-purple-200" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-orange-100 text-sm font-medium">Profile</p>
-                  <p className="text-3xl font-bold">{stats.profileCompletion}%</p>
-                </div>
-                <User className="h-12 w-12 text-orange-200" />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
 
         {/* Quick Actions */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             <Card 
               className="hover:shadow-lg transition-all duration-200 cursor-pointer hover:scale-105"
               onClick={() => handleNavigateTo('/user/jobs')}
@@ -204,17 +143,6 @@ export default function UserDashboardPage() {
                 <User className="h-12 w-12 text-purple-500 mx-auto mb-3" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">My Profile</h3>
                 <p className="text-sm text-gray-600">Update your information</p>
-              </CardContent>
-            </Card>
-
-            <Card 
-              className="hover:shadow-lg transition-all duration-200 cursor-pointer hover:scale-105"
-              onClick={() => handleNavigateTo('/user/jobs')}
-            >
-              <CardContent className="p-6 text-center">
-                <Bookmark className="h-12 w-12 text-orange-500 mx-auto mb-3" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Saved Jobs</h3>
-                <p className="text-sm text-gray-600">View your bookmarks</p>
               </CardContent>
             </Card>
           </div>

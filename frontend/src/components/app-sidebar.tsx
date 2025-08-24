@@ -70,12 +70,12 @@ export function AppSidebar() {
       icon: Home,
     },
     {
-      title: 'Courses',
+      title: 'My Courses',
       url: ROUTES.user.courses,
       icon: BookOpen,
     },
     {
-      title: 'Applied Jobs',
+      title: 'Jobs',
       url: ROUTES.user.appliedJobs,
       icon: FileText,
     },
