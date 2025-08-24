@@ -20,8 +20,7 @@ export interface Candidate {
   phoneNumber: string;
   dateOfBirth?: Date; // optional
   gender?: 'male' | 'female' | 'other' | 'prefer-not-to-say'; // optional
-  location: string;
-  city: string;
+  address: string;
   pincode: string;
   password: string; // for login
   

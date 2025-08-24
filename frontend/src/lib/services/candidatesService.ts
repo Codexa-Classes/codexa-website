@@ -9,10 +9,12 @@ export interface CreateCandidateData {
   phoneNumber: string;
   dateOfBirth?: Date;
   gender?: 'male' | 'female' | 'other' | 'prefer-not-to-say';
-  location: string;
-  city: string;
+  address: string;
   pincode: string;
   password: string;
+  course?: string;
+  joiningDate?: Date;
+  feesTransactionNumber?: string;
   
   // Optional fields that can be filled later
   profileTitle?: string;
@@ -157,8 +159,7 @@ class CandidatesService {
         phoneNumber: '9876543210',
         dateOfBirth: new Date('1990-05-15'),
         gender: 'male',
-        location: 'San Francisco',
-        city: 'San Francisco',
+        address: '123 Main St, San Francisco, CA 94102',
         pincode: '94102',
         password: 'hashed_password_123',
         
@@ -212,8 +213,8 @@ class CandidatesService {
       candidate.email.toLowerCase().includes(lowercaseQuery) ||
       candidate.profileTitle?.toLowerCase().includes(lowercaseQuery) ||
       candidate.primarySkills?.some(skill => skill.toLowerCase().includes(lowercaseQuery)) ||
-      candidate.location.toLowerCase().includes(lowercaseQuery) ||
-      candidate.city.toLowerCase().includes(lowercaseQuery)
+      candidate.address.toLowerCase().includes(lowercaseQuery) ||
+      candidate.pincode.toLowerCase().includes(lowercaseQuery)
     );
   }
 
@@ -235,8 +236,8 @@ class CandidatesService {
     const lowercaseLocation = location.toLowerCase();
     
     return candidates.filter(candidate => 
-      candidate.location.toLowerCase().includes(lowercaseLocation) ||
-      candidate.city.toLowerCase().includes(lowercaseLocation)
+      candidate.address.toLowerCase().includes(lowercaseLocation) ||
+      candidate.pincode.toLowerCase().includes(lowercaseLocation)
     );
   }
 
@@ -293,7 +294,7 @@ class CandidatesService {
         low: candidates.filter(c => c.priority === 'low').length,
       },
       byLocation: candidates.reduce((acc, candidate) => {
-        const location = candidate.city;
+        const location = candidate.address;
         acc[location] = (acc[location] || 0) + 1;
         return acc;
       }, {} as Record<string, number>),
