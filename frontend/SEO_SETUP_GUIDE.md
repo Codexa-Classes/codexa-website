@@ -286,3 +286,6 @@ Both robots.txt and sitemap.xml are now fully implemented and optimized for the 
 The implementation is production-ready and will help improve search engine visibility and protect your content from AI training.
 
 
+
+
+
