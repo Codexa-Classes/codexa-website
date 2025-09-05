@@ -133,7 +133,7 @@ export function EnquiryForm() {
                              passOutYear && 
                              technology?.length > 0;
     
-    // Check if mobile is exactly 10 digits
+    // Check if mobile is exactly 10 digits and starts with 6-9
     const isMobileValid = mobile && /^[6-9]\d{9}$/.test(mobile);
     
     // Check if email format is valid
@@ -321,22 +321,31 @@ export function EnquiryForm() {
                          (e.keyCode === 88 && e.ctrlKey === true)) {
                        return;
                      }
-                     // Only allow digits 6-9
-                     if (!/^[6-9]$/.test(e.key)) {
+                     // Allow digits 0-9
+                     if (!/^[0-9]$/.test(e.key)) {
                        e.preventDefault();
-                       showToast("error", "Invalid Mobile Number", "Mobile number must start with 6, 7, 8, or 9");
+                       showToast("error", "Invalid Mobile Number", "Mobile number can only contain digits");
                      }
                    }}
                   onInput={(e) => {
-                    // Remove any non-digit characters and only keep 6-9
-                    const value = e.currentTarget.value.replace(/[^6-9]/g, '');
+                    // Remove any non-digit characters
+                    let value = e.currentTarget.value.replace(/[^0-9]/g, '');
+                    
+                    // If first digit is not 6-9, show error and don't update
+                    if (value.length > 0 && !/^[6-9]/.test(value)) {
+                      showToast("error", "Invalid Mobile Number", "Mobile number must start with 6, 7, 8, or 9");
+                      return;
+                    }
+                    
                     e.currentTarget.value = value;
                     setValue('mobile', value);
                   }}
                   onPaste={(e) => {
                     const pastedText = e.clipboardData.getData('text');
-                    if (!/^[6-9]*$/.test(pastedText)) {
-                      showToast("warning", "Invalid Mobile Number Pasted", "Mobile number must only contain digits 6, 7, 8, or 9");
+                    if (!/^[0-9]*$/.test(pastedText)) {
+                      showToast("warning", "Invalid Mobile Number Pasted", "Mobile number can only contain digits");
+                    } else if (pastedText.length > 0 && !/^[6-9]/.test(pastedText)) {
+                      showToast("warning", "Invalid Mobile Number Pasted", "Mobile number must start with 6, 7, 8, or 9");
                     }
                   }}
                 />
