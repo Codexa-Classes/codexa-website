@@ -15,6 +15,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { CheckCircle, AlertCircle, Loader2, ChevronDown } from 'lucide-react';
 import { firestoreEnquiryService } from '@/lib/services/enquiry/firestoreEnquiryService';
 import { CreateEnquiryData } from '@/types/enquiry';
+import { toast } from 'sonner';
 
 const enquirySchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -46,6 +47,35 @@ export function EnquiryForm() {
   const [errorMessage, setErrorMessage] = useState('');
   const [isTechnologyOpen, setIsTechnologyOpen] = useState(false);
   const [otherTechnology, setOtherTechnology] = useState('');
+  const [activeToasts, setActiveToasts] = useState<Set<string>>(new Set());
+
+  // Helper function to show deduplicated toasts
+  const showToast = (type: 'error' | 'warning', title: string, description: string) => {
+    const toastKey = `${type}-${title}-${description}`;
+    
+    // If this exact toast is already active, don't show another one
+    if (activeToasts.has(toastKey)) {
+      return;
+    }
+    
+    // Show new toast
+    toast[type](title, {
+      description,
+      duration: 2000,
+    });
+    
+    // Add to active toasts
+    setActiveToasts(prev => new Set(prev).add(toastKey));
+    
+    // Remove from active toasts after duration
+    setTimeout(() => {
+      setActiveToasts(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(toastKey);
+        return newSet;
+      });
+    }, 2000);
+  };
 
   const {
     register,
@@ -203,26 +233,33 @@ export function EnquiryForm() {
                   placeholder="Enter your full name"
                   {...register('name')}
                   className={errors.name ? 'border-red-500' : ''}
-                  onKeyDown={(e) => {
-                    // Allow: backspace, delete, tab, escape, enter, home, end, left, right, up, down
-                    if ([8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
-                        // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
-                        (e.keyCode === 65 && e.ctrlKey === true) ||
-                        (e.keyCode === 67 && e.ctrlKey === true) ||
-                        (e.keyCode === 86 && e.ctrlKey === true) ||
-                        (e.keyCode === 88 && e.ctrlKey === true)) {
-                      return;
-                    }
-                    // Allow only letters and spaces
-                    if (!/^[a-zA-Z\s]$/.test(e.key)) {
-                      e.preventDefault();
-                    }
-                  }}
+                                     onKeyDown={(e) => {
+                     // Allow: backspace, delete, tab, escape, enter, home, end, left, right, up, down
+                     if ([8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
+                         // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+                         (e.keyCode === 65 && e.ctrlKey === true) ||
+                         (e.keyCode === 67 && e.ctrlKey === true) ||
+                         (e.keyCode === 86 && e.ctrlKey === true) ||
+                         (e.keyCode === 88 && e.ctrlKey === true)) {
+                       return;
+                     }
+                     // Allow only letters and spaces
+                     if (!/^[a-zA-Z\s]$/.test(e.key)) {
+                       e.preventDefault();
+                       showToast("error", "Invalid Input", "Name can only contain letters and spaces");
+                     }
+                   }}
                   onInput={(e) => {
                     // Remove any non-letter characters except spaces
                     const value = e.currentTarget.value.replace(/[^a-zA-Z\s]/g, '');
                     e.currentTarget.value = value;
                     setValue('name', value);
+                  }}
+                  onPaste={(e) => {
+                    const pastedText = e.clipboardData.getData('text');
+                    if (!/^[a-zA-Z\s]*$/.test(pastedText)) {
+                      showToast("warning", "Invalid Content Pasted", "Only letters and spaces are allowed in the name field");
+                    }
                   }}
                 />
                 {errors.name && (
@@ -239,26 +276,33 @@ export function EnquiryForm() {
                   {...register('mobile')}
                   className={errors.mobile ? 'border-red-500' : ''}
                   maxLength={10}
-                  onKeyDown={(e) => {
-                    // Allow: backspace, delete, tab, escape, enter, home, end, left, right, up, down
-                    if ([8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
-                        // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
-                        (e.keyCode === 65 && e.ctrlKey === true) ||
-                        (e.keyCode === 67 && e.ctrlKey === true) ||
-                        (e.keyCode === 86 && e.ctrlKey === true) ||
-                        (e.keyCode === 88 && e.ctrlKey === true)) {
-                      return;
-                    }
-                    // Only allow digits 6-9
-                    if (!/^[6-9]$/.test(e.key)) {
-                      e.preventDefault();
-                    }
-                  }}
+                                     onKeyDown={(e) => {
+                     // Allow: backspace, delete, tab, escape, enter, home, end, left, right, up, down
+                     if ([8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
+                         // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+                         (e.keyCode === 65 && e.ctrlKey === true) ||
+                         (e.keyCode === 67 && e.ctrlKey === true) ||
+                         (e.keyCode === 86 && e.ctrlKey === true) ||
+                         (e.keyCode === 88 && e.ctrlKey === true)) {
+                       return;
+                     }
+                     // Only allow digits 6-9
+                     if (!/^[6-9]$/.test(e.key)) {
+                       e.preventDefault();
+                       showToast("error", "Invalid Mobile Number", "Mobile number must start with 6, 7, 8, or 9");
+                     }
+                   }}
                   onInput={(e) => {
                     // Remove any non-digit characters and only keep 6-9
                     const value = e.currentTarget.value.replace(/[^6-9]/g, '');
                     e.currentTarget.value = value;
                     setValue('mobile', value);
+                  }}
+                  onPaste={(e) => {
+                    const pastedText = e.clipboardData.getData('text');
+                    if (!/^[6-9]*$/.test(pastedText)) {
+                      showToast("warning", "Invalid Mobile Number Pasted", "Mobile number must only contain digits 6, 7, 8, or 9");
+                    }
                   }}
                 />
                 {errors.mobile && (
@@ -275,26 +319,33 @@ export function EnquiryForm() {
                   placeholder="Enter your email address"
                   {...register('email')}
                   className={errors.email ? 'border-red-500' : ''}
-                  onKeyDown={(e) => {
-                    // Allow: backspace, delete, tab, escape, enter, home, end, left, right, up, down
-                    if ([8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
-                        // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
-                        (e.keyCode === 65 && e.ctrlKey === true) ||
-                        (e.keyCode === 67 && e.ctrlKey === true) ||
-                        (e.keyCode === 86 && e.ctrlKey === true) ||
-                        (e.keyCode === 88 && e.ctrlKey === true)) {
-                      return;
-                    }
-                    // Allow letters, numbers, @, ., -, and _
-                    if (!/^[a-zA-Z0-9@._-]$/.test(e.key)) {
-                      e.preventDefault();
-                    }
-                  }}
+                                     onKeyDown={(e) => {
+                     // Allow: backspace, delete, tab, escape, enter, home, end, left, right, up, down
+                     if ([8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
+                         // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+                         (e.keyCode === 65 && e.ctrlKey === true) ||
+                         (e.keyCode === 67 && e.ctrlKey === true) ||
+                         (e.keyCode === 86 && e.ctrlKey === true) ||
+                         (e.keyCode === 88 && e.ctrlKey === true)) {
+                       return;
+                     }
+                     // Allow letters, numbers, @, ., -, and _
+                     if (!/^[a-zA-Z0-9@._-]$/.test(e.key)) {
+                       e.preventDefault();
+                       showToast("error", "Invalid Email Character", "Email can only contain letters, numbers, @, ., -, and _");
+                     }
+                   }}
                   onInput={(e) => {
                     // Remove any invalid email characters
                     const value = e.currentTarget.value.replace(/[^a-zA-Z0-9@._-]/g, '');
                     e.currentTarget.value = value;
                     setValue('email', value);
+                  }}
+                  onPaste={(e) => {
+                    const pastedText = e.clipboardData.getData('text');
+                    if (!/^[a-zA-Z0-9@._-]*$/.test(pastedText)) {
+                      showToast("warning", "Invalid Email Pasted", "Email can only contain letters, numbers, @, ., -, and _");
+                    }
                   }}
                 />
                 {errors.email && (
@@ -385,26 +436,33 @@ export function EnquiryForm() {
                     value={otherTechnology}
                     onChange={(e) => setOtherTechnology(e.target.value)}
                     className="w-full"
-                    onKeyDown={(e) => {
-                      // Allow: backspace, delete, tab, escape, enter, home, end, left, right, up, down
-                      if ([8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
-                          // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
-                          (e.keyCode === 65 && e.ctrlKey === true) ||
-                          (e.keyCode === 67 && e.ctrlKey === true) ||
-                          (e.keyCode === 86 && e.ctrlKey === true) ||
-                          (e.keyCode === 88 && e.ctrlKey === true)) {
-                        return;
-                      }
-                      // Allow letters, numbers, spaces, and common tech symbols
-                      if (!/^[a-zA-Z0-9\s&+.-]$/.test(e.key)) {
-                        e.preventDefault();
-                      }
-                    }}
+                                         onKeyDown={(e) => {
+                       // Allow: backspace, delete, tab, escape, enter, home, end, left, right, up, down
+                       if ([8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
+                           // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+                           (e.keyCode === 65 && e.ctrlKey === true) ||
+                           (e.keyCode === 67 && e.ctrlKey === true) ||
+                           (e.keyCode === 86 && e.ctrlKey === true) ||
+                           (e.keyCode === 88 && e.ctrlKey === true)) {
+                         return;
+                       }
+                       // Allow letters, numbers, spaces, and common tech symbols
+                       if (!/^[a-zA-Z0-9\s&+.-]$/.test(e.key)) {
+                         e.preventDefault();
+                         showToast("error", "Invalid Technology Name", "Technology name can only contain letters, numbers, spaces, and symbols: & + . -");
+                       }
+                     }}
                     onInput={(e) => {
                       // Remove any invalid characters
                       const value = e.currentTarget.value.replace(/[^a-zA-Z0-9\s&+.-]/g, '');
                       e.currentTarget.value = value;
                       setOtherTechnology(value);
+                    }}
+                    onPaste={(e) => {
+                      const pastedText = e.clipboardData.getData('text');
+                      if (!/^[a-zA-Z0-9\s&+.-]*$/.test(pastedText)) {
+                        showToast("warning", "Invalid Technology Name Pasted", "Technology name can only contain letters, numbers, spaces, and symbols: & + . -");
+                      }
                     }}
                   />
                 </div>
