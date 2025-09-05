@@ -13,7 +13,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { CheckCircle, AlertCircle, Loader2, ChevronDown } from 'lucide-react';
-import { enquiryService } from '@/lib/services/enquiry/enquiryService';
+import { firestoreEnquiryService } from '@/lib/services/enquiry/firestoreEnquiryService';
 import { CreateEnquiryData } from '@/types/enquiry';
 
 const enquirySchema = z.object({
@@ -72,8 +72,16 @@ export function EnquiryForm() {
     setErrorMessage('');
 
     try {
+      // Check for duplicate submissions
+      const isDuplicate = await firestoreEnquiryService.checkDuplicateEnquiry(data.email, data.mobile);
+      if (isDuplicate) {
+        setSubmitStatus('error');
+        setErrorMessage('An enquiry with this email or mobile number already exists. Please use different contact details.');
+        return;
+      }
+
       // Handle "Others" technology with custom text
-      let finalTechnology = [...data.technology];
+      const finalTechnology = [...data.technology];
       if (data.technology.includes('Others') && otherTechnology.trim()) {
         // Replace "Others" with the custom technology text
         const othersIndex = finalTechnology.indexOf('Others');
@@ -86,10 +94,8 @@ export function EnquiryForm() {
         technology: finalTechnology
       };
 
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      const newEnquiry = enquiryService.createEnquiry(enquiryData);
+      // Submit to Firestore
+      const newEnquiry = await firestoreEnquiryService.createEnquiry(enquiryData);
       console.log('Enquiry created:', newEnquiry);
       
       setSubmitStatus('success');
@@ -105,10 +111,6 @@ export function EnquiryForm() {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleTechnologyChange = (value: string[]) => {
-    setValue('technology', value);
   };
 
   const handleYearChange = (value: string) => {
@@ -139,7 +141,7 @@ export function EnquiryForm() {
             <Alert className="mb-6 border-green-200 bg-green-50">
               <CheckCircle className="h-4 w-4 text-green-600" />
               <AlertDescription className="text-green-800">
-                Thank you! Your enquiry has been submitted successfully. We'll contact you soon.
+                Thank you! Your enquiry has been submitted successfully. We&apos;ll contact you soon.
               </AlertDescription>
             </Alert>
           )}
