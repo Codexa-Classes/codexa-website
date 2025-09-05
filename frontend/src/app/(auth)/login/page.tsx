@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Metadata } from 'next';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,15 +13,6 @@ import { ModeToggle } from '@/components/mode-toggle';
 import { Eye, EyeOff } from 'lucide-react';
 import { SocialMediaIcons, defaultSocialMediaLinks } from '@/components/SocialMediaIcons';
 import { Logo } from '@/components/Logo';
-
-export const metadata: Metadata = {
-  title: 'Login - Codexa Classes',
-  description: 'Login to access your Codexa Classes dashboard and manage your courses and applications.',
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
 
 export default function LoginPage() {
   const [mobile, setMobile] = useState('');
