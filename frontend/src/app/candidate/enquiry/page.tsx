@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: 'Course Enquiry - Codexa Classes',
   description: 'Submit your course enquiry and get detailed information about our technology courses. We\'ll get back to you with course details and enrollment information.',
   keywords: 'course enquiry, technology courses, coding classes, programming courses, Codexa Classes',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function EnquiryPage() {
