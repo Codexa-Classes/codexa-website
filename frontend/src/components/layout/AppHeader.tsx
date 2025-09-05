@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { GraduationCap } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useRef, useEffect, useState } from 'react';
 import { Logo } from '../Logo';
 import { SidebarTrigger } from '@/components/ui/sidebar';
+import { NAVIGATION_ITEMS } from '@/lib/constants/navigation';
 
 export default function AppHeader() {
   const pathname = usePathname();
@@ -17,14 +17,7 @@ export default function AppHeader() {
     opacity: 0
   });
   
-  const navItems = [
-    { href: "/", label: "Home" },
-    { href: "/courses", label: "Courses" },
-    { href: "/super10", label: "Super10" },
-    { href: "/testimonials", label: "Testimonials" },
-    { href: "/certificate", label: "Certificate" },
-    { href: "/candidate/enquiry", label: "Enquiry" }
-  ];
+  const navItems = NAVIGATION_ITEMS;
 
   // Update underline position and width when pathname changes
   useEffect(() => {
@@ -50,7 +43,7 @@ export default function AppHeader() {
         }
       }
     }
-  }, [pathname]);
+  }, [pathname, navItems]);
 
   return (
     <header className="bg-white border-b border-border/40 sticky top-0 z-50">
@@ -82,7 +75,7 @@ export default function AppHeader() {
                       : "text-muted-foreground hover:text-primary"
                   }`}
                 >
-                  {item.href === "/super10" && (
+                  {item.icon === "super10" && (
                     <img src="/super10.gif" alt="super10" className="mr-2 h-6 w-6 inline" />
                   )}
                   {item.label}
