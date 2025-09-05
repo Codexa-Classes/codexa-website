@@ -147,13 +147,13 @@ export default function LoginPage() {
             </Button>
           </form>
 
-          <div className="mt-6 text-sm text-gray-600 dark:text-gray-400">
+          {/* <div className="mt-6 text-sm text-gray-600 dark:text-gray-400">
             <p className="text-center font-medium">Demo Users:</p>
             <div className="mt-2 space-y-1 text-xs">
               <p><strong>Admin:</strong> 7972908961 / 12345</p>
               <p><strong>User:</strong> 8308377302 / 12345</p>
             </div>
-          </div>
+          </div> */}
         </CardContent>
       </Card>
 
