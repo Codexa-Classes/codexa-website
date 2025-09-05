@@ -249,14 +249,14 @@ export function EnquiryForm() {
                         (e.keyCode === 88 && e.ctrlKey === true)) {
                       return;
                     }
-                    // Ensure that it is a number and stop the keypress
-                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    // Only allow digits 6-9
+                    if (!/^[6-9]$/.test(e.key)) {
                       e.preventDefault();
                     }
                   }}
                   onInput={(e) => {
-                    // Remove any non-digit characters
-                    const value = e.currentTarget.value.replace(/\D/g, '');
+                    // Remove any non-digit characters and only keep 6-9
+                    const value = e.currentTarget.value.replace(/[^6-9]/g, '');
                     e.currentTarget.value = value;
                     setValue('mobile', value);
                   }}
