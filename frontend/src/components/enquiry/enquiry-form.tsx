@@ -47,7 +47,6 @@ export function EnquiryForm() {
   const [isTechnologyOpen, setIsTechnologyOpen] = useState(false);
   const [otherTechnology, setOtherTechnology] = useState('');
 
-
   const {
     register,
     handleSubmit,
@@ -65,6 +64,44 @@ export function EnquiryForm() {
       technology: []
     }
   });
+
+  // Watch form values for conditional submit button
+  const watchedValues = watch();
+
+  // Check if form is valid for submit button
+  const isFormValid = () => {
+    const { name, mobile, email, passOutYear, technology } = watchedValues;
+    
+    // Check if all required fields are filled
+    const hasRequiredFields = name?.trim() && 
+                             mobile?.trim() && 
+                             email?.trim() && 
+                             passOutYear && 
+                             technology?.length > 0;
+    
+    // Check if mobile is exactly 10 digits
+    const isMobileValid = mobile && /^[6-9]\d{9}$/.test(mobile);
+    
+    // Check if email format is valid
+    const isEmailValid = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    
+    // Check if name is at least 2 characters
+    const isNameValid = name && name.trim().length >= 2;
+    
+    // Check if technology selection is valid
+    const isTechnologyValid = technology && technology.length > 0;
+    
+    // If "Others" is selected, check if otherTechnology is provided
+    const isOthersValid = !technology?.includes('Others') || 
+                         (technology?.includes('Others') && otherTechnology.trim());
+    
+    return hasRequiredFields && 
+           isMobileValid && 
+           isEmailValid && 
+           isNameValid && 
+           isTechnologyValid && 
+           isOthersValid;
+  };
 
   const onSubmit = async (data: CreateEnquiryData) => {
     setIsSubmitting(true);
@@ -377,7 +414,7 @@ export function EnquiryForm() {
             {/* Submit Button */}
             <Button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !isFormValid()}
               className="w-full"
               size="lg"
             >
