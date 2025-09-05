@@ -38,7 +38,7 @@ const technologyOptions = [
 ];
 
 const currentYear = new Date().getFullYear();
-const yearOptions = Array.from({ length: 18 }, (_, i) => 2027 - i).reverse();
+const yearOptions = Array.from({ length: 18 }, (_, i) => 2027 - i);
 
 export function EnquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
