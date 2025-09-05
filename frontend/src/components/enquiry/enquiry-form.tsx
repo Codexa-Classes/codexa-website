@@ -166,6 +166,27 @@ export function EnquiryForm() {
                   placeholder="Enter your full name"
                   {...register('name')}
                   className={errors.name ? 'border-red-500' : ''}
+                  onKeyDown={(e) => {
+                    // Allow: backspace, delete, tab, escape, enter, home, end, left, right, up, down
+                    if ([8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
+                        // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+                        (e.keyCode === 65 && e.ctrlKey === true) ||
+                        (e.keyCode === 67 && e.ctrlKey === true) ||
+                        (e.keyCode === 86 && e.ctrlKey === true) ||
+                        (e.keyCode === 88 && e.ctrlKey === true)) {
+                      return;
+                    }
+                    // Allow only letters and spaces
+                    if (!/^[a-zA-Z\s]$/.test(e.key)) {
+                      e.preventDefault();
+                    }
+                  }}
+                  onInput={(e) => {
+                    // Remove any non-letter characters except spaces
+                    const value = e.currentTarget.value.replace(/[^a-zA-Z\s]/g, '');
+                    e.currentTarget.value = value;
+                    setValue('name', value);
+                  }}
                 />
                 {errors.name && (
                   <p className="text-sm text-red-600">{errors.name.message}</p>
@@ -180,6 +201,28 @@ export function EnquiryForm() {
                   placeholder="Enter your 10-digit mobile number"
                   {...register('mobile')}
                   className={errors.mobile ? 'border-red-500' : ''}
+                  maxLength={10}
+                  onKeyDown={(e) => {
+                    // Allow: backspace, delete, tab, escape, enter, home, end, left, right, up, down
+                    if ([8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
+                        // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+                        (e.keyCode === 65 && e.ctrlKey === true) ||
+                        (e.keyCode === 67 && e.ctrlKey === true) ||
+                        (e.keyCode === 86 && e.ctrlKey === true) ||
+                        (e.keyCode === 88 && e.ctrlKey === true)) {
+                      return;
+                    }
+                    // Ensure that it is a number and stop the keypress
+                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                      e.preventDefault();
+                    }
+                  }}
+                  onInput={(e) => {
+                    // Remove any non-digit characters
+                    const value = e.currentTarget.value.replace(/\D/g, '');
+                    e.currentTarget.value = value;
+                    setValue('mobile', value);
+                  }}
                 />
                 {errors.mobile && (
                   <p className="text-sm text-red-600">{errors.mobile.message}</p>
@@ -195,6 +238,27 @@ export function EnquiryForm() {
                   placeholder="Enter your email address"
                   {...register('email')}
                   className={errors.email ? 'border-red-500' : ''}
+                  onKeyDown={(e) => {
+                    // Allow: backspace, delete, tab, escape, enter, home, end, left, right, up, down
+                    if ([8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
+                        // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+                        (e.keyCode === 65 && e.ctrlKey === true) ||
+                        (e.keyCode === 67 && e.ctrlKey === true) ||
+                        (e.keyCode === 86 && e.ctrlKey === true) ||
+                        (e.keyCode === 88 && e.ctrlKey === true)) {
+                      return;
+                    }
+                    // Allow letters, numbers, @, ., -, and _
+                    if (!/^[a-zA-Z0-9@._-]$/.test(e.key)) {
+                      e.preventDefault();
+                    }
+                  }}
+                  onInput={(e) => {
+                    // Remove any invalid email characters
+                    const value = e.currentTarget.value.replace(/[^a-zA-Z0-9@._-]/g, '');
+                    e.currentTarget.value = value;
+                    setValue('email', value);
+                  }}
                 />
                 {errors.email && (
                   <p className="text-sm text-red-600">{errors.email.message}</p>
@@ -284,6 +348,27 @@ export function EnquiryForm() {
                     value={otherTechnology}
                     onChange={(e) => setOtherTechnology(e.target.value)}
                     className="w-full"
+                    onKeyDown={(e) => {
+                      // Allow: backspace, delete, tab, escape, enter, home, end, left, right, up, down
+                      if ([8, 9, 27, 13, 46, 35, 36, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
+                          // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+                          (e.keyCode === 65 && e.ctrlKey === true) ||
+                          (e.keyCode === 67 && e.ctrlKey === true) ||
+                          (e.keyCode === 86 && e.ctrlKey === true) ||
+                          (e.keyCode === 88 && e.ctrlKey === true)) {
+                        return;
+                      }
+                      // Allow letters, numbers, spaces, and common tech symbols
+                      if (!/^[a-zA-Z0-9\s&+.-]$/.test(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
+                    onInput={(e) => {
+                      // Remove any invalid characters
+                      const value = e.currentTarget.value.replace(/[^a-zA-Z0-9\s&+.-]/g, '');
+                      e.currentTarget.value = value;
+                      setOtherTechnology(value);
+                    }}
                   />
                 </div>
               )}
