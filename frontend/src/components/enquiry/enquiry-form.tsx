@@ -44,14 +44,18 @@ const yearOptions = Array.from({ length: 18 }, (_, i) => 2027 - i);
 
 // reCAPTCHA configuration
 const RECAPTCHA_SITE_KEY = process.env.NODE_ENV === 'production' 
-  ? (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI')
+  ? process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY 
   : '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'; // Test key for development
 
-// Debug logging (remove in production)
-if (process.env.NODE_ENV === 'development') {
-  console.log('reCAPTCHA Site Key:', RECAPTCHA_SITE_KEY);
-  console.log('Environment:', process.env.NODE_ENV);
+// Add a check to ensure the key is present in production
+if (process.env.NODE_ENV === 'production' && !RECAPTCHA_SITE_KEY) {
+  console.error('ERROR: NEXT_PUBLIC_RECAPTCHA_SITE_KEY is not set in production environment. reCAPTCHA will likely fail.');
 }
+
+// Debug logging
+console.log('reCAPTCHA Site Key:', RECAPTCHA_SITE_KEY);
+console.log('Environment:', process.env.NODE_ENV);
+console.log('Raw env var:', process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
 
 export function EnquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
