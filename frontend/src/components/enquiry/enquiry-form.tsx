@@ -16,6 +16,7 @@ import { CheckCircle, AlertCircle, Loader2, ChevronDown } from 'lucide-react';
 import { firestoreEnquiryService } from '@/lib/services/enquiry/firestoreEnquiryService';
 import { CreateEnquiryData } from '@/types/enquiry';
 import { toast } from 'sonner';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const enquirySchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -41,6 +42,17 @@ const technologyOptions = [
 const currentYear = new Date().getFullYear();
 const yearOptions = Array.from({ length: 18 }, (_, i) => 2027 - i);
 
+// reCAPTCHA configuration
+const RECAPTCHA_SITE_KEY = process.env.NODE_ENV === 'production' 
+  ? (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI')
+  : '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'; // Test key for development
+
+// Debug logging (remove in production)
+if (process.env.NODE_ENV === 'development') {
+  console.log('reCAPTCHA Site Key:', RECAPTCHA_SITE_KEY);
+  console.log('Environment:', process.env.NODE_ENV);
+}
+
 export function EnquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -48,6 +60,8 @@ export function EnquiryForm() {
   const [isTechnologyOpen, setIsTechnologyOpen] = useState(false);
   const [otherTechnology, setOtherTechnology] = useState('');
   const [activeToasts, setActiveToasts] = useState<Set<string>>(new Set());
+  const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
+  const [recaptchaRef, setRecaptchaRef] = useState<ReCAPTCHA | null>(null);
 
   // Helper function to show deduplicated toasts
   const showToast = (type: 'error' | 'warning', title: string, description: string) => {
@@ -75,6 +89,20 @@ export function EnquiryForm() {
         return newSet;
       });
     }, 2000);
+  };
+
+  // reCAPTCHA handlers
+  const onRecaptchaChange = (value: string | null) => {
+    setRecaptchaValue(value);
+  };
+
+  const onRecaptchaError = () => {
+    showToast("error", "reCAPTCHA Error", "Please refresh the page and try again");
+  };
+
+  const onRecaptchaExpired = () => {
+    setRecaptchaValue(null);
+    showToast("warning", "reCAPTCHA Expired", "Please complete the verification again");
   };
 
   const {
@@ -125,12 +153,16 @@ export function EnquiryForm() {
     const isOthersValid = !technology?.includes('Others') || 
                          (technology?.includes('Others') && otherTechnology.trim());
     
+    // Check if reCAPTCHA is completed
+    const isRecaptchaValid = recaptchaValue !== null;
+    
     return hasRequiredFields && 
            isMobileValid && 
            isEmailValid && 
            isNameValid && 
            isTechnologyValid && 
-           isOthersValid;
+           isOthersValid &&
+           isRecaptchaValid;
   };
 
   const onSubmit = async (data: CreateEnquiryData) => {
@@ -139,6 +171,11 @@ export function EnquiryForm() {
     setErrorMessage('');
 
     try {
+      // Verify reCAPTCHA
+      if (!recaptchaValue) {
+        showToast("error", "Verification Required", "Please complete the reCAPTCHA verification");
+        return;
+      }
       // Check for duplicate submissions
       const isDuplicate = await firestoreEnquiryService.checkDuplicateEnquiry(data.email, data.mobile);
       if (isDuplicate) {
@@ -168,6 +205,8 @@ export function EnquiryForm() {
       setSubmitStatus('success');
       reset();
       setOtherTechnology('');
+      setRecaptchaValue(null);
+      recaptchaRef?.reset();
       
       // Reset success message after 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000);
@@ -467,6 +506,19 @@ export function EnquiryForm() {
                   />
                 </div>
               )}
+            </div>
+
+            {/* reCAPTCHA */}
+            <div className="flex justify-center">
+              <ReCAPTCHA
+                ref={(ref: ReCAPTCHA | null) => setRecaptchaRef(ref)}
+                sitekey={RECAPTCHA_SITE_KEY}
+                onChange={onRecaptchaChange}
+                onErrored={onRecaptchaError}
+                onExpired={onRecaptchaExpired}
+                theme="light"
+                size="normal"
+              />
             </div>
 
             {/* Submit Button */}
