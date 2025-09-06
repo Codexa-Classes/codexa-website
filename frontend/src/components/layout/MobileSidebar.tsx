@@ -20,7 +20,7 @@ export function MobileSidebar() {
   const navItems = NAVIGATION_ITEMS;
 
   return (
-    <Sidebar>
+    <Sidebar side="right">
       <SidebarHeader className="border-b border-border">
         <div className="flex items-center justify-center">
           <Logo />

@@ -10,19 +10,19 @@ interface MainLayoutProps {
 
 export function MainLayout({ children }: MainLayoutProps) {
   return (
-    <SidebarProvider>
+    <SidebarProvider side="right">
       <div className="flex h-screen w-full">
-        {/* Mobile Sidebar - Only visible on mobile */}
-        <div className="md:hidden">
-          <MobileSidebar />
-        </div>
-        
         {/* Main Content */}
         <div className="flex flex-1 flex-col min-w-0 w-full">
           <AppHeader />
           <main className="flex-1 min-w-0 w-full overflow-auto">
             {children}
           </main>
+        </div>
+        
+        {/* Mobile Sidebar - Only visible on mobile, positioned on right */}
+        <div className="md:hidden">
+          <MobileSidebar />
         </div>
       </div>
     </SidebarProvider>
