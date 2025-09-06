@@ -6,7 +6,7 @@ export interface NavigationItem {
 }
 
 export const NAVIGATION_ITEMS: NavigationItem[] = [
-  { href: "/", label: "Home" },
+  // { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/courses", label: "Courses" },
   { 
@@ -17,7 +17,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
   },
   { href: "/testimonials", label: "Testimonials" },
   { href: "/certificate", label: "Certificate" },
-  { href: "/contact", label: "Contact" },
+  // { href: "/contact", label: "Contact" },
   { href: "/candidate/enquiry", label: "Enquiry" }
 ];
 
