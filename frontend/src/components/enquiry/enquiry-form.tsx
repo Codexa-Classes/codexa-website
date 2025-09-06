@@ -42,12 +42,15 @@ const technologyOptions = [
 const currentYear = new Date().getFullYear();
 const yearOptions = Array.from({ length: 18 }, (_, i) => 2027 - i);
 
-  // reCAPTCHA configuration - Using test key temporarily until production key is fixed
-  const RECAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'; // Test key that works on any domain
-
-// Debug logging (commented out for test key)
-// console.log('reCAPTCHA Site Key:', RECAPTCHA_SITE_KEY);
-// console.log('Environment:', process.env.NODE_ENV);
+  // reCAPTCHA configuration
+  // This environment variable must be set in .env.local for development
+  // and in your deployment platform (Netlify) for production
+  const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+  
+  if (!RECAPTCHA_SITE_KEY) {
+    console.error('NEXT_PUBLIC_RECAPTCHA_SITE_KEY environment variable is not set');
+    throw new Error('reCAPTCHA site key is not configured. Please set NEXT_PUBLIC_RECAPTCHA_SITE_KEY in your environment variables.');
+  }
 
 export function EnquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -329,7 +332,7 @@ export function EnquiryForm() {
                    }}
                   onInput={(e) => {
                     // Remove any non-digit characters
-                    let value = e.currentTarget.value.replace(/[^0-9]/g, '');
+                    const value = e.currentTarget.value.replace(/[^0-9]/g, '');
                     
                     // If first digit is not 6-9, show error and don't update
                     if (value.length > 0 && !/^[6-9]/.test(value)) {
@@ -517,7 +520,7 @@ export function EnquiryForm() {
             <div className="flex justify-center">
               <ReCAPTCHA
                 ref={(ref: ReCAPTCHA | null) => setRecaptchaRef(ref)}
-                sitekey={RECAPTCHA_SITE_KEY}
+                sitekey={RECAPTCHA_SITE_KEY!}
                 onChange={onRecaptchaChange}
                 onErrored={onRecaptchaError}
                 onExpired={onRecaptchaExpired}
