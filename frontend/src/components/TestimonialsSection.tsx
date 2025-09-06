@@ -1,6 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Star } from 'lucide-react';
-import Image from 'next/image';
 
 interface Testimonial {
   id: number;
@@ -79,11 +78,9 @@ export function TestimonialsSection() {
               <CardHeader className="pb-4">
                 <div className="flex items-center gap-4">
                   <div className="w-36 h-36 rounded-full overflow-hidden border-2 border-blue-200">
-                    <Image
+                    <img
                       src={testimonial.avatar}
                       alt={`${testimonial.name} profile`}
-                      width={144}
-                      height={144}
                       className="w-full h-full object-cover"
                     />
                   </div>
