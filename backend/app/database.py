@@ -9,13 +9,19 @@ load_dotenv()
 # Database configuration
 DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:SugaSensei%402001@localhost:3306/codexa_db")
 
-# Create database engine with additional parameters
+# Create database engine with proper configuration
 engine = create_engine(
     DATABASE_URL, 
-    echo=True,
+    echo=False,  # Disable echo to reduce noise
     pool_pre_ping=True,
-    pool_recycle=300
+    pool_recycle=300,
+    pool_size=5,
+    max_overflow=10,
+    connect_args={
+        "charset": "utf8mb4"
+    }
 )
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Create base class for models

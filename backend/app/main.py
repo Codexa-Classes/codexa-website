@@ -57,11 +57,17 @@ async def health_check():
 @app.on_event("startup")
 async def startup_event():
     try:
+        # Test connection first
+        with engine.connect() as conn:
+            conn.execute("SELECT 1")
+        print("✅ Database connection successful")
+        
+        # Create tables
         Base.metadata.create_all(bind=engine)
         print("✅ Database tables created successfully")
     except Exception as e:
-        print(f"⚠️  Database table creation failed: {e}")
-        print("Server will continue without database tables")
+        print(f"⚠️  Database connection/table creation failed: {e}")
+        print("Server will continue - tables may already exist")
 
 if __name__ == "__main__":
     import uvicorn
