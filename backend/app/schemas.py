@@ -5,14 +5,14 @@ from typing import Optional, List
 # User schemas
 class UserCreate(BaseModel):
     email: EmailStr
-    username: str
+    mobile: str
     password: str
     full_name: Optional[str] = None
 
 class UserResponse(BaseModel):
     id: int
     email: str
-    username: str
+    mobile: str
     full_name: Optional[str]
     is_active: bool
     is_admin: bool
@@ -22,7 +22,7 @@ class UserResponse(BaseModel):
         from_attributes = True
 
 class UserLogin(BaseModel):
-    username: str
+    mobile: str
     password: str
 
 class Token(BaseModel):

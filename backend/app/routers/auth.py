@@ -15,19 +15,19 @@ router = APIRouter()
 async def register_user(user: UserCreate, db: Session = Depends(get_db)):
     # Check if user already exists
     db_user = db.query(User).filter(
-        (User.email == user.email) | (User.username == user.username)
+        (User.email == user.email) | (User.mobile == user.mobile)
     ).first()
     if db_user:
         raise HTTPException(
             status_code=400,
-            detail="Email or username already registered"
+            detail="Email or mobile number already registered"
         )
     
     # Create new user
     hashed_password = get_password_hash(user.password)
     db_user = User(
         email=user.email,
-        username=user.username,
+        mobile=user.mobile,
         hashed_password=hashed_password,
         full_name=user.full_name
     )
@@ -38,11 +38,11 @@ async def register_user(user: UserCreate, db: Session = Depends(get_db)):
 
 @router.post("/login", response_model=Token)
 async def login_user(user_credentials: UserLogin, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.username == user_credentials.username).first()
+    user = db.query(User).filter(User.mobile == user_credentials.mobile).first()
     if not user or not verify_password(user_credentials.password, user.hashed_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
+            detail="Incorrect mobile number or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
     
@@ -56,7 +56,7 @@ async def login_user(user_credentials: UserLogin, db: Session = Depends(get_db))
     
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": user.username}, expires_delta=access_token_expires
+        data={"sub": user.mobile}, expires_delta=access_token_expires
     )
     
     return {

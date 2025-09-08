@@ -6,8 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { validateUser } from '@/lib/auth/fakeUsers';
 import { useAuth } from '@/contexts/AuthContext';
+import { LoginCredentials } from '@/types/auth';
 import { ROUTES } from '@/lib/constants';
 import { ModeToggle } from '@/components/mode-toggle';
 import { Eye, EyeOff } from 'lucide-react';
@@ -17,11 +17,9 @@ import { Logo } from '@/components/Logo';
 export default function LoginPage() {
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   
-  const { login, user, isAuthenticated } = useAuth();
+  const { login, user, isAuthenticated, isLoading, error } = useAuth();
   const router = useRouter();
 
   // Redirect if user is already authenticated
@@ -37,32 +35,29 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    setIsLoading(true);
 
     try {
-      const user = validateUser(mobile, password);
+      const credentials: LoginCredentials = {
+        mobile,
+        password,
+      };
+
+      await login(credentials);
       
-      if (user) {
-        login(user);
-        
-        if (user.role === 'admin') {
-          router.push(ROUTES.admin.dashboard);
-        } else {
-          router.push(ROUTES.user.dashboard);
-        }
+      // Redirect after successful login
+      if (user?.role === 'admin') {
+        router.push(ROUTES.admin.dashboard);
       } else {
-        setError('Invalid mobile number or password');
+        router.push(ROUTES.user.dashboard);
       }
     } catch (err) {
-      setError('Login failed. Please try again.');
-    } finally {
-      setIsLoading(false);
+      // Error is handled by AuthContext
+      console.error('Login error:', err);
     }
   };
 
   // Show loading while checking authentication
-  if (isAuthenticated === undefined) {
+  if (isLoading && !isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
         <div className="text-center">
