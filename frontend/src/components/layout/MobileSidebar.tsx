@@ -12,22 +12,15 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { NAVIGATION_ITEMS } from '@/lib/constants/navigation';
 
 export function MobileSidebar() {
   const pathname = usePathname();
   
-  const navItems = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/courses", label: "Courses" },
-    { href: "/super10", label: "Super10", icon: <img src="/super10.gif" alt="super10" className="h-5 w-5" /> },
-    { href: "/testimonials", label: "Testimonials" },
-    { href: "/certificate", label: "Certificate" },
-    { href: "/contact", label: "Contact" }
-  ];
+  const navItems = NAVIGATION_ITEMS;
 
   return (
-    <Sidebar>
+    <Sidebar side="right">
       <SidebarHeader className="border-b border-border">
         <div className="flex items-center justify-center">
           <Logo />
@@ -44,9 +37,11 @@ export function MobileSidebar() {
                   asChild 
                   isActive={isActive}
                 >
-                  <Link href={item.href}>
+                  <Link href={item.href} className="flex items-center gap-2">
+                    {item.icon === "super10" && (
+                      <img src="/super10.gif" alt="super10" className="h-5 w-5" />
+                    )}
                     <span>{item.label}</span>
-                    {item.icon && item.icon}
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

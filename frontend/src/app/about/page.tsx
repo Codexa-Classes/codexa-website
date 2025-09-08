@@ -12,9 +12,9 @@ import {
   ArrowRight,
   CheckCircle,
   Trophy,
-  Globe
+  Globe,
+  User
 } from 'lucide-react';
-import Image from 'next/image';
 import PageLayout from '@/components/layout/PageLayout';
 import Super10Section from '@/components/Super10Section';
 import { INSTRUCTOR } from '@/lib/constants';
@@ -98,18 +98,16 @@ export default function About() {
               <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200 shadow-lg">
                 <CardHeader>
                   <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-200">
-                      <Image
+                    <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-200 bg-white flex items-center justify-center">
+                      <img
                         src="/viraj_kadam_sir.png"
                         alt="Viraj Kadam Sir - Codexa Classes Instructor"
-                        width={64}
-                        height={64}
                         className="w-full h-full object-cover"
                       />
                     </div>
                     <div>
-                              <CardTitle className="text-2xl text-gray-900 font-bold">{INSTRUCTOR.name}</CardTitle>
-        <CardDescription className="text-lg text-gray-700 font-medium">{INSTRUCTOR.title}</CardDescription>
+                      <CardTitle className="text-2xl text-gray-900 font-bold">{INSTRUCTOR.name}</CardTitle>
+                      <CardDescription className="text-lg text-gray-700 font-medium">{INSTRUCTOR.title}</CardDescription>
                     </div>
                   </div>
                 </CardHeader>

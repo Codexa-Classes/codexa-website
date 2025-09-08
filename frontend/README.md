@@ -2,6 +2,22 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Environment Setup
+
+1. Copy the environment example file:
+```bash
+cp .env.example .env.local
+```
+
+2. Edit `.env.local` and add your reCAPTCHA site key:
+```bash
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_actual_recaptcha_site_key_here
+```
+
+3. Get your reCAPTCHA site key from [Google reCAPTCHA Admin](https://www.google.com/recaptcha/admin)
+
+### Development
+
 First, run the development server:
 
 ```bash

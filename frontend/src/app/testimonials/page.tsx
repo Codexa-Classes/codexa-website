@@ -86,9 +86,9 @@ const companyPlacements = [
 const candidateSuccessStories = [
   {
     id: 1,
-    name: "Avani Joshi",
-    photo: "/avani_joshi_profile.jpg",
-    photoFallback: "AJ",
+    name: "Avani Sharma",
+    photo: "/avani_sharma_profile.jpg",
+    photoFallback: "AS",
     role: "Frontend Developer",
     company: "TCS",
           companyLogo: "/tcs-logo.png",
@@ -101,9 +101,9 @@ const candidateSuccessStories = [
   },
   {
     id: 2,
-    name: "Atharva Kulkarni",
-    photo: "/atharva_kulkarni_profile.jpg",
-    photoFallback: "AK",
+    name: "Atharva Singh",
+    photo: "/atharva_singh_profile.jpg",
+    photoFallback: "AS",
     role: "Web Developer",
     company: "Infosys",
     companyLogo: "/infosys-logo.svg",
@@ -116,9 +116,9 @@ const candidateSuccessStories = [
   },
   {
     id: 3,
-    name: "Vedika Patil",
-    photo: "/vedika_patil_profile.jpg",
-    photoFallback: "VP",
+    name: "Vedika Gupta",
+    photo: "/vedika_gupta_profile.jpg",
+    photoFallback: "VG",
     role: "Database Administrator",
     company: "Wipro",
     companyLogo: "/wipro-logo.svg",
@@ -131,9 +131,9 @@ const candidateSuccessStories = [
   },
   {
     id: 4,
-    name: "Vivaan Deshmukh",
-    photo: "/mahak_meena_profile.jpg", // Using Mahak Meena's profile as Vivaan Deshmukh
-    photoFallback: "VD",
+    name: "Vivaan Reddy",
+    photo: "/vivaan_reddy_profile.jpg",
+    photoFallback: "VR",
     role: "DevOps Engineer",
     company: "HCL",
     companyLogo: "/hcl-logo.svg",
@@ -146,9 +146,9 @@ const candidateSuccessStories = [
   },
   {
     id: 5,
-    name: "Ishaani Bhosale",
-    photo: "/ananya_kulkarni_2.jpg", // Using Ananya Kulkarni's profile as Ishaani Bhosale
-    photoFallback: "IB",
+    name: "Ishaani Agarwal",
+    photo: "/ishaani_agarwal_profile.jpg",
+    photoFallback: "IA",
     role: "Business Analyst",
     company: "Tech Mahindra",
     companyLogo: "/tech-mahindra-logo.svg",
@@ -161,9 +161,9 @@ const candidateSuccessStories = [
   },
   {
     id: 6,
-    name: "Aarush Wagh",
-    photo: "/aarush_wagh_profile.jpg",
-    photoFallback: "AW",
+    name: "Aarush Verma",
+    photo: "/aarush_verma_profile.jpg",
+    photoFallback: "AV",
     role: "App Support Engineer",
     company: "Cognizant",
     companyLogo: "/cognizant-logo.png",

@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { INSTRUCTOR } from "@/lib/constants";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -101,13 +102,28 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <AuthProvider>
             {children}
           </AuthProvider>
+          <Toaster 
+            position="top-right"
+            expand={true}
+            richColors={true}
+            closeButton={true}
+            visibleToasts={3}
+            toastOptions={{
+              duration: 2000,
+              style: {
+                background: 'var(--background)',
+                color: 'var(--foreground)',
+                border: '1px solid var(--border)',
+              },
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>
