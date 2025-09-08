@@ -56,7 +56,12 @@ async def health_check():
 # Create database tables
 @app.on_event("startup")
 async def startup_event():
-    Base.metadata.create_all(bind=engine)
+    try:
+        Base.metadata.create_all(bind=engine)
+        print("✅ Database tables created successfully")
+    except Exception as e:
+        print(f"⚠️  Database table creation failed: {e}")
+        print("Server will continue without database tables")
 
 if __name__ == "__main__":
     import uvicorn

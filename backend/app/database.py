@@ -7,10 +7,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Database configuration
-DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:password@localhost:3306/codexa_db")
+DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:SugaSensei%402001@localhost:3306/codexa_db")
 
-# Create database engine
-engine = create_engine(DATABASE_URL, echo=True)
+# Create database engine with additional parameters
+engine = create_engine(
+    DATABASE_URL, 
+    echo=True,
+    pool_pre_ping=True,
+    pool_recycle=300
+)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Create base class for models
