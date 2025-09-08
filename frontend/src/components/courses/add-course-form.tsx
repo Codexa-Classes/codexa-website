@@ -9,36 +9,48 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Save, BookOpen, ArrowLeft, Loader2 } from "lucide-react"
 import { FormHeader, FormLayout } from "@/components/forms"
-import { courseService } from "@/lib/services/coursesService"
-import { Course } from "@/types/course"
+import { adminCoursesApiService } from "@/lib/services/coursesApi"
+import { Course } from "@/lib/constants/courses"
 import { ROUTES } from "@/lib/constants"
 import { Home } from "lucide-react"
 
 export function AddCourseForm() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  
+  // Debug logging
+  console.log("AddCourseForm: Component rendered")
+  console.log("AddCourseForm: Current pathname:", window.location.pathname)
   const [showToast, setShowToast] = useState(false)
   const [toastMessage, setToastMessage] = useState("")
   const [toastType, setToastType] = useState<"success" | "error">("success")
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    category: "" as Course['category'],
+    category: "",
     duration: "",
     price: "",
-    image: "",
+    icon: "",
+    icon_name: "",
     instructor: "",
-    level: "" as Course['level'],
-    status: "draft" as Course['status'],
+    level: "",
+    status: "published",
     prerequisites: [""],
-    syllabus: [""]
+    syllabus: [""],
+    topics: [""],
+    skills: [""],
+    projects: [""],
+    career_path: "",
+    students_count: "0+"
   })
 
   const handleInputChange = (field: string, value: string) => {
+    console.log(`AddCourseForm: handleInputChange called for ${field}:`, value)
     setFormData(prev => ({ ...prev, [field]: value }))
   }
 
   const handleArrayChange = (field: 'prerequisites' | 'syllabus', index: number, value: string) => {
+    console.log(`AddCourseForm: handleArrayChange called for ${field}[${index}]:`, value)
     setFormData(prev => ({
       ...prev,
       [field]: prev[field].map((item, i) => i === index ? value : item)
@@ -46,6 +58,7 @@ export function AddCourseForm() {
   }
 
   const addArrayItem = (field: 'prerequisites' | 'syllabus') => {
+    console.log(`AddCourseForm: addArrayItem called for ${field}`)
     setFormData(prev => ({
       ...prev,
       [field]: [...prev[field], ""]
@@ -53,6 +66,7 @@ export function AddCourseForm() {
   }
 
   const removeArrayItem = (field: 'prerequisites' | 'syllabus', index: number) => {
+    console.log(`AddCourseForm: removeArrayItem called for ${field}[${index}]`)
     setFormData(prev => ({
       ...prev,
       [field]: prev[field].filter((_, i) => i !== index)
@@ -60,15 +74,22 @@ export function AddCourseForm() {
   }
 
   const handleSubmit = async (e?: React.FormEvent) => {
-    if (e) e.preventDefault()
+    console.log("AddCourseForm: handleSubmit called with event:", !!e)
+    if (e) {
+      e.preventDefault()
+      console.log("AddCourseForm: Event prevented")
+    }
     
+    console.log("AddCourseForm: Form validation check")
     if (!formData.name || !formData.description || !formData.category || !formData.duration || !formData.price || !formData.instructor || !formData.level) {
+      console.log("AddCourseForm: Validation failed - missing required fields")
       setToastMessage("Please fill in all required fields")
       setToastType("error")
       setShowToast(true)
       return
     }
 
+    console.log("AddCourseForm: Starting course creation")
     setLoading(true)
     try {
       const courseData = {
@@ -76,26 +97,39 @@ export function AddCourseForm() {
         description: formData.description,
         category: formData.category,
         duration: formData.duration,
-        price: parseFloat(formData.price),
-        image: formData.image,
+        price: parseInt(formData.price),
+        icon: formData.icon,
+        icon_name: formData.icon_name || formData.icon,
         instructor: formData.instructor,
         level: formData.level,
         status: formData.status,
         prerequisites: formData.prerequisites.filter(p => p.trim() !== ""),
-        syllabus: formData.syllabus.filter(s => s.trim() !== "")
+        syllabus: formData.syllabus.filter(s => s.trim() !== ""),
+        topics: formData.topics.filter(t => t.trim() !== ""),
+        skills: formData.skills.filter(s => s.trim() !== ""),
+        projects: formData.projects.filter(p => p.trim() !== ""),
+        career_path: formData.career_path,
+        students_count: formData.students_count
       }
 
-      await courseService.create(courseData)
+      console.log("AddCourseForm: Course data prepared:", courseData)
+      console.log("AddCourseForm: Calling adminCoursesApiService.create")
+      
+      const result = await adminCoursesApiService.create(courseData)
+      console.log("AddCourseForm: Course created successfully:", result)
+      
       setToastMessage("Course created successfully!")
       setToastType("success")
       setShowToast(true)
       
+      console.log("AddCourseForm: Setting redirect timeout")
       // Redirect after a short delay
       setTimeout(() => {
+        console.log("AddCourseForm: Redirecting to /admin/courses")
         router.push("/admin/courses")
       }, 1500)
     } catch (error) {
-      console.error("Error creating course:", error)
+      console.error("AddCourseForm: Error creating course:", error)
       setToastMessage("Failed to create course")
       setToastType("error")
       setShowToast(true)
@@ -105,6 +139,7 @@ export function AddCourseForm() {
   }
 
   const onCancel = () => {
+    console.log("AddCourseForm: onCancel called - redirecting to /admin/courses")
     router.push("/admin/courses")
   }
 
@@ -118,15 +153,21 @@ export function AddCourseForm() {
     formData.level
   )
 
+  console.log("AddCourseForm: isFormValid:", isFormValid)
+  console.log("AddCourseForm: formData:", formData)
+
   return (
     <FormLayout
       breadcrumbItems={[
         {
-          href: ROUTES.admin.dashboard,
+          // href: ROUTES.admin.dashboard, // Temporarily disabled to test
           label: "Dashboard",
           icon: <Home className="h-4 w-4" />,
         },
-        { href: ROUTES.admin.courses, label: "Courses" },
+        { 
+          // href: ROUTES.admin.courses, // Temporarily disabled to test
+          label: "Courses" 
+        },
         { label: "Add New" },
       ]}
       header={
@@ -172,9 +213,14 @@ export function AddCourseForm() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="frontend">Frontend</SelectItem>
-                <SelectItem value="backend">Backend</SelectItem>
+                <SelectItem value="web">Web Development</SelectItem>
+                <SelectItem value="data">Data Science</SelectItem>
+                <SelectItem value="business">Business Analysis</SelectItem>
+                <SelectItem value="devops">DevOps</SelectItem>
                 <SelectItem value="database">Database</SelectItem>
-                <SelectItem value="framework">Framework</SelectItem>
+                <SelectItem value="support">Support</SelectItem>
+                <SelectItem value="design">Design</SelectItem>
+                <SelectItem value="animation">Animation</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -222,6 +268,18 @@ export function AddCourseForm() {
           />
         </div>
 
+        <div>
+          <Label htmlFor="career_path" className="mb-2 block">
+            Career Path
+          </Label>
+          <Input
+            id="career_path"
+            value={formData.career_path}
+            onChange={(e) => handleInputChange("career_path", e.target.value)}
+            placeholder="e.g., 3D Artist, Game Developer, VFX Artist"
+          />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <Label htmlFor="level" className="mb-2 block">
@@ -253,13 +311,13 @@ export function AddCourseForm() {
           </div>
           
           <div>
-            <Label htmlFor="image" className="mb-2 block">
+            <Label htmlFor="icon" className="mb-2 block">
               Course Icon
             </Label>
             <Input
-              id="image"
-              value={formData.image}
-              onChange={(e) => handleInputChange("image", e.target.value)}
+              id="icon"
+              value={formData.icon}
+              onChange={(e) => handleInputChange("icon", e.target.value)}
               placeholder="e.g., ⚛️, 🐍, 🗄️"
             />
           </div>

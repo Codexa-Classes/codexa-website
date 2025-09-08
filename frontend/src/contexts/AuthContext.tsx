@@ -35,19 +35,26 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     // Check if user is logged in on app load
     const checkAuthStatus = async () => {
+      console.log('AuthContext: Starting auth check...');
       try {
         const token = localStorage.getItem('access_token');
+        console.log('AuthContext: Token found:', !!token);
         if (token) {
           // Verify token with backend
+          console.log('AuthContext: Verifying token with backend...');
           const currentUser = await AuthService.getCurrentUser();
+          console.log('AuthContext: Current user:', currentUser);
           setUser(currentUser);
+        } else {
+          console.log('AuthContext: No token found');
         }
       } catch (error) {
-        console.error('Error checking auth status:', error);
+        console.error('AuthContext: Error checking auth status:', error);
         // Clear invalid token
         localStorage.removeItem('access_token');
         localStorage.removeItem('user');
       } finally {
+        console.log('AuthContext: Auth check completed');
         setIsLoading(false);
       }
     };

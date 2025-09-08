@@ -92,10 +92,12 @@ export const adminCoursesApiService = {
   // Create new course
   create: async (courseData: Partial<CourseApiResponse>): Promise<Course> => {
     try {
+      console.log('adminCoursesApiService: create called with data:', courseData);
       const response = await apiClient.post<CourseApiResponse>('/courses/', courseData);
+      console.log('adminCoursesApiService: create response:', response.data);
       return transformCourseResponse(response.data);
     } catch (error) {
-      console.error('Error creating course:', error);
+      console.error('adminCoursesApiService: Error creating course:', error);
       throw new Error('Failed to create course');
     }
   },
