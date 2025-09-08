@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { courseService, initializeCourses } from "@/lib/services/coursesService"
-import { Course } from "@/types/course"
+import { adminCoursesApiService } from "@/lib/services/coursesApi"
+import { Course } from "@/lib/constants/courses"
 import { Plus, BookOpen, Users, TrendingUp, Home, Filter } from "lucide-react"
 import { toast } from "sonner"
 import Link from "next/link"
@@ -23,24 +23,22 @@ export default function AdminCoursesPage() {
   const [priceRange, setPriceRange] = useState({ min: 0, max: 0 })
 
   useEffect(() => {
-    initializeCourses()
     loadCourses()
   }, [])
 
   const loadCourses = async () => {
     try {
-      const coursesData = await courseService.getAll()
+      const coursesData = await adminCoursesApiService.getAllAdmin()
       setCourses(coursesData)
     } catch (error) {
       console.error("Error loading courses:", error)
       toast.error("Failed to load courses")
     }
-    // Remove finally block
   }
 
   const handleDeleteCourse = (courseId: string | number) => {
     if (window.confirm("Are you sure you want to delete this course?")) {
-      courseService.delete(courseId as string)
+      adminCoursesApiService.delete(courseId as string)
         .then(() => {
         setCourses(courses.filter(c => c.id !== courseId))
         toast.success("Course deleted successfully!")
@@ -64,10 +62,10 @@ export default function AdminCoursesPage() {
       return false;
     }
     
-    // Status filter
-    if (statusFilter !== 'all' && course.status !== statusFilter) {
-      return false;
-    }
+    // Status filter - all courses are published
+    // if (statusFilter !== 'all' && course.status !== statusFilter) {
+    //   return false;
+    // }
 
     // Category filter
     if (categoryFilter !== 'all' && course.category !== categoryFilter) {
@@ -106,7 +104,7 @@ export default function AdminCoursesPage() {
       const searchLower = searchTerm.toLowerCase();
       const nameMatch = course.name.toLowerCase().includes(searchLower);
       const categoryMatch = course.category?.toLowerCase().includes(searchLower) || false;
-      const instructorMatch = course.instructor?.toLowerCase().includes(searchLower) || false;
+      const instructorMatch = 'viraj kadam'.toLowerCase().includes(searchLower);
       
       if (!nameMatch && !categoryMatch && !instructorMatch) {
         return false;
@@ -118,8 +116,11 @@ export default function AdminCoursesPage() {
 
   const stats = {
     totalCourses: courses.length,
-    publishedCourses: courses.filter(c => c.status === 'published').length,
-    totalStudents: courses.reduce((sum, course) => sum + course.enrolledStudents.length, 0),
+    publishedCourses: courses.length, // All courses from API are published
+    totalStudents: courses.reduce((sum, course) => {
+      const studentCount = parseInt(course.students.replace('+', '')) || 0;
+      return sum + studentCount;
+    }, 0),
     totalRevenue: courses.reduce((sum, course) => sum + course.price, 0)
   }
 
@@ -315,7 +316,7 @@ export default function AdminCoursesPage() {
                           {course.category}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-sm whitespace-nowrap text-center">{course.instructor}</td>
+                      <td className="px-4 py-3 text-sm whitespace-nowrap text-center">Viraj Kadam</td>
                       <td className="px-4 py-3 text-center">
                         <span className="px-2 py-1 text-xs rounded-full border border-border capitalize">
                           {course.level}
@@ -328,16 +329,12 @@ export default function AdminCoursesPage() {
                         </span>
                       </td>
                       <td className="px-4 py-3 text-center">
-                        <span className={`px-2 py-1 text-xs rounded-full whitespace-nowrap ${
-                          course.status === 'published' ? 'bg-green-100 text-green-800' :
-                          course.status === 'archived' ? 'bg-red-100 text-red-800' :
-                          'bg-gray-100 text-gray-800'
-                        }`}>
-                          {course.status}
+                        <span className="px-2 py-1 text-xs rounded-full whitespace-nowrap bg-green-100 text-green-800">
+                          published
                         </span>
                       </td>
                       <td className="px-4 py-3 text-center">
-                        <span className="text-sm">{course.enrolledStudents.length}</span>
+                        <span className="text-sm">{course.students}</span>
                       </td>
                       <td className="px-4 py-3 text-center">
                         <ActionButtons
