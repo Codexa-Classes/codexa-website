@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: codexa_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: codexa_db
+      MYSQL_USER: codexa_user
+      MYSQL_PASSWORD: codexa_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - codexa_network
+
+  # FastAPI Backend
+  backend:
+    build: .
+    container_name: codexa_backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: mysql+pymysql://codexa_user:codexa_password@mysql:3306/codexa_db
+      SECRET_KEY: your-super-secret-key-change-this-in-production
+      ENVIRONMENT: production
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+    networks:
+      - codexa_network
+    volumes:
+      - ./logs:/app/logs
+
+  # phpMyAdmin (optional, for database management)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: codexa_phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: password
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    networks:
+      - codexa_network
+
+volumes:
+  mysql_data:
+
+networks:
+  codexa_network:
+    driver: bridge
