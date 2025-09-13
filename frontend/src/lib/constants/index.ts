@@ -5,8 +5,8 @@ export const APP_CONFIG = {
 
   export const ROUTES = {
     login: '/login',
+    enquiry: '/enquiry',
     candidate: {
-      enquiry: '/candidate/enquiry',
     },
     admin: {
       dashboard: '/admin',

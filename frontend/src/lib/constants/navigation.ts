@@ -18,7 +18,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
   { href: "/testimonials", label: "Testimonials" },
   { href: "/certificate", label: "Certificate" },
   // { href: "/contact", label: "Contact" },
-  { href: "/candidate/enquiry", label: "Enquiry" }
+  { href: "/enquiry", label: "Enquiry" }
 ];
 
 // Helper function to get navigation items with optional filtering

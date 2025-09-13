@@ -47,7 +47,7 @@ export default function AdminEnquiryPage() {
 
   const handleAddEnquiry = () => {
     // Navigate to enquiry form
-    window.location.href = "/candidate/enquiry";
+    window.location.href = "/enquiry";
   };
 
   if (!user || user.role !== 'admin') {

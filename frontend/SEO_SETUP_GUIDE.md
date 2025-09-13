@@ -29,7 +29,7 @@ Disallow: /private/
 Disallow: /internal/
 Disallow: /*.json$
 Disallow: /*?*
-Disallow: /candidate/enquiry
+Disallow: /enquiry
 Disallow: /test-icons/
 Disallow: /favicon.ico
 Disallow: /robots.txt
@@ -65,7 +65,7 @@ Disallow: /private/
 Disallow: /internal/
 Disallow: /*.json$
 Disallow: /*?*
-Disallow: /candidate/enquiry
+Disallow: /enquiry
 Disallow: /test-icons/
 Disallow: /favicon.ico
 Disallow: /robots.txt

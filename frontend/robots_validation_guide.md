@@ -63,7 +63,7 @@ curl -I http://localhost:3000/api/
 ### ❌ **What Should Be Blocked:**
 - GPTBot, ChatGPT-User, CCBot, anthropic-ai, Omgilibot
 - /admin/, /dashboard/, /api/, /_next/, /_vercel/, /static/
-- /private/, /internal/, /candidate/enquiry, /test-icons/
+- /private/, /internal/, /enquiry, /test-icons/
 
 ## Production Deployment
 

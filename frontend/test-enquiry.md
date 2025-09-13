@@ -3,7 +3,7 @@
 ## 🧪 Testing the Implementation
 
 ### 1. **Public Enquiry Form**
-- **URL**: `http://localhost:3000/candidate/enquiry`
+- **URL**: `http://localhost:3000/enquiry`
 - **Test Steps**:
   1. Fill out the form with test data
   2. Submit the form
@@ -77,7 +77,7 @@
 - [ ] Mobile browsers
 
 ## 🎯 Success Criteria
-✅ Form accessible at `/candidate/enquiry`
+✅ Form accessible at `/enquiry`
 ✅ Data saved to localStorage
 ✅ Admin can view enquiries at `/admin/enquiry`
 ✅ Filtering works correctly

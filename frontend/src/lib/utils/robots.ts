@@ -122,7 +122,7 @@ export const getDefaultRobotsConfig = (): RobotsConfig => {
       '/internal/',
       '/*.json$',
       '/*?*',
-      '/candidate/enquiry',
+      '/enquiry',
       '/test-icons/',
       '/favicon.ico',
       '/robots.txt',
