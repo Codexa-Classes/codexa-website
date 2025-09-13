@@ -228,7 +228,7 @@ export function EnquiryForm() {
 
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-4">
       <Card className="w-full">
 
       <CardContent className="pt-6 pb-6">

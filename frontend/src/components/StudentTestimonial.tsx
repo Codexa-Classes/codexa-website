@@ -38,7 +38,7 @@ export const StudentTestimonial: React.FC<StudentTestimonialProps> = ({
       <div className="md:flex">
         <div className="md:shrink-0">
           <img 
-            className="h-32 w-full object-cover md:h-full md:w-32" 
+            className="h-84 w-full object-cover md:h-full md:w-32" 
             src={imageUrl} 
             alt={`${name}'s profile picture`}
           />

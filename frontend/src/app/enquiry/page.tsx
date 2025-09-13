@@ -17,8 +17,9 @@ export default function EnquiryPage() {
   return (
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-        <div className="container mx-auto py-12">
+        <div className="container mx-auto py-4">
           <EnquiryForm />
+          <hr className="my-8" />
           
           {/* Featured Student Testimonials - Side by Side */}
           <div className="mt-8 mb-16">
@@ -26,7 +27,7 @@ export default function EnquiryPage() {
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">Student Success Stories</h2>
               <p className="text-lg text-gray-600">Hear from our graduates about their learning experience</p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto px-4">
               <StudentTestimonial
                 imageUrl="/aarav_joshi.jpg"
                 name="Aarav Joshi"
