@@ -217,9 +217,6 @@ export function EnquiryDashboard() {
 
       {/* Enquiries Table */}
       <Card>
-        <CardHeader>
-          <CardTitle>Enquiries ({filteredEnquiries.length})</CardTitle>
-        </CardHeader>
         <CardContent>
           {filteredEnquiries.length === 0 ? (
             <div className="text-center py-8 text-gray-500">

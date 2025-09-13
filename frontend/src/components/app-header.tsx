@@ -46,7 +46,16 @@ export function AppHeader() {
                 className="flex items-center gap-2 h-9 px-3 hover:bg-accent"
               >
                 <User className="h-4 w-4" />
-                <span className="font-medium">{user.name}</span>
+                <div className="flex flex-col items-start">
+                  <span className="font-medium">{user.name}</span>
+                  <span className={`text-xs uppercase font-semibold ${
+                    user.role === 'admin' 
+                      ? 'text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full' 
+                      : 'text-green-600 bg-green-100 px-2 py-0.5 rounded-full'
+                  }`}>
+                    {user.role === 'admin' ? 'ADMIN' : 'STUDENT'}
+                  </span>
+                </div>
                 <ChevronDown className="h-3 w-3 opacity-50" />
               </Button>
             </DropdownMenuTrigger>
