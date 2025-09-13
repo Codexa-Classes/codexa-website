@@ -120,11 +120,7 @@ export function EnquiryDashboard() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Enquiry Dashboard</h1>
-        <p className="text-gray-600">Manage and track course enquiries</p>
-      </div>
+    <div className="max-w-8xl mx-auto">
 
       {error && (
         <Alert className="mb-6 border-red-200 bg-red-50">

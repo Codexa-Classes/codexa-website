@@ -2,14 +2,12 @@
 
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Users, TrendingUp, Clock, CheckCircle, Home } from 'lucide-react';
-import { EnquiryList } from '@/components/admin/enquiry/enquiry-list';
-import { enquiryService } from '@/lib/services/enquiry/enquiryService';
-import { useState } from 'react';
-import { EnquiryStats } from '@/types/enquiry';
+import { EnquiryDashboard } from '@/components/admin/enquiry-dashboard';
+import { firestoreEnquiryService, EnquiryDocument } from '@/lib/services/enquiry/firestoreEnquiryService';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { PageHeader } from '@/components/forms';
 import { ROUTES } from '@/lib/constants';
@@ -17,13 +15,8 @@ import { ROUTES } from '@/lib/constants';
 export default function AdminEnquiryPage() {
   const { user } = useAuth();
   const router = useRouter();
-  const [stats, setStats] = useState<EnquiryStats>({
-    total: 0,
-    byStatus: { pending: 0, contacted: 0, enrolled: 0, rejected: 0 },
-    byPriority: { low: 0, medium: 0, high: 0 },
-    byTechnology: {},
-    byYear: {}
-  });
+  const [enquiries, setEnquiries] = useState<EnquiryDocument[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!user || user.role !== 'admin') {
@@ -31,13 +24,20 @@ export default function AdminEnquiryPage() {
       return;
     }
     
-    // Load enquiry statistics
-    const loadStats = () => {
-      const enquiryStats = enquiryService.getEnquiryStats();
-      setStats(enquiryStats);
+    // Load enquiries from Firebase
+    const loadEnquiries = async () => {
+      try {
+        setLoading(true);
+        const data = await firestoreEnquiryService.getAllEnquiries();
+        setEnquiries(data);
+      } catch (error) {
+        console.error('Error loading enquiries:', error);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    loadStats();
+    loadEnquiries();
   }, [user, router]);
 
   const handleBackToDashboard = () => {
@@ -52,6 +52,26 @@ export default function AdminEnquiryPage() {
 
   if (!user || user.role !== 'admin') {
     return null;
+  }
+
+  // Calculate stats from Firebase data
+  const stats = {
+    total: enquiries.length,
+    new: enquiries.filter(e => e.status === 'new').length,
+    contacted: enquiries.filter(e => e.status === 'contacted').length,
+    enrolled: enquiries.filter(e => e.status === 'enrolled').length,
+    rejected: enquiries.filter(e => e.status === 'rejected').length,
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center p-8">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading enquiries...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -77,51 +97,8 @@ export default function AdminEnquiryPage() {
         </CardHeader>
         
         <CardContent className="space-y-6">
-          {/* Stats Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Enquiries</CardTitle>
-                <Users className="h-10 w-10 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{stats.total}</div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Pending</CardTitle>
-                <Clock className="h-10 w-10 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold text-yellow-600">{stats.byStatus.pending}</div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Contacted</CardTitle>
-                <TrendingUp className="h-10 w-10 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold text-blue-600">{stats.byStatus.contacted}</div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Enrolled</CardTitle>
-                <CheckCircle className="h-10 w-10 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold text-green-600">{stats.byStatus.enrolled}</div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Enquiry List */}
-          <EnquiryList />
+          {/* Firebase Enquiry Dashboard */}
+          <EnquiryDashboard />
         </CardContent>
       </Card>
     </div>
