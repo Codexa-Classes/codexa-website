@@ -1,6 +1,18 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Custom blink animation for enquiry status badges */
+@keyframes blink {
+  0%, 50% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  51%, 100% { 
+    opacity: 0.4; 
+    transform: scale(0.95);
+  }
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

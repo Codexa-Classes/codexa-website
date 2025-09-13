@@ -2,6 +2,8 @@ import {
   collection, 
   addDoc, 
   getDocs, 
+  getDoc,
+  doc,
   query, 
   orderBy, 
   limit,
@@ -108,6 +110,25 @@ export class FirestoreEnquiryService {
     } catch (error) {
       console.error('Error checking duplicate enquiry:', error);
       return false; // Allow submission if check fails
+    }
+  }
+
+  async getEnquiryById(id: string): Promise<EnquiryDocument | null> {
+    try {
+      const docRef = doc(db, this.collectionName, id);
+      const docSnap = await getDoc(docRef);
+      
+      if (docSnap.exists()) {
+        return {
+          id: docSnap.id,
+          ...docSnap.data()
+        } as EnquiryDocument;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching enquiry by ID:', error);
+      throw new Error('Failed to fetch enquiry');
     }
   }
 

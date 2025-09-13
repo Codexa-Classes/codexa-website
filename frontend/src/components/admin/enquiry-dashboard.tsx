@@ -10,8 +10,10 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, Search, Filter, Download, Eye, Mail, Phone } from 'lucide-react';
 import { firestoreEnquiryService, EnquiryDocument } from '@/lib/services/enquiry/firestoreEnquiryService';
+import { useRouter } from 'next/navigation';
 
 export function EnquiryDashboard() {
+  const router = useRouter();
   const [enquiries, setEnquiries] = useState<EnquiryDocument[]>([]);
   const [filteredEnquiries, setFilteredEnquiries] = useState<EnquiryDocument[]>([]);
   const [loading, setLoading] = useState(true);
@@ -87,6 +89,14 @@ export function EnquiryDashboard() {
     });
   };
 
+  const isEnquiryRecent = (timestamp: any) => {
+    if (!timestamp) return false;
+    const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+    const now = new Date();
+    const diffInDays = (now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24);
+    return diffInDays <= 2; // Show badge only if enquiry is 2 days old or less
+  };
+
   const exportToCSV = () => {
     const csvContent = [
       ['Name', 'Email', 'Mobile', 'Pass Out Year', 'Technology', 'Status', 'Submitted At'],
@@ -108,6 +118,10 @@ export function EnquiryDashboard() {
     a.download = `enquiries-${new Date().toISOString().split('T')[0]}.csv`;
     a.click();
     window.URL.revokeObjectURL(url);
+  };
+
+  const handleViewEnquiry = (enquiryId: string) => {
+    router.push(`/admin/enquiry/${enquiryId}`);
   };
 
   if (loading) {
@@ -220,7 +234,6 @@ export function EnquiryDashboard() {
                     <TableHead>Contact</TableHead>
                     <TableHead>Pass Out Year</TableHead>
                     <TableHead>Technology</TableHead>
-                    <TableHead>Status</TableHead>
                     <TableHead>Submitted</TableHead>
                     <TableHead>Actions</TableHead>
                   </TableRow>
@@ -228,7 +241,27 @@ export function EnquiryDashboard() {
                 <TableBody>
                   {filteredEnquiries.map((enquiry) => (
                     <TableRow key={enquiry.id}>
-                      <TableCell className="font-medium">{enquiry.name}</TableCell>
+                      <TableCell className="font-medium">
+                        <div className="space-y-2">
+                          <div>{enquiry.name}</div>
+                          {isEnquiryRecent(enquiry.timestamp) && (
+                            <Badge 
+                              variant={getStatusBadgeVariant(enquiry.status)}
+                              className="animate-pulse text-white font-semibold text-xs"
+                              style={{
+                                animation: 'blink 2s infinite',
+                                background: enquiry.status === 'new' ? 'linear-gradient(135deg, #fbbf24, #f59e0b, #d97706)' : 
+                                            enquiry.status === 'contacted' ? 'linear-gradient(135deg, #3b82f6, #2563eb, #1d4ed8)' :
+                                            enquiry.status === 'enrolled' ? 'linear-gradient(135deg, #10b981, #059669, #047857)' :
+                                            enquiry.status === 'rejected' ? 'linear-gradient(135deg, #ef4444, #dc2626, #b91c1c)' : 
+                                            'linear-gradient(135deg, #6b7280, #4b5563, #374151)'
+                              }}
+                            >
+                              {enquiry.status?.toUpperCase()}
+                            </Badge>
+                          )}
+                        </div>
+                      </TableCell>
                       <TableCell>
                         <div className="space-y-1">
                           <div className="flex items-center text-sm">
@@ -243,16 +276,15 @@ export function EnquiryDashboard() {
                       </TableCell>
                       <TableCell>{enquiry.passOutYear}</TableCell>
                       <TableCell className="max-w-xs truncate">{enquiry.technology}</TableCell>
-                      <TableCell>
-                        <Badge variant={getStatusBadgeVariant(enquiry.status)}>
-                          {enquiry.status}
-                        </Badge>
-                      </TableCell>
                       <TableCell className="text-sm text-gray-600">
                         {formatDate(enquiry.timestamp)}
                       </TableCell>
                       <TableCell>
-                        <Button size="sm" variant="outline">
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => handleViewEnquiry(enquiry.id)}
+                        >
                           <Eye className="h-3 w-3 mr-1" />
                           View
                         </Button>
