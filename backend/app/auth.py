@@ -1,6 +1,7 @@
 import os
 import jwt
-import bcrypt
+# Remove bcrypt import for development
+# import bcrypt
 from datetime import datetime, timedelta
 from typing import Optional
 from fastapi import HTTPException, status, Depends
@@ -20,12 +21,14 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 security = HTTPBearer()
 
-# Password hashing functions
-def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
+# Password functions for development (plain text)
+def verify_password(plain_password: str, stored_password: str) -> bool:
+    """For development: simple string comparison"""
+    return plain_password == stored_password
 
 def get_password_hash(password: str) -> str:
-    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    """For development: return password as-is"""
+    return password
 
 # JWT token functions
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):

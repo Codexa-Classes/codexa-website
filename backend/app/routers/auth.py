@@ -23,12 +23,11 @@ async def register_user(user: UserCreate, db: Session = Depends(get_db)):
             detail="Email or mobile number already registered"
         )
     
-    # Create new user
-    hashed_password = get_password_hash(user.password)
+    # Create new user with plain password
     db_user = User(
         email=user.email,
         mobile=user.mobile,
-        hashed_password=hashed_password,
+        password=user.password,  # Store password directly
         full_name=user.full_name
     )
     db.add(db_user)
@@ -39,7 +38,7 @@ async def register_user(user: UserCreate, db: Session = Depends(get_db)):
 @router.post("/login", response_model=Token)
 async def login_user(user_credentials: UserLogin, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.mobile == user_credentials.mobile).first()
-    if not user or not verify_password(user_credentials.password, user.hashed_password):
+    if not user or not verify_password(user_credentials.password, user.password):  # Changed from hashed_password to password
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect mobile number or password",
@@ -98,12 +97,11 @@ async def register_candidate(candidate: CandidateCreate, db: Session = Depends(g
         username = f"{original_username}{counter}"
         counter += 1
     
-    # Create user account for candidate
-    hashed_password = get_password_hash("candidate123")  # Default password
+    # Create user account for candidate with plain password
     db_user = User(
         email=candidate.email,
         username=username,
-        hashed_password=hashed_password,
+        password="candidate123",  # Store plain password directly
         full_name=candidate.name,
         is_active=True,
         is_admin=False

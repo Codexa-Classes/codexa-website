@@ -1,0 +1,5 @@
+email,mobile,password,full_name,is_active,is_admin
+"admin@codexa.com","9876543210","admin123","Admin User",true,true
+"instructor@codexa.com","9876543211","instructor123","Course Instructor",true,false
+"student1@example.com","9876543212","student123","John Doe",true,false
+"student2@example.com","9876543213","student123","Jane Smith",true,false

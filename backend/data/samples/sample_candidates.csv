@@ -1,0 +1,4 @@
+full_name,email,phone_number,address,pincode,password,course,current_job_status,total_experience_years,primary_skills,highest_qualification,preferred_job_type,expected_salary,status,priority
+"Rajesh Kumar","rajesh@example.com","9876543214","123 Main Street Mumbai","400001","candidate123","Frontend Development","unemployed",0,"[""HTML"",""CSS"",""JavaScript""]","Bachelor of Engineering","full-time","5-8 LPA","pending","medium"
+"Priya Sharma","priya@example.com","9876543215","456 Park Avenue Delhi","110001","candidate123","Data Analyst","student",0,"[""Mathematics"",""Statistics""]","Master of Science","full-time","6-10 LPA","pending","high"
+"Suresh Patel","suresh@example.com","9876543216","789 Tech Park Bangalore","560001","candidate123","Web Development","employed",2,"[""Python"",""Django"",""MySQL""]","Bachelor of Technology","full-time","8-12 LPA","approved","medium"
