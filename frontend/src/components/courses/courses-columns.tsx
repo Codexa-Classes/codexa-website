@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Course } from "@/types/course"
 import { ActionButtons } from "@/components/ui/action-buttons"
+import { generateCourseSlug } from "@/lib/utils"
 
 interface DataTableColumn<T> {
   id: string;
@@ -98,10 +99,11 @@ export const createColumns = (handleDeleteCourse: (id: string | number) => void)
     header: "Actions",
     cell: ({ row }) => {
       const course = row.original
+      const courseSlug = generateCourseSlug(course.name)
 
       return (
         <ActionButtons
-          id={course.id}
+          id={courseSlug}
           basePath="/admin/courses"
           onDelete={handleDeleteCourse}
         />

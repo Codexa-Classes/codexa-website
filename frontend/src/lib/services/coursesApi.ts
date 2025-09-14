@@ -1,5 +1,6 @@
 import apiClient from '@/lib/api/client';
 import { Course } from '@/lib/constants/courses';
+import { generateSlug } from '@/lib/utils';
 
 // Backend API response types
 export interface CourseApiResponse {
@@ -29,7 +30,7 @@ export interface CourseApiResponse {
 // Transform backend response to frontend Course type
 const transformCourseResponse = (apiCourse: CourseApiResponse): Course => {
   return {
-    id: apiCourse.id.toString(),
+    id: generateSlug(apiCourse.name), // Use slug-based ID from course name
     name: apiCourse.name,
     description: apiCourse.description,
     category: apiCourse.category as Course['category'],

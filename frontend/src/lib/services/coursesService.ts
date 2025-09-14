@@ -1,12 +1,13 @@
 import { Course } from '@/types/course';
 import { INSTRUCTOR, COURSES } from '@/lib/constants';
+import { generateSlug } from '@/lib/utils';
 
 // Simulate API delay
 const simulateApiDelay = (ms: number = 500) => new Promise(resolve => setTimeout(resolve, ms));
 
 // Use courses from constants
-const mockCourses: Course[] = COURSES.map((course, index) => ({
-  id: `course-${index + 1}`,
+const mockCourses: Course[] = COURSES.map((course) => ({
+  id: generateSlug(course.name), // Use slug-based ID instead of numeric
   name: course.name,
   description: course.description,
   category: course.category,
@@ -61,6 +62,15 @@ export const initializeCourses = () => {
   }
 };
 
+// Clear localStorage to force refresh with new slug-based IDs
+export const refreshCoursesData = () => {
+  if (typeof window === 'undefined') return; // Server-side rendering check
+  
+  localStorage.removeItem(STORAGE_KEY);
+  setToStorage(mockCourses);
+  console.log('Refreshed courses data with slug-based IDs');
+};
+
 // Course CRUD Operations
 export const courseService = {
   // Get all courses
@@ -68,10 +78,19 @@ export const courseService = {
     return getFromStorage();
   },
 
-  // Get course by ID
+  // Get course by ID (supports both numeric ID and slug)
   getById: async (id: string): Promise<Course | null> => {
     const courses = getFromStorage();
-    return courses.find(course => course.id === id) || null;
+    
+    // First try exact ID match
+    let course = courses.find(course => course.id === id);
+    
+    // If not found, try slug-based lookup
+    if (!course) {
+      course = courses.find(course => generateSlug(course.name) === id);
+    }
+    
+    return course || null;
   },
 
   // Create new course
@@ -111,16 +130,24 @@ export const courseService = {
     return updatedCourse;
   },
 
-  // Delete course
+  // Delete course (supports both numeric ID and slug)
   delete: async (id: string): Promise<boolean> => {
     const courses = getFromStorage();
-    const filteredCourses = courses.filter(course => course.id !== id);
     
-    if (filteredCourses.length === courses.length) {
+    // First try exact ID match
+    let courseIndex = courses.findIndex(course => course.id === id);
+    
+    // If not found, try slug-based lookup
+    if (courseIndex === -1) {
+      courseIndex = courses.findIndex(course => generateSlug(course.name) === id);
+    }
+    
+    if (courseIndex === -1) {
       return false; // Course not found
     }
     
-    setToStorage(filteredCourses);
+    courses.splice(courseIndex, 1);
+    setToStorage(courses);
     return true;
   },
 
