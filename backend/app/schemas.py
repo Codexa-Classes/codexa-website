@@ -71,7 +71,7 @@ class CourseResponse(BaseModel):
     # Course Details
     icon: Optional[str]
     icon_name: Optional[str]
-    career_path: Optional[str]
+    careerPath: Optional[str]  # Changed from career_path to careerPath (camelCase)
     instructor: Optional[str]
     
     # Course Content
@@ -83,7 +83,7 @@ class CourseResponse(BaseModel):
     
     # Enrollment & Status
     enrolled_students: Optional[List[str]]
-    students_count: Optional[str]
+    students: Optional[str]  # Changed from students_count to students (string)
     status: str
     
     # System Fields

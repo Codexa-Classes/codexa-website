@@ -27,7 +27,8 @@ import {
 } from "lucide-react";
 import PageLayout from '@/components/layout/PageLayout';
 import DevIcon, { getIconGradient } from '@/components/DevIcon';
-import { getCourseById, COURSE_CATEGORIES, COURSE_PRICE } from '@/lib/constants';
+import { COURSE_CATEGORIES, COURSE_PRICE } from '@/lib/constants';
+import { coursesApiService } from '@/lib/services/coursesApi';
 
 interface CourseDetailPageProps {
   params: {
@@ -36,14 +37,15 @@ interface CourseDetailPageProps {
 }
 
 export async function generateMetadata({ params }: CourseDetailPageProps): Promise<Metadata> {
-  const course = getCourseById(params.id);
-  
-  if (!course) {
-    return {
-      title: "Course Not Found",
-      description: "The requested course could not be found."
-    };
-  }
+  try {
+    const course = await coursesApiService.getById(params.id);
+    
+    if (!course) {
+      return {
+        title: "Course Not Found",
+        description: "The requested course could not be found."
+      };
+    }
 
   return {
     title: `${course.name} - Codexa Classes`,
@@ -69,14 +71,21 @@ export async function generateMetadata({ params }: CourseDetailPageProps): Promi
       ],
     },
   };
+  } catch (error) {
+    return {
+      title: "Course Not Found",
+      description: "The requested course could not be found."
+    };
+  }
 }
 
-export default function CourseDetailPage({ params }: CourseDetailPageProps) {
-  const course = getCourseById(params.id);
+export default async function CourseDetailPage({ params }: CourseDetailPageProps) {
+  try {
+    const course = await coursesApiService.getById(params.id);
 
-  if (!course) {
-    notFound();
-  }
+    if (!course) {
+      notFound();
+    }
 
 
 
@@ -381,4 +390,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
       </div>
     </PageLayout>
   );
+  } catch (error) {
+    notFound();
+  }
 }

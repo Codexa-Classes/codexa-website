@@ -31,7 +31,7 @@ def deserialize_json_fields(course: Course) -> dict:
         'price': course.price,
         'icon': course.icon,
         'icon_name': course.icon_name,
-        'career_path': course.career_path,
+        'careerPath': course.career_path,  # Map career_path to careerPath (camelCase)
         'instructor': course.instructor,
         'topics': json.loads(course.topics) if course.topics else None,
         'skills': json.loads(course.skills) if course.skills else None,
@@ -39,7 +39,7 @@ def deserialize_json_fields(course: Course) -> dict:
         'prerequisites': json.loads(course.prerequisites) if course.prerequisites else None,
         'syllabus': json.loads(course.syllabus) if course.syllabus else None,
         'enrolled_students': json.loads(course.enrolled_students) if course.enrolled_students else None,
-        'students_count': course.students_count,
+        'students': course.students_count,  # Map students_count to students (string)
         'status': course.status,
         'created_at': course.created_at,
         'updated_at': course.updated_at

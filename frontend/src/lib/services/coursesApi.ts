@@ -13,7 +13,7 @@ export interface CourseApiResponse {
   price: number;
   icon: string;
   icon_name: string;
-  career_path: string;
+  careerPath: string;  // Changed from career_path to careerPath (camelCase)
   instructor: string;
   topics: string[];
   skills: string[];
@@ -21,7 +21,7 @@ export interface CourseApiResponse {
   prerequisites: string[];
   syllabus: string[];
   enrolled_students: string[];
-  students_count: number;
+  students: string;  // Changed from students_count to students (string)
   status: string;
   created_at: string;
   updated_at: string;
@@ -35,12 +35,12 @@ const transformCourseResponse = (apiCourse: CourseApiResponse): Course => {
     description: apiCourse.description,
     category: apiCourse.category as Course['category'],
     duration: apiCourse.duration,
-    students: apiCourse.students_count,
+    students: apiCourse.students,  // Now correctly maps string to string
     level: apiCourse.level,
     topics: apiCourse.topics,
     icon_name: apiCourse.icon_name,
     price: apiCourse.price,
-    careerPath: apiCourse.career_path,
+    careerPath: apiCourse.careerPath,  // Now correctly maps careerPath to careerPath
     skills: apiCourse.skills,
     projects: apiCourse.projects,
     icon: apiCourse.icon
@@ -60,11 +60,18 @@ export const coursesApiService = {
     }
   },
 
-  // Get course by ID
+  // Get course by ID (supports both numeric ID and slug)
   getById: async (id: string): Promise<Course | null> => {
     try {
-      const response = await apiClient.get<CourseApiResponse>(`/courses/${id}`);
-      return transformCourseResponse(response.data);
+      // First try direct API call (for numeric IDs)
+      if (/^\d+$/.test(id)) {
+        const response = await apiClient.get<CourseApiResponse>(`/courses/${id}`);
+        return transformCourseResponse(response.data);
+      }
+      
+      // For slug-based IDs, fetch all courses and find the matching one
+      const allCourses = await coursesApiService.getAll();
+      return allCourses.find(course => course.id === id) || null;
     } catch (error) {
       console.error('Error fetching course:', error);
       return null;
