@@ -1,5 +1,32 @@
 {
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.15"
-  }
+  },
+  "name": "codexa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:auth": "playwright test tests/api/auth.spec.js",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/virajkadam/shraddha_classes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/virajkadam/shraddha_classes/issues"
+  },
+  "homepage": "https://github.com/virajkadam/shraddha_classes#readme",
+  "description": ""
 }

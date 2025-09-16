@@ -95,7 +95,7 @@ def login_user(
     access_token = create_access_token(data={"sub": user.id})
     
     return {
-        "access_token": access_token,
+        "access_token": access_token, 
         "token_type": "bearer",
         "user": deserialize_json_fields(user)
     }
