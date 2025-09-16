@@ -1,8 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from typing import List
+from sqlalchemy import or_, and_, func
+from typing import List, Optional
 import json
 from datetime import datetime
+import uuid
 
 from ..database import get_db
 from ..models import Candidate, User
@@ -67,14 +69,16 @@ def deserialize_json_fields(candidate: Candidate) -> dict:
     return candidate_dict
 
 @router.post("/", response_model=CandidateResponse)
-async def create_candidate(candidate: CandidateCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    # Check if candidate with email already exists
+def create_candidate(
+    candidate: CandidateCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Create a new candidate"""
+    # Check if email already exists
     existing_candidate = db.query(Candidate).filter(Candidate.email == candidate.email).first()
     if existing_candidate:
-        raise HTTPException(
-            status_code=400,
-            detail="Candidate with this email already exists"
-        )
+        raise HTTPException(status_code=400, detail="Email already registered")
     
     # Prepare candidate data
     candidate_data = candidate.dict(exclude_unset=True)
@@ -92,26 +96,166 @@ async def create_candidate(candidate: CandidateCreate, db: Session = Depends(get
     db.commit()
     db.refresh(db_candidate)
     
-    # Return deserialized response
     return deserialize_json_fields(db_candidate)
 
 @router.get("/", response_model=List[CandidateResponse])
-async def read_candidates(skip: int = 0, limit: int = 100, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    candidates = db.query(Candidate).offset(skip).limit(limit).all()
+def get_candidates(
+    skip: int = Query(0, ge=0, description="Number of records to skip"),
+    limit: int = Query(100, ge=1, le=1000, description="Number of records to return"),
+    search: Optional[str] = Query(None, description="Search in name, email, phone"),
+    status: Optional[str] = Query(None, description="Filter by status"),
+    priority: Optional[str] = Query(None, description="Filter by priority"),
+    location: Optional[str] = Query(None, description="Filter by city/state"),
+    skills: Optional[str] = Query(None, description="Filter by skills (comma-separated)"),
+    experience_min: Optional[int] = Query(None, ge=0, description="Minimum experience in years"),
+    experience_max: Optional[int] = Query(None, ge=0, description="Maximum experience in years"),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Get candidates with search and filter options"""
+    query = db.query(Candidate)
+    
+    # Search functionality
+    if search:
+        search_filter = or_(
+            Candidate.full_name.ilike(f"%{search}%"),
+            Candidate.email.ilike(f"%{search}%"),
+            Candidate.phone_number.ilike(f"%{search}%"),
+            Candidate.profile_title.ilike(f"%{search}%"),
+            Candidate.current_employer.ilike(f"%{search}%")
+        )
+        query = query.filter(search_filter)
+    
+    # Status filter
+    if status:
+        query = query.filter(Candidate.status == status)
+    
+    # Priority filter
+    if priority:
+        query = query.filter(Candidate.priority == priority)
+    
+    # Location filter
+    if location:
+        location_filter = or_(
+            Candidate.address.ilike(f"%{location}%"),
+            Candidate.city.ilike(f"%{location}%"),
+            Candidate.state.ilike(f"%{location}%")
+        )
+        query = query.filter(location_filter)
+    
+    # Skills filter
+    if skills:
+        skill_list = [skill.strip() for skill in skills.split(",")]
+        for skill in skill_list:
+            query = query.filter(
+                or_(
+                    Candidate.primary_skills.ilike(f"%{skill}%"),
+                    Candidate.secondary_skills.ilike(f"%{skill}%")
+                )
+            )
+    
+    # Experience filter
+    if experience_min is not None:
+        query = query.filter(Candidate.total_experience_years >= experience_min)
+    
+    if experience_max is not None:
+        query = query.filter(Candidate.total_experience_years <= experience_max)
+    
+    # Apply pagination
+    candidates = query.offset(skip).limit(limit).all()
+    
     return [deserialize_json_fields(candidate) for candidate in candidates]
 
+@router.get("/search", response_model=List[CandidateResponse])
+def search_candidates(
+    q: str = Query(..., description="Search query"),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Search candidates by query string"""
+    search_filter = or_(
+        Candidate.full_name.ilike(f"%{q}%"),
+        Candidate.email.ilike(f"%{q}%"),
+        Candidate.phone_number.ilike(f"%{q}%"),
+        Candidate.profile_title.ilike(f"%{q}%"),
+        Candidate.current_employer.ilike(f"%{q}%"),
+        Candidate.current_job_title.ilike(f"%{q}%"),
+        Candidate.highest_qualification.ilike(f"%{q}%"),
+        Candidate.specialization.ilike(f"%{q}%"),
+        Candidate.university.ilike(f"%{q}%"),
+        Candidate.preferred_industry.ilike(f"%{q}%")
+    )
+    
+    candidates = db.query(Candidate).filter(search_filter).all()
+    return [deserialize_json_fields(candidate) for candidate in candidates]
+
+@router.get("/stats")
+def get_candidate_stats(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Get candidate statistics"""
+    total_candidates = db.query(Candidate).count()
+    
+    # Status breakdown
+    status_stats = db.query(
+        Candidate.status,
+        func.count(Candidate.id).label('count')
+    ).group_by(Candidate.status).all()
+    
+    # Priority breakdown
+    priority_stats = db.query(
+        Candidate.priority,
+        func.count(Candidate.id).label('count')
+    ).group_by(Candidate.priority).all()
+    
+    # Experience breakdown
+    experience_stats = db.query(
+        func.count(Candidate.id).label('total'),
+        func.count(Candidate.total_experience_years).label('with_experience'),
+        func.avg(Candidate.total_experience_years).label('avg_experience')
+    ).first()
+    
+    return {
+        "total_candidates": total_candidates,
+        "status_breakdown": {stat.status: stat.count for stat in status_stats},
+        "priority_breakdown": {stat.priority: stat.count for stat in priority_stats},
+        "experience_stats": {
+            "total": experience_stats.total,
+            "with_experience": experience_stats.with_experience,
+            "average_experience": round(experience_stats.avg_experience, 2) if experience_stats.avg_experience else 0
+        }
+    }
+
 @router.get("/{candidate_id}", response_model=CandidateResponse)
-async def read_candidate(candidate_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+def get_candidate(
+    candidate_id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Get a specific candidate by ID"""
     candidate = db.query(Candidate).filter(Candidate.id == candidate_id).first()
     if candidate is None:
         raise HTTPException(status_code=404, detail="Candidate not found")
     return deserialize_json_fields(candidate)
 
 @router.put("/{candidate_id}", response_model=CandidateResponse)
-async def update_candidate(candidate_id: int, candidate: CandidateUpdate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+def update_candidate(
+    candidate_id: str,
+    candidate: CandidateUpdate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Update a candidate"""
     db_candidate = db.query(Candidate).filter(Candidate.id == candidate_id).first()
     if db_candidate is None:
         raise HTTPException(status_code=404, detail="Candidate not found")
+    
+    # Check if email is being updated and if it already exists
+    if candidate.email and candidate.email != db_candidate.email:
+        existing_candidate = db.query(Candidate).filter(Candidate.email == candidate.email).first()
+        if existing_candidate:
+            raise HTTPException(status_code=400, detail="Email already registered")
     
     # Prepare update data
     candidate_data = candidate.dict(exclude_unset=True)
@@ -131,11 +275,51 @@ async def update_candidate(candidate_id: int, candidate: CandidateUpdate, db: Se
     db.commit()
     db.refresh(db_candidate)
     
-    # Return deserialized response
     return deserialize_json_fields(db_candidate)
 
+@router.patch("/{candidate_id}/status")
+def update_candidate_status(
+    candidate_id: str,
+    status: str = Query(..., description="New status"),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Update candidate status"""
+    candidate = db.query(Candidate).filter(Candidate.id == candidate_id).first()
+    if candidate is None:
+        raise HTTPException(status_code=404, detail="Candidate not found")
+    
+    candidate.status = status
+    candidate.updated_at = datetime.utcnow()
+    db.commit()
+    
+    return {"message": "Status updated successfully", "status": status}
+
+@router.patch("/{candidate_id}/priority")
+def update_candidate_priority(
+    candidate_id: str,
+    priority: str = Query(..., description="New priority"),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Update candidate priority"""
+    candidate = db.query(Candidate).filter(Candidate.id == candidate_id).first()
+    if candidate is None:
+        raise HTTPException(status_code=404, detail="Candidate not found")
+    
+    candidate.priority = priority
+    candidate.updated_at = datetime.utcnow()
+    db.commit()
+    
+    return {"message": "Priority updated successfully", "priority": priority}
+
 @router.delete("/{candidate_id}")
-async def delete_candidate(candidate_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+def delete_candidate(
+    candidate_id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Delete a candidate"""
     candidate = db.query(Candidate).filter(Candidate.id == candidate_id).first()
     if candidate is None:
         raise HTTPException(status_code=404, detail="Candidate not found")

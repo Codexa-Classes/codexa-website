@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime
 from typing import Optional, List
 
@@ -59,7 +59,7 @@ class CourseCreate(BaseModel):
     status: Optional[str] = "published"  # draft, published, archived
 
 class CourseResponse(BaseModel):
-    id: int
+    id: str
     # Basic Course Information
     name: str
     description: str
@@ -69,9 +69,9 @@ class CourseResponse(BaseModel):
     price: int
     
     # Course Details
-    icon: Optional[str]
-    icon_name: Optional[str]
-    careerPath: Optional[str]  # Changed from career_path to careerPath (camelCase)
+    icon: Optional[str] = Field(alias="image")
+    icon_name: Optional[str] = Field(alias="iconName")
+    careerPath: Optional[str] = Field(alias="careerPath")  # Map career_path to careerPath (camelCase)
     instructor: Optional[str]
     
     # Course Content
@@ -82,16 +82,17 @@ class CourseResponse(BaseModel):
     syllabus: Optional[List[str]]
     
     # Enrollment & Status
-    enrolled_students: Optional[List[str]]
+    enrolled_students: Optional[List[str]] = Field(alias="enrolledStudents")
     students: Optional[str]  # Changed from students_count to students (string)
     status: str
     
     # System Fields
-    created_at: datetime
-    updated_at: datetime
+    created_at: datetime = Field(alias="createdAt")
+    updated_at: datetime = Field(alias="updatedAt")
     
     class Config:
         from_attributes = True
+        allow_population_by_field_name = True
 
 class CourseUpdate(BaseModel):
     # All fields optional for updates
@@ -162,55 +163,56 @@ class CandidateCreate(BaseModel):
     priority: Optional[str] = "medium"  # low, medium, high
 
 class CandidateResponse(BaseModel):
-    id: int
+    id: str
     # Admin-Required Fields
-    full_name: str
+    full_name: str = Field(alias="fullName")
     email: str
-    phone_number: str
-    date_of_birth: Optional[datetime]
+    phone_number: str = Field(alias="phoneNumber")
+    date_of_birth: Optional[datetime] = Field(alias="dateOfBirth")
     gender: Optional[str]
     address: str
     pincode: str
     course: Optional[str]
-    joining_date: Optional[datetime]
-    fees_transaction_number: Optional[str]
-    job_admission: bool
+    joining_date: Optional[datetime] = Field(alias="joiningDate")
+    fees_transaction_number: Optional[str] = Field(alias="feesTransactionNumber")
+    job_admission: bool = Field(alias="jobAdmission")
     
     # Candidate Self-Update Fields
-    profile_title: Optional[str]
-    current_job_status: Optional[str]
-    total_experience_years: Optional[int]
-    total_experience_months: Optional[int]
-    current_employer: Optional[str]
-    current_job_title: Optional[str]
-    primary_skills: Optional[List[str]]
-    secondary_skills: Optional[List[str]]
-    skill_proficiency_level: Optional[str]
+    profile_title: Optional[str] = Field(alias="profileTitle")
+    current_job_status: Optional[str] = Field(alias="currentJobStatus")
+    total_experience_years: Optional[int] = Field(alias="totalExperienceYears")
+    total_experience_months: Optional[int] = Field(alias="totalExperienceMonths")
+    current_employer: Optional[str] = Field(alias="currentEmployer")
+    current_job_title: Optional[str] = Field(alias="currentJobTitle")
+    primary_skills: Optional[List[str]] = Field(alias="primarySkills")
+    secondary_skills: Optional[List[str]] = Field(alias="secondarySkills")
+    skill_proficiency_level: Optional[str] = Field(alias="skillProficiencyLevel")
     certifications: Optional[List[str]]
-    highest_qualification: Optional[str]
+    highest_qualification: Optional[str] = Field(alias="highestQualification")
     specialization: Optional[str]
     university: Optional[str]
-    year_of_passing: Optional[int]
+    year_of_passing: Optional[int] = Field(alias="yearOfPassing")
     grades: Optional[str]
-    preferred_job_type: Optional[str]
-    preferred_industry: Optional[str]
-    preferred_roles: Optional[List[str]]
-    expected_salary: Optional[str]
-    work_mode_preference: Optional[str]
-    notice_period: Optional[str]
-    linkedin_url: Optional[str]
-    portfolio_url: Optional[str]
+    preferred_job_type: Optional[str] = Field(alias="preferredJobType")
+    preferred_industry: Optional[str] = Field(alias="preferredIndustry")
+    preferred_roles: Optional[List[str]] = Field(alias="preferredRoles")
+    expected_salary: Optional[str] = Field(alias="expectedSalary")
+    work_mode_preference: Optional[str] = Field(alias="workModePreference")
+    notice_period: Optional[str] = Field(alias="noticePeriod")
+    linkedin_url: Optional[str] = Field(alias="linkedinUrl")
+    portfolio_url: Optional[str] = Field(alias="portfolioUrl")
     languages: Optional[List[dict]]
-    work_authorization: Optional[str]
+    work_authorization: Optional[str] = Field(alias="workAuthorization")
     
     # System Fields
     status: str
     priority: str
-    created_at: datetime
-    updated_at: datetime
+    created_at: datetime = Field(alias="createdAt")
+    updated_at: datetime = Field(alias="updatedAt")
     
     class Config:
         from_attributes = True
+        allow_population_by_field_name = True
 
 class CandidateUpdate(BaseModel):
     # All fields optional for updates
@@ -306,62 +308,63 @@ class JobCreate(BaseModel):
     posted_by: str  # Recruiter/Admin ID
 
 class JobResponse(BaseModel):
-    id: int
+    id: str
     # Basic Job Information
-    job_title: str
-    job_description: str
-    job_type: str
-    work_mode: str
+    job_title: str = Field(alias="jobTitle")
+    job_description: str = Field(alias="jobDescription")
+    job_type: str = Field(alias="jobType")
+    work_mode: str = Field(alias="workMode")
     industry: str
     department: str
     role: str
     
     # Company Details
-    company_id: Optional[str]
-    company_name: str
-    company_location: Optional[str]
+    company_id: Optional[str] = Field(alias="companyId")
+    company_name: str = Field(alias="companyName")
+    company_location: Optional[str] = Field(alias="companyLocation")
     
     # Location Details
     location: str
     city: str
     state: Optional[str]
     country: Optional[str]
-    pincode: Optional[str]
+    pincode: str
     
     # Skills & Requirements
-    required_skills: Optional[List[str]]
-    preferred_skills: Optional[List[str]]
-    experience_min_years: Optional[int]
-    experience_max_years: Optional[int]
-    education_required: Optional[str]
+    required_skills: Optional[List[str]] = Field(alias="requiredSkills")
+    preferred_skills: Optional[List[str]] = Field(alias="preferredSkills")
+    experience_min_years: Optional[int] = Field(alias="experienceMinYears")
+    experience_max_years: Optional[int] = Field(alias="experienceMaxYears")
+    education_required: Optional[str] = Field(alias="educationRequired")
     certifications: Optional[List[str]]
     languages: Optional[List[dict]]
     
     # Compensation
-    salary_min: Optional[int]
-    salary_max: Optional[int]
+    salary_min: Optional[int] = Field(alias="salaryMin")
+    salary_max: Optional[int] = Field(alias="salaryMax")
     currency: str
-    additional_benefits: Optional[List[str]]
+    additional_benefits: Optional[List[str]] = Field(alias="additionalBenefits")
     
     # Other Job Attributes
-    number_of_openings: int
-    employment_start_date: Optional[datetime]
-    application_deadline: Optional[datetime]
-    shift_timing: Optional[str]
-    notice_period_preference: Optional[str]
-    work_authorization_requirements: Optional[List[str]]
+    number_of_openings: int = Field(alias="numberOfOpenings")
+    employment_start_date: Optional[datetime] = Field(alias="employmentStartDate")
+    application_deadline: Optional[datetime] = Field(alias="applicationDeadline")
+    shift_timing: Optional[str] = Field(alias="shiftTiming")
+    notice_period_preference: Optional[str] = Field(alias="noticePeriodPreference")
+    work_authorization_requirements: Optional[List[str]] = Field(alias="workAuthorizationRequirements")
     
     # System / Metadata
     status: str
     priority: str
-    date_posted: datetime
-    last_updated: datetime
-    posted_by: str
-    created_at: datetime
-    updated_at: datetime
+    date_posted: datetime = Field(alias="datePosted")
+    last_updated: datetime = Field(alias="lastUpdated")
+    posted_by: str = Field(alias="postedBy")
+    created_at: datetime = Field(alias="createdAt")
+    updated_at: datetime = Field(alias="updatedAt")
     
     class Config:
         from_attributes = True
+        allow_population_by_field_name = True
 
 class JobUpdate(BaseModel):
     # All fields optional for updates
@@ -400,3 +403,36 @@ class JobUpdate(BaseModel):
     status: Optional[str] = None
     priority: Optional[str] = None
     posted_by: Optional[str] = None
+
+# Enquiry schemas
+class EnquiryCreate(BaseModel):
+    name: str
+    mobile: str
+    email: EmailStr
+    pass_out_year: int
+    technology: List[str]
+
+class EnquiryResponse(BaseModel):
+    id: str
+    name: str
+    mobile: str
+    email: str
+    pass_out_year: int = Field(alias="passOutYear")
+    technology: List[str]
+    status: str
+    priority: str
+    created_at: datetime = Field(alias="createdAt")
+    updated_at: datetime = Field(alias="updatedAt")
+    
+    class Config:
+        from_attributes = True
+        allow_population_by_field_name = True
+
+class EnquiryUpdate(BaseModel):
+    name: Optional[str] = None
+    mobile: Optional[str] = None
+    email: Optional[EmailStr] = None
+    pass_out_year: Optional[int] = None
+    technology: Optional[List[str]] = None
+    status: Optional[str] = None
+    priority: Optional[str] = None
