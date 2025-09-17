@@ -119,9 +119,15 @@ test.describe('Candidates API Tests', () => {
   });
 
   test('GET /candidates/{id} - Get specific candidate', async ({ request }) => {
-    // Create a candidate first
+    // Create a candidate first with unique data
+    const uniqueCandidate = {
+      ...mockCandidates.minimalCandidate,
+      email: `jane.smith.${Date.now()}@example.com`,
+      phone_number: `9876543${Date.now().toString().slice(-3)}`
+    };
+    
     const createResponse = await request.post('/candidates/', {
-      data: mockCandidates.minimalCandidate,
+      data: uniqueCandidate,
       headers: {
         'Authorization': `Bearer ${authToken}`
       }
@@ -140,13 +146,19 @@ test.describe('Candidates API Tests', () => {
     
     const candidate = await response.json();
     expect(candidate).toHaveProperty('id', candidateId);
-    expect(candidate).toHaveProperty('fullName', mockCandidates.minimalCandidate.full_name);
+    expect(candidate).toHaveProperty('fullName', uniqueCandidate.full_name);
   });
 
   test('PUT /candidates/{id} - Update candidate', async ({ request }) => {
-    // Create a candidate first
+    // Create a candidate first with unique data
+    const uniqueCandidate = {
+      ...mockCandidates.minimalCandidate,
+      email: `jane.smith.${Date.now()}@example.com`,
+      phone_number: `9876543${Date.now().toString().slice(-3)}`
+    };
+    
     const createResponse = await request.post('/candidates/', {
-      data: mockCandidates.minimalCandidate,
+      data: uniqueCandidate,
       headers: {
         'Authorization': `Bearer ${authToken}`
       }
@@ -177,9 +189,15 @@ test.describe('Candidates API Tests', () => {
   });
 
   test('PATCH /candidates/{id}/status - Update candidate status', async ({ request }) => {
-    // Create a candidate first
+    // Create a candidate first with unique data
+    const uniqueCandidate = {
+      ...mockCandidates.minimalCandidate,
+      email: `jane.smith.${Date.now()}@example.com`,
+      phone_number: `9876543${Date.now().toString().slice(-3)}`
+    };
+    
     const createResponse = await request.post('/candidates/', {
-      data: mockCandidates.minimalCandidate,
+      data: uniqueCandidate,
       headers: {
         'Authorization': `Bearer ${authToken}`
       }
@@ -202,9 +220,15 @@ test.describe('Candidates API Tests', () => {
   });
 
   test('DELETE /candidates/{id} - Delete candidate', async ({ request }) => {
-    // Create a candidate first
+    // Create a candidate first with unique data
+    const uniqueCandidate = {
+      ...mockCandidates.minimalCandidate,
+      email: `jane.smith.${Date.now()}@example.com`,
+      phone_number: `9876543${Date.now().toString().slice(-3)}`
+    };
+    
     const createResponse = await request.post('/candidates/', {
-      data: mockCandidates.minimalCandidate,
+      data: uniqueCandidate,
       headers: {
         'Authorization': `Bearer ${authToken}`
       }

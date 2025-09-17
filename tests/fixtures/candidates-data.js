@@ -1,9 +1,10 @@
 // Mock data for candidates testing
+const timestamp = Date.now();
 const mockCandidates = {
   validCandidate: {
     full_name: "John Doe",
-    email: "john.doe@example.com",
-    phone_number: "9876543210",
+    email: `john.doe${timestamp}@example.com`,
+    phone_number: `9876543${timestamp.toString().slice(-3)}`,
     date_of_birth: "1995-01-15T00:00:00Z",
     gender: "male",
     address: "123 Main Street, City",
@@ -44,8 +45,8 @@ const mockCandidates = {
   },
   minimalCandidate: {
     full_name: "Jane Smith",
-    email: "jane.smith@example.com",
-    phone_number: "9876543211",
+    email: `jane.smith${timestamp}@example.com`,
+    phone_number: `9876543${(timestamp + 1).toString().slice(-3)}`,
     address: "456 Oak Avenue, Town",
     pincode: "654321",
     password: "JanePassword123!"
