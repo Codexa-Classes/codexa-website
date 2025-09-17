@@ -218,7 +218,7 @@ def get_enquiries_by_year(
 
 @router.get("/{enquiry_id}", response_model=EnquiryResponse)
 def get_enquiry(
-    enquiry_id: str,
+    enquiry_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
@@ -233,7 +233,7 @@ def get_enquiry(
 
 @router.put("/{enquiry_id}", response_model=EnquiryResponse)
 def update_enquiry(
-    enquiry_id: str,
+    enquiry_id: int,
     enquiry: EnquiryUpdate,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -275,7 +275,7 @@ def update_enquiry(
 
 @router.patch("/{enquiry_id}/status")
 def update_enquiry_status(
-    enquiry_id: str,
+    enquiry_id: int,
     status: str = Query(..., description="New status"),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -296,7 +296,7 @@ def update_enquiry_status(
 
 @router.patch("/{enquiry_id}/priority")
 def update_enquiry_priority(
-    enquiry_id: str,
+    enquiry_id: int,
     priority: str = Query(..., description="New priority"),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -317,7 +317,7 @@ def update_enquiry_priority(
 
 @router.delete("/{enquiry_id}")
 def delete_enquiry(
-    enquiry_id: str,
+    enquiry_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):

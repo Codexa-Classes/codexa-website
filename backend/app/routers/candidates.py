@@ -229,7 +229,7 @@ def get_candidate_stats(
 
 @router.get("/{candidate_id}", response_model=CandidateResponse)
 def get_candidate(
-    candidate_id: str,
+    candidate_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
@@ -241,7 +241,7 @@ def get_candidate(
 
 @router.put("/{candidate_id}", response_model=CandidateResponse)
 def update_candidate(
-    candidate_id: str,
+    candidate_id: int,
     candidate: CandidateUpdate,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -279,7 +279,7 @@ def update_candidate(
 
 @router.patch("/{candidate_id}/status")
 def update_candidate_status(
-    candidate_id: str,
+    candidate_id: int,
     status: str = Query(..., description="New status"),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -297,7 +297,7 @@ def update_candidate_status(
 
 @router.patch("/{candidate_id}/priority")
 def update_candidate_priority(
-    candidate_id: str,
+    candidate_id: int,
     priority: str = Query(..., description="New priority"),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -315,7 +315,7 @@ def update_candidate_priority(
 
 @router.delete("/{candidate_id}")
 def delete_candidate(
-    candidate_id: str,
+    candidate_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):

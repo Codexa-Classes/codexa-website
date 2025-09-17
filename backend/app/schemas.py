@@ -21,8 +21,16 @@ class UserResponse(BaseModel):
     class Config:
         from_attributes = True
 
+class UserUpdate(BaseModel):
+    email: Optional[EmailStr] = None
+    mobile: Optional[str] = None
+    password: Optional[str] = None
+    full_name: Optional[str] = None
+    is_active: Optional[bool] = None
+    is_admin: Optional[bool] = None
+
 class UserLogin(BaseModel):
-    mobile: str
+    email_or_mobile: str
     password: str
 
 class Token(BaseModel):
@@ -59,7 +67,7 @@ class CourseCreate(BaseModel):
     status: Optional[str] = "published"  # draft, published, archived
 
 class CourseResponse(BaseModel):
-    id: str
+    id: int
     # Basic Course Information
     name: str
     description: str
@@ -92,7 +100,7 @@ class CourseResponse(BaseModel):
     
     class Config:
         from_attributes = True
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 class CourseUpdate(BaseModel):
     # All fields optional for updates
@@ -163,7 +171,7 @@ class CandidateCreate(BaseModel):
     priority: Optional[str] = "medium"  # low, medium, high
 
 class CandidateResponse(BaseModel):
-    id: str
+    id: int
     # Admin-Required Fields
     full_name: str = Field(alias="fullName")
     email: str
@@ -212,7 +220,7 @@ class CandidateResponse(BaseModel):
     
     class Config:
         from_attributes = True
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 class CandidateUpdate(BaseModel):
     # All fields optional for updates
@@ -308,7 +316,7 @@ class JobCreate(BaseModel):
     posted_by: str  # Recruiter/Admin ID
 
 class JobResponse(BaseModel):
-    id: str
+    id: int
     # Basic Job Information
     job_title: str = Field(alias="jobTitle")
     job_description: str = Field(alias="jobDescription")
@@ -364,7 +372,7 @@ class JobResponse(BaseModel):
     
     class Config:
         from_attributes = True
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 class JobUpdate(BaseModel):
     # All fields optional for updates
@@ -413,7 +421,7 @@ class EnquiryCreate(BaseModel):
     technology: List[str]
 
 class EnquiryResponse(BaseModel):
-    id: str
+    id: int
     name: str
     mobile: str
     email: str
@@ -426,7 +434,7 @@ class EnquiryResponse(BaseModel):
     
     class Config:
         from_attributes = True
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 class EnquiryUpdate(BaseModel):
     name: Optional[str] = None

@@ -1,14 +1,13 @@
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, Text
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
-import uuid
 
 Base = declarative_base()
 
 class User(Base):
     __tablename__ = "users"
     
-    id = Column(String(36), primary_key=True, index=True, default=lambda: str(uuid.uuid4()))
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     email = Column(String(255), unique=True, index=True, nullable=False)
     mobile = Column(String(20), unique=True, index=True, nullable=False)
     password = Column(String(255), nullable=False)  # Changed from hashed_password to password
@@ -22,7 +21,7 @@ class Course(Base):
     __tablename__ = "courses"
     
     # Primary fields
-    id = Column(String(36), primary_key=True, index=True, default=lambda: str(uuid.uuid4()))
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     
     # Basic Course Information
     name = Column(String(255), nullable=False)
@@ -58,7 +57,7 @@ class Candidate(Base):
     __tablename__ = "candidates"
     
     # Primary fields
-    id = Column(String(36), primary_key=True, index=True, default=lambda: str(uuid.uuid4()))
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     
     # Admin-Required Fields (for account creation)
     full_name = Column(String(255), nullable=False)
@@ -111,7 +110,7 @@ class Job(Base):
     __tablename__ = "jobs"
     
     # Primary fields
-    id = Column(String(36), primary_key=True, index=True, default=lambda: str(uuid.uuid4()))
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     
     # Basic Job Information
     job_title = Column(String(255), nullable=False)
@@ -170,7 +169,7 @@ class Enquiry(Base):
     __tablename__ = "enquiries"
     
     # Primary fields
-    id = Column(String(36), primary_key=True, index=True, default=lambda: str(uuid.uuid4()))
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     
     # Basic Enquiry Information
     name = Column(String(255), nullable=False)

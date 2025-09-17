@@ -199,7 +199,7 @@ def get_user_stats(
 
 @router.get("/{user_id}", response_model=UserResponse)
 def get_user(
-    user_id: str,
+    user_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
@@ -214,7 +214,7 @@ def get_user(
 
 @router.put("/{user_id}", response_model=UserResponse)
 def update_user(
-    user_id: str,
+    user_id: int,
     user: UserUpdate,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -300,7 +300,7 @@ def update_current_user(
 
 @router.patch("/{user_id}/activate")
 def activate_user(
-    user_id: str,
+    user_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
@@ -320,7 +320,7 @@ def activate_user(
 
 @router.patch("/{user_id}/deactivate")
 def deactivate_user(
-    user_id: str,
+    user_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
@@ -340,7 +340,7 @@ def deactivate_user(
 
 @router.patch("/{user_id}/make-admin")
 def make_admin(
-    user_id: str,
+    user_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
@@ -360,7 +360,7 @@ def make_admin(
 
 @router.patch("/{user_id}/remove-admin")
 def remove_admin(
-    user_id: str,
+    user_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
@@ -380,7 +380,7 @@ def remove_admin(
 
 @router.delete("/{user_id}")
 def delete_user(
-    user_id: str,
+    user_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):

@@ -294,7 +294,7 @@ def get_recent_jobs(
 
 @router.get("/{job_id}", response_model=JobResponse)
 def get_job(
-    job_id: str,
+    job_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
@@ -306,7 +306,7 @@ def get_job(
 
 @router.put("/{job_id}", response_model=JobResponse)
 def update_job(
-    job_id: str,
+    job_id: int,
     job: JobUpdate,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -335,7 +335,7 @@ def update_job(
 
 @router.patch("/{job_id}/status")
 def update_job_status(
-    job_id: str,
+    job_id: int,
     status: str = Query(..., description="New status"),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -354,7 +354,7 @@ def update_job_status(
 
 @router.patch("/{job_id}/priority")
 def update_job_priority(
-    job_id: str,
+    job_id: int,
     priority: str = Query(..., description="New priority"),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -373,7 +373,7 @@ def update_job_priority(
 
 @router.delete("/{job_id}")
 def delete_job(
-    job_id: str,
+    job_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):

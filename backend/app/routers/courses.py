@@ -247,7 +247,7 @@ def get_courses_by_instructor(
 
 @router.get("/{course_id}", response_model=CourseResponse)
 def get_course(
-    course_id: str,
+    course_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
@@ -270,7 +270,7 @@ def get_course_by_slug(
 
 @router.put("/{course_id}", response_model=CourseResponse)
 def update_course(
-    course_id: str,
+    course_id: int,
     course: CourseUpdate,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -298,7 +298,7 @@ def update_course(
 
 @router.patch("/{course_id}/status")
 def update_course_status(
-    course_id: str,
+    course_id: int,
     status: str = Query(..., description="New status"),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -316,7 +316,7 @@ def update_course_status(
 
 @router.patch("/{course_id}/enroll")
 def enroll_student(
-    course_id: str,
+    course_id: int,
     student_id: str = Query(..., description="Student ID to enroll"),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -340,7 +340,7 @@ def enroll_student(
 
 @router.patch("/{course_id}/unenroll")
 def unenroll_student(
-    course_id: str,
+    course_id: int,
     student_id: str = Query(..., description="Student ID to unenroll"),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -364,7 +364,7 @@ def unenroll_student(
 
 @router.delete("/{course_id}")
 def delete_course(
-    course_id: str,
+    course_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
