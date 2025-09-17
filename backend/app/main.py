@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 from .database import engine, Base
-from .routers import auth, courses, candidates, jobs, enquiries
+from .routers import auth, courses, candidates, jobs, enquiries, applications, enrollments
 
 # Load environment variables
 load_dotenv()
@@ -34,6 +34,8 @@ app.include_router(courses.router, prefix="/courses", tags=["courses"])
 app.include_router(candidates.router, prefix="/candidates", tags=["candidates"])
 app.include_router(jobs.router, prefix="/jobs", tags=["jobs"])
 app.include_router(enquiries.router, prefix="/enquiries", tags=["enquiries"])
+app.include_router(applications.router, prefix="/applications", tags=["job-applications"])
+app.include_router(enrollments.router, prefix="/enrollments", tags=["course-enrollments"])
 
 # Root endpoint
 @app.get("/")

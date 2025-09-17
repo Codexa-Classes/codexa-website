@@ -444,3 +444,139 @@ class EnquiryUpdate(BaseModel):
     technology: Optional[List[str]] = None
     status: Optional[str] = None
     priority: Optional[str] = None
+
+# Job Application schemas
+class JobApplicationCreate(BaseModel):
+    job_id: int
+    candidate_id: int
+    user_id: Optional[int] = None  # If applied by registered user
+    
+    # Application Details
+    cover_letter: Optional[str] = None
+    resume_url: Optional[str] = None
+    portfolio_url: Optional[str] = None
+    expected_salary: Optional[str] = None
+    notice_period: Optional[str] = None
+    availability_date: Optional[datetime] = None
+    
+    # Application Status
+    status: Optional[str] = "applied"  # applied, under_review, shortlisted, interviewed, offered, rejected, withdrawn
+    priority: Optional[str] = "medium"  # low, medium, high
+
+class JobApplicationResponse(BaseModel):
+    id: int
+    job_id: int = Field(alias="jobId")
+    candidate_id: int = Field(alias="candidateId")
+    user_id: Optional[int] = Field(alias="userId")
+    
+    # Application Details
+    cover_letter: Optional[str] = Field(alias="coverLetter")
+    resume_url: Optional[str] = Field(alias="resumeUrl")
+    portfolio_url: Optional[str] = Field(alias="portfolioUrl")
+    expected_salary: Optional[str] = Field(alias="expectedSalary")
+    notice_period: Optional[str] = Field(alias="noticePeriod")
+    availability_date: Optional[datetime] = Field(alias="availabilityDate")
+    
+    # Application Status
+    status: str
+    priority: str
+    
+    # Interview Details
+    interview_scheduled_date: Optional[datetime] = Field(alias="interviewScheduledDate")
+    interview_notes: Optional[str] = Field(alias="interviewNotes")
+    interview_feedback: Optional[str] = Field(alias="interviewFeedback")
+    
+    # System Fields
+    applied_at: datetime = Field(alias="appliedAt")
+    created_at: datetime = Field(alias="createdAt")
+    updated_at: datetime = Field(alias="updatedAt")
+    
+    class Config:
+        from_attributes = True
+        populate_by_name = True
+
+class JobApplicationUpdate(BaseModel):
+    # Application Details
+    cover_letter: Optional[str] = None
+    resume_url: Optional[str] = None
+    portfolio_url: Optional[str] = None
+    expected_salary: Optional[str] = None
+    notice_period: Optional[str] = None
+    availability_date: Optional[datetime] = None
+    
+    # Application Status
+    status: Optional[str] = None
+    priority: Optional[str] = None
+    
+    # Interview Details
+    interview_scheduled_date: Optional[datetime] = None
+    interview_notes: Optional[str] = None
+    interview_feedback: Optional[str] = None
+
+# Enrollment schemas
+class EnrollmentCreate(BaseModel):
+    course_id: int
+    candidate_id: int
+    user_id: Optional[int] = None  # If enrolled by registered user
+    
+    # Enrollment Details
+    status: Optional[str] = "enrolled"  # enrolled, in_progress, completed, dropped, suspended
+    progress: Optional[int] = 0  # 0-100 percentage
+    
+    # Payment & Fees
+    total_fees: Optional[int] = None  # Total course fees in cents
+    payment_status: Optional[str] = "pending"  # pending, partial, paid, refunded
+
+class EnrollmentResponse(BaseModel):
+    id: int
+    course_id: int = Field(alias="courseId")
+    candidate_id: int = Field(alias="candidateId")
+    user_id: Optional[int] = Field(alias="userId")
+    
+    # Enrollment Details
+    enrollment_date: datetime = Field(alias="enrollmentDate")
+    status: str
+    progress: int
+    
+    # Course Progress Tracking
+    completed_topics: Optional[List[str]] = Field(alias="completedTopics")
+    current_topic: Optional[str] = Field(alias="currentTopic")
+    last_accessed: Optional[datetime] = Field(alias="lastAccessed")
+    
+    # Completion Details
+    completed_at: Optional[datetime] = Field(alias="completedAt")
+    certificate_id: Optional[str] = Field(alias="certificateId")
+    final_grade: Optional[str] = Field(alias="finalGrade")
+    
+    # Payment & Fees
+    fees_paid: int = Field(alias="feesPaid")
+    total_fees: Optional[int] = Field(alias="totalFees")
+    payment_status: str = Field(alias="paymentStatus")
+    
+    # System Fields
+    created_at: datetime = Field(alias="createdAt")
+    updated_at: datetime = Field(alias="updatedAt")
+    
+    class Config:
+        from_attributes = True
+        populate_by_name = True
+
+class EnrollmentUpdate(BaseModel):
+    # Enrollment Details
+    status: Optional[str] = None
+    progress: Optional[int] = None
+    
+    # Course Progress Tracking
+    completed_topics: Optional[List[str]] = None
+    current_topic: Optional[str] = None
+    last_accessed: Optional[datetime] = None
+    
+    # Completion Details
+    completed_at: Optional[datetime] = None
+    certificate_id: Optional[str] = None
+    final_grade: Optional[str] = None
+    
+    # Payment & Fees
+    fees_paid: Optional[int] = None
+    total_fees: Optional[int] = None
+    payment_status: Optional[str] = None

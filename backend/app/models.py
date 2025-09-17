@@ -183,3 +183,71 @@ class Enquiry(Base):
     priority = Column(String(10), default="medium")  # low, medium, high
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+class JobApplication(Base):
+    __tablename__ = "job_applications"
+    
+    # Primary fields
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    
+    # Foreign Keys
+    job_id = Column(Integer, nullable=False, index=True)  # References jobs.id
+    candidate_id = Column(Integer, nullable=False, index=True)  # References candidates.id
+    user_id = Column(Integer, nullable=True, index=True)  # References users.id (if applied by registered user)
+    
+    # Application Details
+    cover_letter = Column(Text, nullable=True)
+    resume_url = Column(String(500), nullable=True)
+    portfolio_url = Column(String(500), nullable=True)
+    expected_salary = Column(String(100), nullable=True)
+    notice_period = Column(String(50), nullable=True)
+    availability_date = Column(DateTime, nullable=True)
+    
+    # Application Status
+    status = Column(String(20), default="applied")  # applied, under_review, shortlisted, interviewed, offered, rejected, withdrawn
+    priority = Column(String(10), default="medium")  # low, medium, high
+    
+    # Interview Details
+    interview_scheduled_date = Column(DateTime, nullable=True)
+    interview_notes = Column(Text, nullable=True)
+    interview_feedback = Column(Text, nullable=True)
+    
+    # System Fields
+    applied_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+class Enrollment(Base):
+    __tablename__ = "enrollments"
+    
+    # Primary fields
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    
+    # Foreign Keys
+    course_id = Column(Integer, nullable=False, index=True)  # References courses.id
+    candidate_id = Column(Integer, nullable=False, index=True)  # References candidates.id
+    user_id = Column(Integer, nullable=True, index=True)  # References users.id (if enrolled by registered user)
+    
+    # Enrollment Details
+    enrollment_date = Column(DateTime, default=datetime.utcnow)
+    status = Column(String(20), default="enrolled")  # enrolled, in_progress, completed, dropped, suspended
+    progress = Column(Integer, default=0)  # 0-100 percentage
+    
+    # Course Progress Tracking
+    completed_topics = Column(Text, nullable=True)  # JSON string - array of completed topic IDs
+    current_topic = Column(String(255), nullable=True)
+    last_accessed = Column(DateTime, nullable=True)
+    
+    # Completion Details
+    completed_at = Column(DateTime, nullable=True)
+    certificate_id = Column(String(100), nullable=True)
+    final_grade = Column(String(10), nullable=True)  # A, B, C, D, F, Pass, Fail
+    
+    # Payment & Fees
+    fees_paid = Column(Integer, default=0)  # Amount paid in cents
+    total_fees = Column(Integer, nullable=True)  # Total course fees in cents
+    payment_status = Column(String(20), default="pending")  # pending, partial, paid, refunded
+    
+    # System Fields
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
