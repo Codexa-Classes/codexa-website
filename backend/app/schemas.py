@@ -580,3 +580,24 @@ class EnrollmentUpdate(BaseModel):
     fees_paid: Optional[int] = None
     total_fees: Optional[int] = None
     payment_status: Optional[str] = None
+
+class PaginationMeta(BaseModel):
+    skip: int                # Current offset
+    limit: int               # Page size (20, 50, 100)
+    total: int               # Total records in database
+    current_page: int        # Current page number (1, 2, 3...)
+    total_pages: int         # Total number of pages
+    has_next: bool           # Are there more pages?
+    has_prev: bool           # Is there a previous page?
+    showing_from: int        # "Showing 1 to..."
+    showing_to: int          # "Showing... to 17"
+
+class CandidateListItem(BaseModel):
+    id: int
+    name: str
+    email: str
+    status: str
+
+class PaginatedCandidatesResponse(BaseModel):
+    data: List[CandidateListItem]
+    pagination: PaginationMeta

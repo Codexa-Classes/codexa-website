@@ -8,7 +8,7 @@ import uuid
 
 from ..database import get_db
 from ..models import Candidate, User
-from ..schemas import CandidateCreate, CandidateResponse, CandidateUpdate
+from ..schemas import CandidateCreate, CandidateResponse, CandidateUpdate, PaginatedCandidatesResponse
 from ..auth import get_current_user, get_password_hash
 
 router = APIRouter()
@@ -98,10 +98,10 @@ def create_candidate(
     
     return deserialize_json_fields(db_candidate)
 
-@router.get("/")
+@router.get("/", response_model=PaginatedCandidatesResponse)
 def get_candidates(
     skip: int = Query(0, ge=0, description="Number of records to skip"),
-    limit: int = Query(100, ge=1, le=1000, description="Number of records to return"),
+    limit: int = Query(20, ge=1, le=100, description="Number of records to return"),  # ✅ Default 20
     search: Optional[str] = Query(None, description="Search in name, email, phone"),
     status: Optional[str] = Query(None, description="Filter by status"),
     priority: Optional[str] = Query(None, description="Filter by priority"),
@@ -112,10 +112,10 @@ def get_candidates(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    """Get candidates with search and filter options"""
+    """Get candidates with pagination and filters"""
     query = db.query(Candidate)
     
-    # Search functionality
+    # Apply all filters (same as current code)
     if search:
         search_filter = or_(
             Candidate.full_name.ilike(f"%{search}%"),
@@ -126,15 +126,12 @@ def get_candidates(
         )
         query = query.filter(search_filter)
     
-    # Status filter
     if status:
         query = query.filter(Candidate.status == status)
     
-    # Priority filter
     if priority:
         query = query.filter(Candidate.priority == priority)
     
-    # Location filter
     if location:
         location_filter = or_(
             Candidate.address.ilike(f"%{location}%"),
@@ -143,7 +140,6 @@ def get_candidates(
         )
         query = query.filter(location_filter)
     
-    # Skills filter
     if skills:
         skill_list = [skill.strip() for skill in skills.split(",")]
         for skill in skill_list:
@@ -154,26 +150,46 @@ def get_candidates(
                 )
             )
     
-    # Experience filter
     if experience_min is not None:
         query = query.filter(Candidate.total_experience_years >= experience_min)
     
     if experience_max is not None:
         query = query.filter(Candidate.total_experience_years <= experience_max)
     
+    # ✅ GET TOTAL COUNT (CRITICAL FOR UI)
+    total_count = query.count()
+    
     # Apply pagination
     candidates = query.offset(skip).limit(limit).all()
     
-    # Return only name, email, and status
-    return [
-        {
-            "id": candidate.id,
-            "name": candidate.full_name,
-            "email": candidate.email,
-            "status": candidate.status
+    # ✅ CALCULATE UI PAGINATION DATA
+    current_page = (skip // limit) + 1
+    total_pages = (total_count + limit - 1) // limit if total_count > 0 else 1
+    showing_from = skip + 1 if total_count > 0 else 0
+    showing_to = min(skip + len(candidates), total_count)
+    
+    return {
+        "data": [
+            {
+                "id": candidate.id,
+                "name": candidate.full_name,
+                "email": candidate.email,
+                "status": candidate.status
+            }
+            for candidate in candidates
+        ],
+        "pagination": {
+            "skip": skip,
+            "limit": limit,
+            "total": total_count,
+            "current_page": current_page,
+            "total_pages": total_pages,
+            "has_next": skip + limit < total_count,
+            "has_prev": skip > 0,
+            "showing_from": showing_from,
+            "showing_to": showing_to
         }
-        for candidate in candidates
-    ]
+    }
 
 @router.get("/search", response_model=List[CandidateResponse])
 def search_candidates(
