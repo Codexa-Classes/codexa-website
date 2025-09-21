@@ -4,28 +4,28 @@ import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { ROUTES, getCandidateEditRoute, getCandidateViewRoute } from '@/lib/constants';
-import { candidatesService } from '@/lib/services/candidatesService';
+import { CandidatesAPI, CandidateAPI } from '@/lib/api/candidates';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home } from 'lucide-react';
-import { CandidateProfile } from '@/components/candidates/candidate-profile';
+import { Home } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { PageHeader } from '@/components/forms';
 import { ActionButtons } from '@/components/ui/action-buttons';
-import { Candidate } from '@/components/candidates/candidates-columns';
 
 export default function CandidatesPage() {
   const { user } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [candidates, setCandidates] = useState<Candidate[]>([]);
+  const [candidates, setCandidates] = useState<CandidateAPI[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   
   // Get candidate ID from URL query params
   const candidateId = searchParams?.get('id') || null;
   const viewMode = candidateId ? 'profile' : 'list';
-  const selectedCandidate = candidateId ? candidates.find(c => c.id === candidateId) : null;
+  const selectedCandidate = candidateId ? candidates.find(c => c.id.toString() === candidateId) : null;
 
   useEffect(() => {
     if (!user || user.role !== 'admin') {
@@ -33,26 +33,46 @@ export default function CandidatesPage() {
       return;
     }
     
-    try {
-      // Initialize with one sample candidate if storage is empty
-      candidatesService.initializeWithSampleData();
-      const storedCandidates = candidatesService.getAllCandidates();
-      setCandidates(storedCandidates);
-    } catch (error) {
-      console.error('CandidatesPage: Error loading candidates:', error);
-      setCandidates([]);
-    }
+    const fetchCandidates = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const candidatesData = await CandidatesAPI.getCandidates();
+        setCandidates(candidatesData);
+      } catch (error: any) {
+        console.error('CandidatesPage: Error loading candidates:', error);
+        setError(error.message || 'Failed to load candidates');
+        setCandidates([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCandidates();
   }, [user, router]);
 
   // Handle URL changes and ensure candidate data is available
   useEffect(() => {
     if (candidateId && candidates.length > 0) {
-      const candidate = candidates.find(c => c.id === candidateId);
+      const candidate = candidates.find(c => c.id.toString() === candidateId);
       if (!candidate) {
         router.push(ROUTES.admin.candidates);
       }
     }
   }, [candidateId, candidates, router]);
+
+  // Define refresh function
+  const refreshCandidates = async () => {
+    try {
+      setLoading(true);
+      const candidatesData = await CandidatesAPI.getCandidates();
+      setCandidates(candidatesData);
+    } catch (error: any) {
+      setError(error.message || 'Failed to refresh candidates');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Refresh candidates when page gains focus (e.g., returning from add/edit)
   useEffect(() => {
@@ -68,6 +88,32 @@ export default function CandidatesPage() {
     return null;
   }
 
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
+          <p className="mt-2 text-sm text-gray-600">Loading candidates...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="text-center">
+          <p className="text-red-600 mb-4">{error}</p>
+          <Button onClick={() => window.location.reload()}>
+            Try Again
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   // Ensure candidates is always an array before filtering
   const validCandidates = Array.isArray(candidates) ? candidates : [];
   
@@ -79,7 +125,7 @@ export default function CandidatesPage() {
     }
     
     // Safety check: ensure required properties exist
-    if (!candidate.fullName) {
+    if (!candidate.name) {
       return false;
     }
     
@@ -91,14 +137,10 @@ export default function CandidatesPage() {
     // Search filter
     if (searchTerm) {
       const searchLower = searchTerm.toLowerCase();
-      const nameMatch = candidate.fullName.toLowerCase().includes(searchLower);
-      const titleMatch = candidate.profileTitle?.toLowerCase().includes(searchLower) || false;
-      const skillsMatch = candidate.primarySkills?.some(skill => 
-        skill.toLowerCase().includes(searchLower)
-      ) || false;
-      const locationMatch = candidate.location?.toLowerCase().includes(searchLower) || false;
+      const nameMatch = candidate.name.toLowerCase().includes(searchLower);
+      const emailMatch = candidate.email.toLowerCase().includes(searchLower);
       
-      if (!nameMatch && !titleMatch && !skillsMatch && !locationMatch) {
+      if (!nameMatch && !emailMatch) {
         return false;
       }
     }
@@ -110,16 +152,10 @@ export default function CandidatesPage() {
     router.push(ROUTES.admin.candidates + '/add');
   };
 
-  const refreshCandidates = () => {
-    const storedCandidates = candidatesService.getAllCandidates();
-    setCandidates(storedCandidates);
-  };
-
-  const handleDeleteCandidate = (candidate: Candidate) => {
-    const success = candidatesService.deleteCandidate(candidate.id);
-    if (success) {
-      refreshCandidates();
-    }
+  const handleDeleteCandidate = (candidate: CandidateAPI) => {
+    // TODO: Implement delete API call
+    console.log('Delete candidate:', candidate.name);
+    // refreshCandidates();
   };
 
   const handleBackToDashboard = () => {
@@ -130,30 +166,30 @@ export default function CandidatesPage() {
     router.push(ROUTES.admin.candidates);
   };
 
-  const handleScheduleInterview = (candidate: Candidate) => {
+  const handleScheduleInterview = (candidate: CandidateAPI) => {
     // TODO: Implement interview scheduling
-    console.log('Schedule interview for:', candidate.fullName);
+    console.log('Schedule interview for:', candidate.name);
   };
 
-  const handleApprove = (candidate: Candidate) => {
+  const handleApprove = (candidate: CandidateAPI) => {
     // TODO: Implement candidate approval
-    console.log('Approve candidate:', candidate.fullName);
+    console.log('Approve candidate:', candidate.name);
   };
 
-  const handleReject = (candidate: Candidate) => {
+  const handleReject = (candidate: CandidateAPI) => {
     // TODO: Implement candidate rejection
-    console.log('Reject candidate:', candidate.fullName);
+    console.log('Reject candidate:', candidate.name);
   };
 
   // Show detailed profile view
   if (viewMode === 'profile' && selectedCandidate) {
     return (
-      <CandidateProfile
-        candidate={selectedCandidate}
-        onBack={handleBackToList}
-        onDelete={() => handleDeleteCandidate(selectedCandidate)}
-        onEdit={() => router.push(getCandidateEditRoute(selectedCandidate.id))}
-      />
+      <div className="text-center py-8">
+        <p>Candidate profile view - TODO: Update CandidateProfile component to use API structure</p>
+        <Button onClick={handleBackToList} className="mt-4">
+          Back to List
+        </Button>
+      </div>
     );
   }
 
@@ -165,7 +201,7 @@ export default function CandidatesPage() {
         items={[
           { href: ROUTES.admin.dashboard, label: 'Dashboard', icon: <Home className="h-4 w-4" /> },
           { href: ROUTES.admin.candidates, label: 'Candidates' },
-          ...(selectedCandidate ? [{ href: getCandidateViewRoute(selectedCandidate.id), label: selectedCandidate.fullName }] : []),
+          ...(selectedCandidate ? [{ href: getCandidateViewRoute(selectedCandidate.id.toString()), label: selectedCandidate.name }] : []),
         ]}
       />
 
@@ -220,7 +256,7 @@ export default function CandidatesPage() {
                     <tr key={candidate.id} className="border-t hover:bg-muted/25">
                       <td className="px-4 py-3 text-center">
                         <div>
-                          <div className="text-sm font-medium whitespace-nowrap">{candidate.fullName}</div>
+                          <div className="text-sm font-medium whitespace-nowrap">{candidate.name}</div>
                         </div>
                       </td>
                       <td className="px-4 py-3 text-sm whitespace-nowrap text-center">{candidate.email}</td>
@@ -235,7 +271,7 @@ export default function CandidatesPage() {
                       </td>
                       <td className="px-4 py-3 text-center">
                         <ActionButtons
-                          id={candidate.id}
+                          id={candidate.id.toString()}
                           basePath="/admin/candidates"
                           onDelete={handleDeleteCandidate}
                           size="sm"
@@ -243,8 +279,8 @@ export default function CandidatesPage() {
                           showEdit={true}
                           showDelete={true}
                           getViewRoute={getCandidateViewRoute}
-                          deleteConfirmTitle={`Delete ${candidate.fullName}?`}
-                          deleteConfirmDescription={`Are you sure you want to delete ${candidate.fullName}? This action cannot be undone and will permanently remove this candidate from the system.`}
+                          deleteConfirmTitle={`Delete ${candidate.name}?`}
+                          deleteConfirmDescription={`Are you sure you want to delete ${candidate.name}? This action cannot be undone and will permanently remove this candidate from the system.`}
                         />
                       </td>
                     </tr>
