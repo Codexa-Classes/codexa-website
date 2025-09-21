@@ -4,21 +4,59 @@ import { API_CONFIG } from '../config/api';
 // Candidate types matching backend response
 export interface CandidateAPI {
   id: number;
-  name: string;  // Backend returns 'name' not 'full_name'
+  name: string;
   email: string;
   status: string;
+}
+
+// Pagination metadata from backend
+export interface PaginationMeta {
+  skip: number;
+  limit: number;
+  total: number;
+  current_page: number;
+  total_pages: number;
+  has_next: boolean;
+  has_prev: boolean;
+  showing_from: number;
+  showing_to: number;
+}
+
+// Paginated response from backend
+export interface PaginatedCandidatesResponse {
+  data: CandidateAPI[];
+  pagination: PaginationMeta;
+}
+
+// Pagination parameters for API calls
+export interface PaginationParams {
+  skip?: number;
+  limit?: number;
+  search?: string;
+  status?: string;
 }
 
 // Candidates API service
 export class CandidatesAPI {
   /**
-   * Get all candidates (admin only)
+   * Get candidates with pagination (admin only)
    */
-  static async getCandidates(): Promise<CandidateAPI[]> {
+  static async getCandidates(params: PaginationParams = {}): Promise<PaginatedCandidatesResponse> {
     try {
-      const response = await apiClient.get<CandidateAPI[]>(
-        API_CONFIG.ENDPOINTS.CANDIDATES.LIST
+      const { skip = 0, limit = 20, search, status } = params;
+
+      const response = await apiClient.get<PaginatedCandidatesResponse>(
+        API_CONFIG.ENDPOINTS.CANDIDATES.LIST,
+        {
+          params: {
+            skip,
+            limit,
+            ...(search && { search }),
+            ...(status && status !== 'all' && { status }),
+          }
+        }
       );
+      
       return response.data;
     } catch (error: any) {
       if (error.response?.status === 401) {

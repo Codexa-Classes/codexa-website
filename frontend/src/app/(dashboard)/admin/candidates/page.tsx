@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { ROUTES, getCandidateEditRoute, getCandidateViewRoute } from '@/lib/constants';
-import { CandidatesAPI, CandidateAPI } from '@/lib/api/candidates';
+import { CandidatesAPI, CandidateAPI, PaginatedCandidatesResponse, PaginationMeta } from '@/lib/api/candidates';
 import { Button } from '@/components/ui/button';
 import { Home } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
@@ -21,11 +21,41 @@ export default function CandidatesPage() {
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [pagination, setPagination] = useState<PaginationMeta | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(20);
   
   // Get candidate ID from URL query params
   const candidateId = searchParams?.get('id') || null;
   const viewMode = candidateId ? 'profile' : 'list';
   const selectedCandidate = candidateId ? candidates.find(c => c.id.toString() === candidateId) : null;
+
+  // Define fetchCandidates function outside useEffect so it can be called from multiple places
+  const fetchCandidates = async (page: number = currentPage, size: number = pageSize) => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const skip = (page - 1) * size;
+      const response = await CandidatesAPI.getCandidates({
+        skip,
+        limit: size,
+        search: searchTerm || undefined,
+        status: statusFilter !== 'all' ? statusFilter : undefined,
+      });
+      
+      setCandidates(response.data);
+      setPagination(response.pagination);
+      setCurrentPage(response.pagination.current_page);
+    } catch (error: any) {
+      console.error('CandidatesPage: Error loading candidates:', error);
+      setError(error.message || 'Failed to load candidates');
+      setCandidates([]);
+      setPagination(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (!user || user.role !== 'admin') {
@@ -33,21 +63,6 @@ export default function CandidatesPage() {
       return;
     }
     
-    const fetchCandidates = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const candidatesData = await CandidatesAPI.getCandidates();
-        setCandidates(candidatesData);
-      } catch (error: any) {
-        console.error('CandidatesPage: Error loading candidates:', error);
-        setError(error.message || 'Failed to load candidates');
-        setCandidates([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchCandidates();
   }, [user, router]);
 
@@ -61,17 +76,65 @@ export default function CandidatesPage() {
     }
   }, [candidateId, candidates, router]);
 
+  // Handle search and filter changes
+  useEffect(() => {
+    if (user && user.role === 'admin') {
+      // Reset to first page when filters change
+      setCurrentPage(1);
+      fetchCandidates(1, pageSize);
+    }
+  }, [searchTerm, statusFilter]);
+
   // Define refresh function
   const refreshCandidates = async () => {
     try {
       setLoading(true);
-      const candidatesData = await CandidatesAPI.getCandidates();
-      setCandidates(candidatesData);
+      const skip = (currentPage - 1) * pageSize;
+      const response = await CandidatesAPI.getCandidates({
+        skip,
+        limit: pageSize,
+        search: searchTerm || undefined,
+        status: statusFilter !== 'all' ? statusFilter : undefined,
+      });
+      
+      setCandidates(response.data);
+      setPagination(response.pagination);
     } catch (error: any) {
       setError(error.message || 'Failed to refresh candidates');
     } finally {
       setLoading(false);
     }
+  };
+
+  // Handler functions
+  const handleAddCandidate = () => {
+    router.push(ROUTES.admin.candidates + '/add');
+  };
+
+  const handleDeleteCandidate = (candidate: CandidateAPI) => {
+    // TODO: Implement delete API call
+    console.log('Delete candidate:', candidate.name);
+    // refreshCandidates();
+  };
+
+  const handleBackToDashboard = () => {
+    router.push(ROUTES.admin.dashboard);
+  };
+
+  const handleBackToList = () => {
+    router.push(ROUTES.admin.candidates);
+  };
+
+  // Pagination handlers
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    fetchCandidates(page, pageSize);
+  };
+
+  const handlePageSizeChange = (size: number) => {
+    setPageSize(size);
+    setCurrentPage(1);
+    fetchCandidates(1, size);
   };
 
   // Refresh candidates when page gains focus (e.g., returning from add/edit)
@@ -82,7 +145,7 @@ export default function CandidatesPage() {
 
     window.addEventListener('focus', handleFocus);
     return () => window.removeEventListener('focus', handleFocus);
-  }, []);
+  }, [currentPage, pageSize, searchTerm, statusFilter]);
 
   if (!user || user.role !== 'admin') {
     return null;
@@ -106,80 +169,13 @@ export default function CandidatesPage() {
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
           <p className="text-red-600 mb-4">{error}</p>
-          <Button onClick={() => window.location.reload()}>
+          <Button onClick={() => fetchCandidates(currentPage, pageSize)}>
             Try Again
           </Button>
         </div>
       </div>
     );
   }
-
-  // Ensure candidates is always an array before filtering
-  const validCandidates = Array.isArray(candidates) ? candidates : [];
-  
-  // Apply search and status filters
-  const filteredCandidates = validCandidates.filter(candidate => {
-    // Safety check: ensure candidate is valid
-    if (!candidate || typeof candidate !== 'object') {
-      return false;
-    }
-    
-    // Safety check: ensure required properties exist
-    if (!candidate.name) {
-      return false;
-    }
-    
-    // Status filter
-    if (statusFilter !== 'all' && candidate.status !== statusFilter) {
-      return false;
-    }
-    
-    // Search filter
-    if (searchTerm) {
-      const searchLower = searchTerm.toLowerCase();
-      const nameMatch = candidate.name.toLowerCase().includes(searchLower);
-      const emailMatch = candidate.email.toLowerCase().includes(searchLower);
-      
-      if (!nameMatch && !emailMatch) {
-        return false;
-      }
-    }
-    
-    return true;
-  });
-
-  const handleAddCandidate = () => {
-    router.push(ROUTES.admin.candidates + '/add');
-  };
-
-  const handleDeleteCandidate = (candidate: CandidateAPI) => {
-    // TODO: Implement delete API call
-    console.log('Delete candidate:', candidate.name);
-    // refreshCandidates();
-  };
-
-  const handleBackToDashboard = () => {
-    router.push(ROUTES.admin.dashboard);
-  };
-
-  const handleBackToList = () => {
-    router.push(ROUTES.admin.candidates);
-  };
-
-  const handleScheduleInterview = (candidate: CandidateAPI) => {
-    // TODO: Implement interview scheduling
-    console.log('Schedule interview for:', candidate.name);
-  };
-
-  const handleApprove = (candidate: CandidateAPI) => {
-    // TODO: Implement candidate approval
-    console.log('Approve candidate:', candidate.name);
-  };
-
-  const handleReject = (candidate: CandidateAPI) => {
-    // TODO: Implement candidate rejection
-    console.log('Reject candidate:', candidate.name);
-  };
 
   // Show detailed profile view
   if (viewMode === 'profile' && selectedCandidate) {
@@ -252,7 +248,7 @@ export default function CandidatesPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredCandidates.map((candidate) => (
+                  {candidates.map((candidate) => (
                     <tr key={candidate.id} className="border-t hover:bg-muted/25">
                       <td className="px-4 py-3 text-center">
                         <div>
@@ -291,32 +287,51 @@ export default function CandidatesPage() {
           </div>
 
           {/* Pagination: Page controls at bottom */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <select className="px-3 py-2 border rounded-md text-sm">
-                <option value="20">20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-              </select>
-              <span className="text-sm text-muted-foreground">
-                Showing 1 to {filteredCandidates.length} of {filteredCandidates.length} entries
-              </span>
+          {pagination && (
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <select 
+                  value={pageSize} 
+                  onChange={(e) => handlePageSizeChange(Number(e.target.value))}
+                  className="px-3 py-2 border rounded-md text-sm"
+                >
+                  <option value={10}>10</option>
+                  <option value={20}>20</option>
+                  <option value={50}>50</option>
+                  <option value={100}>100</option>
+                </select>
+                <span className="text-sm text-muted-foreground">
+                  Showing {pagination.showing_from} to {pagination.showing_to} of {pagination.total} entries
+                </span>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={!pagination.has_prev}
+                >
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </Button>
+                <span className="text-sm text-muted-foreground">
+                  Page {pagination.current_page} of {pagination.total_pages}
+                </span>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={!pagination.has_next}
+                >
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Button>
+              </div>
             </div>
-            
-            <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" disabled>
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </Button>
-              <span className="text-sm text-muted-foreground">Page 1 of 1</span>
-              <Button variant="outline" size="sm" disabled>
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Button>
-            </div>
-          </div>
+          )}
         </CardContent>
       </Card>
     </div>
