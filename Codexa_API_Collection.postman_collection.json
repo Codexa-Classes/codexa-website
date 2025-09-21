@@ -1,0 +1,1014 @@
+{
+  "info": {
+    "name": "Codexa API Collection",
+    "description": "Complete API collection for Codexa educational platform backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "admin_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "user_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "user_email",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "user_name",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "is_admin",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Auto-add Bearer token to requests that need authentication",
+          "const url = pm.request.url.toString();",
+          "const needsAuth = !url.includes('/auth/register') && ",
+          "                !url.includes('/auth/login') && ",
+          "                !url.includes('/health') && ",
+          "                !url.includes('/docs') && ",
+          "                !url.includes('/redoc') && ",
+          "                !url.includes('/courses/published') && ",
+          "                !url.includes('/courses/by-category') && ",
+          "                !url.includes('/courses/by-instructor') && ",
+          "                !url.includes('/jobs/active') && ",
+          "                !url.includes('/jobs/recent') && ",
+          "                !url.includes('/enquiries/') && ",
+          "                url !== pm.environment.get('base_url') + '/';",
+          "",
+          "if (needsAuth) {",
+          "    const token = pm.environment.get('token');",
+          "    if (token) {",
+          "        pm.request.headers.add({",
+          "            key: 'Authorization',",
+          "            value: 'Bearer ' + token",
+          "        });",
+          "        console.log('🔐 Auto-added Bearer token to request');",
+          "    } else {",
+          "        console.log('⚠️ No token found - please login first');",
+          "    }",
+          "}"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "User Registration",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"mobile\": \"9876543210\",\n  \"password\": \"password123\",\n  \"full_name\": \"Test User\",\n  \"skills\": [\"Python\", \"FastAPI\"],\n  \"languages\": [\"English\", \"Hindi\"],\n  \"certifications\": [\"AWS Certified\"],\n  \"social_links\": [\"https://linkedin.com/in/testuser\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register"]
+            },
+            "description": "Register a new user account"
+          },
+          "response": []
+        },
+        {
+          "name": "User Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mobile\": \"9876543210\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Login user and get access token"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Auto-extract bearer token from login response",
+                  "if (pm.response.code === 200) {",
+                  "    const responseJson = pm.response.json();",
+                  "    if (responseJson.access_token) {",
+                  "        pm.environment.set('token', responseJson.access_token);",
+                  "        console.log('✅ Token saved to environment:', responseJson.access_token);",
+                  "        ",
+                  "        // Also save user info for reference",
+                  "        pm.environment.set('user_id', responseJson.user.id);",
+                  "        pm.environment.set('user_email', responseJson.user.email);",
+                  "        pm.environment.set('user_name', responseJson.user.full_name);",
+                  "        pm.environment.set('is_admin', responseJson.user.is_admin);",
+                  "        ",
+                  "        // If user is admin, also set admin_token",
+                  "        if (responseJson.user.is_admin) {",
+                  "            pm.environment.set('admin_token', responseJson.access_token);",
+                  "            console.log('✅ Admin token also set');",
+                  "        }",
+                  "    } else {",
+                  "        console.log('❌ No access_token found in response');",
+                  "    }",
+                  "} else {",
+                  "    console.log('❌ Login failed with status:', pm.response.code);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "Admin Login (Auto Token)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mobile\": \"admin@codexa.com\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Login as admin and auto-set admin token"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Auto-extract admin bearer token from login response",
+                  "if (pm.response.code === 200) {",
+                  "    const responseJson = pm.response.json();",
+                  "    if (responseJson.access_token) {",
+                  "        // Set both regular and admin tokens",
+                  "        pm.environment.set('token', responseJson.access_token);",
+                  "        pm.environment.set('admin_token', responseJson.access_token);",
+                  "        console.log('✅ Admin token saved to environment:', responseJson.access_token);",
+                  "        ",
+                  "        // Save admin user info",
+                  "        pm.environment.set('user_id', responseJson.user.id);",
+                  "        pm.environment.set('user_email', responseJson.user.email);",
+                  "        pm.environment.set('user_name', responseJson.user.full_name);",
+                  "        pm.environment.set('is_admin', responseJson.user.is_admin);",
+                  "        ",
+                  "        console.log('✅ Admin login successful - all tokens set!');",
+                  "    } else {",
+                  "        console.log('❌ No access_token found in response');",
+                  "    }",
+                  "} else {",
+                  "    console.log('❌ Admin login failed with status:', pm.response.code);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "Get Current User Info",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "me"]
+            },
+            "description": "Get current authenticated user information"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Users (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/?skip=0&limit=10&search=test&is_active=true",
+              "host": ["{{base_url}}"],
+              "path": ["auth", ""],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "search",
+                  "value": "test"
+                },
+                {
+                  "key": "is_active",
+                  "value": "true"
+                }
+              ]
+            },
+            "description": "Get all users with pagination and filters (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Users (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/search?q=test",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "test"
+                }
+              ]
+            },
+            "description": "Search users by query string (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Statistics (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/stats",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "stats"]
+            },
+            "description": "Get user statistics and analytics (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User by ID (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/1",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "1"]
+            },
+            "description": "Get specific user by ID (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update User (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Updated Name\",\n  \"is_active\": true,\n  \"skills\": [\"Python\", \"FastAPI\", \"React\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/1",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "1"]
+            },
+            "description": "Update user information (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Current User Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"My Updated Name\",\n  \"skills\": [\"Python\", \"FastAPI\", \"React\"],\n  \"languages\": [\"English\", \"Hindi\", \"Spanish\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "me"]
+            },
+            "description": "Update current user's own profile"
+          },
+          "response": []
+        },
+        {
+          "name": "Activate User (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/1/activate",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "1", "activate"]
+            },
+            "description": "Activate a user account (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Deactivate User (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/1/deactivate",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "1", "deactivate"]
+            },
+            "description": "Deactivate a user account (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Make User Admin (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/1/make-admin",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "1", "make-admin"]
+            },
+            "description": "Promote user to admin (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Admin Privileges (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/1/remove-admin",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "1", "remove-admin"]
+            },
+            "description": "Remove admin privileges (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/1",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "1"]
+            },
+            "description": "Delete a user account (Admin only)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Authentication and user management endpoints"
+    },
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "Create Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Python Programming Masterclass\",\n  \"description\": \"Complete Python programming course from beginner to advanced level\",\n  \"category\": \"Programming\",\n  \"duration\": \"3 months\",\n  \"level\": \"Beginner\",\n  \"price\": 5000,\n  \"icon\": \"python-icon.png\",\n  \"icon_name\": \"Python Icon\",\n  \"career_path\": \"Software Developer\",\n  \"instructor\": \"Dr. Sarah Johnson\",\n  \"topics\": [\"Variables and Data Types\", \"Control Structures\", \"Functions\", \"Object-Oriented Programming\", \"File Handling\", \"Database Integration\"],\n  \"skills\": [\"Python\", \"Programming Logic\", \"Problem Solving\", \"Debugging\"],\n  \"projects\": [\"Calculator App\", \"Weather App\", \"Student Management System\"],\n  \"prerequisites\": [\"Basic Computer Knowledge\", \"Logical Thinking\"],\n  \"syllabus\": [\"Week 1: Introduction to Python\", \"Week 2: Data Types and Variables\", \"Week 3: Control Structures\", \"Week 4: Functions\"],\n  \"status\": \"published\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/courses/",
+              "host": ["{{base_url}}"],
+              "path": ["courses", ""]
+            },
+            "description": "Create a new course"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Courses",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/courses/?skip=0&limit=10&search=python&category=Programming&level=Beginner&status=published",
+              "host": ["{{base_url}}"],
+              "path": ["courses", ""],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "search",
+                  "value": "python"
+                },
+                {
+                  "key": "category",
+                  "value": "Programming"
+                },
+                {
+                  "key": "level",
+                  "value": "Beginner"
+                },
+                {
+                  "key": "status",
+                  "value": "published"
+                }
+              ]
+            },
+            "description": "Get all courses with filters and pagination"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Published Courses (Public)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/courses/published?skip=0&limit=10&category=Programming",
+              "host": ["{{base_url}}"],
+              "path": ["courses", "published"],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "category",
+                  "value": "Programming"
+                }
+              ]
+            },
+            "description": "Get published courses (public endpoint)"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Courses",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/courses/search?q=python",
+              "host": ["{{base_url}}"],
+              "path": ["courses", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "python"
+                }
+              ]
+            },
+            "description": "Search courses by query string"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Course Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/courses/stats",
+              "host": ["{{base_url}}"],
+              "path": ["courses", "stats"]
+            },
+            "description": "Get course statistics and analytics"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Courses by Category (Public)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/courses/by-category/Programming?skip=0&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["courses", "by-category", "Programming"],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Get courses by category (public endpoint)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Courses by Instructor (Public)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/courses/by-instructor/Dr.%20Sarah%20Johnson?skip=0&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["courses", "by-instructor", "Dr. Sarah Johnson"],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Get courses by instructor (public endpoint)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Course by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/courses/1",
+              "host": ["{{base_url}}"],
+              "path": ["courses", "1"]
+            },
+            "description": "Get specific course by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Course",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Advanced Python Programming Masterclass\",\n  \"price\": 7500,\n  \"level\": \"Intermediate\",\n  \"status\": \"published\",\n  \"topics\": [\"Advanced OOP\", \"Design Patterns\", \"Web Development\", \"API Development\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/courses/1",
+              "host": ["{{base_url}}"],
+              "path": ["courses", "1"]
+            },
+            "description": "Update course information"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Course Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/courses/1/status?status=published",
+              "host": ["{{base_url}}"],
+              "path": ["courses", "1", "status"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "published"
+                }
+              ]
+            },
+            "description": "Update course status"
+          },
+          "response": []
+        }
+      ],
+      "description": "Course management endpoints"
+    },
+    {
+      "name": "Candidates",
+      "item": [
+        {
+          "name": "Create Candidate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Rajesh Kumar Sharma\",\n  \"email\": \"rajesh.sharma@example.com\",\n  \"phone_number\": \"9876543210\",\n  \"date_of_birth\": \"1995-06-15\",\n  \"gender\": \"Male\",\n  \"address\": \"123 MG Road, Sector 5\",\n  \"pincode\": \"110001\",\n  \"course\": \"Python Programming Masterclass\",\n  \"joining_date\": \"2024-01-15\",\n  \"fees_transaction_number\": \"TXN123456789\",\n  \"job_admission\": true,\n  \"profile_title\": \"Python Developer\",\n  \"current_job_status\": \"Employed\",\n  \"total_experience_years\": 3,\n  \"total_experience_months\": 6,\n  \"current_employer\": \"Tech Solutions Pvt Ltd\",\n  \"current_job_title\": \"Software Developer\",\n  \"primary_skills\": [\"Python\", \"Django\", \"PostgreSQL\", \"REST APIs\"],\n  \"secondary_skills\": [\"JavaScript\", \"React\", \"Git\", \"Docker\"],\n  \"skill_proficiency_level\": \"Intermediate\",\n  \"certifications\": [\"AWS Certified Developer\", \"Python Institute Certification\"],\n  \"highest_qualification\": \"Bachelor of Technology\",\n  \"specialization\": \"Computer Science\",\n  \"university\": \"Delhi Technological University\",\n  \"year_of_passing\": 2017,\n  \"grades\": \"8.5 CGPA\",\n  \"preferred_job_type\": \"Full-time\",\n  \"preferred_industry\": \"Technology\",\n  \"preferred_roles\": [\"Python Developer\", \"Backend Developer\", \"Software Engineer\"],\n  \"expected_salary\": 800000,\n  \"work_mode_preference\": \"Hybrid\",\n  \"notice_period\": \"30 days\",\n  \"linkedin_url\": \"https://linkedin.com/in/rajesh-sharma\",\n  \"portfolio_url\": \"https://rajeshsharma.dev\",\n  \"languages\": [\"English\", \"Hindi\", \"Punjabi\"],\n  \"work_authorization\": \"Indian Citizen\",\n  \"status\": \"active\",\n  \"priority\": \"high\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/candidates/",
+              "host": ["{{base_url}}"],
+              "path": ["candidates", ""]
+            },
+            "description": "Create a new candidate profile"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Candidates",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/candidates/?skip=0&limit=10&search=rajesh&status=active&experience_min=2&experience_max=5",
+              "host": ["{{base_url}}"],
+              "path": ["candidates", ""],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "search",
+                  "value": "rajesh"
+                },
+                {
+                  "key": "status",
+                  "value": "active"
+                },
+                {
+                  "key": "experience_min",
+                  "value": "2"
+                },
+                {
+                  "key": "experience_max",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Get all candidates with filters and pagination"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Candidates",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/candidates/search?q=python",
+              "host": ["{{base_url}}"],
+              "path": ["candidates", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "python"
+                }
+              ]
+            },
+            "description": "Search candidates by query string"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Candidate Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/candidates/stats",
+              "host": ["{{base_url}}"],
+              "path": ["candidates", "stats"]
+            },
+            "description": "Get candidate statistics and analytics"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Candidate by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/candidates/1",
+              "host": ["{{base_url}}"],
+              "path": ["candidates", "1"]
+            },
+            "description": "Get specific candidate by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Candidate",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profile_title\": \"Senior Python Developer\",\n  \"expected_salary\": 1000000,\n  \"current_job_title\": \"Senior Software Developer\",\n  \"primary_skills\": [\"Python\", \"Django\", \"PostgreSQL\", \"REST APIs\", \"Microservices\"],\n  \"status\": \"shortlisted\",\n  \"priority\": \"high\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/candidates/1",
+              "host": ["{{base_url}}"],
+              "path": ["candidates", "1"]
+            },
+            "description": "Update candidate information"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Candidate Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/candidates/1/status?status=shortlisted",
+              "host": ["{{base_url}}"],
+              "path": ["candidates", "1", "status"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "shortlisted"
+                }
+              ]
+            },
+            "description": "Update candidate status"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Candidate Priority",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/candidates/1/priority?priority=high",
+              "host": ["{{base_url}}"],
+              "path": ["candidates", "1", "priority"],
+              "query": [
+                {
+                  "key": "priority",
+                  "value": "high"
+                }
+              ]
+            },
+            "description": "Update candidate priority"
+          },
+          "response": []
+        }
+      ],
+      "description": "Candidate management endpoints"
+    },
+    {
+      "name": "System & Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            },
+            "description": "Check API health status"
+          },
+          "response": []
+        },
+        {
+          "name": "Root Endpoint",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            },
+            "description": "Get API root information"
+          },
+          "response": []
+        }
+      ],
+      "description": "System health and information endpoints"
+    }
+  ]
+}

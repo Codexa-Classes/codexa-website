@@ -75,10 +75,8 @@ def login_user(
     db: Session = Depends(get_db)
 ):
     """Login user and return access token"""
-    # Find user by email or mobile
-    user = db.query(User).filter(
-        or_(User.email == login_data.email_or_mobile, User.mobile == login_data.email_or_mobile)
-    ).first()
+    # Find user by mobile number
+    user = db.query(User).filter(User.mobile == login_data.mobile).first()
     
     if not user:
         raise HTTPException(status_code=401, detail="Invalid credentials")

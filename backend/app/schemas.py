@@ -30,7 +30,7 @@ class UserUpdate(BaseModel):
     is_admin: Optional[bool] = None
 
 class UserLogin(BaseModel):
-    email_or_mobile: str
+    mobile: str  # Changed from email_or_mobile to mobile
     password: str
 
 class Token(BaseModel):
