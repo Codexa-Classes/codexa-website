@@ -18,6 +18,7 @@ export const API_CONFIG = {
       LOGOUT: '/auth/logout',
       REGISTER: '/auth/register',
       REFRESH: '/auth/refresh',
+      ME: '/auth/me',
     },
     CANDIDATES: {
       LIST: '/candidates',

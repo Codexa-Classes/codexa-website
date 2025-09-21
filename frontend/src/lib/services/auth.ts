@@ -1,4 +1,5 @@
 import apiClient from '@/lib/api/client';
+import { API_CONFIG } from '@/lib/config/api';
 import { 
   LoginCredentials, 
   BackendLoginResponse, 
@@ -28,7 +29,7 @@ export class AuthService {
    */
   static async login(credentials: LoginCredentials): Promise<{ user: User; token: string }> {
     try {
-      const response = await apiClient.post<BackendLoginResponse>('/auth/login', credentials);
+      const response = await apiClient.post<BackendLoginResponse>(API_CONFIG.ENDPOINTS.AUTH.LOGIN, credentials);
       const { access_token, user: backendUser } = response.data;
       
       // Transform backend user to frontend user
@@ -49,7 +50,7 @@ export class AuthService {
    */
   static async getCurrentUser(): Promise<User> {
     try {
-      const response = await apiClient.get<BackendUser>('/auth/me');
+      const response = await apiClient.get<BackendUser>(API_CONFIG.ENDPOINTS.AUTH.ME);
       return transformBackendUser(response.data);
     } catch (error: any) {
       throw new Error(error?.response?.data?.detail || 'Failed to get current user');
@@ -66,7 +67,7 @@ export class AuthService {
       localStorage.removeItem('user');
       
       // Optionally call logout endpoint if backend has one
-      // await apiClient.post('/auth/logout');
+      // await apiClient.post(API_CONFIG.ENDPOINTS.AUTH.LOGOUT);
     } catch (error) {
       console.error('Logout error:', error);
       // Still clear local storage even if API call fails

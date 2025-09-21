@@ -1,4 +1,5 @@
 import apiClient from '@/lib/api/client';
+import { API_CONFIG } from '@/lib/config/api';
 import { 
   LoginCredentials, 
   BackendLoginResponse, 
@@ -28,7 +29,7 @@ export class AuthService {
    */
   static async login(credentials: LoginCredentials): Promise<{ user: User; token: string }> {
     try {
-      const response = await apiClient.post<BackendLoginResponse>('/auth/login', credentials);
+      const response = await apiClient.post<BackendLoginResponse>(API_CONFIG.ENDPOINTS.AUTH.LOGIN, credentials);
       const { access_token, user: backendUser } = response.data;
       
       // Transform backend user to frontend user format
@@ -67,7 +68,7 @@ export class AuthService {
       localStorage.removeItem('user');
       
       // Optional: Call logout endpoint if available
-      // await apiClient.post('/auth/logout');
+      // await apiClient.post(API_CONFIG.ENDPOINTS.AUTH.LOGOUT);
     } catch (error) {
       console.error('Logout error:', error);
       // Still clear local data even if API call fails
@@ -81,7 +82,7 @@ export class AuthService {
    */
   static async getCurrentUser(): Promise<User> {
     try {
-      const response = await apiClient.get<BackendUser>('/auth/me');
+      const response = await apiClient.get<BackendUser>(API_CONFIG.ENDPOINTS.AUTH.ME);
       return transformBackendUser(response.data);
     } catch (error: any) {
       if (error.response?.status === 401) {
@@ -96,7 +97,7 @@ export class AuthService {
    */
   static async refreshToken(): Promise<string> {
     try {
-      const response = await apiClient.post<{ access_token: string }>('/auth/refresh');
+      const response = await apiClient.post<{ access_token: string }>(API_CONFIG.ENDPOINTS.AUTH.REFRESH);
       const { access_token } = response.data;
       
       localStorage.setItem('access_token', access_token);
