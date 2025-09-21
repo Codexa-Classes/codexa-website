@@ -98,7 +98,7 @@ def create_candidate(
     
     return deserialize_json_fields(db_candidate)
 
-@router.get("/", response_model=List[CandidateResponse])
+@router.get("/")
 def get_candidates(
     skip: int = Query(0, ge=0, description="Number of records to skip"),
     limit: int = Query(100, ge=1, le=1000, description="Number of records to return"),
@@ -164,7 +164,16 @@ def get_candidates(
     # Apply pagination
     candidates = query.offset(skip).limit(limit).all()
     
-    return [deserialize_json_fields(candidate) for candidate in candidates]
+    # Return only name, email, and status
+    return [
+        {
+            "id": candidate.id,
+            "name": candidate.full_name,
+            "email": candidate.email,
+            "status": candidate.status
+        }
+        for candidate in candidates
+    ]
 
 @router.get("/search", response_model=List[CandidateResponse])
 def search_candidates(
