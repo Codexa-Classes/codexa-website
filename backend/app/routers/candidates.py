@@ -31,6 +31,8 @@ def deserialize_json_fields(candidate: Candidate) -> dict:
         'date_of_birth': candidate.date_of_birth,
         'gender': candidate.gender,
         'address': candidate.address,
+        'city': candidate.city,
+        'state': candidate.state,
         'pincode': candidate.pincode,
         'course': candidate.course,
         'joining_date': candidate.joining_date,

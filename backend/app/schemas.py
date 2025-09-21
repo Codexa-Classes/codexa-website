@@ -132,6 +132,8 @@ class CandidateCreate(BaseModel):
     date_of_birth: Optional[datetime] = None
     gender: Optional[str] = None  # male, female, other, prefer-not-to-say
     address: str
+    city: Optional[str] = None
+    state: Optional[str] = None
     pincode: str
     password: str
     course: Optional[str] = None
@@ -179,6 +181,8 @@ class CandidateResponse(BaseModel):
     date_of_birth: Optional[datetime] = Field(alias="dateOfBirth")
     gender: Optional[str]
     address: str
+    city: Optional[str]
+    state: Optional[str]
     pincode: str
     course: Optional[str]
     joining_date: Optional[datetime] = Field(alias="joiningDate")
@@ -230,6 +234,8 @@ class CandidateUpdate(BaseModel):
     date_of_birth: Optional[datetime] = None
     gender: Optional[str] = None
     address: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
     pincode: Optional[str] = None
     password: Optional[str] = None
     course: Optional[str] = None

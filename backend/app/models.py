@@ -66,6 +66,8 @@ class Candidate(Base):
     date_of_birth = Column(DateTime, nullable=True)
     gender = Column(String(20), nullable=True)  # male, female, other, prefer-not-to-say
     address = Column(Text, nullable=False)
+    city = Column(String(100), nullable=True)
+    state = Column(String(100), nullable=True)
     pincode = Column(String(10), nullable=False)
     password = Column(String(255), nullable=False)  # hashed password for login
     course = Column(String(100), nullable=True)

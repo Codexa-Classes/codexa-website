@@ -1,0 +1,143 @@
+{
+  "info": {
+    "name": "Candidate API Testing",
+    "description": "Collection for testing Candidate endpoints with updated fields",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{auth_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "auth_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mobile\": \"7972908961\",\n  \"password\": \"12345\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.collectionVariables.set('auth_token', response.access_token);",
+                  "    console.log('Token saved:', response.access_token.substring(0, 20) + '...');",
+                  "}"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Candidates",
+      "item": [
+        {
+          "name": "Get All Candidates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/candidates/?skip=0&limit=20",
+              "host": ["{{base_url}}"],
+              "path": ["candidates", ""],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Candidate by ID (John Smith - ID 22)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/candidates/22",
+              "host": ["{{base_url}}"],
+              "path": ["candidates", "22"]
+            }
+          }
+        },
+        {
+          "name": "Get Candidate by ID (John Doe - ID 2)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/candidates/2",
+              "host": ["{{base_url}}"],
+              "path": ["candidates", "2"]
+            }
+          }
+        },
+        {
+          "name": "Create New Candidate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Jane Developer\",\n  \"email\": \"jane.developer@example.com\",\n  \"phone_number\": \"9876543211\",\n  \"date_of_birth\": \"1992-03-15\",\n  \"gender\": \"female\",\n  \"address\": \"456 Tech Street, Austin, TX 78701\",\n  \"city\": \"Austin\",\n  \"state\": \"Texas\",\n  \"pincode\": \"78701\",\n  \"password\": \"securepassword123\",\n  \"course\": \"frontend-development\",\n  \"joining_date\": \"2024-01-20\",\n  \"fees_transaction_number\": \"TXN789012\",\n  \"job_admission\": true,\n  \"profile_title\": \"Full Stack Developer\",\n  \"current_job_status\": \"employed\",\n  \"total_experience_years\": 3,\n  \"total_experience_months\": 6,\n  \"current_employer\": \"TechStart Inc.\",\n  \"current_job_title\": \"Software Developer\",\n  \"primary_skills\": [\"React\", \"Node.js\", \"Python\", \"PostgreSQL\"],\n  \"secondary_skills\": [\"Docker\", \"AWS\", \"GraphQL\"],\n  \"skill_proficiency_level\": \"intermediate\",\n  \"certifications\": [\"AWS Certified Developer\"],\n  \"highest_qualification\": \"Bachelor of Technology\",\n  \"specialization\": \"Computer Science\",\n  \"university\": \"University of Texas\",\n  \"year_of_passing\": 2020,\n  \"grades\": \"3.5/4.0\",\n  \"preferred_job_type\": \"full-time\",\n  \"preferred_industry\": \"Technology\",\n  \"preferred_roles\": [\"Full Stack Developer\", \"Backend Developer\"],\n  \"expected_salary\": \"$80,000 - $100,000\",\n  \"work_mode_preference\": \"hybrid\",\n  \"notice_period\": \"1 month\",\n  \"linkedin_url\": \"https://linkedin.com/in/janedeveloper\",\n  \"portfolio_url\": \"https://janedeveloper.dev\",\n  \"languages\": [\n    {\"language\": \"English\", \"proficiency\": \"native\"},\n    {\"language\": \"Spanish\", \"proficiency\": \"conversational\"}\n  ],\n  \"work_authorization\": \"US Citizen\",\n  \"status\": \"pending\",\n  \"priority\": \"medium\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/candidates/",
+              "host": ["{{base_url}}"],
+              "path": ["candidates", ""]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
