@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 import os
 from dotenv import load_dotenv
+from sqlalchemy import text
 
 from .database import engine, Base
 from .routers import auth, courses, candidates, jobs, enquiries, applications, enrollments
@@ -62,7 +63,7 @@ async def startup_event():
     try:
         # Test connection first
         with engine.connect() as conn:
-            conn.execute("SELECT 1")
+            conn.execute(text("SELECT 1"))
         print("✅ Database connection successful")
         
         # Create tables
