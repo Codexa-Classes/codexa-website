@@ -165,7 +165,7 @@ export default function AppFooter() {
         </div>
         
         <div className="text-center text-muted-foreground border-t border-border/40 pt-8">
-          © 2025 Codexa Classes. All rights reserved.
+          © 2026 Codexa Classes. All rights reserved.
         </div>
       </div>
     </footer>
