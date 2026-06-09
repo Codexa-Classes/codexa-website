@@ -150,7 +150,6 @@ export default function AppFooter() {
                   {INSTRUCTOR.email}
                 </a>
               </li>
-              <li>All courses: ₹10,000</li>
             </ul>
             <div className="mt-4">
               <SocialMediaIcons 
