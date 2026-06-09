@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ROUTES, INSTRUCTOR, COURSES, COURSE_PRICE } from '@/lib/constants';
+import { ROUTES, INSTRUCTOR, COURSES, COURSE_PRICE, CONTACT } from '@/lib/constants';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -52,15 +52,15 @@ const structuredData = {
   "logo": "https://codexaclasses.com/Codexa%20LOGO.png",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Maharashtra",
+    "addressLocality": "Pune",
     "addressRegion": "Maharashtra",
     "addressCountry": "IN"
   },
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "+91-98765-43210",
+    "telephone": "+91-84828-31723",
     "contactType": "customer service",
-    "email": INSTRUCTOR.email
+    "email": CONTACT.email
   },
   "sameAs": [
     "https://facebook.com/codexaclasses",
@@ -185,6 +185,21 @@ export default function Home() {
               <Link href="/certificate" className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-blue-900 font-medium transition-all duration-200 border border-white/20 hover:border-white">
                 Certificate
               </Link>
+            </div>
+
+            <div className="flex flex-wrap gap-6 items-center justify-center text-white/90">
+              <a
+                href={`mailto:${CONTACT.email}`}
+                className="hover:text-yellow-300 transition-colors underline-offset-4 hover:underline"
+              >
+                {CONTACT.email}
+              </a>
+              <a
+                href={CONTACT.phoneHref}
+                className="hover:text-yellow-300 transition-colors underline-offset-4 hover:underline"
+              >
+                {CONTACT.phone}
+              </a>
             </div>
           </div>
         </section>

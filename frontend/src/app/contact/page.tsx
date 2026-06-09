@@ -13,7 +13,6 @@ import {
   Mail, 
   Phone, 
   MapPin, 
-  Clock, 
   Send,
   MessageSquare,
   Users,
@@ -24,7 +23,7 @@ import {
 import PageLayout from '@/components/layout/PageLayout';
 import Link from 'next/link';
 import Super10Section from '@/components/Super10Section';
-import { INSTRUCTOR, COURSES } from '@/lib/constants';
+import { CONTACT, COURSES } from '@/lib/constants';
 
 // Local Business structured data for SEO
 const localBusinessStructuredData = {
@@ -33,11 +32,11 @@ const localBusinessStructuredData = {
   "name": "Codexa Classes",
   "description": "IT Training Institute offering programming courses in PHP, Python, React, MySQL, and Linux",
   "url": "https://codexaclasses.com",
-  "telephone": "+91-98765-43210",
-  "email": INSTRUCTOR.email,
+  "telephone": "+91-84828-31723",
+  "email": CONTACT.email,
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Maharashtra",
+    "addressLocality": "Pune",
     "addressRegion": "Maharashtra",
     "addressCountry": "IN"
   },
@@ -50,7 +49,7 @@ const localBusinessStructuredData = {
   "priceRange": "₹₹",
   "serviceArea": {
     "@type": "City",
-    "name": "Maharashtra"
+    "name": "Pune"
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -122,23 +121,20 @@ export default function Contact() {
     {
       icon: <Mail className="h-5 w-5" />,
       title: "Email",
-      description: INSTRUCTOR.email
+      description: CONTACT.email,
+      href: `mailto:${CONTACT.email}`,
     },
     {
       icon: <Phone className="h-5 w-5" />,
       title: "Phone",
-      description: "+91 98765 43210"
+      description: CONTACT.phone,
+      href: CONTACT.phoneHref,
     },
     {
       icon: <MapPin className="h-5 w-5" />,
       title: "Location",
-              description: "Maharashtra, India"
+      description: CONTACT.location,
     },
-    {
-      icon: <Clock className="h-5 w-5" />,
-      title: "Office Hours",
-      description: "Mon-Sat: 9 AM - 6 PM"
-    }
   ];
 
   const inquiryTypes = [
@@ -196,7 +192,7 @@ export default function Contact() {
             </div>
 
           {/* Contact Information */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             {contactInfo.map((info, index) => (
               <Card key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-md hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6 text-center">
@@ -204,9 +200,9 @@ export default function Contact() {
                     {info.icon}
                   </div>
                   <h3 className="font-semibold text-sm mb-2 text-gray-900">{info.title}</h3>
-                  {info.title === "Email" ? (
-                    <a 
-                      href={`mailto:${info.description}`}
+                  {info.href ? (
+                    <a
+                      href={info.href}
                       className="text-blue-600 hover:underline font-medium text-xs block"
                     >
                       {info.description}

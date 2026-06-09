@@ -52,6 +52,13 @@ export const APP_CONFIG = {
     CANDIDATE: 'candidate',
   } as const;
 
+export const CONTACT = {
+  email: "codexapune@gmail.com",
+  phone: "+91 84828 31723",
+  phoneHref: "tel:+918482831723",
+  location: "Pune, Maharashtra, India",
+} as const;
+
 export interface Instructor {
   name: string;
   title: string;
@@ -68,7 +75,7 @@ export const INSTRUCTOR: Instructor = {
   title: "Senior Business Analyst & Technology Consultant",
   experience: "10+ Years",
   currentRole: "Senior Business Analyst at Kotak Mahindra Bank",
-  email: "hiVirajKadam@gmail.com",
+  email: CONTACT.email,
   website: "VirajKadam.in",
   expertise: [
     "PHP & Laravel Framework",

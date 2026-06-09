@@ -7,6 +7,7 @@ import { useRef, useEffect, useState } from 'react';
 import { Logo } from '../Logo';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { NAVIGATION_ITEMS } from '@/lib/constants/navigation';
+import { CONTACT } from '@/lib/constants';
 
 export default function AppHeader() {
   const pathname = usePathname();
@@ -82,6 +83,12 @@ export default function AppHeader() {
                 </Link>
               );
             })}
+            <a
+              href={CONTACT.phoneHref}
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
+              {CONTACT.phone}
+            </a>
           </nav>
           
           <div className="flex items-center space-x-4">

@@ -5,7 +5,7 @@ import { GraduationCap } from 'lucide-react';
 import Super10Section from '../Super10Section';
 import { SocialMediaIcons, defaultSocialMediaLinks } from '../SocialMediaIcons';
 import { Logo } from '../Logo';
-import { INSTRUCTOR } from '@/lib/constants';
+import { CONTACT } from '@/lib/constants';
 import DevIcon from '../DevIcon';
 
 export default function AppFooter() {
@@ -143,11 +143,21 @@ export default function AppFooter() {
             <h3 className="font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-muted-foreground">
               <li>
-                Email: <a 
-                  href={`mailto:${INSTRUCTOR.email}`}
+                Email:{' '}
+                <a
+                  href={`mailto:${CONTACT.email}`}
                   className="text-primary hover:underline transition-colors"
                 >
-                  {INSTRUCTOR.email}
+                  {CONTACT.email}
+                </a>
+              </li>
+              <li>
+                Mobile:{' '}
+                <a
+                  href={CONTACT.phoneHref}
+                  className="text-primary hover:underline transition-colors"
+                >
+                  {CONTACT.phone}
                 </a>
               </li>
             </ul>

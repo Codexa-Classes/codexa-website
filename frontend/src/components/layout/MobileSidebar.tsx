@@ -13,6 +13,7 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { NAVIGATION_ITEMS } from '@/lib/constants/navigation';
+import { CONTACT } from '@/lib/constants';
 
 export function MobileSidebar() {
   const pathname = usePathname();
@@ -49,8 +50,23 @@ export function MobileSidebar() {
           })}
         </SidebarMenu>
         
+        <div className="px-4 py-3 space-y-2 text-sm border-t border-border mt-4">
+          <a
+            href={`mailto:${CONTACT.email}`}
+            className="block text-muted-foreground hover:text-primary transition-colors"
+          >
+            {CONTACT.email}
+          </a>
+          <a
+            href={CONTACT.phoneHref}
+            className="block text-muted-foreground hover:text-primary transition-colors"
+          >
+            {CONTACT.phone}
+          </a>
+        </div>
+
         {/* Sign In Button */}
-        <div className="p-4 border-t border-border mt-4">
+        <div className="p-4 border-t border-border">
           <Button asChild variant="outline" className="w-full">
             <Link href="/login">
               Sign In
