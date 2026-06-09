@@ -8,6 +8,8 @@ import { Logo } from '../Logo';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { NAVIGATION_ITEMS } from '@/lib/constants/navigation';
 import { CONTACT } from '@/lib/constants';
+import { badgeVariants } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 export default function AppHeader() {
   const pathname = usePathname();
@@ -28,7 +30,7 @@ export default function AppHeader() {
         const navElement = navRef.current;
         // Get only the Link elements (navigation items), filter out the underline div
         const navLinkElements = Array.from(navElement.children).filter(
-          child => child.tagName === 'A'
+          child => child.tagName === 'A' && child.getAttribute('href')?.startsWith('/')
         );
         
         if (navLinkElements[activeIndex]) {
@@ -85,7 +87,10 @@ export default function AppHeader() {
             })}
             <a
               href={CONTACT.phoneHref}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className={cn(
+                badgeVariants({ variant: "outline" }),
+                "text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+              )}
             >
               {CONTACT.phone}
             </a>

@@ -193,26 +193,35 @@ export default function Contact() {
 
           {/* Contact Information */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            {contactInfo.map((info, index) => (
-              <Card key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-md hover:shadow-lg transition-all duration-300">
-                <CardContent className="p-6 text-center">
-                  <div className="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-blue-600">
-                    {info.icon}
-                  </div>
-                  <h3 className="font-semibold text-sm mb-2 text-gray-900">{info.title}</h3>
-                  {info.href ? (
-                    <a
-                      href={info.href}
-                      className="text-blue-600 hover:underline font-medium text-xs block"
-                    >
+            {contactInfo.map((info, index) => {
+              const card = (
+                <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-md hover:shadow-lg transition-all duration-300 h-full">
+                  <CardContent className="p-6 text-center">
+                    <div className="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-blue-600">
+                      {info.icon}
+                    </div>
+                    <h3 className="font-semibold text-sm mb-2 text-gray-900">{info.title}</h3>
+                    <p className={`text-xs font-medium ${info.href ? "text-blue-600" : "text-gray-700"}`}>
                       {info.description}
-                    </a>
-                  ) : (
-                    <p className="text-gray-700 text-xs font-medium">{info.description}</p>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+
+              if (info.href) {
+                return (
+                  <a
+                    key={index}
+                    href={info.href}
+                    className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                  >
+                    {card}
+                  </a>
+                );
+              }
+
+              return <div key={index}>{card}</div>;
+            })}
           </div>
 
           {/* FAQ Section */}
