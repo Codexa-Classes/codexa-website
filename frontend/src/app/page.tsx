@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ROUTES, INSTRUCTOR, COURSES, COURSE_PRICE, CONTACT } from '@/lib/constants';
+import { ROUTES, INSTRUCTOR, COURSES, CONTACT, formatCoursePrice } from '@/lib/constants';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -25,7 +25,7 @@ import DevIcon from '@/components/DevIcon';
 
 export const metadata: Metadata = {
   title: "Best IT Training Institute - Codexa Classes",
-  description: "Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts. Affordable courses starting at ₹10,000 with 100% job placement guarantee.",
+  description: `Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts. Affordable courses starting at ${formatCoursePrice()} with 100% job placement guarantee.`,
   keywords: ["IT training", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification", "job placement"],
   openGraph: {
           title: "Best IT Training Institute - Codexa Classes",

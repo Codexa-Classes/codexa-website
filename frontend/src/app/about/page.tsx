@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import PageLayout from '@/components/layout/PageLayout';
 import Super10Section from '@/components/Super10Section';
-import { INSTRUCTOR } from '@/lib/constants';
+import { INSTRUCTOR, formatCoursePrice } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: `About Codexa Classes - IT Training Institute | ${INSTRUCTOR.name}`,
@@ -198,7 +198,7 @@ export default function About() {
                     <CardContent className="p-6">
                       <h4 className="font-bold text-lg mb-2 text-gray-900">Affordable Learning</h4>
                       <p className="text-gray-700 font-medium">
-                        All our courses are priced at just ₹10,000, making quality IT education 
+                        All our courses are priced at just {formatCoursePrice()}, making quality IT education 
                         accessible to everyone regardless of their financial background.
                       </p>
                     </CardContent>

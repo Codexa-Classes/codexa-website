@@ -1,5 +1,6 @@
 "use client";
 
+import { formatCoursePrice } from "@/lib/constants";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -129,7 +130,7 @@ export default function Super10() {
               <div className="text-6xl font-bold mb-2">10</div>
               <div className="text-lg mb-2 font-medium">Free Seats Every Batch</div>
               <div className="text-sm text-white/90 font-medium">
-                Complete IT training worth ₹10,000 - Absolutely Free
+                Complete IT training worth {formatCoursePrice()} - Absolutely Free
               </div>
             </div>
           </div>

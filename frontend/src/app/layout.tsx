@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "@/contexts/AuthContext";
-import { INSTRUCTOR } from "@/lib/constants";
+import { INSTRUCTOR, formatCoursePrice } from "@/lib/constants";
 import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
           default: "Codexa Classes - Best IT Training Institute",
     template: "%s | Codexa Classes"
   },
-  description: "Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts. Affordable courses starting at ₹10,000 with 100% job placement guarantee.",
+  description: `Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts. Affordable courses starting at ${formatCoursePrice()} with 100% job placement guarantee.`,
   keywords: ["IT training", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification"],
   authors: [{ name: INSTRUCTOR.name }],
   creator: "Codexa Classes",

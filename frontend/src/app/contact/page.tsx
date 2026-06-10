@@ -23,7 +23,7 @@ import {
 import PageLayout from '@/components/layout/PageLayout';
 import Link from 'next/link';
 import Super10Section from '@/components/Super10Section';
-import { CONTACT, COURSES } from '@/lib/constants';
+import { CONTACT, COURSES, formatCoursePriceForSchema } from '@/lib/constants';
 
 // Local Business structured data for SEO
 const localBusinessStructuredData = {
@@ -61,7 +61,7 @@ const localBusinessStructuredData = {
           "@type": "Course",
           "name": "PHP Development Course"
         },
-        "price": "10000",
+        "price": formatCoursePriceForSchema(),
         "priceCurrency": "INR"
       },
       {
@@ -70,7 +70,7 @@ const localBusinessStructuredData = {
           "@type": "Course",
           "name": "Python Programming Course"
         },
-        "price": "10000",
+        "price": formatCoursePriceForSchema(),
         "priceCurrency": "INR"
       }
     ]

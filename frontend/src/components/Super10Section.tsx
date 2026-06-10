@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { formatCoursePrice } from "@/lib/constants";
 
 export default function Super10Section() {
   return (
@@ -17,7 +18,7 @@ export default function Super10Section() {
                   Start your IT career today with our comprehensive courses. 
                   All courses include hands-on projects and job placement support.
                 </p>
-                <div className="text-3xl font-bold text-green-600 mb-2 group-hover:text-green-700 transition-colors">₹10,000</div>
+                <div className="text-3xl font-bold text-green-600 mb-2 group-hover:text-green-700 transition-colors">{formatCoursePrice()}</div>
                 <div className="text-sm text-gray-600 font-medium">Per course (Complete training + Certificate)</div>
               </div>
             </Link>

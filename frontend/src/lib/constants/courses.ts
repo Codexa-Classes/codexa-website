@@ -15,6 +15,15 @@ export interface Course {
   projects: readonly string[];
 }
 
+/** Single source of truth for course fee (INR). Update here to change price across the app. */
+export const COURSE_PRICE = 25000;
+
+export const formatCoursePrice = (price: number = COURSE_PRICE): string =>
+  `₹${price.toLocaleString('en-IN')}`;
+
+export const formatCoursePriceForSchema = (price: number = COURSE_PRICE): string =>
+  String(price);
+
 export const COURSES: readonly Course[] = [
   {
     id: "frontend-react",
@@ -36,7 +45,7 @@ export const COURSES: readonly Course[] = [
       "Testing & Deployment"
     ],
     icon_name: "react",
-    price: 10000,
+    price: COURSE_PRICE,
     careerPath: "Frontend Developer",
     skills: [
       "React.js Development",
@@ -74,7 +83,7 @@ export const COURSES: readonly Course[] = [
       "Testing & Debugging"
     ],
     icon_name: "python",
-    price: 10000,
+    price: COURSE_PRICE,
     careerPath: "Python Web Developer",
     skills: [
       "Python Programming",
@@ -112,7 +121,7 @@ export const COURSES: readonly Course[] = [
       "Deployment & Maintenance"
     ],
     icon_name: "php",
-    price: 10000,
+    price: COURSE_PRICE,
     careerPath: "PHP Web Developer",
     skills: [
       "PHP Programming",
@@ -150,7 +159,7 @@ export const COURSES: readonly Course[] = [
       "Business Intelligence Tools"
     ],
     icon_name: "powerbi",
-    price: 10000,
+    price: COURSE_PRICE,
     careerPath: "Business Analyst",
     skills: [
       "Business Analysis",
@@ -188,7 +197,7 @@ export const COURSES: readonly Course[] = [
       "Predictive Analytics"
     ],
     icon_name: "powerbi",
-    price: 10000,
+    price: COURSE_PRICE,
     careerPath: "Data Analyst",
     skills: [
       "Data Analysis",
@@ -226,7 +235,7 @@ export const COURSES: readonly Course[] = [
       "Auto Scaling & Load Balancing"
     ],
     icon_name: "aws",
-    price: 10000,
+    price: COURSE_PRICE,
     careerPath: "DevOps Engineer",
     skills: [
       "DevOps Practices",
@@ -264,7 +273,7 @@ export const COURSES: readonly Course[] = [
       "Database Monitoring"
     ],
     icon_name: "oracle",
-    price: 10000,
+    price: COURSE_PRICE,
     careerPath: "Database Administrator",
     skills: [
       "Oracle Database",
@@ -302,7 +311,7 @@ export const COURSES: readonly Course[] = [
       "User Support & Documentation"
     ],
     icon_name: "linux",
-    price: 10000,
+    price: COURSE_PRICE,
     careerPath: "Application Support Engineer",
     skills: [
       "Linux Administration",
@@ -340,7 +349,7 @@ export const COURSES: readonly Course[] = [
       "PowerBI Service & Mobile"
     ],
     icon_name: "powerbi",
-    price: 10000,
+    price: COURSE_PRICE,
     careerPath: "Data Analyst / BI Developer",
     skills: [
       "PowerBI Development",
@@ -375,8 +384,6 @@ export const COURSE_LEVELS = {
   intermediate: "Intermediate",
   advanced: "Advanced"
 } as const;
-
-export const COURSE_PRICE = 10000;
 
 // Helper functions
 export const getCourseById = (id: string): Course | undefined => {

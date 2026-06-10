@@ -1,31 +1,23 @@
 import type { Metadata } from "next";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { 
   Clock, 
   Users, 
   Award, 
   CheckCircle,
-  ArrowRight,
-  Code2,
-  Database,
-  Server,
-  Globe
 } from "lucide-react";
 import PageLayout from '@/components/layout/PageLayout';
-import Super10Section from '@/components/Super10Section';
-import DevIcon from '@/components/DevIcon';
-import { COURSES, COURSE_CATEGORIES, COURSE_PRICE } from '@/lib/constants';
+import CourseCard from '@/components/courses/CourseCard';
+import { COURSE_CARDS } from '@/lib/constants/courseCards';
+import { formatCoursePrice, formatCoursePriceForSchema } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: "Programming Courses - PHP, Python, React | Codexa Classes",
-  description: "Master in-demand programming skills with our comprehensive courses. Learn PHP, Python, React, MySQL, and Linux. All courses at ₹10,000 with certification and job support.",
+  description: `Master in-demand programming skills with our comprehensive courses. Learn PHP, Python, React, MySQL, and Linux. All courses at ${formatCoursePrice()} with certification and job support.`,
   keywords: ["PHP course", "Python training", "React development course", "MySQL course", "Linux administration course", "programming courses"],
       openGraph: {
       title: "Programming Courses - PHP, Python, React",
-      description: "Master in-demand programming skills with our comprehensive courses. All courses at ₹10,000 with certification and job support.",
+      description: `Master in-demand programming skills with our comprehensive courses. All courses at ${formatCoursePrice()} with certification and job support.`,
     url: "https://codexaclasses.com/courses",
     images: [
       {
@@ -63,7 +55,7 @@ const courseStructuredData = {
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
-          "price": "10000",
+          "price": formatCoursePriceForSchema(),
           "priceCurrency": "INR",
           "availability": "https://schema.org/InStock"
         }
@@ -87,7 +79,7 @@ const courseStructuredData = {
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
-          "price": "10000",
+          "price": formatCoursePriceForSchema(),
           "priceCurrency": "INR",
           "availability": "https://schema.org/InStock"
         }
@@ -111,7 +103,7 @@ const courseStructuredData = {
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
-          "price": "10000",
+          "price": formatCoursePriceForSchema(),
           "priceCurrency": "INR",
           "availability": "https://schema.org/InStock"
         }
@@ -135,7 +127,7 @@ const courseStructuredData = {
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
-          "price": "10000",
+          "price": formatCoursePriceForSchema(),
           "priceCurrency": "INR",
           "availability": "https://schema.org/InStock"
         }
@@ -159,7 +151,7 @@ const courseStructuredData = {
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
-          "price": "10000",
+          "price": formatCoursePriceForSchema(),
           "priceCurrency": "INR",
           "availability": "https://schema.org/InStock"
         }
@@ -183,7 +175,7 @@ const courseStructuredData = {
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
-          "price": "10000",
+          "price": formatCoursePriceForSchema(),
           "priceCurrency": "INR",
           "availability": "https://schema.org/InStock"
         }
@@ -207,7 +199,7 @@ const courseStructuredData = {
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
-          "price": "10000",
+          "price": formatCoursePriceForSchema(),
           "priceCurrency": "INR",
           "availability": "https://schema.org/InStock"
         }
@@ -231,7 +223,7 @@ const courseStructuredData = {
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
-          "price": "10000",
+          "price": formatCoursePriceForSchema(),
           "priceCurrency": "INR",
           "availability": "https://schema.org/InStock"
         }
@@ -265,27 +257,6 @@ export default function Courses() {
     }
   ];
 
-  const getCategoryBadgeVariant = (category: string) => {
-    switch (category) {
-      case 'frontend':
-        return 'bg-purple-500 text-white border-purple-500';
-      case 'web':
-        return 'bg-blue-500 text-white border-blue-500';
-      case 'business':
-        return 'bg-green-500 text-white border-green-500';
-      case 'data':
-        return 'bg-indigo-500 text-white border-indigo-500';
-      case 'devops':
-        return 'bg-orange-500 text-white border-orange-500';
-      case 'database':
-        return 'bg-teal-500 text-white border-teal-500';
-      case 'support':
-        return 'bg-gray-500 text-white border-gray-500';
-      default:
-        return 'bg-gray-500 text-white border-gray-500';
-    }
-  };
-
   return (
     <>
       {/* Structured Data for SEO */}
@@ -313,7 +284,7 @@ export default function Courses() {
               {/* Pricing Highlight */}
               <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white rounded-2xl p-6 max-w-md mx-auto">
                 <p className="text-sm text-white/90 mb-2 font-medium">Flat Rate for All Courses</p>
-                <p className="text-4xl font-bold text-yellow-300 mb-2">₹{COURSE_PRICE.toLocaleString()}</p>
+                <p className="text-4xl font-bold text-yellow-300 mb-2">{formatCoursePrice()}</p>
                 <p className="text-sm text-white/90 font-medium">Complete course + Certificate + Job Support</p>
               </div>
             </div>
@@ -332,70 +303,9 @@ export default function Courses() {
             </div>
 
             {/* Courses Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {COURSES.map((course) => (
-                <Card key={course.id} className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white border-gray-200 hover:border-blue-300 hover:bg-blue-50">
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="text-4xl">
-                        <DevIcon name={course.icon_name} size={48} />
-                      </div>
-                      <Badge className={`text-xs font-semibold ${getCategoryBadgeVariant(course.category)}`}>
-                        {course.category}
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-xl text-gray-900 font-bold">{course.name}</CardTitle>
-                    <CardDescription className="text-gray-700 font-medium">
-                      {course.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
-                      <div className="flex items-center space-x-2">
-                        <Clock className="h-4 w-4 text-gray-600" />
-                        <span className="text-gray-700 font-medium">{course.duration}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Users className="h-4 w-4 text-gray-600" />
-                        <span className="text-gray-700 font-medium">{course.students}</span>
-                      </div>
-                      <div className="col-span-2 flex items-center space-x-2">
-                        <Award className="h-4 w-4 text-gray-600" />
-                        <span className="text-gray-700 font-medium">{course.level}</span>
-                      </div>
-                    </div>
-
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-sm mb-3 text-gray-900">What You&apos;ll Learn:</h4>
-                      <ul className="space-y-2">
-                        {course.topics.slice(0, 4).map((topic, index) => (
-                          <li key={index} className="flex items-start space-x-2 text-sm">
-                            <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-700 font-medium">{topic}</span>
-                          </li>
-                        ))}
-                        {course.topics.length > 4 && (
-                          <li className="text-sm text-gray-600 font-medium">
-                            +{course.topics.length - 4} more topics...
-                          </li>
-                        )}
-                      </ul>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3">
-                      <Button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium border border-gray-300" asChild>
-                        <Link href={`/courses/${course.id}`}>
-                          View Details <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                      <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium" asChild>
-                        <Link href="/contact">
-                          Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+            <div className="mb-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {COURSE_CARDS.map((course) => (
+                <CourseCard key={course.id} course={course} />
               ))}
             </div>
           </div>

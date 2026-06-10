@@ -97,3 +97,4 @@ export const INSTRUCTOR: Instructor = {
 
 // Export courses constants
 export * from './courses';
+export * from './courseCards';

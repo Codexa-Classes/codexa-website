@@ -6,6 +6,7 @@ import Super10Section from '../Super10Section';
 import { SocialMediaIcons, defaultSocialMediaLinks } from '../SocialMediaIcons';
 import { Logo } from '../Logo';
 import { CONTACT } from '@/lib/constants';
+import { COURSE_CARDS } from '@/lib/constants/courseCards';
 import DevIcon from '../DevIcon';
 
 export default function AppFooter() {
@@ -88,54 +89,17 @@ export default function AppFooter() {
           <div>
             <h3 className="font-semibold mb-4">Courses</h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                  <DevIcon name="react" size={16} />
-                  Frontend Development
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                  <DevIcon name="python" size={16} />
-                  Web Development
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                  <DevIcon name="php" size={16} />
-                  Web Development
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                  <DevIcon name="powerbi" size={16} />
-                  Business Analyst
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                  <DevIcon name="python" size={16} />
-                  Data Analyst
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                  <DevIcon name="aws" size={16} />
-                  DevOps Engineer
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                  <DevIcon name="oracle" size={16} />
-                  Database Admin
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                  <DevIcon name="mysql" size={16} />
-                  App Support
-                </Link>
-              </li>
+              {COURSE_CARDS.map((course) => (
+                <li key={course.id}>
+                  <Link
+                    href="/courses"
+                    className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+                  >
+                    <DevIcon name={course.icons[0]} size={16} />
+                    {course.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           
