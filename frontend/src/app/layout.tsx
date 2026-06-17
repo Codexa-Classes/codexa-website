@@ -18,11 +18,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-          default: "Codexa Classes - Best IT Training Institute",
-    template: "%s | Codexa Classes"
+    default: "Codexa Classes - Best IT Training Institute in Pune",
+    template: "%s | Codexa Classes Pune"
   },
-  description: `Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts. Affordable courses starting at ${formatCoursePrice()} with 100% job placement guarantee.`,
-  keywords: ["IT training", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification"],
+  description: `Transform your career with comprehensive IT training in Pune. Learn PHP, Python, React, MySQL, and Linux from industry experts. Affordable courses starting at ${formatCoursePrice()} with 100% job placement guarantee.`,
+  keywords: ["IT training Pune", "programming courses in Pune", "PHP course Pune", "Python training Pune", "React development Pune", "web development course Pune", "IT institute Pune"],
   authors: [{ name: INSTRUCTOR.name }],
   creator: "Codexa Classes",
   publisher: "Codexa Classes",
@@ -35,29 +35,29 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
-      openGraph: {
-      type: 'website',
-      locale: 'en_IN',
-      url: 'https://codexaclasses.com',
-      siteName: 'Codexa Classes',
-      title: 'Codexa Classes - Best IT Training Institute',
-      description: 'Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts.',
-      images: [
-        {
-          url: '/og-image.png',
-          width: 1200,
-          height: 630,
-          alt: 'Codexa Classes - IT Training Institute',
-        },
-      ],
-    },
-      twitter: {
-      card: 'summary_large_image',
-      title: 'Codexa Classes - Best IT Training Institute',
-      description: 'Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts.',
-      images: ['/og-image.png'],
-      creator: '@codexaclasses',
-    },
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: 'https://codexaclasses.com',
+    siteName: 'Codexa Classes Pune',
+    title: 'Codexa Classes - Best IT Training Institute in Pune',
+    description: 'Transform your career with comprehensive IT training in Pune. Learn PHP, Python, React, MySQL, and Linux from industry experts.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Codexa Classes - IT Training Institute Pune',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Codexa Classes - Best IT Training Institute in Pune',
+    description: 'Transform your career with comprehensive IT training in Pune. Learn PHP, Python, React, MySQL, and Linux from industry experts.',
+    images: ['/og-image.png'],
+    creator: '@codexaclasses',
+  },
   robots: {
     index: true,
     follow: true,

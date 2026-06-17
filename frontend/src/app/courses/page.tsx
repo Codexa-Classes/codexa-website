@@ -12,12 +12,12 @@ import { COURSE_CARDS } from '@/lib/constants/courseCards';
 import { formatCoursePrice, formatCoursePriceForSchema } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: "Programming Courses - PHP, Python, React | Codexa Classes",
-  description: `Master in-demand programming skills with our comprehensive courses. Learn PHP, Python, React, MySQL, and Linux. All courses at ${formatCoursePrice()} with certification and job support.`,
-  keywords: ["PHP course", "Python training", "React development course", "MySQL course", "Linux administration course", "programming courses"],
-      openGraph: {
-      title: "Programming Courses - PHP, Python, React",
-      description: `Master in-demand programming skills with our comprehensive courses. All courses at ${formatCoursePrice()} with certification and job support.`,
+  title: "Programming Courses in Pune - PHP, Python, React | Codexa Classes",
+  description: `Master in-demand programming skills with our comprehensive courses in Pune. Learn PHP, Python, React, MySQL, and Linux. All courses at ${formatCoursePrice()} with certification and job support.`,
+  keywords: ["PHP course Pune", "Python training Pune", "React development course Pune", "MySQL course Pune", "Linux administration course Pune", "programming courses in Pune"],
+  openGraph: {
+    title: "Programming Courses in Pune - PHP, Python, React",
+    description: `Master in-demand programming skills with our comprehensive courses in Pune. All courses at ${formatCoursePrice()} with certification and job support.`,
     url: "https://codexaclasses.com/courses",
     images: [
       {

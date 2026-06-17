@@ -20,12 +20,12 @@ import Super10Section from '@/components/Super10Section';
 import { INSTRUCTOR, formatCoursePrice } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: `About Codexa Classes - IT Training Institute | ${INSTRUCTOR.name}`,
-      description: `Learn from industry expert ${INSTRUCTOR.name} with ${INSTRUCTOR.experience} of experience. Codexa Classes provides world-class IT education with 100% job placement rate.`,
-  keywords: [INSTRUCTOR.name, "IT training expert", "Codexa Classes about", "IT instructor", "programming expert", "PHP training", "Python course"],
+  title: `About Codexa Classes - IT Training Institute in Pune | ${INSTRUCTOR.name}`,
+  description: `Learn from industry expert ${INSTRUCTOR.name} with ${INSTRUCTOR.experience} of experience. Codexa Classes provides world-class IT education in Pune with a 100% job placement rate.`,
+  keywords: [INSTRUCTOR.name, "IT training expert Pune", "Codexa Classes about", "IT instructor Pune", "programming expert", "PHP training Pune", "Python course Pune"],
   openGraph: {
-          title: "About Codexa Classes - IT Training Institute",
-    description: `Learn from industry expert ${INSTRUCTOR.name} with ${INSTRUCTOR.experience} of experience in IT training.`,
+    title: "About Codexa Classes - IT Training Institute in Pune",
+    description: `Learn from industry expert ${INSTRUCTOR.name} with ${INSTRUCTOR.experience} of experience in IT training in Pune.`,
     url: "https://codexaclasses.com/about",
     images: [
       {

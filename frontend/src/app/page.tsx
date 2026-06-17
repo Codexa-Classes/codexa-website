@@ -24,19 +24,19 @@ import DevIcon from '@/components/DevIcon';
 
 
 export const metadata: Metadata = {
-  title: "Best IT Training Institute - Codexa Classes",
-  description: `Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts. Affordable courses starting at ${formatCoursePrice()} with 100% job placement guarantee.`,
-  keywords: ["IT training", "programming courses", "PHP course", "Python training", "React development", "web development course", "IT certification", "job placement"],
+  title: "Best IT Training Institute in Pune - Codexa Classes",
+  description: `Transform your career with comprehensive IT training in Pune. Learn PHP, Python, React, MySQL, and Linux from industry experts. Affordable courses starting at ${formatCoursePrice()} with 100% job placement guarantee.`,
+  keywords: ["IT training Pune", "programming courses Pune", "PHP course Pune", "Python training Pune", "React development Pune", "web development course Pune", "IT certification Pune", "job placement Pune"],
   openGraph: {
-          title: "Best IT Training Institute - Codexa Classes",
-          description: "Transform your career with comprehensive IT training. Learn PHP, Python, React, MySQL, and Linux from industry experts.",
+    title: "Best IT Training Institute in Pune - Codexa Classes",
+    description: "Transform your career with comprehensive IT training in Pune. Learn PHP, Python, React, MySQL, and Linux from industry experts.",
     url: "https://codexaclasses.com",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Codexa Classes - IT Training Institute",
+        alt: "Codexa Classes - IT Training Institute Pune",
       },
     ],
   },
@@ -47,7 +47,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   "name": "Codexa Classes",
-      "description": "Leading IT training institute offering comprehensive programming courses",
+  "description": "Pune's leading IT training institute offering comprehensive programming courses",
   "url": "https://codexaclasses.com",
   "logo": "https://codexaclasses.com/Codexa%20LOGO.png",
   "address": {
