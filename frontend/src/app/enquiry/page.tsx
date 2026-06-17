@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { EnquiryForm } from '@/components/enquiry/enquiry-form';
+import { GoogleEnquiryForm } from '@/components/enquiry/google-enquiry-form';
 import PageLayout from '@/components/layout/PageLayout';
 import { StudentTestimonial } from '@/components/StudentTestimonial';
 
@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   description: 'Submit your course enquiry and get detailed information about our technology courses. We\'ll get back to you with course details and enrollment information.',
   keywords: 'course enquiry, technology courses, coding classes, programming courses, Codexa Classes',
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
 };
 
@@ -18,7 +18,7 @@ export default function EnquiryPage() {
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
         <div className="container mx-auto py-4">
-          <EnquiryForm />
+          <GoogleEnquiryForm />
           <hr className="my-8" />
           
           {/* Featured Student Testimonials - Side by Side */}

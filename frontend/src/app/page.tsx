@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ROUTES, INSTRUCTOR, COURSES, CONTACT, formatCoursePrice } from '@/lib/constants';
+import { ROUTES, INSTRUCTOR, CONTACT, formatCoursePrice } from '@/lib/constants';
+import { COURSE_CARDS } from '@/lib/constants/courseCards';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -70,12 +71,6 @@ const structuredData = {
 };
 
 export default function Home() {
-  const popularCourses = COURSES.map(course => ({
-    icon: course.icon_name,
-    name: course.name, // Take first word for display
-    category: course.category
-  }));
-
   const whyChooseUs = [
     {
       icon: <Users className="h-8 w-8" />,
@@ -215,20 +210,22 @@ export default function Home() {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 mx-auto">
-              {popularCourses.map((course, index) => (
-                <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-gray-200 hover:border-blue-300 bg-white hover:bg-blue-50">
-                  <CardHeader className="pb-2">
-                    <div className="text-4xl mb-2">
-                      <DevIcon name={course.icon} size={84} />
-                    </div>
-                    <CardTitle className="text-lg text-gray-900 font-bold">{course.name}</CardTitle>
-                    <div className="flex justify-center">
-                      <Badge className="text-xs font-semibold bg-gray-500 text-white border-gray-500">
-                        {course.category.toUpperCase()}
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                </Card>
+              {COURSE_CARDS.map((course) => (
+                <Link key={course.id} href="/courses">
+                  <Card className="text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-gray-200 hover:border-blue-300 bg-white hover:bg-blue-50 h-full">
+                    <CardHeader className="pb-2">
+                      <div className="flex flex-wrap items-center justify-center gap-2 mb-3 min-h-[48px]">
+                        {course.icons.slice(0, 3).map((icon) => (
+                          <DevIcon key={icon} name={icon} size={28} />
+                        ))}
+                      </div>
+                      <CardTitle className="text-lg text-gray-900 font-bold">{course.title}</CardTitle>
+                      <p className="text-xs text-gray-600 font-medium mt-2 line-clamp-2">
+                        {course.techStack}
+                      </p>
+                    </CardHeader>
+                  </Card>
+                </Link>
               ))}
             </div>
             

@@ -163,57 +163,39 @@ export default function About() {
               </div>
             </div>
 
-            {/* Professional Experience */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-              <div>
-                <h3 className="text-2xl font-bold mb-6 text-gray-900">Professional Experience</h3>
-                <div className="space-y-4">
-                  {INSTRUCTOR.organizations.map((org, index) => (
-                    <Card key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-md hover:shadow-lg transition-all duration-300">
-                      <CardContent className="p-4">
-                        <div className="flex items-center space-x-3">
-                          <Building className="h-5 w-5 text-blue-600" />
-                          <span className="font-medium text-gray-900">{org}</span>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
+            {/* Our Commitment */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900">Our Commitment</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Card className="bg-blue-50 border-blue-200 shadow-md">
+                  <CardContent className="p-6">
+                    <h4 className="font-bold text-lg mb-2 text-gray-900">Quality Education</h4>
+                    <p className="text-gray-700 font-medium">
+                      We focus on practical, hands-on learning with real-world projects 
+                      that prepare students for actual industry challenges.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-green-50 border-green-200 shadow-md">
+                  <CardContent className="p-6">
+                    <h4 className="font-bold text-lg mb-2 text-gray-900">Affordable Learning</h4>
+                    <p className="text-gray-700 font-medium">
+                      All our courses are priced at just {formatCoursePrice()}, making quality IT education 
+                      accessible to everyone regardless of their financial background.
+                    </p>
+                  </CardContent>
+                </Card>
 
-              <div>
-                <h3 className="text-2xl font-bold mb-6 text-gray-900">Our Commitment</h3>
-                <div className="space-y-6">
-                  <Card className="bg-blue-50 border-blue-200 shadow-md">
-                    <CardContent className="p-6">
-                      <h4 className="font-bold text-lg mb-2 text-gray-900">Quality Education</h4>
-                      <p className="text-gray-700 font-medium">
-                        We focus on practical, hands-on learning with real-world projects 
-                        that prepare students for actual industry challenges.
-                      </p>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card className="bg-green-50 border-green-200 shadow-md">
-                    <CardContent className="p-6">
-                      <h4 className="font-bold text-lg mb-2 text-gray-900">Affordable Learning</h4>
-                      <p className="text-gray-700 font-medium">
-                        All our courses are priced at just {formatCoursePrice()}, making quality IT education 
-                        accessible to everyone regardless of their financial background.
-                      </p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-orange-50 border-orange-200 shadow-md">
-                    <CardContent className="p-6">
-                      <h4 className="font-bold text-lg mb-2 text-gray-900">Social Impact</h4>
-                      <p className="text-gray-700 font-medium">
-                        Through our Super10 program, we provide completely free education 
-                        to underprivileged students, creating opportunities for all.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
+                <Card className="bg-orange-50 border-orange-200 shadow-md">
+                  <CardContent className="p-6">
+                    <h4 className="font-bold text-lg mb-2 text-gray-900">Social Impact</h4>
+                    <p className="text-gray-700 font-medium">
+                      Through our Super10 program, we provide completely free education 
+                      to underprivileged students, creating opportunities for all.
+                    </p>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
