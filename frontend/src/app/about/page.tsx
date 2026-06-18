@@ -112,15 +112,15 @@ export default function About() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex items-center space-x-2">
+                  {/* <div className="flex items-center space-x-2">
                     <Building className="h-4 w-4 text-gray-600" />
                     <span className="text-sm text-gray-700 font-medium">{INSTRUCTOR.currentRole}</span>
-                  </div>
+                  </div> */}
                   <div className="flex items-center space-x-2">
                     <Award className="h-4 w-4 text-gray-600" />
                     <span className="text-sm text-gray-700 font-medium">{INSTRUCTOR.experience} Industry Experience</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  {/* <div className="flex items-center space-x-2">
                     <Globe className="h-4 w-4 text-gray-600" />
                     <a 
                       href={INSTRUCTOR.website}
@@ -130,7 +130,7 @@ export default function About() {
                     >
                       {INSTRUCTOR.website.replace('https://', '')}
                     </a>
-                  </div>
+                  </div> */}
                 </CardContent>
               </Card>
 
